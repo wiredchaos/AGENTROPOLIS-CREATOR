@@ -12,7 +12,14 @@ HeyGen supports avatars, voice design, voice cloning, lip-sync, video translatio
 - Product llms.txt: https://www.heygen.com/llms.txt
 - OpenAPI YAML: https://developers.heygen.com/openapi.yaml
 - External API JSON: https://developers.heygen.com/openapi/external-api.json
-- Remote MCP endpoint: `https://mcp.heygen.com/mcp/v1/`
+- General remote MCP endpoint: `https://mcp.heygen.com/mcp/v1/`
+- Hyperframes-specific MCP connector: `https://mcp.heygen.com/mcp/hyperframes` when exposed by the host/session
+
+Endpoint note:
+
+- `/mcp/v1/` is the general OAuth-protected HeyGen MCP endpoint for Creator workflows.
+- `/mcp/hyperframes` is documented here as a Hyperframes-specific connector when a connected host exposes that route.
+- Agents should prefer visible `mcp__heygen__*` tools over hardcoding either endpoint.
 
 ## Agent-first authentication ladder
 
@@ -126,6 +133,16 @@ Included workflows:
 11. Data Visualization Videos
 12. Lovable MCP Connection
 
+## Governance binding
+
+ARCHITECT defines the production spec. The Governance Layer validates and gates it. RELAY routes the agent. MCP RANGER vets sources and tools. HeyGen renders the video. The Approval Gate releases approved outputs to distribution.
+
+```text
+ARCHITECT -> Governance Layer -> RELAY -> MCP RANGER -> HeyGen Creator rail -> Approval Gate -> Distribution
+```
+
+Publishing flows must route through the ARCHITECT/Council Approval Gate before public distribution.
+
 ## Guardrails
 
 - Prefer MCP tools when visible.
@@ -135,4 +152,5 @@ Included workflows:
 - Store API keys only as environment variables or platform secrets.
 - Treat voice cloning, avatar creation, and consent flows as gated workflows.
 - Human approval is required before public publishing.
+- Publishing flows route through the ARCHITECT/Council Approval Gate before distribution.
 - Log generated video IDs, source prompts, assets, webhook events, and output URLs into the creator registry when available.
