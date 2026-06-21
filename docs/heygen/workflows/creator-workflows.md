@@ -5,15 +5,31 @@ These playbooks extend the HeyGen Creator MCP lane inside AGENTROPOLIS-CREATOR.
 Documentation index:
 
 - https://heygen-1fa696a7.mintlify.app/llms.txt
-- Remote MCP endpoint: `https://mcp.heygen.com/mcp/v1/`
+- General remote MCP endpoint: `https://mcp.heygen.com/mcp/v1/`
+- Hyperframes-specific MCP connector: `https://mcp.heygen.com/mcp/hyperframes` when exposed by the host/session
+
+Endpoint rule:
+
+- Use visible `mcp__heygen__*` tools first.
+- Use `/mcp/v1/` as the general OAuth-protected HeyGen Creator MCP endpoint.
+- Use `/mcp/hyperframes` only for Hyperframes-specific hosts/sessions that expose it.
+- Do not hardcode an endpoint when a connected MCP tool is already visible.
 
 Core doctrine:
 
 ```text
 MCP first -> CLI second -> Raw API last
 No API keys in chat
-Human approval before public publishing
+ARCHITECT/Council Approval Gate before public publishing
 ```
+
+Governance path:
+
+```text
+ARCHITECT -> Governance Layer -> RELAY -> MCP RANGER -> HeyGen Creator rail -> Approval Gate -> Distribution
+```
+
+Publishing flows route through the ARCHITECT/Council Approval Gate before distribution.
 
 ---
 
@@ -36,7 +52,7 @@ Use case: data in, finished video out.
 Pattern:
 
 ```text
-Data event -> Template composition + injected data -> Hyperframes render -> Distribute
+Data event -> Template composition + injected data -> Hyperframes render -> Approval Gate -> Distribute
 ```
 
 Best for:
@@ -53,7 +69,8 @@ Implementation notes:
 2. Extract variable fields as placeholders.
 3. Inject data into template.
 4. Render with Hyperframes.
-5. Distribute through the chosen channel.
+5. Route the output through the Approval Gate.
+6. Distribute through the chosen channel after approval.
 
 Example template fragment:
 
@@ -83,7 +100,7 @@ Use case: batch-generate platform-ready short-form videos.
 Pattern:
 
 ```text
-Choose topics -> Write prompts -> Batch generate videos -> Post
+Choose topics -> Write prompts -> Batch generate videos -> Approval Gate -> Post
 ```
 
 Recommended prompt structure:
@@ -127,7 +144,7 @@ Use case: product screenshots + feature specs become narrated demos.
 Pattern:
 
 ```text
-Screenshots + feature specs -> Video Agent prompt -> Narrated walkthrough -> Regenerate when UI changes
+Screenshots + feature specs -> Video Agent prompt -> Narrated walkthrough -> Approval Gate -> Publish
 ```
 
 Prompt structure:
@@ -164,7 +181,7 @@ Use case: scheduled video broadcasts from fresh data inputs.
 Pattern:
 
 ```text
-Schedule trigger -> Aggregate content -> LLM writes script -> Video Agent renders -> Auto-distribute
+Schedule trigger -> Aggregate content -> LLM writes script -> Video Agent renders -> Approval Gate -> Auto-distribute
 ```
 
 Best for:
@@ -189,6 +206,7 @@ Required guardrails:
 - Keep source receipts.
 - Human approve sensitive broadcasts.
 - Use webhooks for production rather than polling.
+- Route public broadcast release through ARCHITECT/Council Approval Gate.
 
 ---
 
@@ -199,7 +217,7 @@ Use case: blogs, podcasts, docs, and long-form posts become avatar-led clips.
 Pattern:
 
 ```text
-Written content -> LLM extracts key points -> Video Agent renders -> Distribute
+Written content -> LLM extracts key points -> Video Agent renders -> Approval Gate -> Distribute
 ```
 
 Agent producer instruction:
@@ -233,7 +251,7 @@ Use case: README files and docs become avatar-led explainers.
 Pattern:
 
 ```text
-Doc changes -> LLM writes video prompt -> Video Agent renders -> Embed or distribute
+Doc changes -> LLM writes video prompt -> Video Agent renders -> Approval Gate -> Embed or distribute
 ```
 
 CI/CD trigger:
@@ -356,6 +374,7 @@ Guardrails:
 - Respect avatar consent flows.
 - Never generate impersonation content.
 - Store generated avatar IDs in a controlled registry.
+- Route public-facing avatar outputs through the Approval Gate.
 
 ---
 
@@ -366,7 +385,7 @@ Use case: listing photos and property data become narrated tours.
 Pattern:
 
 ```text
-Property photos + listing data -> Video Agent prompt -> Narrated property tour -> Listing/social distribution
+Property photos + listing data -> Video Agent prompt -> Narrated property tour -> Approval Gate -> Listing/social distribution
 ```
 
 AGENTROPOLIS use:
@@ -397,7 +416,7 @@ Use case: spreadsheets, dashboards, and analytics become explainer videos.
 Pattern:
 
 ```text
-Data source -> Generate visualization HTML -> Animate with GSAP -> Render to MP4
+Data source -> Generate visualization HTML -> Animate with GSAP -> Render to MP4 -> Approval Gate -> Publish
 ```
 
 Best for:
@@ -422,10 +441,16 @@ AGENTROPOLIS use:
 
 Use case: connect HeyGen to Lovable as a custom MCP chat connector.
 
-Remote MCP URL:
+Default remote MCP URL:
 
 ```text
 https://mcp.heygen.com/mcp/v1/
+```
+
+Hyperframes-specific MCP route, when exposed by the host/session:
+
+```text
+https://mcp.heygen.com/mcp/hyperframes
 ```
 
 Steps:
@@ -434,7 +459,7 @@ Steps:
 2. Go to **Connectors -> Chat connectors**.
 3. Choose **Add custom MCP server**.
 4. Name it `HeyGen`.
-5. Enter `https://mcp.heygen.com/mcp/v1/`.
+5. Enter the general MCP endpoint unless the session specifically requires Hyperframes.
 6. Save and connect.
 7. Complete the one-time HeyGen OAuth flow.
 
@@ -450,6 +475,7 @@ Important:
 - They are personal, not workspace-shared.
 - They provide context to Lovable chat during app creation.
 - They are not bundled into the deployed app.
+- Publication still routes through the ARCHITECT/Council Approval Gate.
 
 ---
 
@@ -462,5 +488,5 @@ Before publication:
 3. Confirm no secrets were exposed.
 4. Confirm target platform format.
 5. Confirm callback/webhook safety.
-6. Human approve final video.
-7. Log video ID, source prompt, assets, and output URL.
+6. Route final approval through ARCHITECT/Council Approval Gate.
+7. Log video ID, source prompt, assets, approval receipt, and output URL.
