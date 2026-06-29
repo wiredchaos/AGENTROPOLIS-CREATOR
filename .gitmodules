@@ -1,0 +1,4 @@
+[submodule "modules/VideoAgent"]
+	path = modules/VideoAgent
+	url = https://github.com/HKUDS/VideoAgent.git
+	branch = main
