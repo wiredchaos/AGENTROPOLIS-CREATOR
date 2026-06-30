@@ -12,6 +12,9 @@ It is the production layer for designing, generating, testing, governing, render
 wiredchaos/agentropolis
 = City OS + live Hermes City deployment
 
+wiredchaos/AGENTROPOLIS-CITY
+= Live 3D city shell + Claw3D/Hermes/NemoClaw integration surface
+
 wiredchaos/AGENTROPOLIS-CREATOR
 = Agentropolis Construction District
 ```
@@ -37,6 +40,69 @@ A modular open-source route for:
 - governed media-diff previews
 - metadata and license tracking
 - web-ready export planning
+
+## City Shell Integration
+
+AGENTROPOLIS-CREATOR does not replace the live city shell.
+
+The live 3D governed swarm room belongs in:
+
+```text
+wiredchaos/AGENTROPOLIS-CITY
+```
+
+AGENTROPOLIS-CITY owns the Claw3D/Hermes/NemoClaw integration plan:
+
+```text
+docs/claw3d-hermes-agentropolis-integration.md
+```
+
+The relationship is:
+
+```text
+AGENTROPOLIS-CREATOR
+  -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, and templates
+
+AGENTROPOLIS-CITY
+  -> runs the 3D city shell, maps districts to rooms, visualizes Hermes agents, and displays NemoClaw governance states
+
+Hermes
+  -> live agent substrate
+
+NemoClaw
+  -> policy checkpoints and governed execution gates
+
+Claw3D
+  -> spatial office/city visualization layer
+
+Qwen-AgentWorld
+  -> post-hackathon simulation and rehearsal layer
+```
+
+### Pull Direction
+
+For MVP, AGENTROPOLIS-CREATOR should feed assets and specs into AGENTROPOLIS-CITY.
+
+```text
+CREATOR exports:
+- district room specs
+- GLB/Three.js-ready scene assets
+- NPC and avatar presets
+- district color palettes
+- metadata sidecars
+- world-diff previews
+
+CITY consumes:
+- Claw3D room layouts
+- Hermes agent bindings
+- NemoClaw gate state visuals
+- AGENTROPOLIS district metadata
+```
+
+Do not make CREATOR pull live runtime state directly.
+Runtime state belongs to CITY.
+CREATOR produces governed construction assets.
+CITY visualizes live governed agents.
 
 ## Why This Exists
 
@@ -125,6 +191,8 @@ assets/
 - Preview media diffs before publishing rendered output.
 - Require cost, purpose, and approval metadata for tool-assisted world generation and timeline rendering.
 - Keep City Canon in the city repo as the source of truth.
+- Keep live runtime state in AGENTROPOLIS-CITY, not CREATOR.
+- CREATOR exports assets/specs; CITY consumes and runs them.
 
 ## First Build Path
 
@@ -137,9 +205,12 @@ assets/
 7. Export foreground, midground, and background layers separately.
 8. Create an OpenCut-style timeline spec for short-form render testing.
 9. Preview world diffs and media diffs before production changes.
+10. Export first NemoClaw Security Fortress room spec for AGENTROPOLIS-CITY.
+11. Confirm Claw3D-compatible scene/room format before scaling to more districts.
 
 ## Canon Line
 
 > Agentropolis is the city.  
 > AGENTROPOLIS-CREATOR is the Construction District.  
+> AGENTROPOLIS-CITY is the live 3D city shell.  
 > The Construction District builds the world, while governance decides what becomes permanent.
