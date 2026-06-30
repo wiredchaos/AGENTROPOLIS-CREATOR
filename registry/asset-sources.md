@@ -1,6 +1,6 @@
 # Asset Source Registry
 
-Track every human, pet, companion, clothing, motion, texture, and crowd asset source before it enters Agentropolis Creator.
+Track every human, pet, companion, clothing, motion, texture, crowd, environment, reconstruction, and world-model asset source before it enters Agentropolis Creator.
 
 ## Source Status Codes
 
@@ -23,6 +23,13 @@ Track every human, pet, companion, clothing, motion, texture, and crowd asset so
 | CC0 assets | Pets, props, background pieces | Best external asset class. |
 | CC-BY assets | Pets, props, clothing, textures | Keep attribution file. |
 | GPL add-ons | Blender tooling | Code license does not automatically clear asset output. Verify separately. |
+| World-model generated | District previews, digital twins, simulation spaces | Candidate only until license, prompt, source media, and optimization metadata are reviewed. |
+
+## External World Model Sources
+
+| Source | Repo / URL | Output | Status | Construction District Use |
+| --- | --- | --- | --- | --- |
+| HY-World 2.0 | https://github.com/Tencent-Hunyuan/HY-World-2.0 | meshes, 3DGS, point clouds, world reconstructions | UNKNOWN | Candidate world generation and reconstruction lane for WorldForge. Keep behind verification before production import. |
 
 ## Asset Entry Template
 
@@ -43,6 +50,27 @@ Track every human, pet, companion, clothing, motion, texture, and crowd asset so
 - Notes:
 ```
 
+## World Model Candidate Template
+
+```yaml
+asset_id: hyworld-agentropolis-candidate-001
+asset_type: environment | digital_twin | district_preview | simulation_space
+source_tool: HY-World 2.0
+source_repo: Tencent-Hunyuan/HY-World-2.0
+source_url: https://github.com/Tencent-Hunyuan/HY-World-2.0
+input_type: text | image | multi_view | video
+prompt: ""
+source_media: []
+output_type: mesh | 3dgs | point_cloud | mixed
+intended_district: Construction District
+intended_scene: Command Atrium
+status: UNKNOWN
+review_required: true
+license_notes: "Verify upstream model and generated asset usage before commercial deployment."
+optimization_required: true
+approved_for_production: false
+```
+
 ## Blocked Asset Rules
 
 Block assets when any of the following are true:
@@ -54,6 +82,8 @@ Block assets when any of the following are true:
 - creator says personal use only
 - attribution cannot be preserved
 - redistribution is forbidden
+- generated output lacks prompt/source/provenance metadata
+- world-model output cannot be optimized for the target runtime
 
 ## Attribution File Pattern
 
