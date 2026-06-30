@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AGENTROPOLIS Creator</title>
+  <meta name="description" content="AGENTROPOLIS-CREATOR is the AI-native 3D world, procedural generation, human crowd, and media MCP forge for Agentropolis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scanline" aria-hidden="true"></div>
+  <div class="orb orb-red" aria-hidden="true"></div>
+  <div class="orb orb-cyan" aria-hidden="true"></div>
+  <div class="grid-floor" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="AGENTROPOLIS Creator home">
+      <span class="brand-mark">A</span>
+      <span>AGENTROPOLIS-CREATOR</span>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#forge">Forge</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#guardrails">Guardrails</a>
+      <a href="#deploy">Deploy</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Creator District // 3D MCP Agent Kit</p>
+        <h1>Build the city where agents create worlds.</h1>
+        <p class="lede">
+          AGENTROPOLIS-CREATOR is a cinematic, deployable static site and production scaffold for AI-native 3D worlds, procedural generation, crowd systems, media forges, and governed MCP execution.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#forge">Enter the Forge</a>
+          <a class="button ghost" href="https://github.com/wiredchaos/AGENTROPOLIS-CREATOR">View GitHub</a>
+        </div>
+      </div>
+
+      <div class="city-card reveal" aria-label="Animated Agentropolis city console">
+        <div class="card-topbar">
+          <span></span><span></span><span></span>
+          <strong>MISSION CONTROL</strong>
+        </div>
+        <div class="city-stage">
+          <div class="tower tower-1"></div>
+          <div class="tower tower-2"></div>
+          <div class="tower tower-3"></div>
+          <div class="tower tower-4"></div>
+          <div class="pulse-ring"></div>
+          <div class="agent-node node-a">HERMES</div>
+          <div class="agent-node node-b">NEMOCLAW</div>
+          <div class="agent-node node-c">MCP</div>
+        </div>
+        <div class="terminal-lines" aria-hidden="true">
+          <p>&gt; world_forge.plan("mission_control")</p>
+          <p>&gt; verifier.diff.preview()</p>
+          <p>&gt; human_approval.required = true</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="forge" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Four pillars</p>
+        <h2>The Creator repo is now a world + media forge.</h2>
+      </div>
+      <div class="cards">
+        <article class="feature-card reveal">
+          <span class="icon">🏙️</span>
+          <h3>3D MCP Agent Kit</h3>
+          <p>Routes agents into Blender, Unity, Unreal, WebXR, SuperSplat, and future 3D tool adapters.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="icon">🧬</span>
+          <h3>Procedural World Forge</h3>
+          <p>Uses Geometry Nodes, Infinigen, WFC, Markov rules, and Python to generate repeatable structure.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="icon">👥</span>
+          <h3>Human + Crowd Stack</h3>
+          <p>Open human, NPC, pet, crowd, Rigify, and metadata pipelines for city-scale population layers.</p>
+        </article>
+        <article class="feature-card reveal">
+          <span class="icon">🎬</span>
+          <h3>Media MCP Forge</h3>
+          <p>Connects video, audio, avatars, dubbing, captions, and cinematic export into governed workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="pipeline" class="section split">
+      <div class="reveal">
+        <p class="eyebrow">Execution pipeline</p>
+        <h2>Prompt to governed world mutation.</h2>
+        <p>
+          The repo is designed for agents that can propose, generate, verify, and package 3D scenes without bypassing human control.
+        </p>
+      </div>
+      <ol class="timeline reveal">
+        <li><span>01</span>Prompt, image, video, or session memory</li>
+        <li><span>02</span>Hermes planner and NemoClaw builder</li>
+        <li><span>03</span>MCP router selects tool adapter</li>
+        <li><span>04</span>World or media diff preview</li>
+        <li><span>05</span>Verifier plus human approval gate</li>
+        <li><span>06</span>Export, deploy, and memory writeback</li>
+      </ol>
+    </section>
+
+    <section id="guardrails" class="section guardrails">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Anti-Moloch layer</p>
+        <h2>No direct chaos into production.</h2>
+      </div>
+      <div class="rules reveal">
+        <span>No unclear-license assets</span>
+        <span>No celebrity likenesses without rights</span>
+        <span>No unbounded tool loops</span>
+        <span>No world mutation without diff preview</span>
+        <span>No production deploy without approval</span>
+        <span>No memory writeback without receipts</span>
+      </div>
+    </section>
+
+    <section id="deploy" class="section deploy reveal">
+      <p class="eyebrow">GitHub Pages ready</p>
+      <h2>Static site. Cinematic landing. Zero build step.</h2>
+      <p>
+        Deploy directly from the repository root using GitHub Pages. The homepage is plain HTML, CSS, and JavaScript so it stays inspectable, forkable, and easy to evolve.
+      </p>
+      <code>Settings → Pages → Deploy from branch → main → /root</code>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>AGENTROPOLIS-CREATOR // Creator District // Build worlds, verify everything.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
