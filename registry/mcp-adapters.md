@@ -1,6 +1,6 @@
 # MCP Adapter Registry
 
-This registry tracks the open-source and MCP-compatible tool adapters AGENTROPOLIS-CREATOR should evaluate for 3D, procedural generation, world editing, and media layers.
+This registry tracks the open-source and MCP-compatible tool adapters AGENTROPOLIS-CREATOR should evaluate for 3D, procedural generation, world editing, video rendering, and media layers.
 
 ## Adapter Classes
 
@@ -12,6 +12,7 @@ This registry tracks the open-source and MCP-compatible tool adapters AGENTROPOL
 | Procedural Generation | create constrained reusable worlds and variations |
 | Reconstruction / 3DGS | convert images/video/scans into editable/explorable scenes |
 | Audio / Voice | narration, dialogue, localization, dubbing |
+| Video Rendering / Timeline | assemble scenes, captions, voice, B-roll, music, and exports into publishable media |
 | Verification | inspect outputs, metadata, licenses, performance, and risks |
 
 ## Initial Targets
@@ -28,6 +29,7 @@ This registry tracks the open-source and MCP-compatible tool adapters AGENTROPOL
 | MarkovJunior | evaluate | Rule-based voxel/cellular/procedural generation. |
 | HY-World style world model | research | Use as world genesis and reconstruction layer, not production engine replacement. |
 | Seed Audio style MCP | research | Voice, narration, dubbing, NPC dialogue, localization. |
+| OpenCut | watch/evaluate | Open-source video editor target for timeline automation, AI-agent MCP control, headless rendering, and batch export once rewrite capabilities are production-ready. |
 
 ## Adapter Metadata Template
 
@@ -48,6 +50,36 @@ This registry tracks the open-source and MCP-compatible tool adapters AGENTROPOL
 }
 ```
 
+## OpenCut Adapter Draft
+
+```json
+{
+  "id": "opencut_video_adapter",
+  "name": "OpenCut Video Adapter",
+  "class": "Video Rendering / Timeline",
+  "repo_url": "https://github.com/OpenCut-app/OpenCut",
+  "license": "MIT",
+  "status": "watch/evaluate",
+  "local_required": true,
+  "gpu_required": false,
+  "risk_level": "medium",
+  "allowed_actions": [
+    "create_timeline_spec",
+    "assemble_media_draft",
+    "generate_caption_track",
+    "render_preview",
+    "export_review_package"
+  ],
+  "blocked_actions": [
+    "unapproved_public_publish",
+    "unapproved_likeness_export",
+    "unlicensed_media_import",
+    "unbounded_batch_render"
+  ],
+  "notes": "Use for governed media-diff previews before any public Agentropolis broadcast or short-form export."
+}
+```
+
 ## Required Adapter Questions
 
 Before adopting an adapter, answer:
@@ -62,6 +94,8 @@ Before adopting an adapter, answer:
 8. Can it be blocked from destructive operations?
 9. Can outputs be reversed?
 10. Does it create licensing or likeness risk?
+11. For video adapters, can source assets, captions, music, voice, and export settings be tracked as separate provenance records?
+12. For video adapters, can renders be previewed before public publishing?
 
 ## MCP Tool Risk Levels
 
@@ -72,6 +106,8 @@ Before adopting an adapter, answer:
 - inspect metadata
 - generate preview
 - export report
+- create timeline draft spec
+- inspect caption track
 
 ### Medium Risk
 
@@ -80,6 +116,9 @@ Before adopting an adapter, answer:
 - generate NPC pool
 - add lights
 - export test GLB
+- assemble media draft
+- render preview video
+- export review package
 
 ### High Risk
 
@@ -88,10 +127,14 @@ Before adopting an adapter, answer:
 - alter production scene
 - import external assets
 - publish build
+- publish rendered media
 - run unbounded procedural generation
+- run unbounded batch rendering
 
 ## Approval Rule
 
-Any medium-risk or high-risk adapter action must produce a world diff preview before execution.
+Any medium-risk or high-risk adapter action must produce a world diff or media diff preview before execution.
 
 No production world mutation without approval.
+
+No public rendered-media publish without approval.

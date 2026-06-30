@@ -6,7 +6,7 @@ AGENTROPOLIS-CREATOR is the **Agentropolis Construction District**.
 
 This is the place where the city builds itself.
 
-It is the production layer for designing, generating, testing, governing, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, and creator-facing asset systems for the Agentropolis ecosystem.
+It is the production layer for designing, generating, testing, governing, rendering, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, creator-facing asset systems, and publishable media for the Agentropolis ecosystem.
 
 ```text
 wiredchaos/agentropolis
@@ -32,7 +32,9 @@ A modular open-source route for:
 - crowd presets
 - Blender Geometry Nodes crowd generation
 - MCP adapters for 3D tools
+- OpenCut-style video rendering and timeline automation
 - governed world-diff previews
+- governed media-diff previews
 - metadata and license tracking
 - web-ready export planning
 
@@ -44,9 +46,9 @@ The goal is not random asset hoarding.
 
 The goal is a **Construction District**: a controlled world-generation factory that turns ideas into safe, reusable, auditable city infrastructure.
 
-Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, and procedural district logic.
+Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
 
-The city gets real when the Construction District can generate and govern the world behind it.
+The city gets real when the Construction District can generate, govern, render, and publish the world behind it.
 
 ## Repo Map
 
@@ -54,6 +56,7 @@ The city gets real when the Construction District can generate and govern the wo
 docs/
   open-source-human-crowd-stack.md
   3d-mcp-agent-kit.md
+  open-video-rendering-pipeline.md
   procedural-world-forge.md
   construction-district-canon.md
 
@@ -79,6 +82,7 @@ mcp/
   webxr/
   audio/
   procedural/
+  video/
 
 agents/
   WorldForge/
@@ -86,6 +90,7 @@ agents/
   AssetSmith/
   CrowdForge/
   AudioForge/
+  MediaForge/
   Verifier/
 
 workflows/
@@ -109,6 +114,7 @@ assets/
 | Browser previews | PlayCanvas / WebXR / React Three Fiber |
 | Procedural environments | Blender, Infinigen-style pipelines, WFC, MarkovJunior |
 | Voice and ambience | AudioForge / approved voice layers |
+| Timeline editing and batch renders | OpenCut / open video editor pipeline |
 
 ## Construction District Guardrails
 
@@ -116,7 +122,8 @@ assets/
 - Use only assets with clear licenses.
 - Keep metadata sidecars for imported or generated assets.
 - Preview world diffs before production changes.
-- Require cost, purpose, and approval metadata for tool-assisted world generation.
+- Preview media diffs before publishing rendered output.
+- Require cost, purpose, and approval metadata for tool-assisted world generation and timeline rendering.
 - Keep City Canon in the city repo as the source of truth.
 
 ## First Build Path
@@ -128,7 +135,8 @@ assets/
 5. Create an Axis Tower exterior spec.
 6. Create an Apartment 401 interior spec.
 7. Export foreground, midground, and background layers separately.
-8. Preview world diffs before production changes.
+8. Create an OpenCut-style timeline spec for short-form render testing.
+9. Preview world diffs and media diffs before production changes.
 
 ## Canon Line
 
