@@ -24,7 +24,10 @@
     <nav class="nav" aria-label="Primary navigation">
       <a href="#stack">Stack</a>
       <a href="#agents">Agents</a>
+      <a href="#districts">Districts</a>
+      <a href="#registry">Registry</a>
       <a href="#pipeline">Pipeline</a>
+      <a href="#concierge">HERMES</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#deploy">Deploy</a>
     </nav>
@@ -102,6 +105,40 @@
       </div>
     </section>
 
+
+
+    <section id="districts" class="section split mission-panel">
+      <div class="reveal">
+        <p class="eyebrow">Mission Control District Map</p>
+        <h2>Agentropolis is routed by district.</h2>
+        <p>AGENTROPOLIS-CREATOR is the Construction District: a visible operating map for building worlds, rendering signal, and verifying everything before export.</p>
+        <div class="district-map" aria-label="District map selector">
+          <button class="district-node active" data-district="forge">World Forge</button>
+          <button class="district-node" data-district="media">Media Forge</button>
+          <button class="district-node" data-district="runtime">Runtime Layer</button>
+          <button class="district-node" data-district="registry">Registry Layer</button>
+          <button class="district-node" data-district="governance">Verifier Layer</button>
+        </div>
+      </div>
+      <div class="agent-panel reveal" id="district-panel" aria-live="polite">
+        <p class="eyebrow">District Profile</p>
+        <h3>World Forge</h3>
+        <p>Owns Blender, procedural generation, human crowds, scene specs, asset prep, and export-ready 3D infrastructure.</p>
+      </div>
+    </section>
+
+    <section id="registry" class="section registry-console">
+      <div class="section-heading reveal">
+        <p class="eyebrow">MCP Registry Explorer</p>
+        <h2>Every adapter enters through a manifest, not a blind tool call.</h2>
+        <p>Review adapter class, status, risk, allowed actions, and blocked actions before a rail joins Mission Control.</p>
+      </div>
+      <div class="registry-layout reveal">
+        <div id="registry-list" class="registry-list" aria-label="Adapter selector"></div>
+        <div id="registry-detail" class="agent-panel registry-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
     <section id="agents" class="section">
       <div class="section-heading reveal">
         <p class="eyebrow">Build Agents</p>
@@ -142,6 +179,45 @@
         <li><span>06</span>Verifier plus human approval gate</li>
         <li><span>07</span>Export package and memory writeback</li>
       </ol>
+    </section>
+
+
+
+    <section id="opencut" class="section split mission-panel">
+      <div class="reveal">
+        <p class="eyebrow">OpenCut Timeline Rail</p>
+        <h2>MediaForge renders only after the route is explicit.</h2>
+        <div class="flow-rail" aria-label="OpenCut flow stages">
+          <button class="flow-step active" data-flow="brief">Brief</button>
+          <button class="flow-step" data-flow="assets">Assets</button>
+          <button class="flow-step" data-flow="timeline">Timeline</button>
+          <button class="flow-step" data-flow="preview">Preview</button>
+          <button class="flow-step" data-flow="approval">Approval</button>
+          <button class="flow-step" data-flow="export">Export</button>
+        </div>
+      </div>
+      <div class="agent-panel reveal" id="flow-panel" aria-live="polite">
+        <p class="eyebrow">OpenCut Timeline Rail</p>
+        <h3>Brief</h3>
+        <p>Define purpose, audience, duration, aspect ratios, source assets, and approval requirements.</p>
+      </div>
+    </section>
+
+    <section id="concierge" class="section split hermes-console">
+      <div class="reveal">
+        <p class="eyebrow">HERMES Concierge</p>
+        <h2>Static routing prompts for Mission Control.</h2>
+        <p>HERMES does not call an API or claim real autonomy here. It demonstrates safe routing language for the Construction District.</p>
+        <div class="intent-bar" aria-label="HERMES static intents">
+          <button class="intent-button" data-intent="world">Build world</button>
+          <button class="intent-button" data-intent="media">Render media</button>
+          <button class="intent-button" data-intent="adapter">Register adapter</button>
+          <button class="intent-button" data-intent="verify">Verify output</button>
+        </div>
+      </div>
+      <div id="chat-log" class="chat-log reveal" aria-live="polite">
+        <p><strong>HERMES:</strong> Choose an intent to route the work through Mission Control.</p>
+      </div>
     </section>
 
     <section id="guardrails" class="section guardrails">
