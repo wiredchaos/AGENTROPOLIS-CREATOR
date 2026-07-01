@@ -1,0 +1,42 @@
+{
+  "model_pack_id": "replace-with-model-pack-id",
+  "status": "draft",
+  "export_targets": [
+    {
+      "target": "District Exchange",
+      "enabled": false,
+      "path": "registry/package-index.md"
+    },
+    {
+      "target": "AGENTROPOLIS-CITY",
+      "enabled": false,
+      "path": "city-runtime-reference"
+    },
+    {
+      "target": "wiredchaos/agentropolis",
+      "enabled": false,
+      "path": "city-os-reference"
+    }
+  ],
+  "artifacts": [
+    {
+      "type": "adapter|checkpoint|config|report",
+      "path": "verify",
+      "checksum": "verify",
+      "approved": false
+    }
+  ],
+  "required_before_release": {
+    "model_card": false,
+    "dataset_card": false,
+    "license_review": false,
+    "risk_review": false,
+    "eval_report": false,
+    "rollback_plan": false,
+    "district_approval": false
+  },
+  "rollback": {
+    "previous_model_pack_id": null,
+    "rollback_steps": []
+  }
+}
