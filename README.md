@@ -6,7 +6,7 @@ AGENTROPOLIS-CREATOR is the **Agentropolis Construction District** and the **Age
 
 This is the place where the city builds itself.
 
-It is the production layer for designing, generating, testing, governing, rendering, packaging, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, creator-facing asset systems, and publishable media for the Agentropolis ecosystem.
+It is the production layer for designing, generating, testing, governing, rendering, packaging, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, creator-facing asset systems, model packs, workflows, MCP kits, and publishable media for the Agentropolis ecosystem.
 
 ```text
 Agentropolis
@@ -15,8 +15,11 @@ Agentropolis
 AGENTROPOLIS-CREATOR
 = the foundry
 
+Model Training Foundry
+= where specialized model capability is produced, tested, and packaged
+
 District Exchange
-= where skills, agents, workflows, and MCP kits ship
+= where skills, agents, workflows, MCP kits, model packs, and production packages ship
 ```
 
 ```text
@@ -51,7 +54,51 @@ A modular open-source route for:
 - governed media-diff previews
 - metadata and license tracking
 - web-ready export planning
-- executable skills, workflows, templates, evals, and MCP kits for District Exchange
+- model-pack candidates and training workflows
+- executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
+
+## System-Wide Execution Lane
+
+AGENTROPOLIS-CREATOR now uses a system-wide execution lane for every capability package.
+
+```text
+idea -> candidate -> package -> verification -> registry -> handoff -> runtime adoption
+```
+
+The Foundry builds candidates.
+Verifier skills check structure, provenance, license, evals, risk, rollback, and handoff readiness.
+District Exchange indexes approved packages.
+Runtime repos consume only approved package references.
+
+See:
+
+```text
+docs/system-wide-execution-lane.md
+registry/package-index.md
+```
+
+## Model Training Foundry
+
+The Model Training Foundry adds an intelligence construction lane for specialized model packs.
+
+It evaluates open-source training tools such as:
+
+- Unsloth AI
+- LLaMA Factory
+- Axolotl
+- DeepSpeed
+
+Model outputs are candidate artifacts until provenance, license, risk, evaluation, export, and district approval gates are complete.
+
+See:
+
+```text
+docs/model-training-foundry.md
+registry/training-adapters.md
+workflows/model-pack-candidate.md
+skills/model-pack-verifier/skill.md
+templates/model-pack/
+```
 
 ## District Exchange
 
@@ -68,6 +115,7 @@ It is the city-native exchange where districts ship governed, tagged, executable
 - evaluation suites
 - MCP kits
 - WorldForge packs
+- model packs
 - commerce kits
 - production pipelines
 
@@ -77,6 +125,7 @@ See:
 
 ```text
 docs/district-exchange-canon.md
+registry/package-index.md
 ```
 
 ## City Shell Integration
@@ -99,7 +148,7 @@ The relationship is:
 
 ```text
 AGENTROPOLIS-CREATOR
-  -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, templates, skills, workflows, and MCP kits
+  -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, templates, skills, workflows, model packs, and MCP kits
 
 AGENTROPOLIS-CITY
   -> runs the 3D city shell, maps districts to rooms, visualizes Hermes agents, and displays NemoClaw governance states
@@ -135,12 +184,15 @@ CREATOR exports:
 - skill packages
 - workflow packages
 - MCP kit packages
+- model pack candidates
+- eval suite candidates
 
 CITY consumes:
 - Claw3D room layouts
 - Hermes agent bindings
 - NemoClaw gate state visuals
 - AGENTROPOLIS district metadata
+- approved visual/runtime package references only
 
 DISTRICT EXCHANGE consumes:
 - verified skills
@@ -150,6 +202,7 @@ DISTRICT EXCHANGE consumes:
 - eval suites
 - MCP kits
 - WorldForge packs
+- model packs
 - commerce kits
 - production pipelines
 ```
@@ -168,9 +221,9 @@ The goal is not random asset hoarding or a generic app store.
 
 The goal is a **Foundry**: a controlled capability factory that turns ideas into safe, reusable, auditable city infrastructure.
 
-Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, skills, workflows, MCP kits, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
+Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, skills, workflows, MCP kits, model packs, eval suites, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
 
-The city gets real when the Foundry can generate, govern, render, package, and publish the capabilities behind it.
+The city gets real when the Foundry can generate, govern, render, package, train, verify, and publish the capabilities behind it.
 
 ## Repo Map
 
@@ -184,15 +237,21 @@ docs/
   open-video-rendering-pipeline.md
   procedural-world-forge.md
   construction-district-canon.md
+  model-training-foundry.md
+  system-wide-execution-lane.md
 
 skills/
   open-human-crowd/
+    skill.md
+  model-pack-verifier/
     skill.md
 
 registry/
   asset-sources.md
   crowd-presets.md
   mcp-adapters.md
+  training-adapters.md
+  package-index.md
 
 blender/
   geometry-nodes/
@@ -220,8 +279,20 @@ agents/
 
 workflows/
   worldforge-candidate-packet.md
+  model-pack-candidate.md
 
 templates/
+  model-pack/
+    README.md
+    model-card.md
+    dataset-card.md
+    training-config.yaml
+    eval-report.md
+    risk-review.md
+    license-review.md
+    provenance.json
+    export-manifest.json
+
 examples/
 assets/
   .gitkeep
@@ -243,7 +314,12 @@ assets/
 | World generation / reconstruction | HY-World 2.0 candidate lane through WorldForge |
 | Voice and ambience | AudioForge / approved voice layers |
 | Timeline editing and batch renders | OpenCut / open video editor pipeline |
+| Fast local fine-tuning | Unsloth AI |
+| Operator training workbench | LLaMA Factory |
+| Alignment and preference training | Axolotl |
+| Distributed model training | DeepSpeed |
 | Skill package production | Skill Architect, Workflow Compiler, Eval Builder, Verifier |
+| Model package verification | Model Pack Verifier |
 
 ## Construction District Guardrails
 
@@ -253,6 +329,7 @@ assets/
 - Preview world diffs before production changes.
 - Preview media diffs before publishing rendered output.
 - Require cost, purpose, and approval metadata for tool-assisted world generation and timeline rendering.
+- Require provenance, license review, eval reports, risk review, and rollback paths for model packs.
 - Keep City Canon in the city repo as the source of truth.
 - Keep live runtime state in AGENTROPOLIS-CITY, not CREATOR.
 - CREATOR exports assets/specs; CITY consumes and runs them.
@@ -274,11 +351,14 @@ assets/
 11. Confirm Claw3D-compatible scene/room format before scaling to more districts.
 12. Package the first 25 District Exchange skills with metadata, examples, templates, and evals.
 13. Package the first 5 MCP kits and 5 WorldForge packs as candidate releases.
+14. Package the first model-pack candidate through Model Training Foundry.
+15. Verify the first model pack with Model Pack Verifier.
+16. Add verified packages to `registry/package-index.md` before downstream handoff.
 
 ## Canon Line
 
 > Agentropolis is the city.  
 > AGENTROPOLIS-CREATOR is the foundry.  
 > AGENTROPOLIS-CITY is the live 3D city shell.  
-> District Exchange is where skills, agents, workflows, and MCP kits ship.  
+> District Exchange is where skills, agents, workflows, MCP kits, model packs, and production packages ship.  
 > The Foundry builds the world, while governance decides what becomes permanent.
