@@ -2,11 +2,22 @@
 
 ## Agentropolis Construction District
 
-AGENTROPOLIS-CREATOR is the **Agentropolis Construction District**.
+AGENTROPOLIS-CREATOR is the **Agentropolis Construction District** and the **Agentropolis Foundry**.
 
 This is the place where the city builds itself.
 
-It is the production layer for designing, generating, testing, governing, rendering, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, creator-facing asset systems, and publishable media for the Agentropolis ecosystem.
+It is the production layer for designing, generating, testing, governing, rendering, packaging, and exporting reusable 3D scenes, characters, crowds, districts, buildings, skills, templates, creator-facing asset systems, and publishable media for the Agentropolis ecosystem.
+
+```text
+Agentropolis
+= the city
+
+AGENTROPOLIS-CREATOR
+= the foundry
+
+District Exchange
+= where skills, agents, workflows, and MCP kits ship
+```
 
 ```text
 wiredchaos/agentropolis
@@ -16,7 +27,7 @@ wiredchaos/AGENTROPOLIS-CITY
 = Live 3D city shell + Claw3D/Hermes/NemoClaw integration surface
 
 wiredchaos/AGENTROPOLIS-CREATOR
-= Agentropolis Construction District
+= Agentropolis Construction District + Foundry
 ```
 
 ## Current Focus
@@ -40,6 +51,33 @@ A modular open-source route for:
 - governed media-diff previews
 - metadata and license tracking
 - web-ready export planning
+- executable skills, workflows, templates, evals, and MCP kits for District Exchange
+
+## District Exchange
+
+District Exchange is the distribution layer for Agentropolis capabilities.
+
+It is not a generic app store.
+
+It is the city-native exchange where districts ship governed, tagged, executable packages:
+
+- skills
+- agents
+- workflows
+- templates
+- evaluation suites
+- MCP kits
+- WorldForge packs
+- commerce kits
+- production pipelines
+
+The foundry builds and verifies the packages. District Exchange indexes and distributes them. Agentropolis consumes them as city infrastructure.
+
+See:
+
+```text
+docs/district-exchange-canon.md
+```
 
 ## City Shell Integration
 
@@ -61,10 +99,13 @@ The relationship is:
 
 ```text
 AGENTROPOLIS-CREATOR
-  -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, and templates
+  -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, templates, skills, workflows, and MCP kits
 
 AGENTROPOLIS-CITY
   -> runs the 3D city shell, maps districts to rooms, visualizes Hermes agents, and displays NemoClaw governance states
+
+District Exchange
+  -> ships and routes verified capability packages
 
 Hermes
   -> live agent substrate
@@ -81,7 +122,7 @@ Qwen-AgentWorld
 
 ### Pull Direction
 
-For MVP, AGENTROPOLIS-CREATOR should feed assets and specs into AGENTROPOLIS-CITY.
+For MVP, AGENTROPOLIS-CREATOR should feed assets and specs into AGENTROPOLIS-CITY and verified packages into District Exchange.
 
 ```text
 CREATOR exports:
@@ -91,30 +132,45 @@ CREATOR exports:
 - district color palettes
 - metadata sidecars
 - world-diff previews
+- skill packages
+- workflow packages
+- MCP kit packages
 
 CITY consumes:
 - Claw3D room layouts
 - Hermes agent bindings
 - NemoClaw gate state visuals
 - AGENTROPOLIS district metadata
+
+DISTRICT EXCHANGE consumes:
+- verified skills
+- agents
+- workflows
+- templates
+- eval suites
+- MCP kits
+- WorldForge packs
+- commerce kits
+- production pipelines
 ```
 
 Do not make CREATOR pull live runtime state directly.
 Runtime state belongs to CITY.
-CREATOR produces governed construction assets.
+CREATOR produces governed construction assets and foundry packages.
 CITY visualizes live governed agents.
+District Exchange distributes verified packages.
 
 ## Why This Exists
 
-Commercial 3D asset libraries are useful, but Agentropolis needs a system that can be inspected, extended, governed, reused, and improved across districts.
+Commercial 3D asset libraries and prompt vaults are useful, but Agentropolis needs a system that can be inspected, extended, governed, reused, tested, and improved across districts.
 
-The goal is not random asset hoarding.
+The goal is not random asset hoarding or a generic app store.
 
-The goal is a **Construction District**: a controlled world-generation factory that turns ideas into safe, reusable, auditable city infrastructure.
+The goal is a **Foundry**: a controlled capability factory that turns ideas into safe, reusable, auditable city infrastructure.
 
-Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
+Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, skills, workflows, MCP kits, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
 
-The city gets real when the Construction District can generate, govern, render, and publish the world behind it.
+The city gets real when the Foundry can generate, govern, render, package, and publish the capabilities behind it.
 
 ## Repo Map
 
@@ -122,6 +178,9 @@ The city gets real when the Construction District can generate, govern, render, 
 docs/
   open-source-human-crowd-stack.md
   3d-mcp-agent-kit.md
+  agentropolis-3d-mcp-agent-kit.md
+  hy-world-2-integration.md
+  district-exchange-canon.md
   open-video-rendering-pipeline.md
   procedural-world-forge.md
   construction-district-canon.md
@@ -160,6 +219,8 @@ agents/
   Verifier/
 
 workflows/
+  worldforge-candidate-packet.md
+
 templates/
 examples/
 assets/
@@ -179,8 +240,10 @@ assets/
 | Web exports | GLB with strict LOD control |
 | Browser previews | PlayCanvas / WebXR / React Three Fiber |
 | Procedural environments | Blender, Infinigen-style pipelines, WFC, MarkovJunior |
+| World generation / reconstruction | HY-World 2.0 candidate lane through WorldForge |
 | Voice and ambience | AudioForge / approved voice layers |
 | Timeline editing and batch renders | OpenCut / open video editor pipeline |
+| Skill package production | Skill Architect, Workflow Compiler, Eval Builder, Verifier |
 
 ## Construction District Guardrails
 
@@ -193,6 +256,8 @@ assets/
 - Keep City Canon in the city repo as the source of truth.
 - Keep live runtime state in AGENTROPOLIS-CITY, not CREATOR.
 - CREATOR exports assets/specs; CITY consumes and runs them.
+- CREATOR exports verified package specs; District Exchange distributes them.
+- No package enters canonical city infrastructure without evaluation and approval.
 
 ## First Build Path
 
@@ -207,10 +272,13 @@ assets/
 9. Preview world diffs and media diffs before production changes.
 10. Export first NemoClaw Security Fortress room spec for AGENTROPOLIS-CITY.
 11. Confirm Claw3D-compatible scene/room format before scaling to more districts.
+12. Package the first 25 District Exchange skills with metadata, examples, templates, and evals.
+13. Package the first 5 MCP kits and 5 WorldForge packs as candidate releases.
 
 ## Canon Line
 
 > Agentropolis is the city.  
-> AGENTROPOLIS-CREATOR is the Construction District.  
+> AGENTROPOLIS-CREATOR is the foundry.  
 > AGENTROPOLIS-CITY is the live 3D city shell.  
-> The Construction District builds the world, while governance decides what becomes permanent.
+> District Exchange is where skills, agents, workflows, and MCP kits ship.  
+> The Foundry builds the world, while governance decides what becomes permanent.
