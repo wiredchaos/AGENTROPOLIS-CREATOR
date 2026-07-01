@@ -10,12 +10,12 @@ AGENTROPOLIS-CREATOR
 = the foundry
 
 District Exchange
-= where skills, agents, workflows, templates, evaluation suites, MCP kits, WorldForge packs, commerce kits, and production pipelines ship
+= the capability exchange for Agentropolis
 ```
 
 ## Role
 
-District Exchange is the distribution layer for Agentropolis capabilities.
+District Exchange is the capability exchange for Agentropolis.
 
 It is not a generic app store.
 
@@ -32,7 +32,7 @@ It is the city-native exchange where districts publish governed, tagged, executa
 | Evaluation Suites | tests that prove whether a skill or workflow works |
 | MCP Kits | connector/tool bundles mapped to governed actions |
 | WorldForge Packs | 3D scenes, district specs, world-model workflows, and media-ready environments |
-| Commerce Kits | pricing, offers, checkout flows, wallet logic, x402 rails, and settlement patterns |
+| Commerce Kits | offers, checkout flows, wallet logic, and settlement patterns |
 | Production Pipelines | repeatable end-to-end systems for shipping client or city outputs |
 
 ## How It Fits
@@ -129,4 +129,4 @@ District Exchange may list experimental packages, but only verified packages can
 
 > Agentropolis is the city.  
 > AGENTROPOLIS-CREATOR is the foundry.  
-> District Exchange is where the city ships its capabilities.
+> District Exchange is the capability exchange for Agentropolis.
