@@ -1,0 +1,42 @@
+{
+  "model_pack_id": "replace-with-model-pack-id",
+  "created_at": "YYYY-MM-DD",
+  "created_by": "human-or-agent-owner",
+  "district": "Construction District",
+  "base_model": {
+    "name": "verify",
+    "source": "verify",
+    "license": "verify",
+    "revision": "verify"
+  },
+  "training_tool": {
+    "name": "unsloth|llama_factory|axolotl|deepspeed|other",
+    "repo_url": "verify",
+    "version": "verify"
+  },
+  "datasets": [
+    {
+      "name": "verify",
+      "source": "verify",
+      "license": "verify",
+      "data_type": "public|synthetic|internal|generated|other",
+      "approved_for_training": false
+    }
+  ],
+  "training_run": {
+    "config": "training-config.yaml",
+    "seed": "verify",
+    "hardware": "verify",
+    "estimated_cost": "verify"
+  },
+  "outputs": {
+    "adapter_path": "outputs/adapter",
+    "checkpoint_path": "outputs/checkpoints",
+    "export_manifest": "export-manifest.json"
+  },
+  "governance": {
+    "approval_status": "draft",
+    "approved_by": null,
+    "approval_date": null
+  }
+}
