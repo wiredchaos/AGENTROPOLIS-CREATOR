@@ -187,3 +187,24 @@ code { display: inline-block; max-width: 100%; overflow-x: auto; padding: 0.85re
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.001ms !important; }
 }
+
+.mission-panel .agent-panel { min-height: 280px; }
+.district-map, .flow-rail, .intent-bar { display: grid; gap: 0.8rem; margin-top: 1.4rem; }
+.district-node, .flow-step, .intent-button, .registry-list button { cursor: pointer; border: 1px solid var(--border); color: var(--muted); background: rgba(255,255,255,0.04); border-radius: 999px; padding: 0.85rem 1rem; font: inherit; transition: border-color 220ms ease, background 220ms ease, color 220ms ease, transform 220ms ease; }
+.district-node.active, .district-node:hover, .flow-step.active, .flow-step:hover, .intent-button:hover, .registry-list button.active, .registry-list button:hover { color: var(--text); border-color: rgba(18,217,255,0.62); background: rgba(18,217,255,0.12); transform: translateY(-1px); }
+.registry-layout { display: grid; grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.35fr); gap: 1rem; }
+.registry-list { display: grid; gap: 0.7rem; align-content: start; }
+.registry-list button { border-radius: 1rem; text-align: left; display: grid; gap: 0.25rem; }
+.registry-list span { color: var(--muted); font-size: 0.82rem; }
+.registry-detail ul { margin: 0.4rem 0 1rem; padding-left: 1.2rem; color: var(--muted); }
+.chat-log { min-height: 280px; max-height: 360px; overflow-y: auto; border: 1px solid var(--border); border-radius: 1.5rem; padding: 1.3rem; background: rgba(255,255,255,0.04); box-shadow: var(--shadow); }
+.chat-log p { margin-top: 0; }
+
+@media (max-width: 760px) {
+  .registry-layout { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .district-node, .flow-step, .intent-button, .registry-list button { transition: none; }
+  .district-node.active, .district-node:hover, .flow-step.active, .flow-step:hover, .intent-button:hover, .registry-list button.active, .registry-list button:hover { transform: none; }
+}
