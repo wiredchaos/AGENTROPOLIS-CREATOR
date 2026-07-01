@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AGENTROPOLIS Creator</title>
-  <meta name="description" content="AGENTROPOLIS-CREATOR is the AI-native 3D world, procedural generation, human crowd, and media MCP forge for Agentropolis." />
+  <meta name="description" content="AGENTROPOLIS-CREATOR is the dynamic HTML landing page and open creator stack for Agentropolis world building, MCP adapters, 3D generation, media rendering, and governed agent workflows." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
@@ -22,9 +22,10 @@
       <span>AGENTROPOLIS-CREATOR</span>
     </a>
     <nav class="nav" aria-label="Primary navigation">
-      <a href="#forge">Forge</a>
+      <a href="#stack">Stack</a>
+      <a href="#agents">Agents</a>
       <a href="#pipeline">Pipeline</a>
-      <a href="#guardrails">Guardrails</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="#deploy">Deploy</a>
     </nav>
   </header>
@@ -32,21 +33,26 @@
   <main id="top">
     <section class="hero section">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Creator District // 3D MCP Agent Kit</p>
-        <h1>Build the city where agents create worlds.</h1>
+        <p class="eyebrow">Construction District // Dynamic Repo Landing</p>
+        <h1>The open creator stack for Agentropolis.</h1>
         <p class="lede">
-          AGENTROPOLIS-CREATOR is a cinematic, deployable static site and production scaffold for AI-native 3D worlds, procedural generation, crowd systems, media forges, and governed MCP execution.
+          AGENTROPOLIS-CREATOR is the GitHub Pages front door for the city-building layer: 3D worlds, procedural rooms, avatar systems, video rendering, MCP adapters, and governed agent workflows.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#forge">Enter the Forge</a>
+          <a class="button primary" href="#stack">Explore the Stack</a>
           <a class="button ghost" href="https://github.com/wiredchaos/AGENTROPOLIS-CREATOR">View GitHub</a>
+        </div>
+        <div class="stat-strip" aria-label="Project stats">
+          <span><strong>12+</strong> adapter classes</span>
+          <span><strong>7</strong> build agents</span>
+          <span><strong>0</strong> blind deploys</span>
         </div>
       </div>
 
       <div class="city-card reveal" aria-label="Animated Agentropolis city console">
         <div class="card-topbar">
           <span></span><span></span><span></span>
-          <strong>MISSION CONTROL</strong>
+          <strong>CREATOR COMMAND</strong>
         </div>
         <div class="city-stage">
           <div class="tower tower-1"></div>
@@ -54,92 +60,130 @@
           <div class="tower tower-3"></div>
           <div class="tower tower-4"></div>
           <div class="pulse-ring"></div>
-          <div class="agent-node node-a">HERMES</div>
-          <div class="agent-node node-b">NEMOCLAW</div>
-          <div class="agent-node node-c">MCP</div>
+          <button class="agent-node node-a" data-panel="world">WORLDFORGE</button>
+          <button class="agent-node node-b" data-panel="media">MEDIAFORGE</button>
+          <button class="agent-node node-c" data-panel="verify">VERIFIER</button>
         </div>
-        <div class="terminal-lines" aria-hidden="true">
-          <p>&gt; world_forge.plan("mission_control")</p>
-          <p>&gt; verifier.diff.preview()</p>
-          <p>&gt; human_approval.required = true</p>
+        <div class="terminal-lines" aria-live="polite">
+          <p>&gt; creator_stack.boot()</p>
+          <p>&gt; adapter.registry.scan()</p>
+          <p>&gt; approval_gate.enabled = true</p>
         </div>
       </div>
     </section>
 
-    <section id="forge" class="section">
+    <section id="stack" class="section">
       <div class="section-heading reveal">
-        <p class="eyebrow">Four pillars</p>
-        <h2>The Creator repo is now a world + media forge.</h2>
+        <p class="eyebrow">Creator OS Stack</p>
+        <h2>One landing page for the whole construction layer.</h2>
+        <p>World generation, 3D adapters, media rendering, avatar tools, and governance checks sit in one visible operating surface.</p>
       </div>
-      <div class="cards">
-        <article class="feature-card reveal">
-          <span class="icon">🏙️</span>
-          <h3>3D MCP Agent Kit</h3>
-          <p>Routes agents into Blender, Unity, Unreal, WebXR, SuperSplat, and future 3D tool adapters.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="icon">🧬</span>
-          <h3>Procedural World Forge</h3>
-          <p>Uses Geometry Nodes, Infinigen, WFC, Markov rules, and Python to generate repeatable structure.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="icon">👥</span>
-          <h3>Human + Crowd Stack</h3>
-          <p>Open human, NPC, pet, crowd, Rigify, and metadata pipelines for city-scale population layers.</p>
-        </article>
-        <article class="feature-card reveal">
-          <span class="icon">🎬</span>
-          <h3>Media MCP Forge</h3>
-          <p>Connects video, audio, avatars, dubbing, captions, and cinematic export into governed workflows.</p>
-        </article>
+      <div class="filter-bar reveal" aria-label="Stack filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="3d">3D</button>
+        <button class="filter" data-filter="media">Media</button>
+        <button class="filter" data-filter="procedural">Procedural</button>
+        <button class="filter" data-filter="runtime">Runtime</button>
+        <button class="filter" data-filter="governance">Governance</button>
+      </div>
+      <div class="cards stack-grid">
+        <article class="feature-card reveal" data-category="3d"><span class="icon">🏗️</span><h3>Blender MCP</h3><p>Primary authoring rail for scenes, Geometry Nodes, materials, cameras, exports, and repeatable city assets.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="media"><span class="icon">🎬</span><h3>OpenCut</h3><p>Open video editing target for timeline specs, preview renders, captions, shorts, and batch media packages.</p><small>watch/evaluate</small></article>
+        <article class="feature-card reveal" data-category="3d"><span class="icon">🌍</span><h3>HY-World 2.0</h3><p>World-model research lane for genesis, reconstruction, and explorable scene experiments.</p><small>research</small></article>
+        <article class="feature-card reveal" data-category="3d"><span class="icon">🧊</span><h3>TRELLIS</h3><p>3D asset generation candidate for object creation, conversion, and prototype asset expansion.</p><small>research</small></article>
+        <article class="feature-card reveal" data-category="3d"><span class="icon">🧱</span><h3>Hunyuan3D</h3><p>3D generation candidate for objects, props, and early asset pipelines.</p><small>research</small></article>
+        <article class="feature-card reveal" data-category="media"><span class="icon">🎨</span><h3>ComfyUI</h3><p>Visual generation, texture variation, concept frames, mood boards, and controlled image pipelines.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="procedural"><span class="icon">🧬</span><h3>Infinigen</h3><p>Procedural environment generation for terrain, natural systems, and Blender-first world variation.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="procedural"><span class="icon">🧩</span><h3>WFC + Markov</h3><p>Constraint-based rooms, maps, tile grammars, street layouts, districts, and repeatable generation rules.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="3d"><span class="icon">📹</span><h3>Gaussian Splatting</h3><p>Reconstruction and experimental scene capture with SuperSplat, gsplat, and splat-editing tools.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="runtime"><span class="icon">🎮</span><h3>Unreal / Unity</h3><p>Runtime lanes for high-fidelity environments, gameplay prototyping, NavMesh, testing, and simulation.</p><small>watch/evaluate</small></article>
+        <article class="feature-card reveal" data-category="runtime"><span class="icon">🌐</span><h3>PlayCanvas / WebXR</h3><p>Browser-native previews for lightweight spaces, public prototypes, and creator-facing city scenes.</p><small>evaluate</small></article>
+        <article class="feature-card reveal" data-category="governance"><span class="icon">🧾</span><h3>Verifier</h3><p>Receipts layer for license checks, cost checks, media diffs, world diffs, export manifests, and approvals.</p><small>core</small></article>
+      </div>
+    </section>
+
+    <section id="agents" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Build Agents</p>
+        <h2>The repo behaves like a construction crew.</h2>
+      </div>
+      <div class="agent-console reveal">
+        <div class="agent-tabs" role="tablist" aria-label="Agent detail selector">
+          <button class="agent-tab active" data-target="world">WorldForge</button>
+          <button class="agent-tab" data-target="district">DistrictBuilder</button>
+          <button class="agent-tab" data-target="asset">AssetSmith</button>
+          <button class="agent-tab" data-target="crowd">CrowdForge</button>
+          <button class="agent-tab" data-target="audio">AudioForge</button>
+          <button class="agent-tab" data-target="media">MediaForge</button>
+          <button class="agent-tab" data-target="verify">Verifier</button>
+        </div>
+        <div class="agent-panel" id="agent-panel">
+          <p class="eyebrow">Selected Agent</p>
+          <h3>WorldForge</h3>
+          <p>Creates or modifies the base world structure: terrain, rooms, districts, streets, interiors, landmarks, portals, and staging areas.</p>
+        </div>
       </div>
     </section>
 
     <section id="pipeline" class="section split">
       <div class="reveal">
-        <p class="eyebrow">Execution pipeline</p>
-        <h2>Prompt to governed world mutation.</h2>
+        <p class="eyebrow">Execution Pipeline</p>
+        <h2>Prompt to governed export.</h2>
         <p>
-          The repo is designed for agents that can propose, generate, verify, and package 3D scenes without bypassing human control.
+          Agents can propose, generate, render, verify, and package scenes or media without bypassing human control.
         </p>
       </div>
       <ol class="timeline reveal">
         <li><span>01</span>Prompt, image, video, or session memory</li>
-        <li><span>02</span>Hermes planner and NemoClaw builder</li>
-        <li><span>03</span>MCP router selects tool adapter</li>
-        <li><span>04</span>World or media diff preview</li>
-        <li><span>05</span>Verifier plus human approval gate</li>
-        <li><span>06</span>Export, deploy, and memory writeback</li>
+        <li><span>02</span>Hermes planner routes the request</li>
+        <li><span>03</span>NemoClaw drafts the build plan</li>
+        <li><span>04</span>MCP router selects tool adapter</li>
+        <li><span>05</span>World or media diff preview</li>
+        <li><span>06</span>Verifier plus human approval gate</li>
+        <li><span>07</span>Export package and memory writeback</li>
       </ol>
     </section>
 
     <section id="guardrails" class="section guardrails">
       <div class="section-heading reveal">
-        <p class="eyebrow">Anti-Moloch layer</p>
+        <p class="eyebrow">Anti-Moloch Layer</p>
         <h2>No direct chaos into production.</h2>
       </div>
       <div class="rules reveal">
         <span>No unclear-license assets</span>
-        <span>No celebrity likenesses without rights</span>
+        <span>No unapproved likeness exports</span>
         <span>No unbounded tool loops</span>
         <span>No world mutation without diff preview</span>
-        <span>No production deploy without approval</span>
+        <span>No public render without approval</span>
         <span>No memory writeback without receipts</span>
       </div>
     </section>
 
+    <section id="roadmap" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Build Roadmap</p>
+        <h2>From landing page to Creator OS.</h2>
+      </div>
+      <div class="roadmap reveal">
+        <article><strong>Phase 01</strong><h3>Dynamic HTML Landing</h3><p>GitHub Pages front door with stack cards, agent console, pipeline, and deploy instructions.</p></article>
+        <article><strong>Phase 02</strong><h3>Adapter Registry</h3><p>Convert MCP adapter targets into structured JSON manifests with risk levels and required receipts.</p></article>
+        <article><strong>Phase 03</strong><h3>Scene Specs</h3><p>Add Mission Control, Axis Tower, Apartment 401, and 789 Studios sample specs.</p></article>
+        <article><strong>Phase 04</strong><h3>Render Specs</h3><p>Add OpenCut-style timeline specs for shorts, explainers, broadcast intros, and district teasers.</p></article>
+      </div>
+    </section>
+
     <section id="deploy" class="section deploy reveal">
-      <p class="eyebrow">GitHub Pages ready</p>
-      <h2>Static site. Cinematic landing. Zero build step.</h2>
+      <p class="eyebrow">GitHub Pages Ready</p>
+      <h2>Static HTML. Dynamic feel. Zero build step.</h2>
       <p>
-        Deploy directly from the repository root using GitHub Pages. The homepage is plain HTML, CSS, and JavaScript so it stays inspectable, forkable, and easy to evolve.
+        Deploy directly from the repository root using GitHub Pages. This page is plain HTML, CSS, and JavaScript so it stays inspectable, forkable, and easy to evolve.
       </p>
       <code>Settings → Pages → Deploy from branch → main → /root</code>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>AGENTROPOLIS-CREATOR // Creator District // Build worlds, verify everything.</p>
+    <p>AGENTROPOLIS-CREATOR // Construction District // Build worlds, render signal, verify everything.</p>
   </footer>
 
   <script src="script.js"></script>
