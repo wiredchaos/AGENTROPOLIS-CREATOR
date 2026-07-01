@@ -1,0 +1,55 @@
+model_pack:
+  id: replace-with-model-pack-id
+  name: Replace With Model Pack Name
+  status: draft
+  district: Construction District
+
+base_model:
+  name: verify
+  source: verify
+  license: verify
+  revision: verify
+
+training:
+  tool: unsloth # unsloth | llama_factory | axolotl | deepspeed | other
+  method: qlora # lora | qlora | full | frozen | preference | other
+  precision: verify
+  hardware: verify
+  estimated_cost: verify
+  seed: verify
+
+dataset:
+  dataset_card: dataset-card.md
+  sources:
+    - name: verify
+      type: verify
+      license: verify
+      private_data: false
+
+outputs:
+  adapter_path: outputs/adapter
+  checkpoint_path: outputs/checkpoints
+  export_manifest: export-manifest.json
+
+evaluation:
+  eval_report: eval-report.md
+  required_evals:
+    - provenance_check
+    - license_check
+    - task_eval
+    - hallucination_check
+    - safety_behavior_check
+    - regression_check
+
+governance:
+  risk_review: risk-review.md
+  license_review: license-review.md
+  approval_required: true
+  approved_by: null
+  rollback_plan_required: true
+
+blocked:
+  train_on_secrets: true
+  train_on_private_keys: true
+  train_on_unknown_source_data: true
+  production_deploy_without_eval: true
