@@ -2,3 +2,8 @@
 	path = modules/VideoAgent
 	url = https://github.com/HKUDS/VideoAgent.git
 	branch = main
+
+[submodule "modules/ArtCraft"]
+	path = modules/ArtCraft
+	url = https://github.com/storytold/artcraft.git
+	branch = main
