@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AGENTROPOLIS Creator</title>
-  <meta name="description" content="AGENTROPOLIS-CREATOR is the dynamic HTML landing page and open creator stack for Agentropolis world building, MCP adapters, 3D generation, media rendering, and governed agent workflows." />
+  <meta name="description" content="AGENTROPOLIS-CREATOR is the Mission Control landing page and open creator stack for Agentropolis world building, MCP adapters, 3D generation, media rendering, and governed agent workflows." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
@@ -23,9 +23,10 @@
     </a>
     <nav class="nav" aria-label="Primary navigation">
       <a href="#stack">Stack</a>
+      <a href="#districts">Districts</a>
+      <a href="#registry">Registry</a>
+      <a href="#opencut">OpenCut</a>
       <a href="#agents">Agents</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#roadmap">Roadmap</a>
       <a href="#deploy">Deploy</a>
     </nav>
   </header>
@@ -33,13 +34,13 @@
   <main id="top">
     <section class="hero section">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Construction District // Dynamic Repo Landing</p>
+        <p class="eyebrow">Construction District // Mission Control</p>
         <h1>The open creator stack for Agentropolis.</h1>
         <p class="lede">
           AGENTROPOLIS-CREATOR is the GitHub Pages front door for the city-building layer: 3D worlds, procedural rooms, avatar systems, video rendering, MCP adapters, and governed agent workflows.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#stack">Explore the Stack</a>
+          <a class="button primary" href="#districts">Open Mission Control</a>
           <a class="button ghost" href="https://github.com/wiredchaos/AGENTROPOLIS-CREATOR">View GitHub</a>
         </div>
         <div class="stat-strip" aria-label="Project stats">
@@ -69,6 +70,28 @@
           <p>&gt; adapter.registry.scan()</p>
           <p>&gt; approval_gate.enabled = true</p>
         </div>
+      </div>
+    </section>
+
+    <section id="districts" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Live District Map</p>
+        <h2>The Construction District becomes a control surface.</h2>
+        <p>Click each zone to inspect what that layer owns. This is the repo map turned into a city interface.</p>
+      </div>
+      <div class="district-layout reveal">
+        <div class="district-map" aria-label="Agentropolis Creator district map">
+          <button class="district-node active" data-district="forge" style="--x: 48%; --y: 24%;">Forge</button>
+          <button class="district-node" data-district="media" style="--x: 72%; --y: 42%;">Media</button>
+          <button class="district-node" data-district="runtime" style="--x: 28%; --y: 46%;">Runtime</button>
+          <button class="district-node" data-district="registry" style="--x: 54%; --y: 67%;">Registry</button>
+          <button class="district-node" data-district="governance" style="--x: 78%; --y: 74%;">Verifier</button>
+        </div>
+        <article class="district-panel" id="district-panel">
+          <p class="eyebrow">Selected Zone</p>
+          <h3>World Forge</h3>
+          <p>Blender, procedural generation, human crowds, scene specs, asset preparation, and export-ready 3D infrastructure.</p>
+        </article>
       </div>
     </section>
 
@@ -102,6 +125,58 @@
       </div>
     </section>
 
+    <section id="registry" class="section split registry-section">
+      <div class="reveal">
+        <p class="eyebrow">MCP Registry Explorer</p>
+        <h2>Adapters are contracts, not toys.</h2>
+        <p>Every adapter needs a role, risk level, allowed actions, blocked actions, provenance, and approval path.</p>
+      </div>
+      <div class="registry-console reveal">
+        <div class="registry-list" id="registry-list" aria-label="MCP adapter registry"></div>
+        <article class="registry-detail" id="registry-detail"></article>
+      </div>
+    </section>
+
+    <section id="opencut" class="section">
+      <div class="section-heading reveal">
+        <p class="eyebrow">OpenCut Timeline Rail</p>
+        <h2>World outputs become governed media.</h2>
+        <p>OpenCut sits as a future adapter target for timelines, captions, previews, shorts, and render packages.</p>
+      </div>
+      <div class="render-flow reveal" aria-label="OpenCut render flow">
+        <button data-flow="brief" class="flow-step active"><span>01</span> Brief</button>
+        <button data-flow="assets" class="flow-step"><span>02</span> Assets</button>
+        <button data-flow="timeline" class="flow-step"><span>03</span> Timeline</button>
+        <button data-flow="preview" class="flow-step"><span>04</span> Preview</button>
+        <button data-flow="approval" class="flow-step"><span>05</span> Approval</button>
+        <button data-flow="export" class="flow-step"><span>06</span> Export</button>
+      </div>
+      <article class="flow-panel reveal" id="flow-panel">
+        <p class="eyebrow">Render Stage</p>
+        <h3>Brief</h3>
+        <p>Define the purpose, audience, duration, aspect ratios, source assets, and approval requirements before the editor touches anything.</p>
+      </article>
+    </section>
+
+    <section id="concierge" class="section split">
+      <div class="reveal">
+        <p class="eyebrow">HERMES Concierge</p>
+        <h2>Ask the city what to build next.</h2>
+        <p>This is a static demo concierge: no API calls, no false autonomy, just guided build routing for the repo landing page.</p>
+      </div>
+      <div class="concierge-card reveal">
+        <div class="chat-log" id="chat-log">
+          <p><strong>HERMES:</strong> Choose a construction intent. I will route it to the right district.</p>
+        </div>
+        <div class="intent-grid">
+          <button data-intent="world">Build a 3D scene</button>
+          <button data-intent="media">Render a video</button>
+          <button data-intent="adapter">Add an MCP adapter</button>
+          <button data-intent="verify">Check governance</button>
+        </div>
+      </div>
+    </section>
+
     <section id="agents" class="section">
       <div class="section-heading reveal">
         <p class="eyebrow">Build Agents</p>
@@ -129,9 +204,7 @@
       <div class="reveal">
         <p class="eyebrow">Execution Pipeline</p>
         <h2>Prompt to governed export.</h2>
-        <p>
-          Agents can propose, generate, render, verify, and package scenes or media without bypassing human control.
-        </p>
+        <p>Agents can propose, generate, render, verify, and package scenes or media without bypassing human control.</p>
       </div>
       <ol class="timeline reveal">
         <li><span>01</span>Prompt, image, video, or session memory</li>
@@ -175,9 +248,7 @@
     <section id="deploy" class="section deploy reveal">
       <p class="eyebrow">GitHub Pages Ready</p>
       <h2>Static HTML. Dynamic feel. Zero build step.</h2>
-      <p>
-        Deploy directly from the repository root using GitHub Pages. This page is plain HTML, CSS, and JavaScript so it stays inspectable, forkable, and easy to evolve.
-      </p>
+      <p>Deploy directly from the repository root using GitHub Pages. This page is plain HTML, CSS, and JavaScript so it stays inspectable, forkable, and easy to evolve.</p>
       <code>Settings → Pages → Deploy from branch → main → /root</code>
     </section>
   </main>
