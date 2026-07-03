@@ -27,7 +27,7 @@ wiredchaos/agentropolis
 = City OS + live Hermes City deployment
 
 wiredchaos/AGENTROPOLIS-CITY
-= Live 3D city shell + Claw3D/Hermes/NemoClaw integration surface
+= Live 3D city shell + Hermes/OpenWorks/engine integration surface
 
 wiredchaos/AGENTROPOLIS-CREATOR
 = Agentropolis Construction District + Foundry
@@ -57,9 +57,89 @@ A modular open-source route for:
 - model-pack candidates and training workflows
 - executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
 
+## 2026 Execution Direction
+
+AGENTROPOLIS-CREATOR is moving toward a **provider-neutral execution lane**.
+
+The Foundry should not depend on one proprietary coding agent, one model provider, or one execution surface.
+
+```text
+HERMES
+= command intelligence and routing pattern
+
+OpenWorks Lab
+= sovereign execution layer concept
+
+MCP Catalog
+= tool and engine access layer
+
+Blender
+= default WorldForge asset and structured-ops lane
+
+Unreal Engine MCP
+= verified optional engine integration lane
+
+NVIDIA
+= optional acceleration layer
+```
+
+### Claw-Free Direction
+
+Any legacy Claw/Claw3D/NemoClaw language should be treated as historical or transition vocabulary unless explicitly needed for compatibility.
+
+The public architecture direction is:
+
+```text
+command -> execution adapter -> tool/MCP adapter -> verification -> package -> registry -> runtime adoption
+```
+
+This keeps the Construction District portable across:
+
+- OpenWorks Lab
+- Hermes Agent-compatible MCP surfaces
+- local models
+- NVIDIA-accelerated routes
+- Blender workflows
+- Unreal Engine workflows
+- future execution engines
+
+## Verified Engine Integration: Unreal Engine MCP
+
+Unreal Engine MCP is verified as an optional engine integration lane for Agentropolis Creator workflows.
+
+Scope it correctly:
+
+- Unreal Engine MCP is an **MCP Catalog integration lane**.
+- It requires Unreal Engine 5.8 installed locally.
+- It is additive, not the default foundation.
+- Blender remains the default structured WorldForge and asset-generation path.
+- Unreal is best positioned for cinematic export, editor-assisted world work, high-fidelity scene staging, and engine-level experimentation.
+
+Reference pattern:
+
+```text
+HERMES / OpenWorks command layer
+  -> MCP Catalog
+  -> Unreal Engine MCP
+  -> Unreal Editor
+  -> verified scene, asset, or system output
+  -> package candidate
+  -> District Exchange approval path
+```
+
+Public-safe teaching angle:
+
+- teach what engine-level MCP means
+- teach why game engines need controlled tool access
+- teach how agents can assist editor workflows
+- teach when Unreal fits better than Blender
+- teach why local install requirements matter
+
+Do not publish private world-forge logic, private routing prompts, private Agentropolis governance internals, or proprietary cinematic/export recipes.
+
 ## System-Wide Execution Lane
 
-AGENTROPOLIS-CREATOR now uses a system-wide execution lane for every capability package.
+AGENTROPOLIS-CREATOR uses a system-wide execution lane for every capability package.
 
 ```text
 idea -> candidate -> package -> verification -> registry -> handoff -> runtime adoption
@@ -138,11 +218,7 @@ The live 3D governed swarm room belongs in:
 wiredchaos/AGENTROPOLIS-CITY
 ```
 
-AGENTROPOLIS-CITY owns the Claw3D/Hermes/NemoClaw integration plan:
-
-```text
-docs/claw3d-hermes-agentropolis-integration.md
-```
+AGENTROPOLIS-CITY owns the live shell, district room mapping, visual runtime, and engine-facing integration surfaces.
 
 The relationship is:
 
@@ -151,19 +227,25 @@ AGENTROPOLIS-CREATOR
   -> designs and generates district assets, rooms, avatars, NPCs, crowds, media, templates, skills, workflows, model packs, and MCP kits
 
 AGENTROPOLIS-CITY
-  -> runs the 3D city shell, maps districts to rooms, visualizes Hermes agents, and displays NemoClaw governance states
+  -> runs the 3D city shell, maps districts to rooms, visualizes agent states, and displays governance states
 
 District Exchange
   -> ships and routes verified capability packages
 
 Hermes
-  -> live agent substrate
+  -> command intelligence / agent substrate pattern
 
-NemoClaw
-  -> policy checkpoints and governed execution gates
+OpenWorks Lab
+  -> sovereign execution lane concept
 
-Claw3D
-  -> spatial office/city visualization layer
+Blender
+  -> default structured WorldForge and asset-production lane
+
+Unreal Engine MCP
+  -> verified optional engine-level MCP integration lane
+
+NVIDIA
+  -> optional model acceleration and inference lane
 
 Qwen-AgentWorld
   -> post-hackathon simulation and rehearsal layer
@@ -186,179 +268,46 @@ CREATOR exports:
 - MCP kit packages
 - model pack candidates
 - eval suite candidates
+- optional Unreal Engine MCP package candidates
 
 CITY consumes:
-- Claw3D room layouts
-- Hermes agent bindings
-- NemoClaw gate state visuals
+- room layouts
+- agent bindings
+- governance state visuals
 - AGENTROPOLIS district metadata
 - approved visual/runtime package references only
+- optional Unreal Engine MCP outputs after verification
 
 DISTRICT EXCHANGE consumes:
 - verified skills
 - agents
 - workflows
 - templates
-- eval suites
 - MCP kits
 - WorldForge packs
 - model packs
-- commerce kits
-- production pipelines
+- engine integration packages
 ```
 
-Do not make CREATOR pull live runtime state directly.
-Runtime state belongs to CITY.
-CREATOR produces governed construction assets and foundry packages.
-CITY visualizes live governed agents.
-District Exchange distributes verified packages.
+## Public Boundary
 
-## Why This Exists
+AGENTROPOLIS-CREATOR may teach public patterns and package structures, but it must not expose private Agentropolis internals.
 
-Commercial 3D asset libraries and prompt vaults are useful, but Agentropolis needs a system that can be inspected, extended, governed, reused, tested, and improved across districts.
+Do not publish:
 
-The goal is not random asset hoarding or a generic app store.
+- private routing prompts
+- private governance engine logic
+- private memory schemas
+- private district logic
+- private economic logic
+- production secrets
+- proprietary world-forge recipes
 
-The goal is a **Foundry**: a controlled capability factory that turns ideas into safe, reusable, auditable city infrastructure.
-
-Agentropolis needs streets, towers, apartments, offices, labs, universities, markets, transit systems, crowds, avatars, props, sound layers, procedural district logic, skills, workflows, MCP kits, model packs, eval suites, and the video rails that turn city outputs into broadcasts, shorts, recaps, teasers, training assets, and product explainers.
-
-The city gets real when the Foundry can generate, govern, render, package, train, verify, and publish the capabilities behind it.
-
-## Repo Map
+Core rule:
 
 ```text
-docs/
-  open-source-human-crowd-stack.md
-  3d-mcp-agent-kit.md
-  agentropolis-3d-mcp-agent-kit.md
-  hy-world-2-integration.md
-  district-exchange-canon.md
-  open-video-rendering-pipeline.md
-  procedural-world-forge.md
-  construction-district-canon.md
-  model-training-foundry.md
-  system-wide-execution-lane.md
-
-skills/
-  open-human-crowd/
-    skill.md
-  model-pack-verifier/
-    skill.md
-
-registry/
-  asset-sources.md
-  crowd-presets.md
-  mcp-adapters.md
-  training-adapters.md
-  package-index.md
-
-blender/
-  geometry-nodes/
-    README.md
-  scripts/
-    README.md
-
-mcp/
-  blender/
-  unreal/
-  unity/
-  webxr/
-  audio/
-  procedural/
-  video/
-
-agents/
-  WorldForge/
-  DistrictBuilder/
-  AssetSmith/
-  CrowdForge/
-  AudioForge/
-  MediaForge/
-  Verifier/
-
-workflows/
-  worldforge-candidate-packet.md
-  model-pack-candidate.md
-
-templates/
-  model-pack/
-    README.md
-    model-card.md
-    dataset-card.md
-    training-config.yaml
-    eval-report.md
-    risk-review.md
-    license-review.md
-    provenance.json
-    export-manifest.json
-
-examples/
-assets/
-  .gitkeep
+Open source the map.
+Protect the engine.
+Teach the pattern.
+Keep the command core private.
 ```
-
-## Recommended Tool Chain
-
-| Need | Recommended Tool |
-| --- | --- |
-| Hero humans | MB-Lab or MPFB2 |
-| Base human variants | MakeHuman or MPFB2 |
-| Rigging | Rigify |
-| Crowds | Blender Geometry Nodes |
-| Motion testing | CMU MoCap, optional Mixamo |
-| Texture and wardrobe variation | Blender materials, optional ComfyUI |
-| Web exports | GLB with strict LOD control |
-| Browser previews | PlayCanvas / WebXR / React Three Fiber |
-| Procedural environments | Blender, Infinigen-style pipelines, WFC, MarkovJunior |
-| World generation / reconstruction | HY-World 2.0 candidate lane through WorldForge |
-| Voice and ambience | AudioForge / approved voice layers |
-| Timeline editing and batch renders | OpenCut / open video editor pipeline |
-| Fast local fine-tuning | Unsloth AI |
-| Operator training workbench | LLaMA Factory |
-| Alignment and preference training | Axolotl |
-| Distributed model training | DeepSpeed |
-| Skill package production | Skill Architect, Workflow Compiler, Eval Builder, Verifier |
-| Model package verification | Model Pack Verifier |
-
-## Construction District Guardrails
-
-- Use Git LFS for large binary assets.
-- Use only assets with clear licenses.
-- Keep metadata sidecars for imported or generated assets.
-- Preview world diffs before production changes.
-- Preview media diffs before publishing rendered output.
-- Require cost, purpose, and approval metadata for tool-assisted world generation and timeline rendering.
-- Require provenance, license review, eval reports, risk review, and rollback paths for model packs.
-- Keep City Canon in the city repo as the source of truth.
-- Keep live runtime state in AGENTROPOLIS-CITY, not CREATOR.
-- CREATOR exports assets/specs; CITY consumes and runs them.
-- CREATOR exports verified package specs; District Exchange distributes them.
-- No package enters canonical city infrastructure without evaluation and approval.
-
-## First Build Path
-
-1. Build a small NPC pool.
-2. Add metadata sidecars.
-3. Create a Blender Geometry Nodes scatter preset.
-4. Create a Mission Control environment spec.
-5. Create an Axis Tower exterior spec.
-6. Create an Apartment 401 interior spec.
-7. Export foreground, midground, and background layers separately.
-8. Create an OpenCut-style timeline spec for short-form render testing.
-9. Preview world diffs and media diffs before production changes.
-10. Export first NemoClaw Security Fortress room spec for AGENTROPOLIS-CITY.
-11. Confirm Claw3D-compatible scene/room format before scaling to more districts.
-12. Package the first 25 District Exchange skills with metadata, examples, templates, and evals.
-13. Package the first 5 MCP kits and 5 WorldForge packs as candidate releases.
-14. Package the first model-pack candidate through Model Training Foundry.
-15. Verify the first model pack with Model Pack Verifier.
-16. Add verified packages to `registry/package-index.md` before downstream handoff.
-
-## Canon Line
-
-> Agentropolis is the city.  
-> AGENTROPOLIS-CREATOR is the foundry.  
-> AGENTROPOLIS-CITY is the live 3D city shell.  
-> District Exchange is where skills, agents, workflows, MCP kits, model packs, and production packages ship.  
-> The Foundry builds the world, while governance decides what becomes permanent.
