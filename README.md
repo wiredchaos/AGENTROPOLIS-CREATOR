@@ -78,6 +78,19 @@ A modular open-source route for:
 - model-pack candidates and training workflows
 - executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
 
+## UNBROKER Creator Signal
+
+UNBROKER gives the Foundry a concrete privacy-ops scene package: consent-gated exposure search, broker fan-out, removal filing, verification, ledger receipts, human digest, and recurring re-scans.
+
+Install path:
+
+```bash
+hermes update
+hermes skills install official/security/unbroker
+```
+
+Creator reference: [`docs/UNBROKER_CREATOR_ASSET_BRIEF.md`](docs/UNBROKER_CREATOR_ASSET_BRIEF.md)
+
 ## System-Wide Execution Lane
 
 AGENTROPOLIS-CREATOR uses a system-wide execution lane for every capability package.
@@ -181,4 +194,4 @@ Do not commit private keys, secrets, client data, undisclosed strategy documents
 > AGENTROPOLIS-CREATOR is the foundry.  
 > AGENTROPOLIS-AGENT-MCP is the governed routing membrane.  
 > District Exchange is where skills, agents, workflows, MCP kits, model packs, and production packages ship.  
-> The Foundry builds the world, while governance decides what becomes permanent.
+> The Foundry builds the world, while governance decides what becomes permanent.  
