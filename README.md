@@ -56,6 +56,23 @@ agentropolis
   -> private City OS and runtime core that consumes approved package references
 ```
 
+## Creator District Recruitment Swarm
+
+The Foundry now treats every creator lane as a recruiting surface.
+
+```text
+Creator Lane Recruiter
+  -> SLM scout
+  -> LLM closer
+  -> ML intern
+  -> creator onboarding
+  -> district reputation
+```
+
+The recruiter swarm turns old static citizen cards, Lovable prompts, NPC registries, and Creator Cup worlds into active agent-to-agent recruitment loops.
+
+Implementation doctrine: [`docs/DISTRICT_RECRUITMENT_SWARM.md`](docs/DISTRICT_RECRUITMENT_SWARM.md).
+
 ## Current Focus
 
 A modular open-source route for:
