@@ -70,6 +70,9 @@ HERMES
 OpenWorks Lab
 = sovereign execution layer concept
 
+GitLawb Zero
+= optional local coding lane for repo patch and package candidates
+
 MCP Catalog
 = tool and engine access layer
 
@@ -82,6 +85,23 @@ Unreal Engine MCP
 NVIDIA
 = optional acceleration layer
 ```
+
+### GitLawb Zero Local Coding Lane
+
+GitLawb Zero is tracked as an optional sovereign builder lane for local code work.
+
+```text
+Operator intent
+  -> HERMES / OpenWorks command layer
+  -> Model Exchange / local model selection
+  -> GitLawb Zero local coding lane
+  -> repo patch or package candidate
+  -> tests / validation
+  -> verifier skills
+  -> District Exchange candidate
+```
+
+See [`docs/gitlawb-zero-local-coding-lane.md`](docs/gitlawb-zero-local-coding-lane.md).
 
 ### Claw-Free Direction
 
@@ -97,6 +117,7 @@ This keeps the Construction District portable across:
 
 - OpenWorks Lab
 - Hermes Agent-compatible MCP surfaces
+- GitLawb Zero local coding lane
 - local models
 - NVIDIA-accelerated routes
 - Blender workflows
@@ -237,6 +258,9 @@ Hermes
 
 OpenWorks Lab
   -> sovereign execution lane concept
+
+GitLawb Zero
+  -> optional local coding lane for repo patch and package candidates
 
 Blender
   -> default structured WorldForge and asset-production lane
