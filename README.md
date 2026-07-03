@@ -91,6 +91,24 @@ Verifier skills check structure, provenance, license, evals, risk, rollback, and
 District Exchange indexes approved packages.
 Runtime repos consume only approved package references.
 
+## Provider-Agnostic Terminal Foundry Lane
+
+CREATOR may use terminal coding agents as construction tools, but they remain provider-agnostic and policy-bound.
+
+See [`docs/PROVIDER_AGNOSTIC_TERMINAL_FOUNDRY_LANE.md`](docs/PROVIDER_AGNOSTIC_TERMINAL_FOUNDRY_LANE.md).
+
+Core pattern:
+
+```text
+Foundry idea
+  -> candidate package
+  -> terminal build lane if approved
+  -> structure validation
+  -> provenance review
+  -> license review
+  -> handoff manifest
+```
+
 ## Pull Direction
 
 ```text
