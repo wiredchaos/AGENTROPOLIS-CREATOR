@@ -78,6 +78,12 @@ A modular open-source route for:
 - model-pack candidates and training workflows
 - executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
 
+## Hermes Rankings and Backends Showcase
+
+The Foundry now has a showcase brief for turning model ranking boards, backend provider matrices, skill registries, UNBROKER install cards, Model Council routing, and MCP guardrails into public-safe creator assets.
+
+Creator reference: [`docs/HERMES_RANKINGS_AND_BACKENDS_SHOWCASE.md`](docs/HERMES_RANKINGS_AND_BACKENDS_SHOWCASE.md)
+
 ## UNBROKER Creator Signal
 
 UNBROKER gives the Foundry a concrete privacy-ops scene package: consent-gated exposure search, broker fan-out, removal filing, verification, ledger receipts, human digest, and recurring re-scans.
