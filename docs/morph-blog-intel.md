@@ -18,6 +18,22 @@ Morph is **not** a separate AGENTROPOLIS repo yet.
 
 For AGENTROPOLIS-CREATOR, Morph supports foundry workflows that generate, refactor, test, and package apps.
 
+## AI Infrastructure Engineer alignment
+
+Yes. Morph applies directly to the AI Infrastructure Engineer roadmap.
+
+In AGENTROPOLIS-CREATOR, Morph belongs under creator-side coding infrastructure:
+
+- prototype generation acceleration
+- semantic repo discovery for builder agents
+- partial patch application instead of full-file rewrites
+- context compaction for long-running creator sessions
+- model routing and fallback for code generation
+- trace-level failure detection for build loops
+- cost control for iterative app creation
+
+Morph should support the foundry. It should not become the foundry, the product, or a separate repo yet.
+
 ## Creator relevance
 
 Morph's blog focuses on coding-agent performance, code search, fast edits, compaction, and model routing. These are useful for creator workflows that generate, refactor, test, and package apps.
@@ -81,21 +97,6 @@ Do not create a standalone Morph repo unless Morph becomes an independent AGENTR
 - public documentation surface
 
 Until then, Morph remains a lane across the existing Agentropolis repo map.
-
-## Promotion gate
-
-Morph can be promoted from lane to standalone repo only after it has all of the following:
-
-- a clear owner and package boundary
-- repeatable adapter contracts
-- test fixtures proving provider swap behavior
-- documented queue or execution service
-- usage telemetry or analytics plan
-- security review for secrets and tool authority
-- rollback path
-- public docs that do not leak private Agentropolis runtime details
-
-Until that gate is met, new Morph work should land inside the relevant existing repo.
 
 ## Secret handling
 
