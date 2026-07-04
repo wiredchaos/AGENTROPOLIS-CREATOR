@@ -88,12 +88,21 @@ A modular open-source route for:
 - Blender Geometry Nodes crowd generation
 - MCP adapters for 3D tools
 - OpenCut-style video rendering and timeline automation
+- Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - governed world-diff previews
 - governed media-diff previews
 - metadata and license tracking
 - web-ready export planning
 - model-pack candidates and training workflows
 - executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
+
+## Seedance 2.0 Creator Video Lane
+
+CREATOR now tracks Seedance 2.0 Skill OS as an external reference and adapter target for the video foundry lane.
+
+This is not a core runtime dependency and not a separate Agentropolis repo yet. It is a candidate pattern for provider-agnostic AI video direction: scene intent, shot contracts, reference-role binding, prompt batches, continuation ledgers, take triage, repair loops, media-diff preview, and delivery/QC packets.
+
+Creator reference: [`docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md`](docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md)
 
 ## Hermes Rankings and Backends Showcase
 
