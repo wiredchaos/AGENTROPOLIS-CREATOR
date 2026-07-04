@@ -2,6 +2,14 @@
 
 Source: https://www.morphllm.com/blog
 
+## Applicability decision
+
+Yes. Morph applies to AGENTROPOLIS-CREATOR as a coding-agent infrastructure lane.
+
+Use Morph to improve creator workflows that build, revise, validate, package, and ship app prototypes.
+
+Do not make Morph a separate repo yet. Keep it behind the creator build workflow and MCP/provider mesh.
+
 ## Core lock
 
 Morph is a **coding-agent infrastructure lane**.
