@@ -82,6 +82,21 @@ Do not create a standalone Morph repo unless Morph becomes an independent AGENTR
 
 Until then, Morph remains a lane across the existing Agentropolis repo map.
 
+## Promotion gate
+
+Morph can be promoted from lane to standalone repo only after it has all of the following:
+
+- a clear owner and package boundary
+- repeatable adapter contracts
+- test fixtures proving provider swap behavior
+- documented queue or execution service
+- usage telemetry or analytics plan
+- security review for secrets and tool authority
+- rollback path
+- public docs that do not leak private Agentropolis runtime details
+
+Until that gate is met, new Morph work should land inside the relevant existing repo.
+
 ## Secret handling
 
 Never commit live credentials or machine-specific secrets.
