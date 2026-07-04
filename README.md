@@ -104,6 +104,14 @@ This is not a core runtime dependency and not a separate Agentropolis repo yet. 
 
 Creator reference: [`docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md`](docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md)
 
+## FreeLLM Creator Model Scouting
+
+FreeLLM is tracked as a creator-side model scouting directory and rapid prototype lane, not a permanent production dependency.
+
+The Foundry may use it to compare free provider-backed models, generate config cards, and run prompt/eval tests before any model is promoted into AGENTROPOLIS-AGENT-MCP routing.
+
+Creator reference: [`docs/FREELLM_CREATOR_MODEL_SCOUTING_BRIEF.md`](docs/FREELLM_CREATOR_MODEL_SCOUTING_BRIEF.md)
+
 ## Hermes Rankings and Backends Showcase
 
 The Foundry now has a showcase brief for turning model ranking boards, backend provider matrices, skill registries, UNBROKER install cards, Model Council routing, and MCP guardrails into public-safe creator assets.
