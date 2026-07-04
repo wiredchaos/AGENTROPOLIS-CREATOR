@@ -2,6 +2,14 @@
 
 Source: https://www.morphllm.com/blog
 
+## Core lock
+
+Morph is a **coding-agent infrastructure lane**.
+
+Morph is **not** a separate AGENTROPOLIS repo yet.
+
+For AGENTROPOLIS-CREATOR, Morph supports foundry workflows that generate, refactor, test, and package apps.
+
 ## Creator relevance
 
 Morph's blog focuses on coding-agent performance, code search, fast edits, compaction, and model routing. These are useful for creator workflows that generate, refactor, test, and package apps.
@@ -26,16 +34,48 @@ Morph's blog focuses on coding-agent performance, code search, fast edits, compa
 - What is Morph Fast Apply?
 - Best Practices for Building Coding Agents with Morph
 
+## Placement
+
+```txt
+AGENTROPOLIS-CREATOR
+└─ Foundry / Builder Layer
+   └─ Morph = optional coding-agent infrastructure lane
+```
+
+## Operating stack
+
+```txt
+Hermes decides.
+Creator builds.
+MCP routes.
+Morph supports coding-agent infrastructure.
+browse.sh navigates.
+Crabbox executes.
+Agentropolis governs.
+```
+
 ## Creator workflow stance
 
-Morph should accelerate prototypes and code edits, but final product claims and releases still need review.
+Morph should accelerate prototypes and code edits, but final product claims and releases still need human review.
+
+Morph can support the foundry. It should not become the foundry.
+
+## Do not split yet
+
+Do not create a standalone Morph repo unless Morph becomes an independent AGENTROPOLIS product with:
+
+- deployable service
+- authentication boundary
+- queues
+- usage analytics
+- provider management
+- reusable SDK
+- public documentation surface
+
+Until then, Morph remains a lane across the existing Agentropolis repo map.
 
 ## Secret handling
 
-Never commit real Morph API keys.
+Never commit live credentials or machine-specific secrets.
 
-Use:
-
-```bash
-export MORPH_API_KEY=replace_with_local_secret
-```
+Use local environment variables only.
