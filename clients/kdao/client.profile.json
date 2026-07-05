@@ -1,0 +1,73 @@
+{
+  "client_id": "kdao",
+  "client_name": "KDAO",
+  "package": "kdao-content-machine",
+  "status": "first_client_template",
+  "public_safe": true,
+  "positioning": "KDAO helps entrepreneurs, solopreneurs, creators, and small businesses adopt practical AI, automation, and Web3 bridges without forcing crypto-first language.",
+  "audiences": {
+    "b2c": [
+      "entrepreneurs",
+      "solopreneurs",
+      "creators",
+      "freelancers",
+      "service providers",
+      "small business owners"
+    ],
+    "b2b": [
+      "agencies",
+      "consultants",
+      "professional services",
+      "community operators",
+      "local businesses"
+    ],
+    "b2a": [
+      "AI agents",
+      "agentic workflows",
+      "automation operators",
+      "human plus AI teams"
+    ]
+  },
+  "content_ratio": {
+    "business_tips": 40,
+    "ai_automation": 30,
+    "life_hacks": 20,
+    "web3_bridge": 10
+  },
+  "voice": {
+    "tone": "clear, useful, founder-friendly, systems-first, slightly cyber-noir",
+    "avoid": [
+      "crypto jargon before business value",
+      "hype without operational use case",
+      "financial advice",
+      "guaranteed income claims",
+      "private client details"
+    ],
+    "use": [
+      "plain language",
+      "practical steps",
+      "business problem first",
+      "Web3 bridge second",
+      "AI and automation as leverage"
+    ]
+  },
+  "platforms": [
+    "X",
+    "LinkedIn",
+    "Instagram",
+    "Threads",
+    "Facebook",
+    "YouTube Shorts",
+    "TikTok"
+  ],
+  "free_stack": [
+    "Google Sheets",
+    "GitHub",
+    "n8n Community Edition",
+    "Canva Free",
+    "Buffer Free or native schedulers",
+    "Looker Studio or native analytics"
+  ],
+  "approval_rule": "Drafts may be generated automatically, but publishing requires human approval unless a future runtime explicitly enables autoposting with guardrails.",
+  "canon_note": "KDAO is the first client proving the reusable Agentropolis Creator content machine package."
+}
