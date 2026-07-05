@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KDAO Content Machine Row",
+  "type": "object",
+  "required": [
+    "date",
+    "client_id",
+    "audience_mode",
+    "content_pillar",
+    "platform",
+    "hook",
+    "draft",
+    "status"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "client_id": {
+      "type": "string",
+      "const": "kdao"
+    },
+    "day_theme": {
+      "type": "string",
+      "enum": [
+        "Money Monday",
+        "Tech Tuesday",
+        "Workflow Wednesday",
+        "Thought Leadership Thursday",
+        "Feature Friday",
+        "Small Business Saturday",
+        "Systems Sunday"
+      ]
+    },
+    "monthly_theme": {
+      "type": "string"
+    },
+    "audience_mode": {
+      "type": "string",
+      "enum": ["B2C", "B2B", "B2A"]
+    },
+    "content_pillar": {
+      "type": "string",
+      "enum": [
+        "business_tips",
+        "ai_automation",
+        "life_hacks",
+        "web2_web3_bridge",
+        "fiscal_calendar",
+        "community"
+      ]
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "X",
+        "LinkedIn",
+        "Instagram",
+        "Threads",
+        "Facebook",
+        "TikTok",
+        "YouTube Shorts",
+        "Newsletter"
+      ]
+    },
+    "hook": {
+      "type": "string"
+    },
+    "draft": {
+      "type": "string"
+    },
+    "cta": {
+      "type": "string"
+    },
+    "asset_prompt": {
+      "type": "string"
+    },
+    "source_calendar_signal": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "idea",
+        "drafted",
+        "needs_review",
+        "approved",
+        "scheduled",
+        "published",
+        "rejected",
+        "archived"
+      ],
+      "default": "needs_review"
+    },
+    "approval_notes": {
+      "type": "string"
+    },
+    "scheduled_url": {
+      "type": "string"
+    },
+    "performance_notes": {
+      "type": "string"
+    }
+  }
+}
