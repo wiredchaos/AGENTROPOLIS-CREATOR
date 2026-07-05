@@ -95,6 +95,29 @@ A modular open-source route for:
 - web-ready export planning
 - model-pack candidates and training workflows
 - executable skills, workflows, templates, evals, model packs, and MCP kits for District Exchange
+- AuthorMind publishing workflows for manuscript cleanup, audiobook generation, podcast cuts, video companions, and distribution prep
+
+## AuthorMind Publishing Lane
+
+AuthorMind is tracked as the Creator District publishing wrapper for manuscript-to-media workflows.
+
+It is not a separate Agentropolis repo yet. It belongs inside AGENTROPOLIS-CREATOR under the Publishing District until it has enough standalone code, users, and operational surface to justify extraction.
+
+```text
+AuthorMind
+  -> manuscript intake
+  -> text cleanup
+  -> chapter detection
+  -> narration planning
+  -> audiobook generation
+  -> podcast clips
+  -> video companion assets
+  -> distribution package
+```
+
+The Audiobook Studio may use `ebook2audiobook` as an optional local/open-source backend candidate for legally acquired, non-DRM content the user owns or has rights to convert.
+
+Creator reference: [`docs/AUTHORMIND_AUDIOBOOK_STUDIO.md`](docs/AUTHORMIND_AUDIOBOOK_STUDIO.md)
 
 ## Seedance 2.0 Creator Video Lane
 
@@ -177,6 +200,7 @@ CREATOR exports:
 - MCP kit packages
 - model pack candidates
 - eval suite candidates
+- publishing workflow specs and audiobook package manifests
 
 HERMES-CITY consumes:
 - public-safe architecture maps
@@ -214,6 +238,7 @@ District Exchange distributes verified packages.
 - Preview media diffs before publishing rendered output.
 - Require cost, purpose, and approval metadata for tool-assisted world generation and timeline rendering.
 - Require provenance, license review, eval reports, risk review, and rollback paths for model packs.
+- Require rights confirmation for manuscript, narration, audiobook, podcast, and video companion packages.
 - Keep City Canon in the private city core as the source of truth.
 - Keep live runtime state in agentropolis, not CREATOR.
 - CREATOR exports assets and specs. HERMES-CITY publishes public-safe signals. AGENTROPOLIS-AGENT-MCP governs handoff. Agentropolis consumes approved references.
@@ -225,7 +250,7 @@ AGENTROPOLIS-CREATOR is public.
 
 Public materials may describe concepts, schemas, operating principles, foundry workflows, package contracts, and non-sensitive handoff patterns.
 
-Do not commit private keys, secrets, client data, undisclosed strategy documents, wallet infrastructure, internal runtime code, proprietary prompts, or private orchestration details to this repository.
+Do not commit private keys, secrets, client data, undisclosed strategy documents, wallet infrastructure, internal runtime code, proprietary prompts, copyrighted manuscripts without rights, voice samples without consent, or private orchestration details to this repository.
 
 ## Canon Line
 
@@ -234,4 +259,4 @@ Do not commit private keys, secrets, client data, undisclosed strategy documents
 > AGENTROPOLIS-CREATOR is the foundry.  
 > AGENTROPOLIS-AGENT-MCP is the governed routing membrane.  
 > District Exchange is where skills, agents, workflows, MCP kits, model packs, and production packages ship.  
-> The Foundry builds the world, while governance decides what becomes permanent.  
+> The Foundry builds the world, while governance decides what becomes permanent.
