@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SignalForge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="toolbar">
+      <div>
+        <p class="eyebrow">AGENTROPOLIS CREATOR TOOL</p>
+        <h1>SignalForge</h1>
+        <p>Micro-graphic generator for badges, passes, lab labels, transmission slips, and animated GIF signal cards.</p>
+      </div>
+      <div class="controls">
+        <select id="template"></select>
+        <select id="theme"></select>
+        <button id="lucky">Lucky</button>
+        <button id="svg">Export SVG</button>
+        <button id="png">Export PNG</button>
+        <button id="gif">Export GIF</button>
+      </div>
+    </section>
+
+    <section class="stage">
+      <svg id="card" viewBox="0 0 900 560" role="img" aria-label="AGENTROPOLIS micro graphic"></svg>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
