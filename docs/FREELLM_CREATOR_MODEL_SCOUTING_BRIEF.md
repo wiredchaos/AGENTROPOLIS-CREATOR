@@ -23,12 +23,20 @@ The public site describes itself as a directory for comparing free AI APIs with 
 
 The companion GitHub project is `open-free-llm-api/awesome-freellm-apis` and is MIT licensed.
 
+## NaraRouter Addendum
+
+NaraRouter is tracked separately as a creator-side scouting card because the current signal is operator-reported rather than locked by stable public docs.
+
+See [`docs/NARAROUTER_CREATOR_SCOUTING_CARD.md`](NARAROUTER_CREATOR_SCOUTING_CARD.md).
+
+Use it as a rapid test lane for low-risk creator prompts only until AGENTROPOLIS-AGENT-MCP approves the provider route.
+
 ## Why CREATOR Cares
 
-AGENTROPOLIS-CREATOR can use FreeLLM as a Foundry accelerator for:
+AGENTROPOLIS-CREATOR can use FreeLLM and provider-specific scouting cards as Foundry accelerators for:
 
 - model scouting for character, scene, script, and prompt workflows
-- side-by-side tests across DeepSeek, MiniMax, Kimi, GLM, Qwen, Mistral, Gemini, Groq, and OpenRouter-backed models
+- side-by-side tests across DeepSeek, MiniMax, Kimi, GLM, Qwen, Mistral, Gemini, Groq, OpenRouter-backed models, and NaraRouter-discovered routes
 - cheap prototype lanes before paid API promotion
 - creator-facing config cards for tools like Codex, Cursor, Cline, Hermes, OpenClaw, and OpenAI-compatible clients
 - benchmark prompts for district assets, NPC dialogue, visual briefs, media scripts, and workflow packages
@@ -73,7 +81,7 @@ agentropolis
 
 ## Recommended First Pass
 
-### Candidate test models
+### Candidate test models and routes
 
 - MiniMax M3
 - DeepSeek V4 Pro
@@ -84,6 +92,7 @@ agentropolis
 - Mistral free-tier models
 - Groq-hosted fast inference models
 - OpenRouter free-tier models
+- NaraRouter dashboard-selected routes after verification
 
 ### Test categories
 
@@ -121,9 +130,9 @@ last_verified:
 
 ## Production Warning
 
-Do not hard-code FreeLLM listings as stable production routes.
+Do not hard-code FreeLLM listings, NaraRouter claims, or social posts as stable production routes.
 
-Do not commit API keys, dashboard exports, personal provider tokens, or copied secrets.
+Do not commit provider keys, dashboard exports, personal provider tokens, or copied secrets.
 
 Do not assume a model remains free, online, unrestricted, or OpenAI-compatible without fresh verification.
 
@@ -133,4 +142,6 @@ This is useful, but keep it leveled:
 
 FreeLLM is a map, not the territory.
 
-It is excellent for testing and discovery. Production still needs governed provider contracts, evals, fallbacks, spend controls, and AGENTROPOLIS-AGENT-MCP approval.
+NaraRouter may be a powerful free-capacity lane, but it still needs receipts.
+
+Production still needs governed provider contracts, evals, fallbacks, spend controls, and AGENTROPOLIS-AGENT-MCP approval.
