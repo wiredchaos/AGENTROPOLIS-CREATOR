@@ -90,6 +90,7 @@ A modular open-source route for:
 - OpenCut-style video rendering and timeline automation
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
+- Hermes Motion Maker-style reference-image-to-motion skill packets through Arcads MCP-style adapter contracts
 - governed world-diff previews
 - governed media-diff previews
 - metadata and license tracking
@@ -159,6 +160,16 @@ CREATOR now tracks DepthFlow as an optional external renderer candidate for 2.5D
 This is not a core runtime dependency and not a separate Agentropolis repo yet. It is a Foundry motion lane for turning approved static images into cinematic loops, OTT bumpers, social shorts, web hero backgrounds, loading screens, and motion posters.
 
 Creator reference: [`docs/DEPTHFLOW_CREATOR_MOTION_LANE.md`](docs/DEPTHFLOW_CREATOR_MOTION_LANE.md)
+
+## Hermes Motion Arcads Skill Lane
+
+CREATOR now tracks Hermes Motion Maker as a candidate Foundry skill package for turning rights-cleared reference images into governed motion-animation packets.
+
+This is not a hard runtime dependency and not a separate Agentropolis repo yet. It is the bridge between reference-image intake, Nano Banana-style frame prompt batches, Seedance-style video prompting, Arcads MCP-style execution packets, take triage, and media-diff delivery/QC.
+
+Creator reference: [`docs/HERMES_MOTION_ARCADS_SKILL_LANE.md`](docs/HERMES_MOTION_ARCADS_SKILL_LANE.md)
+
+Skill package: [`packages/skills/hermes-motion-maker/`](packages/skills/hermes-motion-maker/)
 
 ## FreeLLM Creator Model Scouting
 
