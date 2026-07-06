@@ -1,13 +1,13 @@
 ---
 name: hermes-motion-maker
-description: creator foundry skill for turning a rights-cleared reference image and motion brief into a controlled image-to-video workflow. use when hermes, agentropolis creator, or a connected agent needs to generate motion-style animation plans, frame prompts, reference-role maps, Arcads MCP execution packets, Nano Banana-style frame batches, Seedance-style video prompts, continuity ledgers, QC notes, or media-diff handoff artifacts from static images.
+description: byok creator foundry skill for turning a rights-cleared reference image and motion brief into a controlled image-to-video workflow. use when hermes, agentropolis creator, or a connected agent needs to generate motion-style animation plans, frame prompts, reference-role maps, Arcads MCP execution packets, Nano Banana-style frame batches, Seedance-style video prompts, continuity ledgers, QC notes, or media-diff handoff artifacts from static images while requiring the user to bring and control their own provider keys.
 ---
 
 # Hermes Motion Maker
 
 Use this skill to convert a reference image into a governed motion-animation workflow for the Agentropolis Creator Foundry.
 
-This skill does not assume direct access to paid providers. It prepares clean execution packets for Arcads MCP or another approved MCP/video adapter, then returns reviewable artifacts for human approval.
+This is a **BYOK** skill: bring your own key, bring your own provider account, bring your own billing boundary. The skill prepares execution packets for Arcads MCP or another approved MCP/video adapter, but it must not assume Agentropolis owns the provider account, API key, credits, subscription, or generation quota.
 
 ## Core Rule
 
@@ -16,6 +16,7 @@ Preserve the reference. Do not reinvent the subject.
 ```text
 reference image
   -> rights check
+  -> byok provider check
   -> role binding
   -> motion intent
   -> frame plan
@@ -26,12 +27,35 @@ reference image
   -> media-diff handoff
 ```
 
+## BYOK Rule
+
+Do not request, expose, print, commit, or store raw API keys.
+
+Use environment variables, local MCP secret stores, connector-managed credentials, or runtime secret references only.
+
+Allowed references:
+
+```yaml
+credentials:
+  mode: byok
+  owner: user
+  storage: env | mcp_secret_store | connector_managed | local_only
+  required_env:
+    - ARCADS_API_KEY
+    - NANO_BANANA_API_KEY
+    - SEEDANCE_API_KEY
+  secret_values_visible_to_agent: false
+```
+
+Never include real key values in prompts, docs, commits, logs, receipts, screenshots, or generated artifacts.
+
 ## Inputs
 
 Require or infer:
 
 - reference image or image description
 - rights status: owned, licensed, public-safe, unknown
+- provider mode: BYOK only
 - intended platform: X, Shorts, Reels, OTT, website hero, internal test, game asset
 - aspect ratio: 9:16, 16:9, 1:1, 4:5, custom
 - duration target
@@ -40,6 +64,8 @@ Require or infer:
 - negative constraints: what must not change
 
 If rights status is unknown, produce a planning packet but mark execution as blocked until rights are confirmed.
+
+If BYOK credentials are not configured, produce a planning packet but mark execution as blocked until the user configures provider credentials in the approved runtime secret layer.
 
 ## Output
 
@@ -51,9 +77,10 @@ Return these sections:
 4. **Frame Plan** - keyframes or frame groups with camera/action notes.
 5. **Frame Prompt Batch** - Nano Banana-style prompts for still frame generation.
 6. **Video Prompt** - Seedance-style prompt for animation.
-7. **Arcads MCP Packet** - provider-neutral execution manifest.
-8. **QC Checklist** - artifacts to inspect before approval.
-9. **Delivery Packet** - filename, ratio, duration, platform, caption notes, rights receipt.
+7. **BYOK Provider Check** - credential status without exposing secrets.
+8. **Arcads MCP Packet** - provider-neutral execution manifest.
+9. **QC Checklist** - artifacts to inspect before approval.
+10. **Delivery Packet** - filename, ratio, duration, platform, caption notes, rights receipt.
 
 ## Prompt Discipline
 
@@ -97,7 +124,8 @@ Use this provider-neutral shape unless the active Arcads MCP server defines a st
 ```yaml
 skill: hermes-motion-maker
 lane: creator.motion
-status: execution_ready | planning_only | blocked_rights_review
+status: execution_ready | planning_only | blocked_rights_review | blocked_byok_credentials
+provider_mode: byok
 input:
   reference_assets:
     - id: ref_01
@@ -110,7 +138,17 @@ input:
 providers:
   frame_generator: nano_banana_style_adapter
   video_animator: seedance_style_adapter
+credentials:
+  mode: byok
+  owner: user
+  secret_values_visible_to_agent: false
+  required_secret_refs:
+    - ARCADS_API_KEY
+    - NANO_BANANA_API_KEY
+    - SEEDANCE_API_KEY
 steps:
+  - verify_rights_status
+  - verify_byok_secret_refs
   - bind_references
   - generate_frame_batch
   - animate_video
@@ -120,13 +158,29 @@ guardrails:
   preserve_subject_identity: true
   require_rights_receipt: true
   require_human_review: true
+  require_byok: true
   store_private_assets: false
+  store_secret_values: false
 outputs:
   - frame_prompt_batch
   - video_prompt
   - continuity_ledger
   - take_review
   - delivery_qc_packet
+```
+
+## BYOK Provider Check
+
+Report credential status without leaking values:
+
+```yaml
+byok_provider_check:
+  mode: byok
+  arcads: configured | missing | unknown
+  nano_banana_style_adapter: configured | missing | unknown
+  seedance_style_adapter: configured | missing | unknown
+  can_execute: true | false
+  blocked_reason: none | missing_credentials | rights_unknown | provider_unavailable | mcp_not_connected
 ```
 
 ## QC Checklist
@@ -154,7 +208,7 @@ AGENTROPOLIS-CREATOR
   -> builds motion packets, prompts, shot plans, QC receipts
 
 AGENTROPOLIS-AGENT-MCP
-  -> validates provider routing, credentials, execution boundaries, and receipts
+  -> validates BYOK provider routing, secret references, execution boundaries, and receipts
 
 HERMES-CITY
   -> publishes public-safe demos and coordination notes
@@ -165,10 +219,12 @@ agentropolis
 
 ## Guardrails
 
+- BYOK only: do not use Agentropolis-owned keys, shared keys, hidden pooled credits, or implicit provider accounts.
 - Do not claim provider execution succeeded unless a tool returned files or receipts.
-- Do not invent model pricing, model availability, account status, or MCP capabilities.
+- Do not invent model pricing, model availability, account status, MCP capabilities, or credential status.
 - Do not commit user-uploaded private assets into the repo.
 - Do not store API keys, session tokens, provider secrets, or private image URLs.
+- Do not echo real secret values back to the user.
 - Mark unverified provider names as adapter targets until tested.
 - Route paid generation through approved MCP gates only.
 - Always keep a human approval step before public release.
