@@ -1,70 +1,43 @@
-# Dungeon Forge x Clawde3D Creator Lane
+# Dungeon Forge x Claw3D Creator Lane
 
-## Purpose
+## Core Lock
 
-This note locks the creator-facing version of the Dungeon Forge x Clawde3D lane.
+Agentropolis Creator is 3D-first.
 
-Dungeon Forge is the deterministic procedural generation brain. Clawde3D is the hyper-realistic 3D cinematic body. Together they support Agentropolis creator workflows for generated game spaces, cinematic environments, raid maps, and explorable districts.
+Claw3D is the spatial agent and scene interface. Dungeon Forge is the deterministic procedural layout brain.
 
 ## Creator Rule
 
-Do not present this as pixel art.
+Do not create dashboard-first experiences as the main output. The primary output should be a navigable 3D place.
 
-The Agentropolis creator output should feel closer to:
+2D UI is allowed only as in-world terminals, HUD overlays, wall panels, desk screens, command consoles, or fallback admin views.
 
-- GTA-style underground districts
-- cinematic 3D dungeon raids
-- hyper-realistic game environments
-- open-world interior spaces
-- practical level design with believable rooms, props, lights, liquids, fog, and debris
-
-## Input Contract
-
-Creators should be able to define:
-
-- seed
-- theme
-- room count
-- loopiness
-- decor density
-- difficulty ramp
-- boss/treasure/shrine placement rules
-- camera mode
-- visual realism target
-- district or collection theme
-
-## Output Contract
+## Creator Outputs
 
 The creator lane should produce:
 
 - seeded procedural layout
 - semantic room map
 - 3D environment brief
+- Claw3D scene spec
 - cinematic prompt pack
 - asset list
 - gameplay hooks
-- NPC/quest hooks
-- BoardForge integration notes
+- NPC and quest hooks
+- BoardForge or Hermes City export notes
 
 ## Prompt Direction
 
-Use this pattern for generated scenes:
-
 ```txt
-3D hyper-realistic cinematic dungeon district, GTA-style environmental detail, realistic stone and metal surfaces, volumetric fog, wet reflective floors, believable props, cinematic lighting, no pixel art, no voxel style, no low-poly styling
+3D hyper-realistic Agentropolis district, cinematic open-world environment, Claw3D spatial interface, believable rooms and props, volumetric fog, realistic lighting, no pixel art, no voxel default, no flat dashboard-first UI
 ```
 
-## Integration Placement
+## Pipeline
 
 ```txt
-AGENTROPOLIS-CREATOR
-  -> world prompt pack
-  -> cinematic scene generator
-  -> BoardForge map brief
-  -> Clawde3D environment spec
-  -> Agentropolis world forge export
+seed/layout -> semantic room map -> 3D environment brief -> Claw3D scene spec -> BoardForge/Hermes City export
 ```
 
 ## Final Lock
 
-Dungeon Forge generates the playable skeleton. Clawde3D makes it feel alive.
+Dungeon Forge generates the playable skeleton. Claw3D makes it spatial, visible, and alive.
