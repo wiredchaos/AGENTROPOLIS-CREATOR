@@ -1,0 +1,5 @@
+interface:
+  display_name: Hermes Motion Maker
+  short_description: Convert reference images into governed motion animation packets for Creator Foundry workflows.
+  icon: 🎬
+  accent_color: "#00E5FF"
