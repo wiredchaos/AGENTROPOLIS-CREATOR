@@ -89,6 +89,7 @@ A modular open-source route for:
 - MCP adapters for 3D tools
 - OpenCut-style video rendering and timeline automation
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
+- DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
 - governed world-diff previews
 - governed media-diff previews
 - metadata and license tracking
@@ -150,6 +151,14 @@ CREATOR now tracks Seedance 2.0 Skill OS as an external reference and adapter ta
 This is not a core runtime dependency and not a separate Agentropolis repo yet. It is a candidate pattern for provider-agnostic AI video direction: scene intent, shot contracts, reference-role binding, prompt batches, continuation ledgers, take triage, repair loops, media-diff preview, and delivery/QC packets.
 
 Creator reference: [`docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md`](docs/SEEDANCE_2_CREATOR_VIDEO_LANE.md)
+
+## DepthFlow Creator Motion Lane
+
+CREATOR now tracks DepthFlow as an optional external renderer candidate for 2.5D parallax video assets.
+
+This is not a core runtime dependency and not a separate Agentropolis repo yet. It is a Foundry motion lane for turning approved static images into cinematic loops, OTT bumpers, social shorts, web hero backgrounds, loading screens, and motion posters.
+
+Creator reference: [`docs/DEPTHFLOW_CREATOR_MOTION_LANE.md`](docs/DEPTHFLOW_CREATOR_MOTION_LANE.md)
 
 ## FreeLLM Creator Model Scouting
 
