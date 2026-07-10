@@ -91,6 +91,7 @@ A modular open-source route for:
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
 - Hermes Motion Maker-style reference-image-to-motion skill packets through Arcads MCP-style adapter contracts
+- governed Audio-to-MIDI transcription, cleanup, confidence reporting, and DAW/game-engine handoff packets
 - governed world-diff previews
 - governed media-diff previews
 - metadata and license tracking
@@ -170,6 +171,16 @@ This is not a hard runtime dependency and not a separate Agentropolis repo yet. 
 Creator reference: [`docs/HERMES_MOTION_ARCADS_SKILL_LANE.md`](docs/HERMES_MOTION_ARCADS_SKILL_LANE.md)
 
 Skill package: [`packages/skills/hermes-motion-maker/`](packages/skills/hermes-motion-maker/)
+
+## Audio-to-MIDI Foundry Lane
+
+CREATOR now tracks Audio-to-MIDI as a governed symbolic-audio capability for converting rights-cleared recordings into editable note events, tempo maps, confidence reports, and downstream creator packets.
+
+Mirelo is recorded as a research reference only. No provider, model, API, SDK, license, price, or deployment path is treated as approved until it passes adapter, privacy, license, benchmark, and MCP-routing review.
+
+Creator reference: [`docs/AUDIO_TO_MIDI_FOUNDRY_LANE.md`](docs/AUDIO_TO_MIDI_FOUNDRY_LANE.md)
+
+Skill package: [`packages/skills/audio-to-midi-foundry/`](packages/skills/audio-to-midi-foundry/)
 
 ## FreeLLM Creator Model Scouting
 
