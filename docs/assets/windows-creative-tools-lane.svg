@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">AGENTROPOLIS Creator Windows Creative Tools Lane</title>
+  <desc id="desc">Architecture and phased roadmap for building Blockout, Motion Previs Studio, and Stem Studio for Windows through the Agentropolis Creator Foundry.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050912"/><stop offset="1" stop-color="#0b1420"/></linearGradient>
+    <linearGradient id="cyan" x1="0" x2="1"><stop stop-color="#00d9ff"/><stop offset="1" stop-color="#3182ff"/></linearGradient>
+    <linearGradient id="red" x1="0" x2="1"><stop stop-color="#ff315b"/><stop offset="1" stop-color="#ff6b35"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      .t{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#eef7ff}.muted{fill:#9bb0c4}.cyan{fill:#42cfff}.lime{fill:#a8ef55}.amber{fill:#ffc84a}.red{fill:#ff4e72}.purple{fill:#b77cff}.panel{fill:#0c1521;stroke:#24384d;stroke-width:2}.lane{fill:#101c2a;stroke:#35516c;stroke-width:2}.small{font-size:22px}.body{font-size:25px}.head{font-size:31px;font-weight:700}.title{font-size:54px;font-weight:800;letter-spacing:1px}.mono{font-family:Consolas,monospace}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <path d="M0 120H1600M0 820H1600" stroke="#15334c"/>
+  <text x="800" y="68" text-anchor="middle" class="t title">AGENTROPOLIS CREATOR</text>
+  <text x="800" y="108" text-anchor="middle" class="cyan head">WINDOWS CREATIVE TOOLS LANE</text>
+
+  <rect x="45" y="145" width="1510" height="150" rx="18" class="panel"/>
+  <text x="75" y="190" class="cyan head">FOUNDRY MANDATE</text>
+  <text x="75" y="232" class="t body">Turn rights-cleared open-source creator software into tested Windows builds with receipts, artifacts and upstream contribution paths.</text>
+  <text x="75" y="270" class="muted small mono">Creator intent → Foundry intake → Windows build lane → test gate → package → artifact receipt → human review → upstream PR</text>
+
+  <rect x="45" y="320" width="470" height="210" rx="18" class="lane"/>
+  <text x="75" y="365" class="cyan head">BLOCKOUT</text>
+  <text x="75" y="405" class="t body">AI-native filmmaking previs</text>
+  <text x="75" y="446" class="muted small">• Stage scenes and camera blocking</text>
+  <text x="75" y="480" class="muted small">• Export motion-reference packages</text>
+  <text x="75" y="514" class="lime small">STATUS: FASTEST WINDOWS PATH</text>
+
+  <rect x="565" y="320" width="470" height="210" rx="18" class="lane"/>
+  <text x="595" y="365" class="purple head">MOTION PREVIS STUDIO</text>
+  <text x="595" y="405" class="t body">Motion, depth, pose and camera previs</text>
+  <text x="595" y="446" class="muted small">• Verify FFmpeg, MediaPipe and models</text>
+  <text x="595" y="480" class="muted small">• Test exports and Windows paths</text>
+  <text x="595" y="514" class="purple small">STATUS: ADAPTER HARDENING</text>
+
+  <rect x="1085" y="320" width="470" height="210" rx="18" class="lane"/>
+  <text x="1115" y="365" class="lime head">STEM STUDIO</text>
+  <text x="1115" y="405" class="t body">Dialogue, music and SFX separation</text>
+  <text x="1115" y="446" class="muted small">• Harden Python environment setup</text>
+  <text x="1115" y="480" class="muted small">• Validate CPU/CUDA and model delivery</text>
+  <text x="1115" y="514" class="amber small">STATUS: DEEPEST DEPENDENCY WORK</text>
+
+  <text x="45" y="590" class="cyan head">GOVERNED BUILD PIPELINE</text>
+  <g class="t body" text-anchor="middle">
+    <rect x="45" y="620" width="190" height="105" rx="14" class="panel"/><text x="140" y="665">1. INTAKE</text><text x="140" y="700" class="muted small">Select app</text>
+    <path d="M245 672H285" stroke="#42cfff" stroke-width="4"/>
+    <rect x="295" y="620" width="190" height="105" rx="14" class="panel"/><text x="390" y="665">2. CHECKOUT</text><text x="390" y="700" class="muted small">Upstream source</text>
+    <path d="M495 672H535" stroke="#42cfff" stroke-width="4"/>
+    <rect x="545" y="620" width="190" height="105" rx="14" class="panel"/><text x="640" y="665">3. SETUP</text><text x="640" y="700" class="muted small">Node + deps</text>
+    <path d="M745 672H785" stroke="#42cfff" stroke-width="4"/>
+    <rect x="795" y="620" width="190" height="105" rx="14" class="panel"/><text x="890" y="665">4. VERIFY</text><text x="890" y="700" class="muted small">Tests + checks</text>
+    <path d="M995 672H1035" stroke="#42cfff" stroke-width="4"/>
+    <rect x="1045" y="620" width="190" height="105" rx="14" class="panel"/><text x="1140" y="665">5. PACKAGE</text><text x="1140" y="700" class="muted small">NSIS .exe</text>
+    <path d="M1245 672H1285" stroke="#42cfff" stroke-width="4"/>
+    <rect x="1295" y="620" width="260" height="105" rx="14" class="panel"/><text x="1425" y="665">6. RECEIPT</text><text x="1425" y="700" class="muted small">Artifacts + logs</text>
+  </g>
+
+  <rect x="45" y="770" width="1510" height="165" rx="18" class="panel"/>
+  <text x="75" y="815" class="red head">CONTROL RULES</text>
+  <text x="75" y="855" class="t body">No silent upstream mutation. No unverified binaries. No dependency promotion without license, privacy and runtime review.</text>
+  <text x="75" y="895" class="muted small mono">Architecture limits exposure. Governance limits failure. Receipts make the work auditable.</text>
+  <text x="1520" y="915" text-anchor="end" class="cyan small">CREATOR DISTRICT • CONSTRUCTION FOUNDRY</text>
+
+  <rect x="0" y="0" width="1600" height="8" fill="url(#red)" filter="url(#glow)"/>
+  <rect x="0" y="992" width="1600" height="8" fill="url(#cyan)" filter="url(#glow)"/>
+</svg>
