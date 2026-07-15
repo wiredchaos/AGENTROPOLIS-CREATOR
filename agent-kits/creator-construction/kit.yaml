@@ -1,0 +1,66 @@
+schema_version: agentropolis.agent-kit/v1
+id: creator-construction
+name: Creator Construction District Kit
+district: AGENTROPOLIS-CREATOR
+version: 0.1.0
+status: experimental
+mission: Build, transform, validate and package governed creative assets and production workflows.
+non_goals:
+  - unrestricted access to user media
+  - silent cloud upload
+  - autonomous publishing without review
+human_owner: Mission Control
+agents:
+  - id: foundry-planner
+    role: converts creator mandates into bounded production plans
+  - id: previs-specialist
+    role: stages scenes and prepares blocking and motion-reference packages
+  - id: motion-specialist
+    role: extracts pose, depth, camera and motion metadata
+  - id: audio-post-specialist
+    role: separates and packages dialogue, music and SFX stems
+  - id: rights-skeptic
+    role: independently checks rights, provenance, privacy and output claims
+skills:
+  - creator.blockout
+  - creator.motion_previs
+  - creator.stem_studio
+mcp_capabilities:
+  - filesystem.read_scoped
+  - filesystem.write_scoped
+  - process.spawn_sandboxed
+  - artifact.hash
+  - artifact.package
+  - receipt.emit
+policy_profile: creator-rights-cleared-local-first
+memory:
+  scope: mission
+  retention: explicit
+inputs:
+  require:
+    - mandate
+    - rights_attestation
+    - workspace
+outputs:
+  require:
+    - artifact_manifest
+    - provenance
+    - hashes
+    - execution_log
+    - review_status
+receipts:
+  required: true
+  fields:
+    - tool_id
+    - upstream_repository
+    - upstream_commit
+    - parameters
+    - input_hashes
+    - output_hashes
+    - network_events
+    - reviewer_disposition
+evals:
+  - clean_windows_install
+  - no_undeclared_network_egress
+  - deterministic_manifest
+  - rights_gate_enforced
