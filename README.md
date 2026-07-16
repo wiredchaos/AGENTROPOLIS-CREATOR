@@ -88,6 +88,7 @@ A modular open-source route for:
 - Blender Geometry Nodes crowd generation
 - MCP adapters for 3D tools
 - OpenCut-style video rendering and timeline automation
+- governed Creator Prompt Contract compilation for route, spec, timestamped beats, locked copy, observable technique, negatives, inference receipts, timeline validation, and execution handoff
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
 - Hermes Motion Maker-style reference-image-to-motion skill packets through Arcads MCP-style adapter contracts
@@ -145,6 +146,27 @@ AuthorMind
 The Audiobook Studio may use `ebook2audiobook` as an optional local/open-source backend candidate for legally acquired, non-DRM content the user owns or has rights to convert.
 
 Creator reference: [`docs/AUTHORMIND_AUDIOBOOK_STUDIO.md`](docs/AUTHORMIND_AUDIOBOOK_STUDIO.md)
+
+## Creator Prompt Contract
+
+CREATOR now includes a provider-neutral prompt compilation layer for converting one plain-language creative request into a governed production contract.
+
+The compiler separates six decisions before execution:
+
+```text
+route
+  -> spec
+  -> timestamped beats
+  -> exact copy
+  -> observable technique
+  -> negatives
+```
+
+Missing decisions are surfaced instead of silently invented. Any safe defaults are labeled in an inference receipt, beat timing becomes an editable timeline contract, and public release still requires media-diff review and human approval.
+
+Creator reference: [`docs/CREATOR_PROMPT_CONTRACT.md`](docs/CREATOR_PROMPT_CONTRACT.md)
+
+Skill package: [`packages/skills/creator-prompt-compiler/`](packages/skills/creator-prompt-compiler/)
 
 ## Seedance 2.0 Creator Video Lane
 
