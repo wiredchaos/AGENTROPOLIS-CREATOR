@@ -1,0 +1,30 @@
+{
+  "name": "gapraider",
+  "version": "0.1.0",
+  "lane": "creator.intelligence.content_gap",
+  "phase": "review_first_mvp",
+  "entrypoint": "SKILL.md",
+  "inputs": {
+    "required": ["seed_keywords"],
+    "optional": ["target_audience", "target_platforms", "district", "review_owner"]
+  },
+  "sources": [
+    {"id": "tiktok_creator_search_insights", "default_state": "manual_required"},
+    {"id": "x_search", "default_state": "manual_required"},
+    {"id": "reddit", "default_state": "manual_required"},
+    {"id": "youtube_autocomplete", "default_state": "manual_required"},
+    {"id": "google_trends", "default_state": "manual_required"},
+    {"id": "github_trending", "default_state": "manual_required"}
+  ],
+  "outputs": ["top_five.json", "top_five.md", "receipt.json"],
+  "publishing": {
+    "enabled": false,
+    "requires_human_approval": true
+  },
+  "guardrails": {
+    "invent_metrics": false,
+    "separate_evidence_from_generation": true,
+    "preserve_source_references": true,
+    "route_authenticated_sources_through_policy_gate": true
+  }
+}
