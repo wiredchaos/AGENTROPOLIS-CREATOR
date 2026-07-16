@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/gapraider-opportunity.schema.json",
+  "title": "GAPRAIDER Opportunity",
+  "type": "object",
+  "required": [
+    "keyword",
+    "sources",
+    "search_intent",
+    "audience_pain",
+    "competition_level",
+    "evidence_notes",
+    "scores",
+    "opportunity_score",
+    "hook",
+    "short_video_script",
+    "x_post",
+    "caption",
+    "hashtags",
+    "agentropolis_cta",
+    "review_status"
+  ],
+  "properties": {
+    "keyword": {"type": "string", "minLength": 1},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "state"],
+        "properties": {
+          "source": {"type": "string"},
+          "state": {
+            "enum": ["connected", "manual_required", "unavailable", "blocked_by_policy"]
+          },
+          "url": {"type": ["string", "null"]},
+          "collected_at": {"type": ["string", "null"]},
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "search_intent": {"type": "string"},
+    "audience_pain": {"type": "string"},
+    "competition_level": {"enum": ["low", "medium", "high", "unknown"]},
+    "evidence_notes": {"type": "array", "items": {"type": "string"}},
+    "scores": {
+      "type": "object",
+      "required": ["demand", "pain", "fit", "monetization", "urgency", "competition", "evidence_confidence"],
+      "properties": {
+        "demand": {"type": "integer", "minimum": 1, "maximum": 5},
+        "pain": {"type": "integer", "minimum": 1, "maximum": 5},
+        "fit": {"type": "integer", "minimum": 1, "maximum": 5},
+        "monetization": {"type": "integer", "minimum": 1, "maximum": 5},
+        "urgency": {"type": "integer", "minimum": 1, "maximum": 5},
+        "competition": {"type": "integer", "minimum": 1, "maximum": 5},
+        "evidence_confidence": {"type": "integer", "minimum": 1, "maximum": 5}
+      },
+      "additionalProperties": false
+    },
+    "opportunity_score": {"type": "number"},
+    "hook": {"type": "string"},
+    "short_video_script": {"type": "string"},
+    "x_post": {"type": "string"},
+    "caption": {"type": "string"},
+    "hashtags": {"type": "array", "items": {"type": "string"}},
+    "agentropolis_cta": {"type": "string"},
+    "review_status": {
+      "enum": ["draft", "needs_evidence", "ready_for_review", "approved", "rejected"]
+    }
+  },
+  "additionalProperties": false
+}
