@@ -6,7 +6,15 @@ Higgsfield Explainer applies to AGENTROPOLIS-CREATOR.
 
 It should not become a standalone Agentropolis repository yet.
 
-It belongs inside the Creator District as a faceless documentary, explainer, and narrated video generation lane that can be invoked by agents through MCP, Supercomputer workflows, or future provider adapters.
+It belongs inside the Creator District as a faceless documentary, explainer, and narrated video generation lane that can be invoked by agents through the official Higgsfield MCP, Supercomputer workflows, or future approved provider adapters.
+
+Official MCP endpoint:
+
+```text
+https://mcp.higgsfield.ai/mcp
+```
+
+Canonical connector policy: [`HIGGSFIELD_MCP_CREATOR_LANE.md`](HIGGSFIELD_MCP_CREATOR_LANE.md).
 
 ## Position In Agentropolis
 
@@ -16,7 +24,7 @@ Agentropolis
   -> Creator District
   -> Video Generation District
   -> Explainer Pipeline
-  -> Higgsfield Explainer adapter
+  -> official Higgsfield MCP
 ```
 
 Higgsfield Explainer is a production surface, not the durable architecture.
@@ -41,16 +49,13 @@ Higgsfield Explainer is relevant because it compresses a full faceless documenta
 - auto-research a topic
 - generate explainer structure
 - narrate in multiple languages
-- render up to 10 minutes in one run
+- render long-form documentary output when supported
 - support documentary-style output at scale
-- expose the workflow through Higgsfield, MCP, and Supercomputer paths
+- expose the workflow through Higgsfield MCP and Supercomputer paths
 
-The stated model stack from the announcement is:
+Any provider-advertised duration, model, pricing, or feature must be discovered and verified at execution time instead of treated as permanent canon.
 
-- Claude Fable 5
-- Gemini Omni Flash
-
-These names should be treated as provider-specific implementation details. Agentropolis should route by capability, not by model loyalty.
+Provider-specific model names should remain implementation details. Agentropolis routes by capability, rights, cost, quality, and policy rather than model loyalty.
 
 ## Agent Chain
 
@@ -61,7 +66,9 @@ Topic Request
   -> Claim Verification Agent
   -> Narrative Agent
   -> Storyboard Agent
-  -> Higgsfield Explainer Adapter
+  -> Creator Prompt Contract
+  -> AGENTROPOLIS-AGENT-MCP policy gate
+  -> official Higgsfield MCP
   -> RenderOps Agent
   -> Verifier Agent
   -> Human Approval
@@ -81,7 +88,7 @@ Turn CHAOS SKILL docs, README files, and GitHub changes into narrated onboarding
 
 ### Release Explainers
 
-Convert pull requests, release notes, and repo updates into short documentaries or 3-10 minute changelog videos.
+Convert pull requests, release notes, and repo updates into short documentaries or longer changelog videos when the provider supports the requested duration.
 
 ### Education Content
 
@@ -107,33 +114,53 @@ Use this routing language:
 Generate a governed documentary explainer from verified Agentropolis source material.
 ```
 
-Then let the Video Generation District route to Higgsfield Explainer when it is the best provider for long-form faceless documentary output.
+Then let the Video Generation District route to the official Higgsfield MCP when it is the best permitted provider for the requested output.
+
+## Authentication And Security
+
+Production use must connect through the official vendor-hosted OAuth endpoint.
+
+Do not:
+
+- copy Higgsfield browser cookies
+- extract Clerk session tokens or JWTs
+- use browser injection to impersonate provider API calls
+- bypass provider bot protections
+- commit credentials or session artifacts
+- grant publication authority to the generation connector
+
+Use least-privilege permissions, provider-managed authentication, execution receipts, and explicit approval gates.
 
 ## Governance Rules
 
 - Do not publish auto-researched claims without verification.
-- Do not expose secrets, API keys, private client data, or unreleased repo strategy.
-- Do not imply official partnerships unless confirmed.
+- Do not expose secrets, API keys, OAuth artifacts, private client data, or unreleased repo strategy.
+- Do not imply official partnerships beyond the existence of the official public connector.
 - Preserve Agentropolis canon and district boundaries.
 - Keep provider-specific model names behind the capability router.
+- Verify current provider capabilities before promising duration, resolution, model access, or cost.
 - Require human approval before public publishing.
-- Store source links, script, prompt, render metadata, and approval state.
+- Store source links, script, prompt, render metadata, rights state, cost authority, and approval state.
 
 ## Recommended Repo Placement
 
 ```text
 AGENTROPOLIS-CREATOR
-└── docs/
-    ├── video-generation-district.md
-    └── higgsfield-explainer-intel.md
+├── docs/
+│   ├── video-generation-district.md
+│   ├── higgsfield-explainer-intel.md
+│   └── HIGGSFIELD_MCP_CREATOR_LANE.md
+└── registry/
+    └── media-mcp-adapters.md
 ```
 
-Future implementation can add:
+Provider-specific execution code is not required inside CREATOR for the hosted connector. CREATOR owns the prompt contract, reference authority, governance policy, templates, and validation requirements. AGENTROPOLIS-AGENT-MCP owns connection authority and execution receipts.
+
+Future implementation may add provider-neutral workflow and prompt assets:
 
 ```text
 integrations/higgsfield/
 ├── README.md
-├── MCP.md
 ├── workflows/
 │   ├── documentary.yaml
 │   ├── explainer.yaml
@@ -153,6 +180,8 @@ Lock it as:
 
 ```text
 Higgsfield Explainer = Creator District video/documentary generation lane.
-Not a separate repo yet.
-MCP-enabled provider adapter under AGENTROPOLIS-CREATOR.
+Official connector = https://mcp.higgsfield.ai/mcp
+Not a separate repo.
+Provider execution routed through AGENTROPOLIS-AGENT-MCP.
+Public release requires RenderVerifier and human approval.
 ```
