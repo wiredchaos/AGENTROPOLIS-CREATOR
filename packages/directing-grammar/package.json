@@ -1,0 +1,19 @@
+{
+  "name": "@agentropolis/directing-grammar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Runtime directing contract for Agentropolis video generation.",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}
