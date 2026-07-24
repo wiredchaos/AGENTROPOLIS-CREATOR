@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/storyboard-execution-receipt.schema.json",
+  "title": "Storyboard Execution Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receiptVersion",
+    "agentId",
+    "mandateId",
+    "capability",
+    "sourceMediaHashes",
+    "rightsStatus",
+    "privacyClass",
+    "networkPolicy",
+    "outputs",
+    "startedAt",
+    "completedAt",
+    "status"
+  ],
+  "properties": {
+    "receiptVersion": { "const": "1.0" },
+    "agentId": { "type": "string", "minLength": 1 },
+    "mandateId": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "minLength": 1 },
+    "sourceMediaHashes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+    },
+    "rightsStatus": {
+      "type": "string",
+      "enum": ["user_owned", "licensed", "public_domain", "unknown"]
+    },
+    "privacyClass": {
+      "type": "string",
+      "enum": ["local", "restricted", "public"]
+    },
+    "networkPolicy": {
+      "type": "string",
+      "enum": ["local_only", "byok", "approved_cloud"]
+    },
+    "framesExtracted": { "type": "integer", "minimum": 0 },
+    "modelRoute": { "type": ["string", "null"] },
+    "provider": { "type": ["string", "null"] },
+    "estimatedCost": { "type": "number", "minimum": 0 },
+    "actualCost": { "type": "number", "minimum": 0 },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "artifactRef", "sha256"],
+        "properties": {
+          "kind": { "type": "string" },
+          "artifactRef": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+        }
+      }
+    },
+    "humanApproval": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "reviewerId": { "type": "string" },
+        "decision": { "type": "string", "enum": ["approved", "rejected", "changes_requested"] },
+        "reviewedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" },
+    "status": { "type": "string", "enum": ["success", "partial", "failed", "blocked"] },
+    "errorCode": { "type": ["string", "null"] },
+    "errorMessage": { "type": ["string", "null"] }
+  }
+}
