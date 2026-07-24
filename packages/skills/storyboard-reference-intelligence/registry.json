@@ -1,0 +1,48 @@
+{
+  "name": "storyboard-reference-intelligence",
+  "displayName": "Storyboard Reference Intelligence",
+  "version": "0.1.0",
+  "status": "planning_only",
+  "tier": "extended",
+  "district": "AGENTROPOLIS-CREATOR",
+  "layer": "application",
+  "role": "Convert rights-cleared reference imagery into governed storyboard and shot-intelligence packages.",
+  "triggers": [
+    "turn this footage into a storyboard",
+    "extract shots from this clip",
+    "match this framing",
+    "create prompts from these reference frames",
+    "build an animatic",
+    "make a shot list"
+  ],
+  "chainsFrom": [
+    "hermes.creator_intake",
+    "asbe.production_plan",
+    "scriptbreak.scene_plan",
+    "creator.prompt_compilation"
+  ],
+  "chainsTo": [
+    "creator-prompt-compiler",
+    "asbe",
+    "blockout",
+    "motion-previs",
+    "media-diff",
+    "pbx"
+  ],
+  "requires": [
+    "AGENTROPOLIS-AGENT-MCP authorization",
+    "rights and privacy classification",
+    "approved source workspace",
+    "FFmpeg-capable upstream runtime for execution"
+  ],
+  "upstream": {
+    "repository": "wassermanproductions/storyboard-reference-studio",
+    "license": "Apache-2.0",
+    "noticeRequired": true,
+    "credit": "Sam Wasserman / Wasserman Productions"
+  },
+  "execution": {
+    "enabled": false,
+    "reason": "Non-executing scaffold pending governed MCP adapter review."
+  }
+}
