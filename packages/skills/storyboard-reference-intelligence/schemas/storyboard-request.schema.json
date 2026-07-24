@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/storyboard-request.schema.json",
+  "title": "Storyboard Reference Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agentId",
+    "mandateId",
+    "capability",
+    "sourceMedia",
+    "rightsStatus",
+    "privacyClass",
+    "networkPolicy",
+    "outputs"
+  ],
+  "properties": {
+    "agentId": { "type": "string", "minLength": 1 },
+    "mandateId": { "type": "string", "minLength": 1 },
+    "capability": {
+      "type": "string",
+      "enum": [
+        "storyboard.get_state",
+        "storyboard.add_frame",
+        "storyboard.auto_board",
+        "storyboard.set_label",
+        "storyboard.set_crop",
+        "storyboard.describe_frame",
+        "storyboard.extract_frame",
+        "storyboard.set_frame_duration",
+        "storyboard.set_shot_meta",
+        "storyboard.add_annotation",
+        "storyboard.clear_annotations",
+        "storyboard.export_board",
+        "storyboard.export_animatic",
+        "storyboard.export_pdf",
+        "storyboard.export_shotlist"
+      ]
+    },
+    "sourceMedia": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["workspaceRef", "sha256"],
+        "properties": {
+          "workspaceRef": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "label": { "type": "string" }
+        }
+      }
+    },
+    "rightsStatus": {
+      "type": "string",
+      "enum": ["user_owned", "licensed", "public_domain", "unknown"]
+    },
+    "privacyClass": {
+      "type": "string",
+      "enum": ["local", "restricted", "public"]
+    },
+    "networkPolicy": {
+      "type": "string",
+      "enum": ["local_only", "byok", "approved_cloud"]
+    },
+    "frameBudget": { "type": "integer", "minimum": 1, "maximum": 500 },
+    "durationBudgetSeconds": { "type": "number", "exclusiveMinimum": 0 },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "board_package",
+          "animatic_mp4",
+          "storyboard_pdf",
+          "shot_list_csv",
+          "prompt_manifest",
+          "receipt"
+        ]
+      }
+    },
+    "requireHumanReview": { "type": "boolean", "default": true },
+    "publish": { "type": "boolean", "default": false }
+  }
+}
