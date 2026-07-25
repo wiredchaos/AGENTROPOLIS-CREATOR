@@ -1,0 +1,50 @@
+{
+  "policyVersion": "1.0",
+  "policyId": "storyboard-reference.rights-clearance",
+  "defaultDecision": "block_redistribution",
+  "rules": [
+    {
+      "when": { "rightsStatus": "unknown" },
+      "allow": [
+        "storyboard.get_state",
+        "storyboard.add_frame",
+        "storyboard.auto_board",
+        "storyboard.set_label",
+        "storyboard.set_crop",
+        "storyboard.extract_frame",
+        "storyboard.set_frame_duration",
+        "storyboard.set_shot_meta",
+        "storyboard.add_annotation",
+        "storyboard.clear_annotations"
+      ],
+      "block": [
+        "storyboard.describe_frame",
+        "storyboard.export_board",
+        "storyboard.export_animatic",
+        "storyboard.export_pdf",
+        "storyboard.export_shotlist"
+      ],
+      "reason": "Unknown rights permit bounded local organization only. Analysis that sends frames to a model and all exports remain blocked until rights are resolved."
+    },
+    {
+      "when": { "rightsStatus": "user_owned" },
+      "allow": ["storyboard.*"],
+      "conditions": ["mandate_valid", "workspace_allowlisted", "privacy_policy_satisfied"]
+    },
+    {
+      "when": { "rightsStatus": "licensed" },
+      "allow": ["storyboard.*"],
+      "conditions": ["license_evidence_present", "license_scope_covers_requested_use", "mandate_valid"]
+    },
+    {
+      "when": { "rightsStatus": "public_domain" },
+      "allow": ["storyboard.*"],
+      "conditions": ["public_domain_evidence_present", "mandate_valid"]
+    }
+  ],
+  "publicRelease": {
+    "requiresHumanApproval": true,
+    "requiresMediaDiff": true,
+    "requiresAttributionReview": true
+  }
+}
