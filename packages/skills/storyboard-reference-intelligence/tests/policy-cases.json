@@ -1,0 +1,108 @@
+{
+  "suite": "storyboard-reference-intelligence-policy-preflight",
+  "version": "1.0",
+  "cases": [
+    {
+      "name": "blocks missing mandate",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "",
+        "capability": "storyboard.get_state",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Missing mandate ID"
+      }
+    },
+    {
+      "name": "blocks unknown-rights frame description",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "unknown",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Unknown rights"
+      }
+    },
+    {
+      "name": "blocks unknown-rights export",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.export_pdf",
+        "rightsStatus": "unknown",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Unknown rights"
+      }
+    },
+    {
+      "name": "blocks cloud route under local-only policy",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "approved-cloud:vision-model"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Local-only policy"
+      }
+    },
+    {
+      "name": "blocks unapproved BYOK route",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "licensed",
+        "privacyClass": "restricted",
+        "networkPolicy": "byok",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "vendor:vision-model"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "approved-byok"
+      }
+    },
+    {
+      "name": "passes policy preflight but does not execute",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.auto_board",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "workspaceRefs": ["workspace://creator/project-1"],
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "planning_only",
+        "reasonIncludes": "Upstream execution remains disabled"
+      }
+    }
+  ]
+}
