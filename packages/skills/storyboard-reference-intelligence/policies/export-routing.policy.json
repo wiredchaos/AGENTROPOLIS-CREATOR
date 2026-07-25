@@ -1,0 +1,41 @@
+{
+  "policyVersion": "1.0",
+  "policyId": "storyboard-reference.export-routing",
+  "routes": {
+    "prompts.json": {
+      "destination": ["creator-prompt-compiler", "approved-generator-agents"],
+      "requires": ["mandate_valid", "rights_resolved", "prompt_provenance_present"]
+    },
+    "shot-list.csv": {
+      "destination": ["ASBE"],
+      "requires": ["mandate_valid", "shot_contract_valid"]
+    },
+    "storyboard.pdf": {
+      "destination": ["human-mission-control"],
+      "requires": ["mandate_valid", "local_export_approved"]
+    },
+    "animatic.mp4": {
+      "destination": ["human-mission-control", "789-studios-review", "NTRU-OTT-review"],
+      "requires": ["mandate_valid", "rights_resolved", "media_diff_required", "human_release_approval"]
+    },
+    "board.md": {
+      "destination": ["production-archive"],
+      "requires": ["mandate_valid", "local_export_approved"]
+    },
+    "stills": {
+      "destination": ["blockout", "motion-previs", "approved-image-generation"],
+      "requires": ["mandate_valid", "rights_resolved", "workspace_allowlisted"]
+    },
+    "receipt.json": {
+      "destination": ["audit-ledger"],
+      "requires": ["always"]
+    }
+  },
+  "hardRules": [
+    "An export is not a publication authorization.",
+    "Unknown rights block redistribution destinations.",
+    "Public release requires human approval and media-diff review.",
+    "Raw local paths, bearer tokens, and credential values must not appear in exported manifests or receipts.",
+    "Every routed artifact must retain source and mandate provenance."
+  ]
+}
