@@ -88,6 +88,7 @@ A modular open-source route for:
 - Blender Geometry Nodes crowd generation
 - MCP adapters for 3D tools
 - OpenCut-style video rendering and timeline automation
+- governed Storyboard Reference Intelligence for rights-aware frame extraction, shot contracts, prompt manifests, animatics, PDFs, CSVs, and receipts
 - governed Creator Prompt Contract compilation for route, spec, timestamped beats, locked copy, observable technique, negatives, inference receipts, timeline validation, and execution handoff
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
@@ -168,6 +169,28 @@ Creator reference: [`docs/CREATOR_PROMPT_CONTRACT.md`](docs/CREATOR_PROMPT_CONTR
 
 Skill package: [`packages/skills/creator-prompt-compiler/`](packages/skills/creator-prompt-compiler/)
 
+## Storyboard Reference Intelligence Lane
+
+CREATOR now tracks Storyboard Reference Studio as an external Apache-2.0 reference and governed adapter target for converting rights-cleared footage and images into deterministic storyboard packages.
+
+This lane is not a core runtime dependency, not a model provider, and not a public-release authority. It extracts visual grammar, preserves source provenance, compiles provider-neutral shot contracts, and routes execution only through AGENTROPOLIS-AGENT-MCP.
+
+```text
+rights-cleared reference
+  -> frame extraction and crop
+  -> shot contract
+  -> Creator Prompt Contract
+  -> governed model route
+  -> storyboard package
+  -> media diff
+  -> human approval
+  -> receipt
+```
+
+Creator reference: [`docs/STORYBOARD_REFERENCE_INTELLIGENCE_LANE.md`](docs/STORYBOARD_REFERENCE_INTELLIGENCE_LANE.md)
+
+Skill package: [`packages/skills/storyboard-reference-intelligence/`](packages/skills/storyboard-reference-intelligence/)
+
 ## Seedance 2.0 Creator Video Lane
 
 CREATOR now tracks Seedance 2.0 Skill OS as an external reference and adapter target for the video foundry lane.
@@ -210,7 +233,7 @@ FreeLLM is tracked as a creator-side model scouting directory and rapid prototyp
 
 The Foundry may use it to compare free provider-backed models, generate config cards, and run prompt/eval tests before any model is promoted into AGENTROPOLIS-AGENT-MCP routing.
 
-Creator reference: [`docs/FREELLM_CREATOR_MODEL_SCOUTING_BRIEF.md`](docs/FREELLM_CREATOR_MODEL_SCOUTING_BRIEF.md)
+Creator reference: [`docs/FREELM_CREATOR_MODEL_SCOUTING_BRIEF.md`](docs/FREELM_CREATOR_MODEL_SCOUTING_BRIEF.md)
 
 ## Hermes Rankings and Backends Showcase
 
