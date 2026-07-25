@@ -1,6 +1,6 @@
 {
   "suite": "storyboard-reference-intelligence-policy-preflight",
-  "version": "1.0",
+  "version": "1.1",
   "cases": [
     {
       "name": "blocks missing mandate",
@@ -11,12 +11,41 @@
         "rightsStatus": "user_owned",
         "privacyClass": "local",
         "networkPolicy": "local_only",
-        "workspaceRefs": ["workspace://creator/project-1"],
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }],
+        "outputs": ["receipt"],
+        "requireHumanReview": true,
+        "publish": false,
         "modelRoute": "offline-template"
       },
       "expect": {
         "status": "blocked",
         "reasonIncludes": "Missing mandate ID"
+      }
+    },
+    {
+      "name": "blocks source without a valid hash",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.get_state",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "not-a-hash"
+        }],
+        "outputs": ["receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "SHA-256"
       }
     },
     {
@@ -28,7 +57,13 @@
         "rightsStatus": "unknown",
         "privacyClass": "local",
         "networkPolicy": "local_only",
-        "workspaceRefs": ["workspace://creator/project-1"],
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
         "modelRoute": "offline-template"
       },
       "expect": {
@@ -45,7 +80,13 @@
         "rightsStatus": "unknown",
         "privacyClass": "local",
         "networkPolicy": "local_only",
-        "workspaceRefs": ["workspace://creator/project-1"],
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }],
+        "outputs": ["storyboard_pdf", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
         "modelRoute": "offline-template"
       },
       "expect": {
@@ -62,7 +103,13 @@
         "rightsStatus": "user_owned",
         "privacyClass": "local",
         "networkPolicy": "local_only",
-        "workspaceRefs": ["workspace://creator/project-1"],
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
         "modelRoute": "approved-cloud:vision-model"
       },
       "expect": {
@@ -79,12 +126,42 @@
         "rightsStatus": "licensed",
         "privacyClass": "restricted",
         "networkPolicy": "byok",
-        "workspaceRefs": ["workspace://creator/project-1"],
-        "modelRoute": "vendor:vision-model"
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "vendor:vision-model",
+        "providerApproved": false
       },
       "expect": {
         "status": "blocked",
         "reasonIncludes": "approved-byok"
+      }
+    },
+    {
+      "name": "blocks publication without human review",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.export_board",
+        "rightsStatus": "user_owned",
+        "privacyClass": "public",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }],
+        "outputs": ["board_package", "receipt"],
+        "requireHumanReview": false,
+        "publish": true,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "requires human review"
       }
     },
     {
@@ -96,7 +173,15 @@
         "rightsStatus": "user_owned",
         "privacyClass": "local",
         "networkPolicy": "local_only",
-        "workspaceRefs": ["workspace://creator/project-1"],
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+        }],
+        "outputs": ["board_package", "prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "frameBudget": 6,
+        "durationBudgetSeconds": 30,
         "modelRoute": "offline-template"
       },
       "expect": {
