@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/tube-scribe-job.schema.json",
+  "title": "Tube Scribe Job",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "job_id",
+    "source",
+    "rights",
+    "outputs",
+    "runtime",
+    "governance"
+  ],
+  "properties": {
+    "version": { "const": "0.1" },
+    "job_id": { "type": "string", "pattern": "^job_[A-Za-z0-9_-]+$" },
+    "studio_id": { "type": ["string", "null"] },
+    "show_id": { "type": ["string", "null"] },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "enum": ["youtube_url", "local_file"] },
+        "value": { "type": "string", "minLength": 1 },
+        "expected_video_id": { "type": ["string", "null"] }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "declared_by"],
+      "properties": {
+        "status": {
+          "enum": [
+            "owned",
+            "licensed",
+            "public_domain",
+            "permission_granted",
+            "public_access_transcription_only",
+            "unknown"
+          ]
+        },
+        "declared_by": { "type": "string", "minLength": 1 },
+        "notes": { "type": ["string", "null"] }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transcript", "timestamps"],
+      "properties": {
+        "transcript": { "type": "boolean" },
+        "timestamps": { "type": "boolean" },
+        "retain_audio": { "type": "boolean", "default": false },
+        "chapters": { "type": "boolean", "default": false },
+        "speaker_labels": { "type": "boolean", "default": false },
+        "quotes": { "type": "boolean", "default": false },
+        "clip_candidates": { "type": "boolean", "default": false },
+        "summary": { "type": "boolean", "default": false },
+        "embeddings": { "type": "boolean", "default": false }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["execution_lane", "model", "device", "compute_type", "limits"],
+      "properties": {
+        "execution_lane": { "enum": ["local", "byoh", "byok"] },
+        "model": { "type": "string", "minLength": 1 },
+        "device": { "enum": ["cpu", "cuda", "auto"] },
+        "compute_type": { "type": "string", "minLength": 1 },
+        "language": { "type": ["string", "null"] },
+        "provider_ref": { "type": ["string", "null"] },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["max_duration_seconds", "max_source_bytes", "timeout_seconds"],
+          "properties": {
+            "max_duration_seconds": { "type": "integer", "minimum": 1 },
+            "max_source_bytes": { "type": "integer", "minimum": 1 },
+            "timeout_seconds": { "type": "integer", "minimum": 1 },
+            "max_concurrency": { "type": "integer", "minimum": 1, "default": 1 }
+          }
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_sources_only",
+        "allow_browser_cookies",
+        "requires_human_approval",
+        "retention_policy"
+      ],
+      "properties": {
+        "public_sources_only": { "const": true },
+        "allow_browser_cookies": { "const": false },
+        "requires_human_approval": { "type": "boolean" },
+        "retention_policy": {
+          "enum": ["ephemeral", "project", "archive"]
+        },
+        "redact_sensitive_content": { "type": "boolean", "default": true },
+        "publish_authority": { "const": false }
+      }
+    },
+    "pbx": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "handoff_event": {
+          "const": "creator.media.transcript.ready"
+        },
+        "destination_lane": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
