@@ -1,0 +1,32 @@
+name: Hermes Browser Policy
+
+on:
+  pull_request:
+    paths:
+      - 'packages/runtime/hermes-browser-policy/**'
+      - '.github/workflows/hermes-browser-policy.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/runtime/hermes-browser-policy/**'
+      - '.github/workflows/hermes-browser-policy.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/runtime/hermes-browser-policy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: packages/runtime/hermes-browser-policy/package.json
+      - run: npm install --ignore-scripts
+      - run: npm test
