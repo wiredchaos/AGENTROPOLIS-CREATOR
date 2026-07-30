@@ -92,6 +92,7 @@ A modular open-source route for:
 - Seedance 2.0-style creator video direction, prompt compilation, continuity, and delivery/QC workflows
 - DepthFlow-style 2.5D parallax motion rendering for static images, posters, OTT bumpers, web hero loops, and social clips
 - Hermes Motion Maker-style reference-image-to-motion skill packets through Arcads MCP-style adapter contracts
+- governed Hermes browser automation using isolated sessions, domain/action allowlists, BYOK credentials, approval packets, evidence bundles, execution receipts, and reviewed memory writes
 - governed Audio-to-MIDI transcription, cleanup, confidence reporting, and DAW/game-engine handoff packets
 - governed world-diff previews
 - governed media-diff previews
@@ -193,6 +194,29 @@ This is not a hard runtime dependency and not a separate Agentropolis repo yet. 
 Creator reference: [`docs/HERMES_MOTION_ARCADS_SKILL_LANE.md`](docs/HERMES_MOTION_ARCADS_SKILL_LANE.md)
 
 Skill package: [`packages/skills/hermes-motion-maker/`](packages/skills/hermes-motion-maker/)
+
+## Hermes Browser Automation Lane
+
+CREATOR now tracks Hermes Browser Operator as a governed browser orchestration skill for research, browser planning, form drafting, approval-gated actions, bounded batches, evidence capture, execution receipts, and reviewed memory proposals.
+
+The lane is BYOK and BYOBrowser by default. It uses a dedicated automation profile, treats browser extensions and WebBridge-style connectors as untrusted adapters, separates observation from state-changing authority, and routes execution through AEGIS policy plus AGENTROPOLIS-AGENT-MCP boundaries.
+
+```text
+human mandate
+  -> prompt and risk analysis
+  -> browser task contract
+  -> domain/action allowlist
+  -> isolated browser session
+  -> observe / propose / approved execution
+  -> evidence bundle
+  -> receipt
+  -> human review
+  -> optional reviewed memory write
+```
+
+Creator reference: [`docs/HERMES_BROWSER_AUTOMATION_LANE.md`](docs/HERMES_BROWSER_AUTOMATION_LANE.md)
+
+Skill package: [`packages/skills/hermes-browser-operator/`](packages/skills/hermes-browser-operator/)
 
 ## Audio-to-MIDI Foundry Lane
 
