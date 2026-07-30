@@ -1,0 +1,193 @@
+{
+  "suite": "storyboard-reference-intelligence-policy-preflight",
+  "version": "1.1",
+  "cases": [
+    {
+      "name": "blocks missing mandate",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "",
+        "capability": "storyboard.get_state",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }],
+        "outputs": ["receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Missing mandate ID"
+      }
+    },
+    {
+      "name": "blocks source without a valid hash",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.get_state",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "not-a-hash"
+        }],
+        "outputs": ["receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "SHA-256"
+      }
+    },
+    {
+      "name": "blocks unknown-rights frame description",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "unknown",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Unknown rights"
+      }
+    },
+    {
+      "name": "blocks unknown-rights export",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.export_pdf",
+        "rightsStatus": "unknown",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+        }],
+        "outputs": ["storyboard_pdf", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Unknown rights"
+      }
+    },
+    {
+      "name": "blocks cloud route under local-only policy",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "approved-cloud:vision-model"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "Local-only policy"
+      }
+    },
+    {
+      "name": "blocks unapproved BYOK route",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.describe_frame",
+        "rightsStatus": "licensed",
+        "privacyClass": "restricted",
+        "networkPolicy": "byok",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+        }],
+        "outputs": ["prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "modelRoute": "vendor:vision-model",
+        "providerApproved": false
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "approved-byok"
+      }
+    },
+    {
+      "name": "blocks publication without human review",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.export_board",
+        "rightsStatus": "user_owned",
+        "privacyClass": "public",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }],
+        "outputs": ["board_package", "receipt"],
+        "requireHumanReview": false,
+        "publish": true,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "blocked",
+        "reasonIncludes": "requires human review"
+      }
+    },
+    {
+      "name": "passes policy preflight but does not execute",
+      "request": {
+        "agentId": "DIRECTOR-01",
+        "mandateId": "mandate-1",
+        "capability": "storyboard.auto_board",
+        "rightsStatus": "user_owned",
+        "privacyClass": "local",
+        "networkPolicy": "local_only",
+        "sourceMedia": [{
+          "workspaceRef": "workspace://creator/project-1/reference.mp4",
+          "sha256": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+        }],
+        "outputs": ["board_package", "prompt_manifest", "receipt"],
+        "requireHumanReview": true,
+        "publish": false,
+        "frameBudget": 6,
+        "durationBudgetSeconds": 30,
+        "modelRoute": "offline-template"
+      },
+      "expect": {
+        "status": "planning_only",
+        "reasonIncludes": "Upstream execution remains disabled"
+      }
+    }
+  ]
+}

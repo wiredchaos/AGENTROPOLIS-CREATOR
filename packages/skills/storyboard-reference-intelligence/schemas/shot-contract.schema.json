@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/storyboard-reference-intelligence/shot-contract.schema.json",
+  "title": "Storyboard Reference Intelligence Shot Contract",
+  "description": "Provider-neutral, provenance-preserving description of one storyboard frame. Generator-specific prompt syntax belongs downstream and must not overwrite source facts or inferred fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "shotId",
+    "source",
+    "framing",
+    "timing",
+    "analysis",
+    "rights",
+    "governance"
+  ],
+  "properties": {
+    "contractVersion": {
+      "const": "1.0"
+    },
+    "shotId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sceneId": {
+      "type": ["string", "null"]
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "notes": {
+      "type": "string",
+      "default": ""
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mediaRef", "mediaHash", "timestampSeconds"],
+      "properties": {
+        "mediaRef": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Approved workspace reference, never a public raw local path."
+        },
+        "mediaHash": {
+          "type": "string",
+          "minLength": 16
+        },
+        "timestampSeconds": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "frameHash": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "framing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["aspectRatio", "crop"],
+      "properties": {
+        "aspectRatio": {
+          "type": "string",
+          "enum": ["free", "16:9", "9:16", "1:1", "4:3", "2.39:1"]
+        },
+        "crop": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "width", "height", "coordinateSpace"],
+          "properties": {
+            "x": { "type": "number", "minimum": 0, "maximum": 1 },
+            "y": { "type": "number", "minimum": 0, "maximum": 1 },
+            "width": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+            "height": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+            "coordinateSpace": { "const": "normalized_source" }
+          }
+        },
+        "shotSize": {
+          "type": ["string", "null"]
+        },
+        "cameraAngle": {
+          "type": ["string", "null"]
+        },
+        "lens": {
+          "type": ["string", "null"]
+        },
+        "blocking": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["durationSeconds"],
+      "properties": {
+        "durationSeconds": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 30
+        },
+        "movement": {
+          "type": ["string", "null"]
+        },
+        "transition": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facts", "inferences", "missingFields"],
+      "properties": {
+        "facts": {
+          "type": "object",
+          "description": "Directly observable or user-supplied facts.",
+          "additionalProperties": true
+        },
+        "inferences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "value", "source", "confidence", "userOverridable"],
+            "properties": {
+              "field": { "type": "string", "minLength": 1 },
+              "value": {},
+              "source": {
+                "type": "string",
+                "enum": ["vision_model", "offline_template", "project_profile", "district_canon", "safe_default"]
+              },
+              "confidence": {
+                "type": "string",
+                "enum": ["low", "medium", "high"]
+              },
+              "userOverridable": { "const": true }
+            }
+          }
+        },
+        "missingFields": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "environment": {
+          "type": ["string", "null"]
+        },
+        "lighting": {
+          "type": ["string", "null"]
+        },
+        "colorMood": {
+          "type": ["string", "null"]
+        },
+        "styleKeywords": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        }
+      }
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "points"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["arrow", "text"] },
+          "points": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["x", "y"],
+              "properties": {
+                "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                "y": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          },
+          "text": { "type": ["string", "null"] },
+          "color": { "type": ["string", "null"] }
+        }
+      },
+      "default": []
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "redistributionAllowed"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["user_owned", "licensed", "public_domain", "unknown"]
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "redistributionAllowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agentId", "mandateId", "privacyClass", "networkPolicy", "requireHumanReview"],
+      "properties": {
+        "agentId": { "type": "string", "minLength": 1 },
+        "mandateId": { "type": "string", "minLength": 1 },
+        "privacyClass": {
+          "type": "string",
+          "enum": ["local", "restricted", "public"]
+        },
+        "networkPolicy": {
+          "type": "string",
+          "enum": ["local_only", "byok", "approved_cloud"]
+        },
+        "modelRoute": {
+          "type": ["string", "null"]
+        },
+        "requireHumanReview": { "const": true },
+        "requireMediaDiff": { "type": "boolean", "default": true }
+      }
+    },
+    "downstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "creatorPromptContractRef": { "type": ["string", "null"] },
+        "generatorProfiles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["midjourney", "flux", "gpt-image", "nano-banana", "sdxl", "generic"]
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "rights": {
+            "properties": {
+              "status": { "const": "unknown" }
+            },
+            "required": ["status"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "rights": {
+            "properties": {
+              "redistributionAllowed": { "const": false }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "networkPolicy": { "const": "local_only" }
+            },
+            "required": ["networkPolicy"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "governance": {
+            "properties": {
+              "modelRoute": {
+                "type": ["string", "null"],
+                "pattern": "^(local:|offline-template$|$)"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

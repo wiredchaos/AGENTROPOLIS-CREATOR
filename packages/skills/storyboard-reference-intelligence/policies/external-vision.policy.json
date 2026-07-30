@@ -1,0 +1,42 @@
+{
+  "policyVersion": "1.0",
+  "policyId": "storyboard-reference.external-vision",
+  "networkModes": {
+    "local_only": {
+      "allowedRoutes": ["offline-template", "local:*"],
+      "cloudFallback": false,
+      "frameUploadAllowed": false
+    },
+    "byok": {
+      "allowedRoutes": ["approved-byok:*"],
+      "cloudFallback": false,
+      "frameUploadAllowed": true,
+      "conditions": [
+        "credential_reference_resolved_by_secret_layer",
+        "provider_allowlisted",
+        "budget_approved",
+        "rights_policy_satisfied",
+        "privacy_policy_satisfied"
+      ]
+    },
+    "approved_cloud": {
+      "allowedRoutes": ["approved-cloud:*"],
+      "cloudFallback": false,
+      "frameUploadAllowed": true,
+      "conditions": [
+        "provider_selected_by_entropy_or_model_council",
+        "provider_allowlisted",
+        "budget_approved",
+        "rights_policy_satisfied",
+        "privacy_policy_satisfied"
+      ]
+    }
+  },
+  "hardRules": [
+    "Never silently change network mode.",
+    "Never expose raw credentials to the skill or receipt.",
+    "Never claim a provider or model is available without router confirmation.",
+    "Record provider, model route, latency, estimated cost, actual cost, and inference basis.",
+    "Keep source facts separate from model inferences."
+  ]
+}
