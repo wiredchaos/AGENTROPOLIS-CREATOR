@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "agentropolis-creator-multi-engine-construction-routing",
+  "version": "1.0.0",
+  "owner": "wiredchaos/AGENTROPOLIS-CREATOR",
+  "orchestrator": "wiredchaos/ASBE",
+  "dispatch": "HERMES",
+  "authority": "wiredchaos/AGENTROPOLIS-AGENT-MCP",
+  "operator_contract": {
+    "role": "vision-capable coding operator",
+    "preferred_candidate": "Kimi K3",
+    "provider_neutral": true,
+    "may": [
+      "inspect_project_state",
+      "generate_reviewable_code",
+      "capture_visual_evidence",
+      "diagnose_bounded_defects",
+      "propose_bounded_repairs",
+      "execute_authorized_tool_calls",
+      "validate_results",
+      "write_receipts"
+    ],
+    "may_not": [
+      "expand_own_authority",
+      "approve_rights_or_canon",
+      "delete_production_assets_without_approval",
+      "publish_without_approval",
+      "run_unbounded_recursive_repairs"
+    ]
+  },
+  "routes": [
+    {
+      "id": "blender_mcp",
+      "class": "3d_authoring",
+      "state": "existing_lane",
+      "responsibilities": [
+        "source_geometry",
+        "materials",
+        "geometry_nodes",
+        "rigging",
+        "animation_sources",
+        "bpy_automation",
+        "preview_render",
+        "interchange_export"
+      ]
+    },
+    {
+      "id": "unreal_mcp",
+      "class": "real_time_runtime",
+      "state": "existing_lane",
+      "responsibilities": [
+        "level_assembly",
+        "world_partition",
+        "nanite",
+        "lumen",
+        "blueprints",
+        "sequencer",
+        "simulation",
+        "playtest",
+        "runtime_packaging"
+      ]
+    },
+    {
+      "id": "unity_mcp",
+      "class": "game_engine",
+      "state": "evaluate",
+      "responsibilities": ["runtime_assembly", "navigation", "physics", "cross_platform_builds"]
+    },
+    {
+      "id": "godot_mcp",
+      "class": "game_engine",
+      "state": "evaluate",
+      "responsibilities": ["open_source_runtime", "lightweight_simulation", "build_tests"]
+    },
+    {
+      "id": "playcanvas_webxr",
+      "class": "web_runtime",
+      "state": "evaluate",
+      "responsibilities": ["browser_preview", "immersive_preview", "web_delivery"]
+    },
+    {
+      "id": "react_three_fiber_threejs",
+      "class": "web_runtime",
+      "state": "aligned",
+      "responsibilities": ["agentropolis_web_surfaces", "spatial_interfaces", "browser_preview"]
+    },
+    {
+      "id": "supersplat_3dgs",
+      "class": "reconstruction",
+      "state": "evaluate",
+      "responsibilities": ["gaussian_splat_editing", "captured_spaces", "digital_twins"]
+    },
+    {
+      "id": "openusd",
+      "class": "interchange",
+      "state": "evaluate",
+      "responsibilities": ["scene_description", "cross_engine_transport", "package_validation"]
+    }
+  ],
+  "candidate_producers": [
+    "hy_world_2",
+    "hunyuan3d",
+    "trellis",
+    "triposr",
+    "instantmesh",
+    "stable_fast_3d",
+    "infinigen",
+    "wave_function_collapse",
+    "markovjunior"
+  ],
+  "supporting_adapters": [
+    "comfyui",
+    "opencut",
+    "audio_voice",
+    "structural_validator",
+    "performance_validator",
+    "visual_diff_validator",
+    "license_provenance_validator",
+    "deployment_adapter"
+  ],
+  "required_sequence": [
+    "mandate",
+    "creator_contract",
+    "asbe_plan",
+    "hermes_dispatch",
+    "mcp_authority_check",
+    "checkpoint",
+    "execute",
+    "capture",
+    "inspect",
+    "validate",
+    "human_review",
+    "receipt"
+  ],
+  "hard_rules": [
+    "one_writer_per_project_session",
+    "no_production_mutation_without_reversible_diff",
+    "no_candidate_import_without_provenance",
+    "no_medium_or_high_risk_action_without_policy_gate",
+    "no_public_publish_without_human_approval"
+  ]
+}
