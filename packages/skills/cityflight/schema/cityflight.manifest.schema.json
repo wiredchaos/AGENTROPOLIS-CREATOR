@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:agentropolis:cityflight:manifest:v1",
+  "title": "AGENTROPOLIS CITYFLIGHT Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "worldId",
+    "status",
+    "owner",
+    "experience",
+    "budget",
+    "approvals",
+    "providers",
