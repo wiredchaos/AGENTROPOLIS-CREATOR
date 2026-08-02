@@ -1,0 +1,53 @@
+schema_version: 1.0.0
+repo_id: construction-creator
+display_name: Agentropolis Creator District
+system_role: foundry-source-authority
+district: construction-creator
+canonical:
+  provider: github
+  repository: wiredchaos/AGENTROPOLIS-CREATOR
+  default_branch: main
+  release_source: true
+  direct_main_push: false
+gitlawb:
+  role: agent-coding-workspace
+  node_env: GITLAWB_NODE
+  workspace_status: unlinked
+  repository: null
+  owner_did: null
+  promotion_mode: validated-branch-to-github-pr
+  branch_prefix: gitlawb/
+hermes:
+  orchestrator: mission-control
+  router_skill: repo-federation-router
+  allowed_actions: [inspect, create-branch, run-validation, open-pull-request, package-artifact]
+  forbidden_actions: [direct-main-push, self-approve, publish-without-rights-review, deploy-production-without-approval, expose-secrets]
+commands:
+  install: null
+  lint: null
+  test: null
+  typecheck: null
+  build: null
+  dry_deploy: null
+security:
+  preflight: wiredchaos/AGENTROPOLIS-54T
+  capability_membrane: wiredchaos/AGENTROPOLIS-AGENT-MCP
+  human_approval_required: true
+  secret_policy: never-in-prompts-logs-or-receipts
+deployment:
+  control_plane: wiredchaos/AGENTROPOLIS-DEPLOY
+  provider: none
+  target: source-authority-consumed-by-asbe
+  status: not-applicable
+  working_directory: null
+  health_endpoint: null
+  readiness_endpoint: null
+  staging_required: true
+  production_approval_required: true
+dependencies: [wiredchaos/ASBE, wiredchaos/AGENTROPOLIS-54T, wiredchaos/AGENTROPOLIS-AGENT-MCP]
+receipts:
+  build: required
+  test: required
+  security: required
+  deployment: required
+  rollback: required
