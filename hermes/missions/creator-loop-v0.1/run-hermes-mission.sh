@@ -11,7 +11,23 @@ RECEIPT="${RECEIPT_DIR}/hermes-completion-receipt.json"
 STARTED_AT="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
 mkdir -p "${WORK}" "${RECEIPT_DIR}"
-base64 --decode "${ARTIFACT_B64}" > "${ARTIFACT_ZIP}"
+
+if [[ -n "${CREATOR_LOOP_ZIP:-}" && -f "${CREATOR_LOOP_ZIP}" ]]; then
+  cp "${CREATOR_LOOP_ZIP}" "${ARTIFACT_ZIP}"
+elif [[ -f "${ARTIFACT_B64}" ]]; then
+  base64 --decode "${ARTIFACT_B64}" > "${ARTIFACT_ZIP}"
+else
+  cat > "${RECEIPT}" <<JSON
+{
+  "status": "BLOCKED",
+  "reason": "artifact_not_present",
+  "safe_next_action": "Place agentropolis-creator-loop-v0.1.0.zip in the Hermes workspace and set CREATOR_LOOP_ZIP to its absolute path, then rerun the mission launcher."
+}
+JSON
+  cat "${RECEIPT}"
+  exit 40
+fi
+
 ACTUAL_SHA="$(sha256sum "${ARTIFACT_ZIP}" | awk '{print $1}')"
 
 if [[ "${ACTUAL_SHA}" != "${EXPECTED_SHA}" ]]; then
