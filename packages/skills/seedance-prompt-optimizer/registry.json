@@ -1,0 +1,50 @@
+{
+  "name": "seedance-prompt-optimizer",
+  "displayName": "Seedance 2.5 Prompt Optimizer",
+  "version": "0.1.0",
+  "status": "planning_only",
+  "tier": "extended",
+  "district": "AGENTROPOLIS-CREATOR",
+  "institution": "MOTIONFORGE",
+  "layer": "application",
+  "role": "Compile approved provider-neutral video contracts into governed Seedance 2.5 prompt packets.",
+  "triggers": [
+    "compile this for Seedance 2.5",
+    "optimize this Seedance prompt",
+    "map these references for Seedance",
+    "write a Seedance extension prompt",
+    "repair this Seedance take"
+  ],
+  "chainsFrom": [
+    "hermes.creator_intake",
+    "creator-prompt-compiler",
+    "storyboard-reference-intelligence",
+    "hermes-motion-maker",
+    "motionforge.motion_brief",
+    "asbe.production_plan"
+  ],
+  "chainsTo": [
+    "asbe.production_orchestration",
+    "agentropolis-agent-mcp.authority_gate",
+    "aegis.media_assurance",
+    "seedance.sealed_connector",
+    "media-diff",
+    "artifact-packager"
+  ],
+  "requires": [
+    "provider selection receipt",
+    "rights and consent receipts",
+    "approved creator.video_prompt_ir",
+    "AGENTROPOLIS-AGENT-MCP authorization for execution"
+  ],
+  "execution": {
+    "enabled": false,
+    "reason": "Prompt-only compiler. Provider execution requires a separately approved sealed connector."
+  },
+  "provenance": {
+    "source": "user-supplied seedance-prompt-optimizer.skill",
+    "received": "2026-08-05",
+    "license": "unknown",
+    "redistribution": "blocked_pending_license_confirmation"
+  }
+}
