@@ -1,0 +1,15 @@
+{
+  "name": "@agentropolis/creative-package",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AGENTROPOLIS-CREATOR creative package format + adapter to the FILM DISTRICT bridge contract.",
+  "type": "module",
+  "main": "./src/creative-package-adapter.ts",
+  "types": "./src/creative-package-adapter.ts",
+  "exports": {
+    ".": "./src/creative-package-adapter.ts"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types src/creative-package-adapter.test.ts"
+  }
+}

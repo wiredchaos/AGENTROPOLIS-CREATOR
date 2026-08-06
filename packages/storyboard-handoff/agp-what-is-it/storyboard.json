@@ -1,0 +1,17 @@
+{
+  "storyboard_id": "agp-what-is-it-storyboard",
+  "storyboard_version": "1.0.0",
+  "owner_system": "AGENTROPOLIS-CREATOR",
+  "workflow_ref": { "id": "promo-video", "version": "1.0" },
+  "frames": [
+    { "shot_id": "S01", "frame": "F01", "description": "Skyline boot sequence, towers lighting one by one; NEURO emerging, cyan rim light.", "camera_notes": "slow dolly push, low angle" },
+    { "shot_id": "S01", "frame": "F02", "description": "Title lock 'AGENTROPOLIS — WHAT IS IT?' centered, hard settle.", "camera_notes": "static; typography lock" },
+    { "shot_id": "S02", "frame": "F03", "description": "HERMES glyph activates (cyan), then NEMOCLAW, then NEMOTRON.", "camera_notes": "sequential node activation; controlled signal travel" },
+    { "shot_id": "S03", "frame": "F04", "description": "Genesis loop ring; segments illuminating in order.", "camera_notes": "orbit on ring; cyan path" },
+    { "shot_id": "S04", "frame": "F05", "description": "District corridors branching from the spine; NEURO at intersection.", "camera_notes": "pull back to wide" },
+    { "shot_id": "S05", "frame": "F06", "description": "Human hand with mandate card entering from right; APPROVED stamp red glyph.", "camera_notes": "rack focus to card; red accent" },
+    { "shot_id": "S06", "frame": "F07", "description": "Execution receipt glyph locks into audit ledger frame.", "camera_notes": "hard settle; red pulse then calm" },
+    { "shot_id": "S06", "frame": "F08", "description": "'This is Agentropolis.' title lock; fade to obsidian.", "camera_notes": "static; fade out" }
+  ],
+  "handoff_note": "Previs lane (motion-previs / blockout) consumes S01-S06 camera notes; generation lane (higgsfield-mcp) consumes canonical prompt beats."
+}

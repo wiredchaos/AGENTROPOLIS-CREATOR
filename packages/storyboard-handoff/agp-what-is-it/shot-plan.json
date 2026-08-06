@@ -1,0 +1,21 @@
+{
+  "shot_plan_id": "agp-what-is-it-shot-plan",
+  "shot_plan_version": "1.0.0",
+  "owner_system": "AGENTROPOLIS-CREATOR",
+  "workflow_ref": { "id": "promo-video", "version": "1.0" },
+  "prompt_package_ref": { "id": "agp-what-is-it", "version": "1.0.0" },
+  "shots": [
+    { "id": "S01", "order": 1, "description": "Slow dolly push into obsidian skyline boot sequence; terminal towers light up; NEURO steps forward center frame; title lock 'AGENTROPOLIS — WHAT IS IT?' slams in." },
+    { "id": "S02", "order": 2, "description": "Triad glyphs HERMES / NEMOCLAW / NEMOTRON activate in sequence along mission-control spine; NEURO gestures along the spine." },
+    { "id": "S03", "order": 3, "description": "Genesis RAG Growth loop ring rotates; RETRIEVE to REINVEST segments illuminate in order with cyan path." },
+    { "id": "S04", "order": 4, "description": "Camera pulls back; district corridors branch (mission-control, operations, audit-and-settlement); NEURO at the intersection." },
+    { "id": "S05", "order": 5, "description": "Human hand enters right with mandate card; card stamps APPROVED with red glyph; NEURO inclines head." },
+    { "id": "S06", "order": 6, "description": "Hard settle; execution receipt glyph locks into audit ledger frame; title lock 'This is Agentropolis.'; fade to obsidian." }
+  ],
+  "continuity_locks": [
+    "NEURO identity immutable (see visual canon agp-neuro v1.0.0)",
+    "60/25/15 obsidian/cyan/red palette",
+    "Red reserved for authority/approval moments",
+    "Locked copy exact; no extra text"
+  ]
+}

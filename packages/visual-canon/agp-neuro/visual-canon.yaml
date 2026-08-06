@@ -1,0 +1,53 @@
+# AGENTROPOLIS-CREATOR — Visual Canon Package
+
+visual_canon_id: agp-neuro
+visual_canon_version: "1.0.0"
+owner_system: AGENTROPOLIS-CREATOR
+subject: NEURO
+description: >-
+  Visual canon for NEURO, the strategic systems intelligence of AGENTROPOLIS,
+  as rendered in the "AGENTROPOLIS — What Is It?" promo and all district
+  promotional media. Immutable identity locks; any deviation is a QC fail.
+
+identity:
+  skin_tone: warm honey-brown
+  hair: dark hair in a braided crown
+  eyes: "red irises (glow intensity: low, restrained)"
+  wardrobe: obsidian tactical garment with cyan edge trim
+  build: composed, authoritative presence; no caricature
+  expression_default: calm, precise, neutral-authoritative
+
+palette:
+  ratio: "60 / 25 / 15"
+  swatches:
+    obsidian: "#0A0E14"   # 60% — base, shadows, structure
+    cyan: "#22D3EE"       # 25% — key light, interfaces, data
+    red: "#EF4444"        # 15% — authority, approval, alerts only
+  rule: "Red accents appear ONLY on authority/approval moments (Human Mission Control, mandate stamp, execution receipt)."
+
+lighting:
+  style: low-key cyber-noir
+  key: cold cyan edge/rim light
+  fill: minimal; obsidian shadows dominate
+  accent: red point light for authority moments
+
+world:
+  style: obsidian intelligence grid at night
+  elements:
+    - terminal-tower skyline
+    - mission-control spine
+    - district corridors (mission-control, operations, audit-and-settlement)
+    - Genesis RAG Growth loop ring
+    - mandate card and execution receipt glyphs
+  forbidden:
+    - daylight / natural scenery / photographic live action
+    - cartoon rendering
+    - 789 Studios crossover imagery (default-deny)
+
+continuity_locks:
+  - "No costume change, hair change, eye-color change, or age shift."
+  - "No palette drift from 60/25/15."
+  - "NEURO is always the narrator/host; never the approver (Human Mission Control holds authority)."
+
+approved_versions: ["1.0.0"]
+approval_state: approved

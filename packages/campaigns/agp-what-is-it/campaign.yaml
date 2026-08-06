@@ -1,0 +1,56 @@
+# AGENTROPOLIS — WHAT IS IT? — CAMPAIGN METADATA
+
+campaign_id: agp-what-is-it
+campaign_version: "1.0.0"
+owner_system: AGENTROPOLIS-CREATOR
+name: "AGENTROPOLIS — What Is It?"
+kind: promo-video
+status: planning
+workflow_ref: { id: promo-video, version: "1.0" }
+prompt_package_ref: { id: agp-what-is-it, version: "1.0.0" }
+visual_canon_ref: { id: agp-neuro, version: "1.0.0" }
+
+objective: >-
+  Introduce AGENTROPOLIS as a governed city of agents: strategy, execution,
+  proof, with human authority at every step.
+
+audience: builders, operators, and partners evaluating the AGENTROPOLIS
+  intelligence grid.
+
+message:
+  - "A governed city of agents."
+  - "Strategy. Execution. Proof."
+  - "Human authority. Every step."
+
+primary_spec:
+  duration_seconds: 60
+  aspect_ratio: "16:9"
+  fps: 24
+  resolution: "1080p (delivery master), 720p (web)"
+  audio: narration + score bed; no music vocals
+
+variants:
+  - variant_id: agp-what-is-it-youtube
+    target: youtube
+    notes: 60s master; title lock + end card
+  - variant_id: agp-what-is-it-x
+    target: x
+    notes: 60s master; captions locked to copy lines
+  - variant_id: agp-what-is-it-web-hero
+    target: website-hero
+    notes: 30s cutdown candidate (beats 1,2,3,6); approval required before cutdown
+  - variant_id: agp-what-is-it-ott-bumper
+    target: ott-bumper
+    notes: 15s bumper candidate (beats 1,6); approval required before cutdown
+
+distribution_targets: [youtube, x, website-hero, ott-bumper]
+
+governance:
+  requires_human_approval: true   # paid generation gate: human_approval_paid
+  publishing_approval: human_required
+  rights_status: all-generated-originals
+  crossover_policy: "789 Studios crossover default-deny"
+
+approval_state: planning
+approved_by: null
+approved_at: null
