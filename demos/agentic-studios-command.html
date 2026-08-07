@@ -3,28 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AGENTROPOLIS — Creator Genesis / Agentic Studios</title>
-  <meta name="description" content="Shared production command surface bridging AGENTROPOLIS Creator Genesis with the Entertainment District." />
+  <title>AGENTROPOLIS — Creator Genesis Command</title>
+  <meta name="description" content="Creator District intake surface. Compiles a human mandate into a governed production contract for Agentic Studios and the Entertainment District." />
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Courier New',monospace;background:#030407;color:#e8fbff;min-height:100vh;overflow-x:hidden}.scanlines,.grid{position:fixed;inset:0;pointer-events:none}.scanlines{z-index:50;background:repeating-linear-gradient(0deg,rgba(0,255,255,.025) 0 1px,transparent 1px 3px)}.grid{opacity:.35;background-image:linear-gradient(rgba(0,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.09) 1px,transparent 1px);background-size:48px 48px;animation:grid 18s linear infinite}@keyframes grid{to{transform:translateY(48px)}}main{position:relative;z-index:2;width:min(1240px,94vw);margin:auto;padding:32px 0 260px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:26px}.brand h1{font-size:clamp(2.1rem,6vw,4.7rem);letter-spacing:.15em;color:#00ffff;text-shadow:0 0 22px #00ffff}.brand p{color:#72ff84;letter-spacing:.2em;margin-top:8px}.badge{border:1px solid #00ffff;background:#001d27cc;padding:10px 14px;color:#00ffff}.district-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.district-tabs button,.action{font:inherit;border:1px solid #00ffff;background:#00151b;color:#9ffcff;padding:11px 14px;cursor:pointer}.district-tabs button.active,.action.primary{background:linear-gradient(90deg,#00ffff,#1597ff);color:#001015;font-weight:800}.route{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:22px}.panel{border:1px solid #00ffff55;background:#051018dc;box-shadow:0 0 25px #00ffff12;padding:18px}.panel h2{font-size:1rem;letter-spacing:.15em;color:#00ffff;margin-bottom:12px}.project-title{font-size:1.5rem;margin-bottom:8px}.muted{color:#9aa8ad;line-height:1.6}.routing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.route-card{border:1px solid #ffffff24;padding:12px;background:#0008}.route-card strong{display:block;color:#fff;margin-bottom:6px}.agent-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:20px 0}.agent{text-align:center;border:1px solid currentColor;background:#000c;padding:16px;transition:.25s}.agent.active{transform:translateY(-6px);box-shadow:0 0 28px currentColor}.orb{width:42px;height:42px;border-radius:50%;margin:0 auto 14px;background:currentColor;box-shadow:0 0 24px currentColor}.name{font-weight:900;letter-spacing:.12em}.role,.status{font-size:.78rem;color:#c6d2d6;margin-top:7px}.status{color:#72ff84}.telemetry{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.metric{border:1px solid #ffffff22;background:#0009;padding:12px}.metric span{display:block;color:#93a1a6;font-size:.72rem;margin-bottom:5px}.metric b{font-size:1.25rem;color:#fff}.log{max-height:260px;overflow:auto;font-size:.8rem;line-height:1.6}.log div{border-bottom:1px solid #ffffff12;padding:5px 0}.time{color:#ff5d73}.control{position:fixed;z-index:20;left:0;right:0;bottom:0;background:#02070bf2;border-top:1px solid #00ffff;padding:18px}.control-inner{width:min(1180px,94vw);margin:auto;display:grid;grid-template-columns:1fr auto;gap:12px}.prompt{width:100%;background:#00151b;border:1px solid #00ffff;color:#dff;padding:14px;font:inherit}.fine{grid-column:1/-1;color:#7d8d93;font-size:.72rem}.warning{color:#ffce5c}.complete{color:#72ff84}@media(max-width:900px){.route{grid-template-columns:1fr}.agent-grid{grid-template-columns:repeat(2,1fr)}.telemetry{grid-template-columns:repeat(2,1fr)}.routing-grid{grid-template-columns:1fr}.control-inner{grid-template-columns:1fr}.topbar{display:block}.badge{display:inline-block;margin-top:14px}}@media(max-width:520px){.agent-grid,.telemetry{grid-template-columns:1fr}main{padding-bottom:330px}}
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Courier New',monospace;background:#030407;color:#e8fbff;min-height:100vh;overflow-x:hidden}.scanlines,.grid{position:fixed;inset:0;pointer-events:none}.scanlines{z-index:50;background:repeating-linear-gradient(0deg,rgba(0,255,255,.025) 0 1px,transparent 1px 3px)}.grid{opacity:.35;background-image:linear-gradient(rgba(0,255,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.09) 1px,transparent 1px);background-size:48px 48px;animation:grid 18s linear infinite}@keyframes grid{to{transform:translateY(48px)}}main{position:relative;z-index:2;width:min(1240px,94vw);margin:auto;padding:32px 0 260px}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:26px}.brand h1{font-size:clamp(2.1rem,6vw,4.7rem);letter-spacing:.15em;color:#00ffff;text-shadow:0 0 22px #00ffff}.brand p{color:#72ff84;letter-spacing:.2em;margin-top:8px}.badge{border:1px solid #00ffff;background:#001d27cc;padding:10px 14px;color:#00ffff}.district-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.district-tabs button{font:inherit;border:1px solid #00ffff;background:#00151b;color:#9ffcff;padding:11px 14px;cursor:pointer}.district-tabs button.active{background:linear-gradient(90deg,#00ffff,#1597ff);color:#001015;font-weight:800}.route{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:22px}.panel{border:1px solid #00ffff55;background:#051018dc;box-shadow:0 0 25px #00ffff12;padding:18px}.panel h2{font-size:1rem;letter-spacing:.15em;color:#00ffff;margin-bottom:12px}.project-title{font-size:1.5rem;margin-bottom:8px}.muted{color:#9aa8ad;line-height:1.6}.routing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.route-card{border:1px solid #ffffff24;padding:12px;background:#0008}.route-card strong{display:block;color:#fff;margin-bottom:6px}.agent-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:20px 0}.agent{text-align:center;border:1px solid currentColor;background:#000c;padding:16px;transition:.25s}.agent.active{transform:translateY(-6px);box-shadow:0 0 28px currentColor}.orb{width:42px;height:42px;border-radius:50%;margin:0 auto 14px;background:currentColor;box-shadow:0 0 24px currentColor}.name{font-weight:900;letter-spacing:.12em}.role,.status{font-size:.78rem;color:#c6d2d6;margin-top:7px}.status{color:#72ff84}.telemetry{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{border:1px solid #ffffff22;background:#0009;padding:12px}.metric span{display:block;color:#93a1a6;font-size:.72rem;margin-bottom:5px}.metric b{font-size:1.05rem;color:#fff}.metric b.unknown{color:#ffce5c}.log{max-height:260px;overflow:auto;font-size:.8rem;line-height:1.6}.log div{border-bottom:1px solid #ffffff12;padding:5px 0}.time{color:#ff5d73}.control{position:fixed;z-index:20;left:0;right:0;bottom:0;background:#02070bf2;border-top:1px solid #00ffff;padding:18px}.control-inner{width:min(1180px,94vw);margin:auto;display:grid;grid-template-columns:1fr auto;gap:12px}.prompt{width:100%;background:#00151b;border:1px solid #00ffff;color:#dff;padding:14px;font:inherit}.fine{grid-column:1/-1;color:#7d8d93;font-size:.72rem}.warning{color:#ffce5c}.complete{color:#72ff84}.contract-out{background:#000c;border:1px solid #00ffff33;padding:10px;font-size:.68rem;max-height:180px;overflow:auto;white-space:pre-wrap;color:#9ffcff;margin-top:10px}@media(max-width:900px){.route{grid-template-columns:1fr}.agent-grid{grid-template-columns:repeat(2,1fr)}.telemetry{grid-template-columns:repeat(2,1fr)}.routing-grid{grid-template-columns:1fr}.control-inner{grid-template-columns:1fr}.topbar{display:block}.badge{display:inline-block;margin-top:14px}}@media(max-width:520px){.agent-grid,.telemetry{grid-template-columns:1fr}main{padding-bottom:330px}}
   </style>
 </head>
 <body>
   <div class="scanlines"></div><div class="grid"></div>
   <main>
-    <div class="topbar"><div class="brand"><h1>AGENTROPOLIS</h1><p>// CREATOR GENESIS × AGENTIC STUDIOS</p></div><div class="badge">SIMULATION MODE · NO EXTERNAL EXECUTION</div></div>
+    <div class="topbar"><div class="brand"><h1>AGENTROPOLIS</h1><p>// CREATOR GENESIS COMMAND</p></div><div class="badge">SIMULATION MODE · NO EXTERNAL EXECUTION</div></div>
     <div class="district-tabs"><button class="active" data-district="creator">CREATOR DISTRICT</button><button data-district="entertainment">ENTERTAINMENT DISTRICT</button></div>
     <section class="route">
-      <div class="panel"><h2>ACTIVE PRODUCTION</h2><div class="project-title" id="projectTitle">Untitled Genesis Production</div><p class="muted" id="districtCopy">Creator Genesis compiles the human mandate into a governed production package, then routes approved assets into the Entertainment District.</p></div>
+      <div class="panel"><h2>ACTIVE PROJECT</h2><div class="project-title" id="projectTitle">Untitled Genesis Project</div><p class="muted" id="districtCopy">Creator Genesis compiles the human mandate into a governed production package, then routes approved assets into the Entertainment District.</p></div>
       <div class="panel"><h2>DISTRICT ROUTING</h2><div class="routing-grid"><div class="route-card"><strong>CREATOR GENESIS</strong><span>Brief · RAG · contracts · assets</span></div><div class="route-card"><strong>789 STUDIOS</strong><span>Youth · family · animation</span></div><div class="route-card"><strong>NTRU STUDIOS</strong><span>Mature · experimental · cinematic</span></div></div></div>
     </section>
     <section class="agent-grid" id="agentGrid"></section>
     <section class="route">
-      <div class="panel"><h2>PRODUCTION TELEMETRY</h2><div class="telemetry"><div class="metric"><span>PHASE</span><b id="phase">READY</b></div><div class="metric"><span>ARTIFACTS</span><b id="artifacts">0</b></div><div class="metric"><span>DRIFT</span><b id="drift">0%</b></div><div class="metric"><span>ENTROPY</span><b id="entropy">0%</b></div><div class="metric"><span>APPROVAL</span><b id="approval">REQUIRED</b></div></div></div>
-      <div class="panel"><h2>RECEIPTED EVENT LOG</h2><div class="log" id="log"></div></div>
+      <div class="panel"><h2>PRODUCTION TELEMETRY</h2><div class="telemetry">
+        <div class="metric"><span>PHASE</span><b id="phase">READY</b></div>
+        <div class="metric"><span>ARTIFACTS</span><b id="artifacts">0</b></div>
+        <div class="metric"><span>SEMANTIC DRIFT</span><b id="drift" class="unknown">NOT INSTRUMENTED</b></div>
+        <div class="metric"><span>CONTEXT ENTROPY</span><b id="entropy" class="unknown">NOT INSTRUMENTED</b></div>
+        <div class="metric"><span>CONVERGENCE</span><b id="convergence" class="unknown">UNKNOWN</b></div>
+        <div class="metric"><span>DUPLICATE WORK</span><b id="duplicate" class="unknown">NOT INSTRUMENTED</b></div>
+        <div class="metric"><span>CORRECTION LOAD</span><b id="corrections" class="unknown">NOT INSTRUMENTED</b></div>
+        <div class="metric"><span>USEFUL WORK</span><b id="useful">0 artifacts</b></div>
+        <div class="metric"><span>BUDGET PRESSURE</span><b id="budget" class="unknown">UNKNOWN</b></div>
+        <div class="metric"><span>APPROVAL</span><b id="approval">REQUIRED</b></div>
+      </div></div>
+      <div class="panel"><h2>RECEIPTED EVENT LOG</h2><div class="log" id="log"></div><div class="contract-out" id="contractOut" style="display:none"></div></div>
     </section>
   </main>
-  <section class="control"><div class="control-inner"><input id="prompt" class="prompt" placeholder="Enter a production mandate, e.g. Create a cyber-noir chase trailer for NTRU Studios"/><button id="cast" class="action primary">CAST PRODUCTION</button><div class="fine">Human direction remains authoritative. This demo simulates routing and does not publish, spend funds, or call external models.</div></div></section>
+  <section class="control"><div class="control-inner"><input id="prompt" class="prompt" placeholder="Enter a production mandate, e.g. Create a cyber-noir chase trailer for NTRU Studios"/><button id="cast" class="action primary">CAST PRODUCTION</button><div class="fine">Human direction remains authoritative. This demo simulates routing and does not publish, spend funds, or call external models. Drift/entropy/convergence metrics are NOT INSTRUMENTED and displayed honestly.</div></div></section>
   <script>
     const AGENTS=[
       {id:'nexus',name:'NEXUS',color:'#a855f7',role:'Orchestrator',task:'plans the governed production route'},
@@ -41,12 +52,56 @@
     function setAgent(id,on){const el=document.getElementById('agent-'+id);el.classList.toggle('active',on);el.querySelector('.status').textContent=on?'ACTIVE':'IDLE'}
     let running=false;let district='creator';
     document.querySelectorAll('[data-district]').forEach(btn=>btn.addEventListener('click',()=>{district=btn.dataset.district;document.querySelectorAll('[data-district]').forEach(b=>b.classList.toggle('active',b===btn));document.getElementById('districtCopy').textContent=district==='creator'?'Creator Genesis compiles the human mandate into a governed production package, then routes approved assets into the Entertainment District.':'Agentic Studios receives approved Creator Genesis packages, assigns a studio lane, and prepares delivery for AGENT TV NETWORK or NTRU-OTT.';addLog('ROUTER',`Active surface changed to ${district.toUpperCase()} DISTRICT`)}));
-    async function runProduction(){if(running)return;const input=document.getElementById('prompt');const mandate=input.value.trim();if(!mandate)return;running=true;const btn=document.getElementById('cast');btn.disabled=true;btn.textContent='PROCESSING';document.getElementById('projectTitle').textContent=mandate;document.getElementById('phase').textContent='PLANNING';document.getElementById('approval').textContent='PENDING';addLog('HERMES',`Mandate accepted for simulation: ${mandate}`);
-      let artifacts=0;
-      for(const a of AGENTS){setAgent(a.id,true);addLog(a.name,a.task);await sleep(700);artifacts+=1;document.getElementById('artifacts').textContent=artifacts;document.getElementById('drift').textContent=(artifacts*1.4).toFixed(1)+'%';document.getElementById('entropy').textContent=(artifacts*1.1).toFixed(1)+'%';setAgent(a.id,false)}
-      document.getElementById('phase').textContent='COUNCIL REVIEW';addLog('COUNCIL','Production package assembled; human approval required','warning');await sleep(900);document.getElementById('approval').textContent='REQUIRED';document.getElementById('phase').textContent='READY FOR REVIEW';addLog('VERIFIER','Simulation receipt recorded. No public release occurred.','complete');btn.disabled=false;btn.textContent='CAST PRODUCTION';running=false;
+    async function runProduction(){
+      if(running)return;const input=document.getElementById('prompt');const mandate=input.value.trim();if(!mandate)return;
+      running=true;const btn=document.getElementById('cast');btn.disabled=true;btn.textContent='PROCESSING';
+      document.getElementById('projectTitle').textContent=mandate;
+      document.getElementById('phase').textContent='PLANNING';
+      document.getElementById('approval').textContent='PENDING';
+      addLog('HERMES',`Mandate accepted for simulation: ${mandate}`);
+      // Honest telemetry: reset to UNKNOWN / NOT INSTRUMENTED. No fabricated percentages.
+      const setUnknown=()=>{document.getElementById('drift').textContent='NOT INSTRUMENTED';document.getElementById('entropy').textContent='NOT INSTRUMENTED';document.getElementById('convergence').textContent='UNKNOWN';document.getElementById('duplicate').textContent='NOT INSTRUMENTED';document.getElementById('corrections').textContent='NOT INSTRUMENTED';document.getElementById('budget').textContent='UNKNOWN'};
+      setUnknown();
+      let artifacts=0;const artifactGraph=[];
+      for(const a of AGENTS){
+        setAgent(a.id,true);addLog(a.name,a.task);await sleep(500);
+        artifacts+=1;
+        artifactGraph.push({artifact_id:'art-sim-'+artifacts,kind:a.role.toLowerCase().replace(/ /g,'-')+'-artifact',producer_agent:a.name,parent_ids:artifacts>1?['art-sim-'+(artifacts-1)]:[],status:'DRAFT',created_at:new Date().toISOString()});
+        document.getElementById('artifacts').textContent=artifacts;
+        document.getElementById('useful').textContent=artifacts+' artifacts';
+        setAgent(a.id,false);
+      }
+      document.getElementById('phase').textContent='COUNCIL REVIEW';
+      addLog('COUNCIL','Production package assembled; human approval required','warning');
+      await sleep(700);
+      document.getElementById('approval').textContent='REQUIRED';
+      document.getElementById('phase').textContent='READY FOR REVIEW';
+      // Emit production contract shaped like contracts/creator-genesis-production-contract.schema.json (agentropolis)
+      const contract={
+        schema_version:'1.0.0',
+        contract_id:'cg-sim-'+Date.now(),
+        object_type:'creator_genesis_production_contract',
+        project:{project_id:'sim-project',title:mandate.slice(0,60),mandate,district:'creator',created_at:new Date().toISOString()},
+        project_state:'AWAITING_APPROVAL',
+        provenance:[{source_id:'sim-source',source_type:'human_mandate',rights_status:'PENDING_REVIEW',accessed_at:new Date().toISOString(),integrity_hash:null}],
+        project_rag:[{ref_id:'sim-rag',content_type:'project_brief',source:'in-memory',scope:'simulation'}],
+        production_contract:{route:'simulation',spec:{mode:'simulation'},beats:[],copy:'',technique:'',negatives:['no external execution']},
+        artifact_graph:artifactGraph,
+        continuity:{continuity_version:'1.0',locks:[],canonical_refs:[]},
+        bounded_recursive_loops:{max_iterations:3,max_repairs:1,iterations_used:1,repairs_used:0,stop_conditions:['human approval']},
+        authority_gates:{publish:'HUMAN_ONLY',spend_xents:'HUMAN_ONLY',mutate_canonical_memory:'HUMAN_ONLY',routing_change:'HUMAN_ONLY',council_bypass:false,irreversible_external:'HUMAN_ONLY'},
+        receipts:{required:true,receipt_id:null,issued_at:null,status:'PENDING'},
+        telemetry_ref:null,
+        created_at:new Date().toISOString()
+      };
+      document.getElementById('contractOut').style.display='block';
+      document.getElementById('contractOut').textContent='PRODUCTION CONTRACT (contract-shaped):\n'+JSON.stringify(contract,null,2);
+      addLog('VERIFIER','Simulation receipt recorded. No public release occurred.','complete');
+      btn.disabled=false;btn.textContent='CAST PRODUCTION';running=false;
     }
-    document.getElementById('cast').addEventListener('click',runProduction);document.getElementById('prompt').addEventListener('keydown',e=>{if(e.key==='Enter')runProduction()});addLog('SYSTEM','Creator Genesis / Agentic Studios bridge initialized');
+    document.getElementById('cast').addEventListener('click',runProduction);document.getElementById('prompt').addEventListener('keydown',e=>{if(e.key==='Enter')runProduction()});
+    addLog('SYSTEM','Creator Genesis / Agentic Studios bridge initialized');
+    addLog('TELEMETRY','Drift / entropy / convergence / duplicate / corrections / budget are NOT INSTRUMENTED here. No fabricated metrics.','warning');
   </script>
 </body>
 </html>
