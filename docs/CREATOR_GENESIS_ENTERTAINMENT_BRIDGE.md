@@ -94,3 +94,7 @@ Thermodynamic telemetry (semantic drift, context entropy, convergence, duplicate
 ## Authority
 
 No agent may autonomously: publish, spend $XENTS, modify canonical memory, authorize a mature/youth routing change, bypass Council/Verifier gates, or execute irreversible external actions.
+
+## Runtime handoff
+
+The provider-neutral executable-path design, default-deny state machine, verification strategy, and remaining implementation gaps are documented in [`CREATOR_GENESIS_RUNTIME_HANDOFF_PLAN.md`](./CREATOR_GENESIS_RUNTIME_HANDOFF_PLAN.md). That plan is not a claim that end-to-end runtime integration already exists.
