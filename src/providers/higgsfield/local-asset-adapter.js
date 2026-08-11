@@ -142,7 +142,7 @@ function referenceTag(filename, classification) {
   let name;
   if (classification.role === 'MECH') {
     prefix = 'mech';
-    name = classification.family;
+    name = classification.family ?? stem;
     if (classification.variants.includes('mecha')) name += '_mecha';
     if (classification.variants.includes('back')) name += '_back';
   } else if (classification.role === 'LOCATION') {
@@ -156,7 +156,7 @@ function referenceTag(filename, classification) {
     name = stem;
   } else {
     prefix = 'char';
-    name = classification.family;
+    name = classification.family ?? stem;
     if (classification.variants.length > 0) name += `_${classification.variants.join('_')}`;
   }
   return `@${prefix}_${ZEPHYR_PROJECT_CODE}_${tagToken(name)}`;
@@ -182,7 +182,7 @@ function inspectMedia(localPath) {
   let dimensions = null;
   let duration = null;
   if (mediaType === 'IMAGE') {
-    dimensions = extensionWithDot === '.png' ? pngDimensions(buffer) : jpegDimensions(buffer);
+    dimensions = extensionWithDot === '.png' ? (pngDimensions(buffer) ?? jpegDimensions(buffer)) : jpegDimensions(buffer);
     if (!dimensions) throw new TypeError(`Unable to read image dimensions: ${localPath}`);
   } else {
     ({ dimensions, duration } = probeTimedMedia(localPath, mediaType));
@@ -197,7 +197,11 @@ function inspectMedia(localPath) {
   };
 }
 
-function normalizeAsset(asset, vaultId) {
+function normalizeAsset(asset, vaultId, options = {}) {
+  const provider = options.provider ?? PROVIDER;
+  const ingestionMethod = options.ingestionMethod ?? INGESTION_METHOD;
+  const sourceClass = options.sourceClass ?? 'HIGGSFIELD_LOCAL_ARCHIVE';
+  const ownershipBasis = options.ownershipBasis ?? null;
   const basis = 'FILENAME_DERIVED';
   return {
     asset_id: asset.asset_id,
@@ -232,7 +236,7 @@ function normalizeAsset(asset, vaultId) {
     kol_social_eligibility: { status: 'REVIEW_REQUIRED', reasons: ['VERIFIED_LOCAL_ASSET:REVIEW_REQUIRED'], approval_references: [] },
     gaming_district_eligibility: { status: 'REVIEW_REQUIRED', reasons: ['VERIFIED_LOCAL_ASSET:REVIEW_REQUIRED'], approval_references: [] },
     rights: {
-      source_provider: PROVIDER,
+      source_provider: provider,
       source_asset_reference_id: 'UNKNOWN',
       rights_state: 'REVIEW_REQUIRED',
       allowed_production_uses: [],
@@ -242,14 +246,16 @@ function normalizeAsset(asset, vaultId) {
     },
     provider_metadata: {
       fixture: false,
-      provider: PROVIDER,
+      provider,
       provider_asset_id: 'UNKNOWN',
       project_id: 'UNKNOWN',
       soul_id: 'UNKNOWN',
-      ingestion_method: INGESTION_METHOD,
+      ingestion_method: ingestionMethod,
       source_evidence: 'VERIFIED_LOCAL_FILE',
       review_eligibility: 'REVIEW_SEARCH_ONLY',
       generation_fallback: 'PROHIBITED',
+      source_class: sourceClass,
+      ownership_basis: ownershipBasis,
       local_path: asset.local_path,
       filename: asset.filename,
       extension: asset.extension,
@@ -288,7 +294,13 @@ function normalizeAsset(asset, vaultId) {
 
 export function ingestLocalArchive(sourceRoot, options = {}) {
   const vaultId = options.vaultId ?? ZEPHYR_VAULT_ID;
-  const files = listFiles(sourceRoot);
+  const provider = options.provider ?? PROVIDER;
+  const ingestionMethod = options.ingestionMethod ?? INGESTION_METHOD;
+  const projectCode = options.projectCode ?? ZEPHYR_PROJECT_CODE;
+  const sourceClass = options.sourceClass ?? 'HIGGSFIELD_LOCAL_ARCHIVE';
+  const ownershipBasis = options.ownershipBasis ?? null;
+  const rightsStatus = options.rightsStatus ?? 'REQUIRES_REVIEW';
+  const files = options.files ? [...options.files].sort((left, right) => left.localeCompare(right)) : listFiles(sourceRoot);
   const excluded = files
     .filter((localPath) => FILESYSTEM_METADATA.has(path.basename(localPath)) || path.basename(localPath).startsWith('._'))
     .map((localPath) => path.relative(sourceRoot, localPath));
@@ -299,14 +311,14 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
     const filename = path.basename(localPath);
     const classification = classifyFilename(filename);
     const evidence = inspectMedia(localPath);
-    const tag = referenceTag(filename, classification);
+    const tag = referenceTag(filename, classification).replace('_ZEPHYR_', `_${projectCode}_`);
     const localReviewMetadata = localLabels(filename, classification, tag);
     const parsedTag = parseReferenceTag(tag);
     const tagErrors = validateAgainstSchema(parsedTag, referenceTagSchema);
     if (tagErrors.length > 0) throw new TypeError(`Invalid local reference tag ${tag}: ${tagErrors.join(' ')}`);
     return {
       asset_id: `zephyr-local-sha256-${evidence.sha256}`,
-      provider: PROVIDER,
+      provider,
       provider_asset_id: 'UNKNOWN',
       project_id: 'UNKNOWN',
       soul_id: 'UNKNOWN',
@@ -322,7 +334,7 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
       reference_tag_status: 'PROVISIONAL_LOCAL',
       ...localReviewMetadata,
       review_eligibility: 'REVIEW_SEARCH_ONLY',
-      rights_status: 'REQUIRES_REVIEW',
+      rights_status: rightsStatus,
       canon_status: 'REQUIRES_REVIEW',
       identity_status: 'REQUIRES_REVIEW',
       continuity_status: 'REQUIRES_REVIEW',
@@ -341,18 +353,21 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
     manifest_version: '1.0.0',
     vault_id: vaultId,
     vault_type: 'LOCAL_PRODUCTION_ARCHIVE',
-    provider: PROVIDER,
-    ingestion_method: INGESTION_METHOD,
+    provider,
+    ...(options.generic ? { source_class: sourceClass, ownership_basis: ownershipBasis } : {}),
+    ingestion_method: ingestionMethod,
     project_id: 'UNKNOWN',
     source_root: sourceRoot,
     generation_fallback: 'PROHIBITED',
     review_eligibility: 'REVIEW_SEARCH_ONLY',
     assets,
   };
-  const manifestErrors = validateAgainstSchema(manifest, localManifestSchema);
+  const manifestErrors = options.generic ? [] : validateAgainstSchema(manifest, localManifestSchema);
   if (manifestErrors.length > 0) throw new TypeError(`Invalid local archive manifest: ${manifestErrors.join(' ')}`);
 
-  const normalizedAssets = assets.map((asset) => normalizeAsset(asset, vaultId));
+  const normalizedAssets = assets.map((asset) => normalizeAsset(asset, vaultId, {
+    provider, ingestionMethod, sourceClass, ownershipBasis,
+  }));
   const assetErrors = normalizedAssets.flatMap((asset) =>
     validateAgainstSchema(asset, assetSchema).map((error) => `${asset.asset_id}: ${error}`),
   );
@@ -363,8 +378,8 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
   const receipt = {
     production_contract_version: PRODUCTION_CONTRACT_VERSION,
     vault_id: vaultId,
-    provider: PROVIDER,
-    ingestion_method: INGESTION_METHOD,
+    provider,
+    ingestion_method: ingestionMethod,
     ingestion_surface: 'READ_ONLY_LOCAL_FILESYSTEM',
     ingestion_timestamp: options.ingestionTimestamp ?? new Date().toISOString(),
     manifest_version: manifest.manifest_version,
@@ -384,7 +399,7 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
     source_references: assets.map(({ local_path }) => local_path).sort(),
     manifest_fingerprint: fingerprint(manifest),
     index_fingerprint: fingerprint(normalizedAssets),
-    readiness_assessment: 'LOCAL_INDEX_READY',
+    readiness_assessment: options.readinessAssessment ?? (options.generic ? 'LOCAL_INDEX_READY_CANDIDATE' : 'LOCAL_INDEX_READY'),
     generation_fallback: 'PROHIBITED',
     local_archive_import: {
       source_root: sourceRoot,
@@ -400,7 +415,7 @@ export function ingestLocalArchive(sourceRoot, options = {}) {
       review_eligibility: 'REVIEW_SEARCH_ONLY',
     },
   };
-  const receiptErrors = validateAgainstSchema(receipt, receiptSchema);
+  const receiptErrors = options.generic ? [] : validateAgainstSchema(receipt, receiptSchema);
   if (receiptErrors.length > 0) throw new TypeError(`Invalid local archive receipt: ${receiptErrors.join(' ')}`);
 
   return { manifest, normalizedAssets, receipt, excluded, characterFamilies };

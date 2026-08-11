@@ -14,7 +14,9 @@
         "normalization_complete": true,
         "schema_validation_complete": true,
         "assets_available": true,
-        "receipt_references": ["LOCAL-FIXTURE-INDEX-RECEIPT"]
+        "receipt_references": [
+          "LOCAL-FIXTURE-INDEX-RECEIPT"
+        ]
       },
       "inspection_status": "FIXTURE_ONLY",
       "asset_count": 6,
@@ -82,6 +84,64 @@
         "This vault is not associated with any Higgsfield project ID; project_id and provider_asset_id remain UNKNOWN.",
         "LOCAL_INDEX_READY permits REVIEW_SEARCH only and does not imply MATCH_READY or FINAL_PRODUCTION_READY.",
         "Identity, canon, continuity, provenance, and rights remain REQUIRES_REVIEW."
+      ]
+    },
+    {
+      "vault_id": "creator-original-f5e8n9-v1",
+      "provider": "USER_ORIGINAL",
+      "registration_status": "REGISTERED",
+      "readiness_status": "LOCAL_INDEX_READY",
+      "fixture_mode": false,
+      "readiness_evidence": {
+        "enumeration_complete": true,
+        "normalization_complete": true,
+        "schema_validation_complete": true,
+        "assets_available": true,
+        "receipt_references": [
+          "data/higgsfield/receipts/creator-original-f5e8n9-v1.ingestion-receipt.json"
+        ]
+      },
+      "inspection_status": "VERIFIED_READ_ONLY_LOCAL_INDEX",
+      "asset_count": 6,
+      "contents_assumed": false,
+      "enumeration_surface": "READ_ONLY_LOCAL_FILESYSTEM",
+      "last_enumerated_at": "2026-08-11T23:00:00.000Z",
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Source class: CREATOR_ORIGINAL_ARCHIVE.",
+        "Ownership basis: USER_DECLARED_ORIGINAL.",
+        "LOCAL_INDEX_READY permits REVIEW_SEARCH only; MATCH_READY and FINAL_PRODUCTION_READY remain prohibited.",
+        "Canon, identity, continuity, rights, and provider verification remain REQUIRES_REVIEW."
+      ]
+    },
+    {
+      "vault_id": "hell-grind-public-capture-v1",
+      "provider": "HIGGSFIELD",
+      "registration_status": "REGISTERED",
+      "readiness_status": "LOCAL_INDEX_READY",
+      "fixture_mode": false,
+      "readiness_evidence": {
+        "enumeration_complete": true,
+        "normalization_complete": true,
+        "schema_validation_complete": true,
+        "assets_available": true,
+        "receipt_references": [
+          "data/higgsfield/receipts/hell-grind-public-capture-v1.ingestion-receipt.json"
+        ]
+      },
+      "inspection_status": "VERIFIED_READ_ONLY_LOCAL_INDEX",
+      "asset_count": 14,
+      "contents_assumed": false,
+      "enumeration_surface": "READ_ONLY_LOCAL_FILESYSTEM",
+      "last_enumerated_at": "2026-08-11T23:00:00.000Z",
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Source class: HIGGSFIELD_PUBLIC_REFERENCE.",
+        "Ownership basis: NOT_APPLICABLE.",
+        "LOCAL_INDEX_READY permits REVIEW_SEARCH only; MATCH_READY and FINAL_PRODUCTION_READY remain prohibited.",
+        "Canon, identity, continuity, rights, and provider verification remain REQUIRES_REVIEW."
       ]
     }
   ]

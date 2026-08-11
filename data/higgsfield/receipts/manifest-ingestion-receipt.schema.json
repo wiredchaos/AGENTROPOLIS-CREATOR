@@ -21,7 +21,13 @@
         { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
       ]
     },
-    "provider": { "enum": ["HIGGSFIELD", "HIGGSFIELD_LOCAL_ARCHIVE"] },
+    "provider": { "enum": ["HIGGSFIELD", "HIGGSFIELD_LOCAL_ARCHIVE", "USER_ORIGINAL"] },
+    "source_class": { "enum": ["HIGGSFIELD_PUBLIC_REFERENCE", "CREATOR_ORIGINAL_ARCHIVE", "HIGGSFIELD_LOCAL_ARCHIVE"] },
+    "ownership_basis": { "type": ["string", "null"] },
+    "receipt_version": { "type": "string", "minLength": 1 },
+    "normalizer_version": { "type": "string", "minLength": 1 },
+    "excluded_files": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "unlinked_file_count": { "type": "integer", "minimum": 0 },
     "ingestion_method": { "enum": ["VAULT_MANIFEST", "HUMAN_VERIFIED_UI", "HIGGSFIELD_PUBLIC_REFERENCE", "VERIFIED_LOCAL_ASSET"] },
     "ingestion_surface": { "enum": ["USER_CONTROLLED_JSON_MANIFEST", "READ_ONLY_LOCAL_FILESYSTEM"] },
     "ingestion_timestamp": { "type": "string", "format": "date-time" },
