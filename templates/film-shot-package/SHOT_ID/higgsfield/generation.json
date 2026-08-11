@@ -1,0 +1,14 @@
+{
+  "status": "NOT_EXECUTED",
+  "skill": "UNVERIFIED",
+  "skillRevision": "UNVERIFIED",
+  "executionSurface": "UNVERIFIED",
+  "classifications": [],
+  "providerModel": "DISCOVER_AT_EXECUTION",
+  "providerJobId": null,
+  "creditsSpent": 0,
+  "outputAssets": [],
+  "executionApproved": false,
+  "publicationApproved": false,
+  "receiptId": null
+}

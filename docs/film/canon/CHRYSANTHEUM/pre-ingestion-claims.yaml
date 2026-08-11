@@ -1,0 +1,29 @@
+namespace: CHRYSANTHEUM
+recordType: PRE_INGESTION_STATUS_LOCK
+sourceCanonMutated: false
+claims:
+  - id: chrysantheum-yasuke-dojo-chronology-discrepancy
+    claim: >-
+      The discovered materials contain a Yasuke-dojo / Chrysantheum chronology
+      discrepancy whose competing versions must be preserved.
+    status: CONTESTED_CANON
+    evidenceState: MISSING_SOURCE_EVIDENCE
+    sourceVersions: []
+    resolution: UNRESOLVED
+    productionUse: BLOCKED_PENDING_SOURCE_EVIDENCE
+    provenance:
+      kind: CREATOR_INSTRUCTION
+      date: "2026-08-10"
+
+  - id: chrysantheum-veil-covert-cohort-interpretation
+    claim: >-
+      Yasuke trained an original covert female cohort whose survivors or
+      descendants later institutionalized the Chrysantheum Veil.
+    status: PROVISIONAL_CANON
+    evidenceState: MISSING_SOURCE_EVIDENCE
+    sourceEvidence: []
+    productionUse: PROPOSAL_ONLY
+    mayResolveContestedChronology: false
+    provenance:
+      kind: CREATOR_PROPOSED_INTERPRETATION
+      date: "2026-08-10"

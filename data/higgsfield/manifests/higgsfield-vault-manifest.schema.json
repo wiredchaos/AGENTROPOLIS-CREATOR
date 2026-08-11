@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/vault-manifest.schema.json",
+  "title": "Higgsfield Existing Content Vault Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_version", "project_id", "provider", "ingestion_method",
+    "generation_fallback", "assets"
+  ],
+  "properties": {
+    "manifest_version": { "const": "1.0.0" },
+    "project_id": { "type": "string", "format": "uuid" },
+    "provider": { "const": "HIGGSFIELD" },
+    "ingestion_method": { "enum": ["VAULT_MANIFEST", "HUMAN_VERIFIED_UI", "HIGGSFIELD_PUBLIC_REFERENCE"] },
+    "generation_fallback": { "const": "PROHIBITED" },
+    "description": { "$ref": "#/$defs/reviewableString" },
+    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } }
+  },
+  "$defs": {
+    "reviewState": { "enum": ["UNKNOWN", "UNAVAILABLE", "REQUIRES_REVIEW"] },
+    "reviewableString": {
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "null" },
+        { "$ref": "#/$defs/reviewState" }
+      ]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "reviewableStringArray": {
+      "anyOf": [{ "$ref": "#/$defs/stringArray" }, { "$ref": "#/$defs/reviewState" }]
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "confidence", "provenance"],
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "label": { "type": "string", "minLength": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "provenance": { "enum": ["PROVIDER_METADATA", "LOCAL_OBSERVATION", "HUMAN_REVIEW", "CANON_RECORD"] }
+      }
+    },
+    "reviewableAnnotations": {
+      "anyOf": [
+        { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
+        { "$ref": "#/$defs/reviewState" }
+      ]
+    },
+    "reviewableAnnotation": {
+      "anyOf": [
+        { "$ref": "#/$defs/annotation" },
+        { "type": "null" },
+        { "$ref": "#/$defs/reviewState" }
+      ]
+    },
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": { "enum": ["PROVIDER_ASSET_ID", "PROVIDER_PROJECT_REFERENCE", "SANITIZED_URL", "LOCAL_AUTHORIZED_PATH"] },
+        "value": { "type": "string", "minLength": 1 },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "transcript", "language", "speaker_ids", "music", "effects", "rights_review"],
+      "properties": {
+        "present": { "type": ["boolean", "null"] },
+        "transcript": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "speaker_ids": { "$ref": "#/$defs/stringArray" },
+        "music": { "type": ["boolean", "null"] },
+        "effects": { "type": ["boolean", "null"] },
+        "rights_review": { "enum": ["APPROVED", "REJECTED", "REVIEW_REQUIRED", "UNKNOWN"] }
+      }
+    },
+    "outputUse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "interactive_branch": { "$ref": "#/$defs/eligibilityState" },
+        "atv_episode": { "$ref": "#/$defs/eligibilityState" },
+        "kol_social": { "$ref": "#/$defs/eligibilityState" },
+        "gaming_district": { "$ref": "#/$defs/eligibilityState" }
+      }
+    },
+    "eligibilityState": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN"] },
+    "rightsStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "state": { "enum": ["APPROVED", "RESTRICTED", "REVIEW_REQUIRED", "UNKNOWN"] },
+        "allowed_production_uses": {
+          "type": "array",
+          "items": { "enum": ["EDITORIAL_REVIEW", "FILM_MASTER", "INTERACTIVE_BRANCH", "ATV_EPISODE", "KOL_SOCIAL", "GAMING_DISTRICT"] },
+          "uniqueItems": true
+        },
+        "derivative_edit_eligibility": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN", "NOT_APPLICABLE"] },
+        "distribution_eligibility": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN", "NOT_APPLICABLE"] },
+        "provenance_references": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "provider", "provider_asset_id", "project_id",
+        "source_reference", "media_type"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "minLength": 1 },
+        "provider": { "const": "HIGGSFIELD" },
+        "provider_asset_id": { "type": "string", "minLength": 1 },
+        "project_id": { "type": "string", "format": "uuid" },
+        "source_reference": { "$ref": "#/$defs/sourceReference" },
+        "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO", "COMPOSITE", "UNKNOWN", "UNAVAILABLE", "REQUIRES_REVIEW"] },
+        "filename": { "$ref": "#/$defs/reviewableString" },
+        "title": { "$ref": "#/$defs/reviewableString" },
+        "description": { "$ref": "#/$defs/reviewableString" },
+        "tags": { "$ref": "#/$defs/reviewableStringArray" },
+        "world": { "$ref": "#/$defs/reviewableAnnotation" },
+        "era": { "$ref": "#/$defs/reviewableAnnotation" },
+        "location": { "$ref": "#/$defs/reviewableAnnotation" },
+        "characters": { "$ref": "#/$defs/reviewableAnnotations" },
+        "factions": { "$ref": "#/$defs/reviewableAnnotations" },
+        "artifacts": { "$ref": "#/$defs/reviewableAnnotations" },
+        "continuity_tags": { "$ref": "#/$defs/reviewableStringArray" },
+        "continuity_identity_ids": { "$ref": "#/$defs/reviewableStringArray" },
+        "studio_mode": { "enum": ["789_STUDIOS", "NTRU_STUDIOS", "GRINDER_NEURO_TOKYO_2090", "ATVNETWORK_INTERFACE", "UNASSIGNED", "UNKNOWN", "UNAVAILABLE", "REQUIRES_REVIEW"] },
+        "duration": {
+          "anyOf": [
+            { "type": "number", "minimum": 0 },
+            { "type": "null" },
+            { "$ref": "#/$defs/reviewState" }
+          ]
+        },
+        "audio": { "anyOf": [{ "$ref": "#/$defs/audio" }, { "$ref": "#/$defs/reviewState" }] },
+        "truth_state": { "enum": ["SOURCE_VERIFIED", "AUTHOR_DECLARED", "PROVISIONAL", "CONTESTED", "METAVERSE_SYNTHESIS", "CANON_GAP", "UNREVIEWED", "UNKNOWN", "UNAVAILABLE", "REQUIRES_REVIEW"] },
+        "canon_status": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": { "enum": ["SOURCE_CANON", "AUTHOR_DECLARED_CANON", "PROVISIONAL_CANON", "CONTESTED_CANON", "METAVERSE_SYNTHESIS", "CANON_GAP"] }
+            },
+            { "$ref": "#/$defs/reviewState" }
+          ]
+        },
+        "output_use": { "anyOf": [{ "$ref": "#/$defs/outputUse" }, { "$ref": "#/$defs/reviewState" }] },
+        "rights_status": { "anyOf": [{ "$ref": "#/$defs/rightsStatus" }, { "$ref": "#/$defs/reviewState" }] },
+        "created_at": {
+          "anyOf": [
+            { "type": "string", "format": "date-time" },
+            { "type": "null" },
+            { "$ref": "#/$defs/reviewState" }
+          ]
+        },
+        "provider_metadata": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

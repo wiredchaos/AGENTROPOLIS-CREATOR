@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/manifest-ingestion-receipt.schema.json",
+  "title": "Higgsfield Vault Manifest Ingestion Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "production_contract_version", "vault_id", "provider", "ingestion_method", "ingestion_surface", "ingestion_timestamp",
+    "manifest_version", "adapter_version", "matcher_version", "spec_version",
+    "asset_count", "pagination_count", "schema_valid_count", "schema_invalid_count",
+    "duplicate_count", "unknown_metadata_fields", "rights_review_count",
+    "canon_review_count", "continuity_review_count", "canonical_identity_review_count",
+    "source_references", "manifest_fingerprint", "index_fingerprint", "readiness_assessment",
+    "generation_fallback"
+  ],
+  "properties": {
+    "production_contract_version": { "const": "1.0.0" },
+    "vault_id": { "type": "string", "format": "uuid" },
+    "provider": { "const": "HIGGSFIELD" },
+    "ingestion_method": { "enum": ["VAULT_MANIFEST", "HUMAN_VERIFIED_UI", "HIGGSFIELD_PUBLIC_REFERENCE"] },
+    "ingestion_surface": { "const": "USER_CONTROLLED_JSON_MANIFEST" },
+    "ingestion_timestamp": { "type": "string", "format": "date-time" },
+    "manifest_version": { "type": "string", "minLength": 1 },
+    "adapter_version": { "type": "string", "minLength": 1 },
+    "matcher_version": { "type": "string", "minLength": 1 },
+    "spec_version": { "type": "string", "minLength": 1 },
+    "asset_count": { "type": "integer", "minimum": 0 },
+    "pagination_count": { "const": 1 },
+    "schema_valid_count": { "type": "integer", "minimum": 0 },
+    "schema_invalid_count": { "type": "integer", "minimum": 0 },
+    "duplicate_count": { "type": "integer", "minimum": 0 },
+    "unknown_metadata_fields": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "rights_review_count": { "type": "integer", "minimum": 0 },
+    "canon_review_count": { "type": "integer", "minimum": 0 },
+    "continuity_review_count": { "type": "integer", "minimum": 0 },
+    "canonical_identity_review_count": { "type": "integer", "minimum": 0 },
+    "source_references": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "manifest_fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "index_fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "readiness_assessment": { "enum": ["EMPTY_REGISTERED", "REVIEW_SEARCH_ONLY", "MATCH_READY_CANDIDATE"] },
+    "generation_fallback": { "const": "PROHIBITED" },
+    "inbox_import": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "batch_count", "inserted_count", "updated_count", "deleted_count",
+        "review_eligibility", "local_evidence"
+      ],
+      "properties": {
+        "batch_count": { "type": "integer", "minimum": 0 },
+        "inserted_count": { "type": "integer", "minimum": 0 },
+        "updated_count": { "type": "integer", "minimum": 0 },
+        "deleted_count": { "const": 0 },
+        "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" },
+        "local_evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provider_asset_id", "status", "local_path", "sha256", "size_bytes"],
+            "properties": {
+              "provider_asset_id": { "type": "string", "minLength": 1 },
+              "status": { "enum": ["VERIFIED_LOCAL", "NOT_SUPPLIED"] },
+              "local_path": { "type": "string", "minLength": 1 },
+              "sha256": {
+                "anyOf": [
+                  { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+                  { "const": "UNAVAILABLE" }
+                ]
+              },
+              "size_bytes": { "type": ["integer", "null"], "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "public_reference_import": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_count", "provider_asset_id_unknown_count", "review_eligibility"],
+      "properties": {
+        "record_count": { "type": "integer", "minimum": 0 },
+        "provider_asset_id_unknown_count": { "type": "integer", "minimum": 0 },
+        "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" }
+      }
+    }
+  }
+}

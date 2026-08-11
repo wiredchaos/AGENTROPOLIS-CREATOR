@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/story/shot-spec.schema.json",
+  "title": "CINEDANCE V4 Normalized Shot Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "production_contract_version", "format_mode", "duration", "active_references", "location_map", "first_frame",
+    "screen_position", "world_position", "gaze_target", "body_orientation",
+    "landmark_proximity", "camera_side", "optics", "field_of_view",
+    "physical_camera_distance", "camera_motion", "focus_behavior",
+    "lighting_direction", "action_timing", "physics", "audio", "dialogue",
+    "lip_sync_owner", "offscreen_only_entities", "continuity_locks",
+    "positive_locks", "forbidden_carryover", "voice_profiles",
+    "acting_performance", "ensemble_sync_mode", "ensemble_sync_authorization", "generation_fallback"
+  ],
+  "properties": {
+    "production_contract_version": { "const": "1.0.0" },
+    "format_mode": { "enum": ["SINGLE_TAKE", "CONTROLLED_MULTI_SHOT"] },
+    "duration": { "type": "number", "exclusiveMinimum": 0 },
+    "active_references": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "location_map": { "type": "object", "additionalProperties": true },
+    "first_frame": { "type": "object", "additionalProperties": true },
+    "screen_position": { "$ref": "#/$defs/projections" },
+    "world_position": { "$ref": "#/$defs/projections" },
+    "gaze_target": { "$ref": "#/$defs/projections" },
+    "body_orientation": { "$ref": "#/$defs/projections" },
+    "landmark_proximity": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "camera_side": { "type": "string", "minLength": 1 },
+    "optics": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["field_of_view_degrees", "field_of_view_basis"],
+      "properties": {
+        "field_of_view_degrees": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+        "field_of_view_basis": { "enum": ["DIAGONAL", "HORIZONTAL", "VERTICAL", "UNKNOWN"] }
+      }
+    },
+    "field_of_view": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+    "physical_camera_distance": {},
+    "camera_motion": {},
+    "focus_behavior": {},
+    "lighting_direction": { "type": "string", "minLength": 1 },
+    "action_timing": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "physics": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "audio": { "type": "object", "additionalProperties": true },
+    "dialogue": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "lip_sync_owner": { "type": ["string", "null"] },
+    "offscreen_only_entities": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "continuity_locks": { "type": "object", "additionalProperties": true },
+    "positive_locks": { "type": "array" },
+    "forbidden_carryover": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "voice_profiles": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "acting_performance": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+    "ensemble_sync_mode": { "enum": ["NATURAL_STAGGER", "CHOREOGRAPHED_UNISON"] },
+    "ensemble_sync_authorization": { "type": ["object", "null"], "additionalProperties": true },
+    "generation_fallback": { "const": "PROHIBITED" }
+  },
+  "$defs": {
+    "projections": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
+  }
+}

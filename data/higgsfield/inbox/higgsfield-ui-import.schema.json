@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/ui-import.schema.json",
+  "title": "Human-Verified Higgsfield UI Asset Import",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["import_version", "ingestion_method", "records"],
+  "properties": {
+    "import_version": { "const": "1.0.0" },
+    "ingestion_method": { "const": "HUMAN_VERIFIED_UI" },
+    "records": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/record" }
+    }
+  },
+  "$defs": {
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "PROVIDER_ASSET_ID",
+            "PROVIDER_PROJECT_REFERENCE",
+            "SANITIZED_URL",
+            "LOCAL_AUTHORIZED_PATH"
+          ]
+        },
+        "value": { "type": "string", "minLength": 1 },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_asset_id", "project_id", "source_reference", "media_type"],
+      "properties": {
+        "provider_asset_id": { "type": "string", "minLength": 1 },
+        "project_id": { "type": "string", "format": "uuid" },
+        "source_reference": { "$ref": "#/$defs/sourceReference" },
+        "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO", "COMPOSITE", "UNKNOWN"] },
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "filename": { "type": "string", "minLength": 1 },
+        "local_path": { "type": "string", "minLength": 1 },
+        "duration": { "type": "number", "minimum": 0 },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

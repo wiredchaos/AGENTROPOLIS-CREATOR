@@ -44,7 +44,12 @@ NETERU canon record
 - Creator agents may adapt presentation but may not silently rewrite canon.
 - Character identity, relationships, chronology and locked dialogue require explicit change approval.
 - Every generated asset must retain source scene IDs and provenance.
-- Mature NETERU assets route through NTRU Studios and NTRU-OTT, never 789 Studios.
+- Mature NETERU masters route through NTRU Studios and NTRU-OTT. A 789 Studios
+  cel-shaded anime passage may appear inside an approved master as a distinct
+  representational layer, but 789 Studios is not the routing or release owner.
+- NTRU Studios and 789 Studios are separate visual lanes. They may depict the
+  same locked story event and meet through editorial match cuts, but their
+  render languages must not be blended within a frame.
 - Promotional derivatives require separate distribution approval.
 
 ## Required package envelope

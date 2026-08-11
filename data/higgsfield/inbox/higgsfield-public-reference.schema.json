@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/public-reference.schema.json",
+  "title": "Higgsfield Public Project Reference Import",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["import_version", "provenance_class", "records"],
+  "properties": {
+    "import_version": { "const": "1.0.0" },
+    "provenance_class": { "const": "HIGGSFIELD_PUBLIC_REFERENCE" },
+    "records": { "type": "array", "items": { "$ref": "#/$defs/record" } }
+  },
+  "$defs": {
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": { "enum": ["SANITIZED_URL", "PROVIDER_PROJECT_REFERENCE"] },
+        "value": { "type": "string", "minLength": 1 },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "projectReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": { "enum": ["PROJECT_ID", "PROJECT_SLUG"] },
+        "value": { "type": "string", "minLength": 1 }
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vault_id", "public_project_url", "project_reference", "media_type"],
+      "anyOf": [
+        { "required": ["local_path"] },
+        { "required": ["remote_media_reference"] }
+      ],
+      "properties": {
+        "vault_id": { "type": "string", "format": "uuid" },
+        "provider_asset_id": { "type": "string", "minLength": 1 },
+        "public_project_url": { "type": "string", "pattern": "^https://" },
+        "project_reference": { "$ref": "#/$defs/projectReference" },
+        "remote_media_reference": { "$ref": "#/$defs/sourceReference" },
+        "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO", "COMPOSITE"] },
+        "title": { "type": "string", "minLength": 1 },
+        "filename": { "type": "string", "minLength": 1 },
+        "local_path": { "type": "string", "minLength": 1 },
+        "author_attribution": { "type": "string", "minLength": 1 },
+        "prompt": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "size": { "type": "string", "minLength": 1 },
+        "date": { "type": "string", "minLength": 1 },
+        "ui_verified_metadata": { "type": "object", "additionalProperties": true }
+      }
+    }
+  }
+}

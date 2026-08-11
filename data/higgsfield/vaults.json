@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "generationAllowed": false,
+  "creditSpendingAllowed": false,
+  "vaults": [
+    {
+      "vault_id": "00000000-0000-4000-8000-000000000001",
+      "provider": "fixture",
+      "registration_status": "REGISTERED",
+      "readiness_status": "MATCH_READY",
+      "fixture_mode": true,
+      "readiness_evidence": {
+        "enumeration_complete": true,
+        "normalization_complete": true,
+        "schema_validation_complete": true,
+        "assets_available": true,
+        "receipt_references": ["LOCAL-FIXTURE-INDEX-RECEIPT"]
+      },
+      "inspection_status": "FIXTURE_ONLY",
+      "asset_count": 6,
+      "contents_assumed": false,
+      "enumeration_surface": "LOCAL_TEST_FIXTURE",
+      "last_enumerated_at": null,
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Reserved synthetic metadata-only vault for matcher tests.",
+        "Records in this vault must retain provider_metadata.fixture=true and fixture-prefixed asset IDs.",
+        "This registration does not represent a real Higgsfield project or real provider assets."
+      ]
+    },
+    {
+      "vault_id": "b619c13c-83ba-4ea3-b85c-de9be41bd01b",
+      "provider": "higgsfield",
+      "registration_status": "REGISTERED",
+      "readiness_status": "REGISTERED",
+      "fixture_mode": false,
+      "readiness_evidence": {
+        "enumeration_complete": false,
+        "normalization_complete": false,
+        "schema_validation_complete": false,
+        "assets_available": false,
+        "receipt_references": []
+      },
+      "inspection_status": "UNINSPECTED_AUTHENTICATION_UNAVAILABLE",
+      "asset_count": null,
+      "contents_assumed": false,
+      "enumeration_surface": null,
+      "last_enumerated_at": null,
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Project identifier supplied by the creator on 2026-08-11.",
+        "No CLI, MCP resource, installed Higgsfield skill, or authenticated enumeration surface was available during registration.",
+        "No claims are made about project contents."
+      ]
+    }
+  ]
+}
