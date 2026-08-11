@@ -57,3 +57,9 @@ Receipts validate against `data/higgsfield/receipts/manifest-ingestion-receipt.s
 `HIGGSFIELD_PUBLIC_REFERENCE` permits `REVIEW_SEARCH` indexing when the operator supplies a verified HTTPS source page, a public project slug or project ID, media type, and either a locally computed SHA-256 or a directly verified remote media reference. `provider_asset_id` is optional and normalizes to `UNKNOWN` when the public surface does not expose one; the importer never derives or fabricates it.
 
 Visible author attribution and UI-verified prompt, model, size, date, title, and filename metadata are preserved as evidence, not inferred. Source-page URLs are retained even when a distinct remote media reference is available. Rights, canon, identity, continuity, truth, studio mode, audio, and production output use remain `REQUIRES_REVIEW`. These records are always `REVIEW_SEARCH_ONLY`, cannot make a vault `MATCH_READY`, and retain `generation_fallback=PROHIBITED` until a separate evidence-backed human review promotes the normalized record.
+
+## Verified local production archives
+
+`VERIFIED_LOCAL_ASSET` indexes existing files through a distinct `LOCAL_PRODUCTION_ARCHIVE` vault. It preserves the exact authorized local path, filename, byte size, SHA-256, media metadata, and filename-derived provisional production role. It does not claim a Higgsfield project ID, provider asset ID, Soul ID, canon identity, or rights status.
+
+A successfully validated local archive may become `LOCAL_INDEX_READY`, which permits `REVIEW_SEARCH` only. This state is deliberately separate from `MATCH_READY` and cannot participate in `FINAL_PRODUCTION` until identity, canon, continuity, provenance, and rights reviews are recorded. Local source files remain external and read-only; ingestion writes metadata manifests and receipts only.

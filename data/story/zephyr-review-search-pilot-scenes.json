@@ -1,0 +1,106 @@
+[
+  {
+    "scene_id": "TEST_ZEPHYR_A_MIRA_COCKPIT",
+    "required_characters": [],
+    "required_factions": [],
+    "world": "UNKNOWN",
+    "era": "UNKNOWN",
+    "location": "UNKNOWN",
+    "studio_mode": "UNASSIGNED",
+    "visual_style": "",
+    "camera_language": "",
+    "action": "",
+    "mood": "",
+    "canon_status_requirement": ["PROVISIONAL_CANON"],
+    "output_use": "KOL_SOCIAL",
+    "selection_mode": "REVIEW_SEARCH",
+    "identity_requirements": {
+      "canonical_character_ids": [],
+      "canonical_faction_ids": [],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": []
+    },
+    "rights_requirement": {
+      "production_use": "EDITORIAL_REVIEW",
+      "derivative_edit_required": false,
+      "distribution_required": false
+    },
+    "continuity_tags": [],
+    "required_continuity_tags": [],
+    "forbidden_continuity_tags": [],
+    "slots": [
+      { "id": "mira-character", "role": "CHARACTER", "local_character_family": "Mira" },
+      { "id": "mira-cockpit", "role": "CHARACTER_STATE", "local_character_family": "Mira", "variant_labels": ["cockpit"] },
+      { "id": "mira-mech", "role": "MECH", "local_character_family": "Mira" }
+    ]
+  },
+  {
+    "scene_id": "TEST_ZEPHYR_B_NAOMI_MECH",
+    "required_characters": [],
+    "required_factions": [],
+    "world": "UNKNOWN",
+    "era": "UNKNOWN",
+    "location": "UNKNOWN",
+    "studio_mode": "UNASSIGNED",
+    "visual_style": "",
+    "camera_language": "",
+    "action": "",
+    "mood": "",
+    "canon_status_requirement": ["PROVISIONAL_CANON"],
+    "output_use": "KOL_SOCIAL",
+    "selection_mode": "REVIEW_SEARCH",
+    "identity_requirements": {
+      "canonical_character_ids": [],
+      "canonical_faction_ids": [],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": []
+    },
+    "rights_requirement": {
+      "production_use": "EDITORIAL_REVIEW",
+      "derivative_edit_required": false,
+      "distribution_required": false
+    },
+    "continuity_tags": [],
+    "required_continuity_tags": [],
+    "forbidden_continuity_tags": [],
+    "slots": [
+      { "id": "naomi-character", "role": "CHARACTER", "local_character_family": "Naomi" },
+      { "id": "naomi-mech", "role": "MECH", "local_character_family": "Naomi" },
+      { "id": "local-location", "role": "LOCATION", "local_location_labels": ["Naomi's room"] }
+    ]
+  },
+  {
+    "scene_id": "TEST_ZEPHYR_C_GROUP_CITY",
+    "required_characters": [],
+    "required_factions": [],
+    "world": "UNKNOWN",
+    "era": "UNKNOWN",
+    "location": "UNKNOWN",
+    "studio_mode": "UNASSIGNED",
+    "visual_style": "",
+    "camera_language": "",
+    "action": "",
+    "mood": "",
+    "canon_status_requirement": ["PROVISIONAL_CANON"],
+    "output_use": "KOL_SOCIAL",
+    "selection_mode": "REVIEW_SEARCH",
+    "identity_requirements": {
+      "canonical_character_ids": [],
+      "canonical_faction_ids": [],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": []
+    },
+    "rights_requirement": {
+      "production_use": "EDITORIAL_REVIEW",
+      "derivative_edit_required": false,
+      "distribution_required": false
+    },
+    "continuity_tags": [],
+    "required_continuity_tags": [],
+    "forbidden_continuity_tags": [],
+    "slots": [
+      { "id": "two-characters", "role": "CHARACTER", "count": 2, "distinct_local_character_families": true },
+      { "id": "city", "role": "LOCATION", "local_location_labels": ["City 1", "City 2", "City 3", "City 4", "City 5"] }
+    ]
+  }
+]

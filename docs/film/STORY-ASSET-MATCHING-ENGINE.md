@@ -45,6 +45,18 @@ General character and faction relevance remains scored. Explicit canonical IDs a
 
 `REVIEW_SEARCH` has one narrow exception: a `VAULT_MANIFEST` record may pass an unresolved metadata gate when its normalized provenance explicitly names that field as unresolved. Known incompatible values still reject, source provenance must still pass, and the receipt reports `final_selection_eligible=false`. No unresolved exception applies to `FINAL_PRODUCTION`.
 
+## Local semantic review prefilter
+
+Local production archives may expose `production_role`, `local_character_family`, `variant_labels`, `provisional_reference_tag`, and local location/prop/mech/creature labels. Every field is an object carrying `metadata_basis=FILENAME_DERIVED`; it is discovery metadata, not canon, identity, provider, rights, or continuity evidence.
+
+In `REVIEW_SEARCH`, a deterministic prefilter applies requested local role, family, variant, reference-tag, and context constraints before the normal hard gates and scorer. Rejections remain explicit (`PRODUCTION_ROLE_MISMATCH`, `LOCAL_CHARACTER_FAMILY_MISMATCH`, `VARIANT_LABEL_MISMATCH`, `REFERENCE_TAG_MISMATCH`, or the corresponding local-context mismatch). A separate `review_search_score` reports role, family, variant, reference-tag, and context contributions. It does not alter the canonical score or verification state.
+
+`slots` represent independent coverage needs. Each slot declares a role plus optional local constraints and resolves separately; an asset is reserved after selection and cannot satisfy another slot unless `allow_asset_reuse=true`. A slot can request multiple results and require distinct filename-derived character families. An incomplete slot makes the scene result `NO_EXISTING_MATCH`, with generation fallback still prohibited.
+
+`FINAL_PRODUCTION` ignores the filename-derived prefilter and review score. The ordinary fail-closed vault, provider, canon, identity, rights, continuity, truth, output-use, duration, and audio gates remain authoritative, so local discovery metadata alone cannot promote an asset.
+
+Review slots may also declare `preferred_variant_labels` and `forbidden_variant_labels`; forbidden labels reject explicitly (for example, `KIA`), while preferred labels affect only the review variant dimension. `distinct_from_slot_ids` enforces different local character families, and `compatible_character_slot_ids` restricts an associated slot such as a mech to families already selected by those character slots. These are deterministic filename relationships, not canon relationships.
+
 ## Deterministic candidate score
 
 After hard gates, score only reviewed fields:

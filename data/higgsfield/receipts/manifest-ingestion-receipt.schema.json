@@ -15,10 +15,15 @@
   ],
   "properties": {
     "production_contract_version": { "const": "1.0.0" },
-    "vault_id": { "type": "string", "format": "uuid" },
-    "provider": { "const": "HIGGSFIELD" },
-    "ingestion_method": { "enum": ["VAULT_MANIFEST", "HUMAN_VERIFIED_UI", "HIGGSFIELD_PUBLIC_REFERENCE"] },
-    "ingestion_surface": { "const": "USER_CONTROLLED_JSON_MANIFEST" },
+    "vault_id": {
+      "anyOf": [
+        { "type": "string", "format": "uuid" },
+        { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+      ]
+    },
+    "provider": { "enum": ["HIGGSFIELD", "HIGGSFIELD_LOCAL_ARCHIVE"] },
+    "ingestion_method": { "enum": ["VAULT_MANIFEST", "HUMAN_VERIFIED_UI", "HIGGSFIELD_PUBLIC_REFERENCE", "VERIFIED_LOCAL_ASSET"] },
+    "ingestion_surface": { "enum": ["USER_CONTROLLED_JSON_MANIFEST", "READ_ONLY_LOCAL_FILESYSTEM"] },
     "ingestion_timestamp": { "type": "string", "format": "date-time" },
     "manifest_version": { "type": "string", "minLength": 1 },
     "adapter_version": { "type": "string", "minLength": 1 },
@@ -37,7 +42,7 @@
     "source_references": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
     "manifest_fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "index_fingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "readiness_assessment": { "enum": ["EMPTY_REGISTERED", "REVIEW_SEARCH_ONLY", "MATCH_READY_CANDIDATE"] },
+    "readiness_assessment": { "enum": ["EMPTY_REGISTERED", "REVIEW_SEARCH_ONLY", "LOCAL_INDEX_READY", "MATCH_READY_CANDIDATE"] },
     "generation_fallback": { "const": "PROHIBITED" },
     "inbox_import": {
       "type": "object",
@@ -81,6 +86,29 @@
       "properties": {
         "record_count": { "type": "integer", "minimum": 0 },
         "provider_asset_id_unknown_count": { "type": "integer", "minimum": 0 },
+        "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" }
+      }
+    },
+    "local_archive_import": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_root", "excluded_file_count", "excluded_files",
+        "character_family_count", "location_count", "prop_count",
+        "mech_count", "creature_count", "duplicate_hash_count",
+        "requires_review_count", "review_eligibility"
+      ],
+      "properties": {
+        "source_root": { "type": "string", "minLength": 1 },
+        "excluded_file_count": { "type": "integer", "minimum": 0 },
+        "excluded_files": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "character_family_count": { "type": "integer", "minimum": 0 },
+        "location_count": { "type": "integer", "minimum": 0 },
+        "prop_count": { "type": "integer", "minimum": 0 },
+        "mech_count": { "type": "integer", "minimum": 0 },
+        "creature_count": { "type": "integer", "minimum": 0 },
+        "duplicate_hash_count": { "type": "integer", "minimum": 0 },
+        "requires_review_count": { "type": "integer", "minimum": 0 },
         "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" }
       }
     }

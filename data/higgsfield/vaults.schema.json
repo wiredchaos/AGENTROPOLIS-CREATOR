@@ -22,10 +22,15 @@
         "credit_spending_allowed", "notes"
       ],
       "properties": {
-        "vault_id": { "type": "string", "format": "uuid" },
+        "vault_id": {
+          "anyOf": [
+            { "type": "string", "format": "uuid" },
+            { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          ]
+        },
         "provider": { "type": "string", "minLength": 1 },
         "registration_status": { "enum": ["REGISTERED"] },
-        "readiness_status": { "enum": ["REGISTERED", "MATCH_READY"] },
+        "readiness_status": { "enum": ["REGISTERED", "LOCAL_INDEX_READY", "MATCH_READY"] },
         "fixture_mode": { "type": "boolean" },
         "readiness_evidence": {
           "type": "object",

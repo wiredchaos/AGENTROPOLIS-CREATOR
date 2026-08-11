@@ -28,7 +28,7 @@ function gate(pass, code, explanation) {
 function reviewAllowsUnresolved(scene, asset, field) {
   return (
     scene.selection_mode === 'REVIEW_SEARCH' &&
-    ['VAULT_MANIFEST', 'HUMAN_VERIFIED_UI', 'HIGGSFIELD_PUBLIC_REFERENCE'].includes(
+    ['VAULT_MANIFEST', 'HUMAN_VERIFIED_UI', 'HIGGSFIELD_PUBLIC_REFERENCE', 'VERIFIED_LOCAL_ASSET'].includes(
       asset.provider_metadata?.ingestion_method,
     ) &&
     asset.provider_metadata?.manifest_unresolved_fields?.includes(field)

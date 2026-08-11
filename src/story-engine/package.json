@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test matcher.test.js ../providers/higgsfield/manifest-adapter.test.js ../providers/higgsfield/inbox-import.test.js ../providers/higgsfield/public-reference-import.test.js ../director/compiler.test.js ../director/contracts.test.js",
+    "test": "node --test matcher.test.js ../providers/higgsfield/manifest-adapter.test.js ../providers/higgsfield/inbox-import.test.js ../providers/higgsfield/public-reference-import.test.js ../providers/higgsfield/local-asset-adapter.test.js ../director/compiler.test.js ../director/contracts.test.js",
     "record-fixtures": "node record-fixture-output.js"
   }
 }

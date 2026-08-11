@@ -16,7 +16,12 @@
   "properties": {
     "asset_id": { "type": "string", "minLength": 1 },
     "parent_asset_id": { "type": ["string", "null"] },
-    "vault_id": { "type": "string", "format": "uuid" },
+    "vault_id": {
+      "anyOf": [
+        { "type": "string", "format": "uuid" },
+        { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+      ]
+    },
     "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO", "COMPOSITE", "UNKNOWN"] },
     "source_url/reference": {
       "type": "object",
@@ -98,9 +103,44 @@
       }
     },
     "provider_metadata": { "type": "object", "additionalProperties": true },
-    "annotation_provenance": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+    "annotation_provenance": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "production_role": { "$ref": "#/$defs/filenameDerivedRole" },
+    "local_character_family": { "$ref": "#/$defs/filenameDerivedNullableString" },
+    "variant_labels": { "$ref": "#/$defs/filenameDerivedStringArray" },
+    "provisional_reference_tag": { "$ref": "#/$defs/filenameDerivedNullableString" },
+    "local_location_label": { "$ref": "#/$defs/filenameDerivedNullableString" },
+    "local_prop_label": { "$ref": "#/$defs/filenameDerivedNullableString" },
+    "local_mech_label": { "$ref": "#/$defs/filenameDerivedNullableString" },
+    "local_creature_label": { "$ref": "#/$defs/filenameDerivedNullableString" }
   },
   "$defs": {
+    "filenameDerivedRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "metadata_basis"],
+      "properties": {
+        "value": { "enum": ["CHARACTER", "CHARACTER_STATE", "CHARACTER_SHEET", "MECH", "LOCATION", "PROP", "CREATURE", "OTHER"] },
+        "metadata_basis": { "const": "FILENAME_DERIVED" }
+      }
+    },
+    "filenameDerivedNullableString": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "metadata_basis"],
+      "properties": {
+        "value": { "type": ["string", "null"] },
+        "metadata_basis": { "const": "FILENAME_DERIVED" }
+      }
+    },
+    "filenameDerivedStringArray": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["values", "metadata_basis"],
+      "properties": {
+        "values": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "metadata_basis": { "const": "FILENAME_DERIVED" }
+      }
+    },
     "stringArray": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },

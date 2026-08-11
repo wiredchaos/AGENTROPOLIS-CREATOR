@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/local-asset-manifest.schema.json",
+  "title": "Verified Local Higgsfield Production Archive Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_version", "vault_id", "vault_type", "provider",
+    "ingestion_method", "project_id", "source_root", "generation_fallback",
+    "review_eligibility", "assets"
+  ],
+  "properties": {
+    "manifest_version": { "const": "1.0.0" },
+    "vault_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "vault_type": { "const": "LOCAL_PRODUCTION_ARCHIVE" },
+    "provider": { "const": "HIGGSFIELD_LOCAL_ARCHIVE" },
+    "ingestion_method": { "const": "VERIFIED_LOCAL_ASSET" },
+    "project_id": { "const": "UNKNOWN" },
+    "source_root": { "type": "string", "minLength": 1 },
+    "generation_fallback": { "const": "PROHIBITED" },
+    "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" },
+    "assets": { "type": "array", "items": { "$ref": "#/$defs/asset" } }
+  },
+  "$defs": {
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": { "const": "LOCAL_AUTHORIZED_PATH" },
+        "value": { "type": "string", "minLength": 1 },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "dimensions": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": { "type": "integer", "exclusiveMinimum": 0 },
+            "height": { "type": "integer", "exclusiveMinimum": 0 }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "provider", "provider_asset_id", "project_id", "soul_id",
+        "source_reference", "source_evidence", "local_path", "filename",
+        "extension", "media_type", "byte_size", "sha256", "dimensions",
+        "duration", "production_role", "character_family", "variant_labels",
+        "reference_tag", "reference_tag_status", "metadata_basis",
+        "local_character_family", "provisional_reference_tag",
+        "local_location_label", "local_prop_label", "local_mech_label",
+        "local_creature_label", "review_eligibility",
+        "rights_status", "canon_status", "identity_status", "continuity_status",
+        "generation_fallback"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "pattern": "^zephyr-local-sha256-[a-f0-9]{64}$" },
+        "provider": { "const": "HIGGSFIELD_LOCAL_ARCHIVE" },
+        "provider_asset_id": { "const": "UNKNOWN" },
+        "project_id": { "const": "UNKNOWN" },
+        "soul_id": { "const": "UNKNOWN" },
+        "source_reference": { "$ref": "#/$defs/sourceReference" },
+        "source_evidence": { "const": "VERIFIED_LOCAL_FILE" },
+        "local_path": { "type": "string", "minLength": 1 },
+        "filename": { "type": "string", "minLength": 1 },
+        "extension": { "type": "string", "pattern": "^[a-z0-9]+$" },
+        "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO"] },
+        "byte_size": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "dimensions": { "$ref": "#/$defs/dimensions" },
+        "duration": { "type": ["number", "null"], "minimum": 0 },
+        "production_role": { "enum": ["CHARACTER", "CHARACTER_STATE", "CHARACTER_SHEET", "MECH", "LOCATION", "PROP", "CREATURE", "OTHER"] },
+        "character_family": { "type": ["string", "null"] },
+        "variant_labels": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "reference_tag": { "type": "string", "pattern": "^@(char|loc|prop|mech|creature|other)_ZEPHYR_[A-Za-z0-9][A-Za-z0-9_-]*$" },
+        "reference_tag_status": { "const": "PROVISIONAL_LOCAL" },
+        "metadata_basis": { "const": "FILENAME_DERIVED" },
+        "local_character_family": { "type": ["string", "null"] },
+        "provisional_reference_tag": { "type": "string", "pattern": "^@(char|loc|prop|mech|creature|other)_ZEPHYR_[A-Za-z0-9][A-Za-z0-9_-]*$" },
+        "local_location_label": { "type": ["string", "null"] },
+        "local_prop_label": { "type": ["string", "null"] },
+        "local_mech_label": { "type": ["string", "null"] },
+        "local_creature_label": { "type": ["string", "null"] },
+        "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" },
+        "rights_status": { "const": "REQUIRES_REVIEW" },
+        "canon_status": { "const": "REQUIRES_REVIEW" },
+        "identity_status": { "const": "REQUIRES_REVIEW" },
+        "continuity_status": { "const": "REQUIRES_REVIEW" },
+        "generation_fallback": { "const": "PROHIBITED" }
+      }
+    }
+  }
+}

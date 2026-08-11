@@ -1,0 +1,60 @@
+{
+  "scene_id": "ZEPHYR_URBAN_TENSION_REVIEW_001",
+  "required_characters": [],
+  "required_factions": [],
+  "world": "UNKNOWN",
+  "era": "UNKNOWN",
+  "location": "UNKNOWN",
+  "studio_mode": "UNASSIGNED",
+  "visual_style": "tense futuristic urban sequence",
+  "camera_language": "",
+  "action": "",
+  "mood": "tense",
+  "canon_status_requirement": ["PROVISIONAL_CANON"],
+  "output_use": "KOL_SOCIAL",
+  "selection_mode": "REVIEW_SEARCH",
+  "identity_requirements": {
+    "canonical_character_ids": [],
+    "canonical_faction_ids": [],
+    "canonical_artifact_ids": [],
+    "continuity_locked_identity_ids": []
+  },
+  "rights_requirement": {
+    "production_use": "EDITORIAL_REVIEW",
+    "derivative_edit_required": false,
+    "distribution_required": false
+  },
+  "continuity_tags": [],
+  "required_continuity_tags": [],
+  "forbidden_continuity_tags": [],
+  "slots": [
+    {
+      "id": "hero-character",
+      "role": "CHARACTER",
+      "preferred_variant_labels": ["Episode 1 Base", "Concept"],
+      "forbidden_variant_labels": ["KIA", "dead", "DEAD"]
+    },
+    {
+      "id": "second-character",
+      "role": "CHARACTER",
+      "preferred_variant_labels": ["Episode 1 Base", "Concept"],
+      "forbidden_variant_labels": ["KIA", "dead", "DEAD"],
+      "distinct_from_slot_ids": ["hero-character"]
+    },
+    {
+      "id": "associated-mech",
+      "role": "MECH",
+      "compatible_character_slot_ids": ["hero-character", "second-character"]
+    },
+    {
+      "id": "urban-city",
+      "role": "LOCATION",
+      "local_location_labels": ["City 1", "City 2", "City 3", "City 4", "City 5"]
+    },
+    {
+      "id": "supporting-location",
+      "role": "LOCATION",
+      "local_location_labels": ["Backrooms", "Chill room", "Gym", "Main hangar", "Naomi's room", "Shower room", "Zero's room"]
+    }
+  ]
+}

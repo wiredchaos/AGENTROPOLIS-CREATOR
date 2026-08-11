@@ -54,6 +54,35 @@
         "No CLI, MCP resource, installed Higgsfield skill, or authenticated enumeration surface was available during registration.",
         "No claims are made about project contents."
       ]
+    },
+    {
+      "vault_id": "zephyr-local-production-v1",
+      "provider": "HIGGSFIELD_LOCAL_ARCHIVE",
+      "registration_status": "REGISTERED",
+      "readiness_status": "LOCAL_INDEX_READY",
+      "fixture_mode": false,
+      "readiness_evidence": {
+        "enumeration_complete": true,
+        "normalization_complete": true,
+        "schema_validation_complete": true,
+        "assets_available": true,
+        "receipt_references": [
+          "data/higgsfield/receipts/zephyr-local-production-v1.ingestion-receipt.json"
+        ]
+      },
+      "inspection_status": "VERIFIED_LOCAL_FILESYSTEM_INDEX",
+      "asset_count": 54,
+      "contents_assumed": false,
+      "enumeration_surface": "READ_ONLY_LOCAL_FILESYSTEM",
+      "last_enumerated_at": "2026-08-11T21:27:37.912Z",
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Local production archive indexed from verified filenames, byte sizes, dimensions, and SHA-256 hashes.",
+        "This vault is not associated with any Higgsfield project ID; project_id and provider_asset_id remain UNKNOWN.",
+        "LOCAL_INDEX_READY permits REVIEW_SEARCH only and does not imply MATCH_READY or FINAL_PRODUCTION_READY.",
+        "Identity, canon, continuity, provenance, and rights remain REQUIRES_REVIEW."
+      ]
     }
   ]
 }

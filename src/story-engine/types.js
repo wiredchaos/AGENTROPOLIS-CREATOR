@@ -40,6 +40,13 @@ export function assertSceneRequest(scene) {
       'Invalid scene request: duration must satisfy minimum_seconds <= target_seconds <= maximum_seconds.',
     );
   }
+
+  if (scene.slots) {
+    const ids = scene.slots.map(({ id }) => id);
+    if (new Set(ids).size !== ids.length) {
+      throw new TypeError('Invalid scene request: slot IDs must be unique.');
+    }
+  }
 }
 
 export function assertAssetIndex(assets) {

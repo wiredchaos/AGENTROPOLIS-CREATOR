@@ -45,6 +45,7 @@
         "selected_asset_ids": { "$ref": "#/$defs/stringArray" },
         "matches": { "type": "array", "items": { "$ref": "#/$defs/match" } },
         "rejected": { "type": "array", "items": { "$ref": "#/$defs/rejection" } },
+        "slot_results": { "type": "array", "items": { "$ref": "#/$defs/slotResult" } },
         "generation_fallback": { "const": "PROHIBITED" }
       }
     },
@@ -59,7 +60,12 @@
       ],
       "properties": {
         "asset_id": { "type": "string", "minLength": 1 },
-        "vault_id": { "type": "string", "format": "uuid" },
+        "vault_id": {
+          "anyOf": [
+            { "type": "string", "format": "uuid" },
+            { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+          ]
+        },
         "source_provider": { "type": "string", "minLength": 1 },
         "source_reference_id": { "type": "string", "minLength": 1 },
         "source_reference": { "$ref": "#/$defs/sourceReference" },
@@ -71,7 +77,93 @@
         "total_score": { "type": "number", "minimum": 0, "maximum": 1 },
         "score_dimensions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/scoreDimension" } },
         "hard_gates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/hardGate" } },
-        "rank": { "type": "integer", "minimum": 1 }
+        "rank": { "type": "integer", "minimum": 1 },
+        "slot_ids": { "$ref": "#/$defs/stringArray" },
+        "review_search_score": { "$ref": "#/$defs/reviewSearchScore" },
+        "review_search_metadata": { "$ref": "#/$defs/reviewSearchMetadata" }
+      }
+    },
+    "reviewSearchMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadata_basis", "filename", "production_role", "local_character_family",
+        "variant_labels", "provisional_reference_tag", "local_location_label",
+        "local_prop_label", "local_mech_label", "local_creature_label",
+        "review_eligibility", "unresolved_human_review", "generation_fallback"
+      ],
+      "properties": {
+        "metadata_basis": { "const": "FILENAME_DERIVED" },
+        "filename": { "type": "string", "minLength": 1 },
+        "production_role": { "$ref": "#/$defs/productionRole" },
+        "local_character_family": { "type": ["string", "null"] },
+        "variant_labels": { "$ref": "#/$defs/stringArray" },
+        "provisional_reference_tag": { "type": "string", "minLength": 1 },
+        "local_location_label": { "type": ["string", "null"] },
+        "local_prop_label": { "type": ["string", "null"] },
+        "local_mech_label": { "type": ["string", "null"] },
+        "local_creature_label": { "type": ["string", "null"] },
+        "review_eligibility": { "const": "REVIEW_SEARCH_ONLY" },
+        "unresolved_human_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["canon", "identity", "rights", "continuity", "provider_asset_id"],
+          "properties": {
+            "canon": { "const": "REQUIRES_REVIEW" },
+            "identity": { "const": "REQUIRES_REVIEW" },
+            "rights": { "const": "REQUIRES_REVIEW" },
+            "continuity": { "const": "REQUIRES_REVIEW" },
+            "provider_asset_id": { "const": "UNKNOWN" }
+          }
+        },
+        "generation_fallback": { "const": "PROHIBITED" }
+      }
+    },
+    "productionRole": {
+      "enum": ["CHARACTER", "CHARACTER_STATE", "CHARACTER_SHEET", "MECH", "LOCATION", "PROP", "CREATURE", "OTHER"]
+    },
+    "reviewSearchScore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metadata_basis", "total_score", "score_dimensions", "truth_effect"],
+      "properties": {
+        "metadata_basis": { "const": "FILENAME_DERIVED" },
+        "total_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "truth_effect": { "const": "REVIEW_ONLY_NO_VERIFICATION" },
+        "score_dimensions": { "type": "array", "items": { "$ref": "#/$defs/reviewScoreDimension" } }
+      }
+    },
+    "reviewScoreDimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension", "metadata_basis", "applicable", "score", "weight", "contribution"],
+      "properties": {
+        "dimension": { "enum": ["production_role_match", "local_family_match", "variant_match", "reference_tag_match", "local_context_match"] },
+        "metadata_basis": { "const": "FILENAME_DERIVED" },
+        "applicable": { "type": "boolean" },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "contribution": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "slotResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot_id", "required_count", "candidates_considered",
+        "distinct_local_character_families", "allow_asset_reuse", "result",
+        "selected_asset_ids", "rejected", "generation_fallback"
+      ],
+      "properties": {
+        "slot_id": { "type": "string", "minLength": 1 },
+        "required_count": { "type": "integer", "minimum": 1 },
+        "candidates_considered": { "type": "integer", "minimum": 0 },
+        "distinct_local_character_families": { "type": "boolean" },
+        "allow_asset_reuse": { "type": "boolean" },
+        "result": { "enum": ["SLOT_MATCH_FOUND", "NO_EXISTING_SLOT_MATCH"] },
+        "selected_asset_ids": { "$ref": "#/$defs/stringArray" },
+        "rejected": { "type": "array", "items": { "$ref": "#/$defs/rejection" } },
+        "generation_fallback": { "const": "PROHIBITED" }
       }
     },
     "sourceReference": {
