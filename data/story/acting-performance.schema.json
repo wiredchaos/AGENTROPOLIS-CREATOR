@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/story/acting-performance.schema.json",
+  "title": "Scene-Specific Acting Performance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "production_contract_version", "character_id", "objective", "obstacle", "stakes", "tactics", "beats",
+    "subtext", "business", "proxemics", "status", "eye_life",
+    "reaction_timing", "physical_state", "scene_specific_behavior"
+  ],
+  "properties": {
+    "production_contract_version": { "const": "1.0.0" },
+    "character_id": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "obstacle": { "type": "string", "minLength": 1 },
+    "stakes": { "type": "string", "minLength": 1 },
+    "tactics": { "$ref": "#/$defs/stringArray" },
+    "beats": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": true } },
+    "subtext": { "type": "string", "minLength": 1 },
+    "business": { "type": "string", "minLength": 1 },
+    "proxemics": { "type": "object", "additionalProperties": true },
+    "status": { "type": "string", "minLength": 1 },
+    "eye_life": { "type": "string", "minLength": 1 },
+    "reaction_timing": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["rhythm_id", "onset_seconds"],
+      "properties": {
+        "rhythm_id": { "type": "string", "minLength": 1 },
+        "onset_seconds": { "type": "number", "minimum": 0 }
+      }
+    },
+    "physical_state": { "type": "string", "minLength": 1 },
+    "scene_specific_behavior": { "type": "string", "minLength": 1 },
+    "inner_line": { "type": "string", "minLength": 1 }
+  },
+  "$defs": {
+    "stringArray": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}

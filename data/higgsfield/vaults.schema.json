@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/vaults.schema.json",
+  "title": "Existing Content Vault Registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "generationAllowed", "creditSpendingAllowed", "vaults"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "generationAllowed": { "const": false },
+    "creditSpendingAllowed": { "const": false },
+    "vaults": { "type": "array", "items": { "$ref": "#/$defs/vault" } }
+  },
+  "$defs": {
+    "vault": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vault_id", "provider", "registration_status", "readiness_status",
+        "fixture_mode", "readiness_evidence", "inspection_status", "asset_count", "contents_assumed",
+        "enumeration_surface", "last_enumerated_at", "generation_allowed",
+        "credit_spending_allowed", "notes"
+      ],
+      "properties": {
+        "vault_id": { "type": "string", "format": "uuid" },
+        "provider": { "type": "string", "minLength": 1 },
+        "registration_status": { "enum": ["REGISTERED"] },
+        "readiness_status": { "enum": ["REGISTERED", "MATCH_READY"] },
+        "fixture_mode": { "type": "boolean" },
+        "readiness_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enumeration_complete", "normalization_complete",
+            "schema_validation_complete", "assets_available", "receipt_references"
+          ],
+          "properties": {
+            "enumeration_complete": { "type": "boolean" },
+            "normalization_complete": { "type": "boolean" },
+            "schema_validation_complete": { "type": "boolean" },
+            "assets_available": { "type": "boolean" },
+            "receipt_references": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            }
+          }
+        },
+        "inspection_status": { "type": "string", "minLength": 1 },
+        "asset_count": { "type": ["integer", "null"], "minimum": 0 },
+        "contents_assumed": { "const": false },
+        "enumeration_surface": { "type": ["string", "null"] },
+        "last_enumerated_at": { "type": ["string", "null"] },
+        "generation_allowed": { "const": false },
+        "credit_spending_allowed": { "const": false },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

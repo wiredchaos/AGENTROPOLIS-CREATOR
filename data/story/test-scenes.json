@@ -25,7 +25,47 @@
       "era:2090",
       "weather:rain",
       "action:reliquary-transit"
-    ]
+    ],
+    "required_continuity_tags": [
+      "faction:grinder",
+      "location:port-district"
+    ],
+    "forbidden_continuity_tags": [
+      "continuity:forbidden"
+    ],
+    "duration_requirement": {
+      "minimum_seconds": 10,
+      "target_seconds": 12,
+      "maximum_seconds": 15,
+      "segment_allowed": true
+    },
+    "truth_states_allowed": [
+      "AUTHOR_DECLARED"
+    ],
+    "audio_requirement": {
+      "mode": "PROHIBITED",
+      "exact_dialogue": null,
+      "speaker_ids": [],
+      "rights_approval_required": true
+    },
+    "selection_mode": "FIXTURE_TEST",
+    "identity_requirements": {
+      "canonical_character_ids": [
+        "GRINDER_RUNNER_01"
+      ],
+      "canonical_faction_ids": [
+        "GRINDER"
+      ],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": [
+        "GRINDER_RUNNER_01"
+      ]
+    },
+    "rights_requirement": {
+      "production_use": "FILM_MASTER",
+      "derivative_edit_required": true,
+      "distribution_required": true
+    }
   },
   {
     "scene_id": "TEST_CHRYSANTHEUM_COVERT_ELEGANCE",
@@ -51,7 +91,47 @@
       "faction:chrysantheum",
       "location:veil-archive",
       "action:intelligence-review"
-    ]
+    ],
+    "required_continuity_tags": [
+      "faction:chrysantheum",
+      "location:veil-archive"
+    ],
+    "forbidden_continuity_tags": [
+      "continuity:forbidden"
+    ],
+    "duration_requirement": {
+      "minimum_seconds": 10,
+      "target_seconds": 12,
+      "maximum_seconds": 15,
+      "segment_allowed": true
+    },
+    "truth_states_allowed": [
+      "SOURCE_VERIFIED"
+    ],
+    "audio_requirement": {
+      "mode": "PROHIBITED",
+      "exact_dialogue": null,
+      "speaker_ids": [],
+      "rights_approval_required": true
+    },
+    "selection_mode": "FIXTURE_TEST",
+    "identity_requirements": {
+      "canonical_character_ids": [
+        "VEIL_OPERATIVE_01"
+      ],
+      "canonical_faction_ids": [
+        "CHRYSANTHEUM"
+      ],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": [
+        "VEIL_OPERATIVE_01"
+      ]
+    },
+    "rights_requirement": {
+      "production_use": "FILM_MASTER",
+      "derivative_edit_required": true,
+      "distribution_required": true
+    }
   },
   {
     "scene_id": "TEST_NETERU_DEEP_TIME_SIGNAL",
@@ -78,6 +158,46 @@
       "location:alkebulan-memory-chamber",
       "era:deep-time",
       "action:signal-reception"
-    ]
+    ],
+    "required_continuity_tags": [
+      "faction:neteru",
+      "location:alkebulan-memory-chamber"
+    ],
+    "forbidden_continuity_tags": [
+      "continuity:forbidden"
+    ],
+    "duration_requirement": {
+      "minimum_seconds": 10,
+      "target_seconds": 12,
+      "maximum_seconds": 15,
+      "segment_allowed": true
+    },
+    "truth_states_allowed": [
+      "METAVERSE_SYNTHESIS"
+    ],
+    "audio_requirement": {
+      "mode": "PROHIBITED",
+      "exact_dialogue": null,
+      "speaker_ids": [],
+      "rights_approval_required": true
+    },
+    "selection_mode": "FIXTURE_TEST",
+    "identity_requirements": {
+      "canonical_character_ids": [
+        "NTRU_PROTAGONIST"
+      ],
+      "canonical_faction_ids": [
+        "NETERU"
+      ],
+      "canonical_artifact_ids": [],
+      "continuity_locked_identity_ids": [
+        "NTRU_PROTAGONIST"
+      ]
+    },
+    "rights_requirement": {
+      "production_use": "FILM_MASTER",
+      "derivative_edit_required": true,
+      "distribution_required": true
+    }
   }
 ]

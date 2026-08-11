@@ -25,19 +25,25 @@ Output:
 
 An asset is excluded before scoring when any condition applies:
 
-1. its vault is unregistered, inaccessible, or quarantined;
-2. its schema record is invalid;
-3. the required canon source/status conflicts or is missing;
-4. its studio mode violates the immutable lane;
-5. a required character, faction, world, location, or era contradicts reviewed annotations;
-6. required continuity tags are absent or forbidden tags are present;
-7. duration/segment coverage cannot satisfy the edit requirement;
-8. truth state is disallowed for the scene;
-9. rights or intended-use eligibility is `INELIGIBLE`, `UNKNOWN`, or `REVIEW_REQUIRED` where approval is mandatory;
-10. the scene prohibits dialogue/audio and the asset cannot be cleanly used without it, or required audio is absent;
-11. the source reference contains secrets or cannot be resolved through an authorized vault session.
+1. its complete record fails `assets.schema.json`;
+2. its vault is not `MATCH_READY` for production, or fixture matching is not explicitly in `FIXTURE_TEST` mode;
+3. intended-use eligibility is not exactly `ELIGIBLE`;
+4. claim-level canon status conflicts or is missing;
+5. reviewed world, era, or location does not match the scene;
+6. studio mode violates the immutable lane;
+7. an explicitly required canonical character, faction, artifact, or continuity identity ID is absent;
+8. explicitly required continuity tags are absent or forbidden tags are present;
+9. an explicit duration/segment constraint cannot be satisfied;
+10. an explicit truth-state constraint disallows the asset;
+11. explicit audio/dialogue presence, exact text, speaker, or audio-rights requirements fail;
+12. the source reference is unknown, empty, secret-bearing, or inconsistent with normalized provider provenance;
+13. normalized final/master rights are unknown, restricted, incomplete, or incompatible with required production, edit, or distribution use.
+
+General character and faction relevance remains scored. Explicit canonical IDs are fail-closed hard gates and use reviewed IDs only; approximate names, style, and text similarity cannot establish identity.
 
 `CANON_GAP`, `CONTESTED_CANON`, and `PROVISIONAL_CANON` can match only when the scene explicitly permits the same status and the presentation requirements preserve its truth-state label.
+
+`REVIEW_SEARCH` has one narrow exception: a `VAULT_MANIFEST` record may pass an unresolved metadata gate when its normalized provenance explicitly names that field as unresolved. Known incompatible values still reject, source provenance must still pass, and the receipt reports `final_selection_eligible=false`. No unresolved exception applies to `FINAL_PRODUCTION`.
 
 ## Deterministic candidate score
 
@@ -57,37 +63,20 @@ score =
   + 0.03 * duration_fit
 ```
 
-Each dimension is `0.0–1.0` and must retain an explanation and evidence fields used. Missing reviewed metadata scores `0`, not a guessed similarity. Weights may be overridden by a scene requirement but must total `1.0` and be recorded in the match receipt.
+Each dimension is `0.0–1.0` and retains an explanation and the evidence fields used. Missing reviewed metadata scores `0`, not a guessed similarity. MVP weights are fixed, total `1.0`, and are recorded in every match receipt; per-scene overrides are not implemented.
 
 Semantic embeddings or multimodal similarity may propose candidates only as an optional discovery aid. They cannot bypass hard gates, establish identity/canon/rights, or write annotations without review.
 
 ## Match receipt
 
-```json
-{
-  "match_id": "uuid",
-  "scene_id": "EP0_001",
-  "asset_id": "provider-or-segment-id",
-  "vault_id": "b619c13c-83ba-4ea3-b85c-de9be41bd01b",
-  "hard_gate_result": "PASS",
-  "score": 0.0,
-  "dimension_scores": {},
-  "evidence": [],
-  "continuity_conflicts": [],
-  "canon_conflicts": [],
-  "missing_metadata": [],
-  "editorial_decision": "UNREVIEWED",
-  "generation_fallback": "PROHIBITED",
-  "created_at": "ISO-8601"
-}
-```
+`data/story/match-output.schema.json` defines the complete, versioned batch receipt. It preserves selected and rejected asset IDs, normalized provider/source references, all gate outcomes, scores, fixture state, rights eligibility, truth/canon state, continuity state, and the non-generation invariant. Rejections are evidence, not discarded counts.
 
 ## Episode 0 matching order
 
 For each `EP0_001–EP0_010` registry entry:
 
 1. compile its canon sources/statuses, studio mode, style lock, continuity, direction, action, duration, audio, and interaction requirements into a scene-requirement record;
-2. query only registered, enumerated, schema-valid existing assets;
+2. query only evidence-backed `MATCH_READY`, schema-valid existing assets for production selection;
 3. enforce studio, canon, truth, rights, and continuity gates;
 4. rank remaining full assets and segments;
 5. return `MATCH_FOUND`, `EDITORIAL_REVIEW_REQUIRED`, or `NO_EXISTING_MATCH`;

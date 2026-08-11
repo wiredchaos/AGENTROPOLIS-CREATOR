@@ -1,0 +1,9 @@
+{
+  "manifest_version": "1.0.0",
+  "project_id": "b619c13c-83ba-4ea3-b85c-de9be41bd01b",
+  "provider": "HIGGSFIELD",
+  "ingestion_method": "VAULT_MANIFEST",
+  "generation_fallback": "PROHIBITED",
+  "description": "Existing Higgsfield content manifest. Add only verified provider references; do not infer or fabricate assets.",
+  "assets": []
+}

@@ -47,6 +47,29 @@ function exactMatch(expected, actual) {
   return normalize(expected) === normalize(actual) ? 1 : 0;
 }
 
+function audioFit(requirement, audio) {
+  if (!requirement || ['OPTIONAL', 'REPLACEABLE_IN_EDIT'].includes(requirement.mode)) return 1;
+  return requirement.mode === 'REQUIRED' ? Number(audio?.present === true) : Number(audio?.present === false);
+}
+
+function availableDuration(asset) {
+  if (asset.segment) return asset.segment.end_seconds - asset.segment.start_seconds;
+  return asset.duration;
+}
+
+function durationFit(requirement, asset) {
+  if (!requirement) return 1;
+  const duration = availableDuration(asset);
+  if (typeof duration !== 'number') return 0;
+  if (duration === requirement.target_seconds) return 1;
+  const span = Math.max(
+    requirement.target_seconds - requirement.minimum_seconds,
+    requirement.maximum_seconds - requirement.target_seconds,
+    1,
+  );
+  return Math.max(0, 1 - Math.abs(duration - requirement.target_seconds) / span);
+}
+
 /** Deterministically score a candidate that has already passed hard gates. */
 export function scoreAsset(scene, asset) {
   const characters = requiredCoverage(scene.required_characters, asset.characters);
@@ -56,29 +79,47 @@ export function scoreAsset(scene, asset) {
   const action = textSimilarity(scene.action, asset.action);
   const camera = textSimilarity(scene.camera_language, asset.camera_language);
   const mood = textSimilarity(scene.mood, asset.mood);
+  const worldLocationEra =
+    (exactMatch(scene.world, asset.world?.id) || exactMatch(scene.world, asset.world?.label)) &&
+    (exactMatch(scene.location, asset.location?.id) || exactMatch(scene.location, asset.location?.label)) &&
+    (exactMatch(scene.era, asset.era?.id) || exactMatch(scene.era, asset.era?.label))
+      ? 1
+      : 0;
 
   const dimensions = {
     characters: { ...characters, weight: SCORE_WEIGHTS.characters },
     factions: { ...factions, weight: SCORE_WEIGHTS.factions },
-    continuity: { ...continuity, weight: SCORE_WEIGHTS.continuity },
-    studio_mode: {
-      score: exactMatch(scene.studio_mode, asset.studio_mode),
-      expected: scene.studio_mode,
-      actual: asset.studio_mode,
-      weight: SCORE_WEIGHTS.studio_mode,
+    world_location_era: {
+      score: worldLocationEra,
+      expected: `${scene.world} / ${scene.location} / ${scene.era}`,
+      actual: `${asset.world?.label} / ${asset.location?.label} / ${asset.era?.label}`,
+      weight: SCORE_WEIGHTS.world_location_era,
     },
-    visual_style: { ...visualStyle, weight: SCORE_WEIGHTS.visual_style },
     action: { ...action, weight: SCORE_WEIGHTS.action },
+    visual_style: { ...visualStyle, weight: SCORE_WEIGHTS.visual_style },
     camera_language: { ...camera, weight: SCORE_WEIGHTS.camera_language },
     mood: { ...mood, weight: SCORE_WEIGHTS.mood },
+    continuity: { ...continuity, weight: SCORE_WEIGHTS.continuity },
+    audio: {
+      score: audioFit(scene.audio_requirement, asset.dialogue_or_audio),
+      expected: scene.audio_requirement?.mode ?? 'UNCONSTRAINED',
+      actual: asset.dialogue_or_audio?.present === true ? 'PRESENT' : 'ABSENT',
+      weight: SCORE_WEIGHTS.audio,
+    },
+    duration: {
+      score: durationFit(scene.duration_requirement, asset),
+      expected: scene.duration_requirement?.target_seconds ?? 'UNCONSTRAINED',
+      actual: availableDuration(asset) ?? 'UNKNOWN',
+      weight: SCORE_WEIGHTS.duration,
+    },
   };
 
-  const score = Object.values(dimensions).reduce(
+  const totalScore = Object.values(dimensions).reduce(
     (total, dimension) => total + dimension.score * dimension.weight,
     0,
   );
 
-  const reasons = Object.entries(dimensions).map(([name, dimension]) => ({
+  const scoreDimensions = Object.entries(dimensions).map(([name, dimension]) => ({
     dimension: name,
     score: Number(dimension.score.toFixed(6)),
     weight: dimension.weight,
@@ -90,5 +131,5 @@ export function scoreAsset(scene, asset) {
     ...(dimension.actual ? { actual: dimension.actual } : {}),
   }));
 
-  return { score: Number(score.toFixed(6)), reasons };
+  return { total_score: Number(totalScore.toFixed(6)), score_dimensions: scoreDimensions };
 }

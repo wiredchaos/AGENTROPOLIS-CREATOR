@@ -130,7 +130,30 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "GRINDER_RUNNER_01",
+      "GRINDER"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-neuro-grinder-surveillance-001",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   },
   {
     "asset_id": "fixture-neuro-grinder-street-002",
@@ -260,7 +283,30 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "GRINDER_RUNNER_01",
+      "GRINDER"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-neuro-grinder-street-002",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   },
   {
     "asset_id": "fixture-chrysantheum-intel-001",
@@ -391,7 +437,30 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "VEIL_OPERATIVE_01",
+      "CHRYSANTHEUM"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-chrysantheum-intel-001",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   },
   {
     "asset_id": "fixture-chrysantheum-contested-002",
@@ -519,7 +588,30 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "VEIL_OPERATIVE_01",
+      "CHRYSANTHEUM"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-chrysantheum-contested-002",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   },
   {
     "asset_id": "fixture-neteru-memory-signal-001",
@@ -651,7 +743,30 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "NTRU_PROTAGONIST",
+      "NETERU"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-neteru-memory-signal-001",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   },
   {
     "asset_id": "fixture-neteru-memory-anime-002",
@@ -782,6 +897,29 @@
     },
     "annotation_provenance": [
       "FIXTURE-HUMAN-ANNOTATION"
-    ]
+    ],
+    "artifacts": [],
+    "continuity_identity_ids": [
+      "NTRU_PROTAGONIST",
+      "NETERU"
+    ],
+    "rights": {
+      "source_provider": "fixture",
+      "source_asset_reference_id": "fixture-neteru-memory-anime-002",
+      "rights_state": "APPROVED",
+      "allowed_production_uses": [
+        "EDITORIAL_REVIEW",
+        "FILM_MASTER",
+        "INTERACTIVE_BRANCH",
+        "ATV_EPISODE",
+        "KOL_SOCIAL",
+        "GAMING_DISTRICT"
+      ],
+      "derivative_edit_eligibility": "ELIGIBLE",
+      "distribution_eligibility": "ELIGIBLE",
+      "provenance_references": [
+        "FIXTURE-RIGHTS-APPROVAL"
+      ]
+    }
   }
 ]

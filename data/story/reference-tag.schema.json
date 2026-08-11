@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/story/reference-tag.schema.json",
+  "title": "Parsed Production Reference Tag",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["production_contract_version", "reference_type", "project_code", "reference_name", "reference_name_raw", "reference_name_encoding", "scene_scope", "version", "raw_tag"],
+  "properties": {
+    "production_contract_version": { "const": "1.0.0" },
+    "reference_type": { "enum": ["CHARACTER", "LOCATION", "PROP", "VEHICLE", "CREATURE", "AUDIO", "OTHER"] },
+    "project_code": { "type": "string", "pattern": "^[A-Za-z0-9]+$" },
+    "reference_name": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_%\\-]*$" },
+    "reference_name_raw": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_%\\-]*$" },
+    "reference_name_encoding": { "enum": ["PLAIN", "PERCENT_ESCAPED"] },
+    "scene_scope": { "type": ["string", "null"], "pattern": "^s[1-9][0-9]*(?:-[1-9][0-9]*)?$" },
+    "version": { "type": ["string", "null"], "pattern": "^v[1-9][0-9]*$" },
+    "raw_tag": { "type": "string", "pattern": "^@(char|loc|prop|veh|creature|audio|other)_[A-Za-z0-9]+_[A-Za-z0-9][A-Za-z0-9_%\\-]*$" }
+  }
+}

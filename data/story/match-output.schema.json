@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/story/match-output.schema.json",
+  "title": "Story Asset Matcher Batch Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "production_contract_version", "matcher_version", "spec_version", "fixture_data", "generated_media",
+    "credits_spent", "generation_fallback", "source_media_duplicated",
+    "reuse_map", "results"
+  ],
+  "properties": {
+    "production_contract_version": { "const": "1.0.0" },
+    "matcher_version": { "type": "string", "minLength": 1 },
+    "spec_version": { "type": "string", "minLength": 1 },
+    "fixture_data": { "type": "boolean" },
+    "generated_media": { "const": false },
+    "credits_spent": { "const": 0 },
+    "generation_fallback": { "const": "PROHIBITED" },
+    "source_media_duplicated": { "const": false },
+    "reuse_map": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/stringArray" }
+    },
+    "results": { "type": "array", "items": { "$ref": "#/$defs/sceneResult" } }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "sceneResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scene_id", "selection_mode", "output_use", "result",
+        "selected_asset_ids", "matches", "rejected", "generation_fallback"
+      ],
+      "properties": {
+        "scene_id": { "type": "string", "minLength": 1 },
+        "selection_mode": { "enum": ["REVIEW_SEARCH", "FINAL_PRODUCTION", "FIXTURE_TEST"] },
+        "output_use": { "enum": ["INTERACTIVE_BRANCH", "ATV_EPISODE", "KOL_SOCIAL", "GAMING_DISTRICT"] },
+        "result": { "enum": ["MATCH_FOUND", "NO_EXISTING_MATCH"] },
+        "selected_asset_ids": { "$ref": "#/$defs/stringArray" },
+        "matches": { "type": "array", "items": { "$ref": "#/$defs/match" } },
+        "rejected": { "type": "array", "items": { "$ref": "#/$defs/rejection" } },
+        "generation_fallback": { "const": "PROHIBITED" }
+      }
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "vault_id", "source_provider", "source_reference_id",
+        "source_reference", "fixture", "rights_eligibility", "truth_canon_state",
+        "continuity_state", "reused_source_media", "total_score",
+        "score_dimensions", "hard_gates", "rank"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "minLength": 1 },
+        "vault_id": { "type": "string", "format": "uuid" },
+        "source_provider": { "type": "string", "minLength": 1 },
+        "source_reference_id": { "type": "string", "minLength": 1 },
+        "source_reference": { "$ref": "#/$defs/sourceReference" },
+        "fixture": { "type": "boolean" },
+        "rights_eligibility": { "$ref": "#/$defs/rightsEligibility" },
+        "truth_canon_state": { "$ref": "#/$defs/truthCanonState" },
+        "continuity_state": { "$ref": "#/$defs/continuityState" },
+        "reused_source_media": { "type": "boolean" },
+        "total_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "score_dimensions": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/scoreDimension" } },
+        "hard_gates": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/hardGate" } },
+        "rank": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "sourceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": { "type": "string", "minLength": 1 },
+        "value": { "type": "string", "minLength": 1 },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "rightsEligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_consistent", "rights_state", "production_use_allowed",
+        "derivative_edit_eligible", "distribution_eligible", "policy_eligible",
+        "final_selection_eligible", "gate_pass"
+      ],
+      "properties": {
+        "source_consistent": { "type": "boolean" },
+        "rights_state": { "enum": ["APPROVED", "RESTRICTED", "REVIEW_REQUIRED", "UNKNOWN"] },
+        "production_use_allowed": { "type": "boolean" },
+        "derivative_edit_eligible": { "type": "boolean" },
+        "distribution_eligible": { "type": "boolean" },
+        "policy_eligible": { "type": "boolean" },
+        "final_selection_eligible": { "type": "boolean" },
+        "gate_pass": { "const": true }
+      }
+    },
+    "truthCanonState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["truth_state", "canon_status", "canon_sources"],
+      "properties": {
+        "truth_state": { "type": "string", "minLength": 1 },
+        "canon_status": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "canon_sources": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "continuityState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present_tags", "required_tags", "forbidden_tags", "continuity_identity_ids"],
+      "properties": {
+        "present_tags": { "$ref": "#/$defs/stringArray" },
+        "required_tags": { "$ref": "#/$defs/stringArray" },
+        "forbidden_tags": { "$ref": "#/$defs/stringArray" },
+        "continuity_identity_ids": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "scoreDimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension", "score", "weight", "contribution"],
+      "properties": {
+        "dimension": { "type": "string", "minLength": 1 },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "contribution": { "type": "number", "minimum": 0, "maximum": 1 },
+        "matched": { "$ref": "#/$defs/stringArray" },
+        "missing": { "$ref": "#/$defs/stringArray" },
+        "common_tokens": { "$ref": "#/$defs/stringArray" },
+        "expected": { "type": ["string", "number"] },
+        "actual": { "type": ["string", "number"] }
+      }
+    },
+    "hardGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "pass", "explanation"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "pass": { "const": true },
+        "explanation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "rejection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_id", "vault_id", "source_provider", "source_reference_id",
+        "fixture", "failures"
+      ],
+      "properties": {
+        "asset_id": { "type": "string", "minLength": 1 },
+        "vault_id": { "type": ["string", "null"] },
+        "source_provider": { "type": ["string", "null"] },
+        "source_reference_id": { "type": ["string", "null"] },
+        "fixture": { "type": "boolean" },
+        "failures": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/failure" } }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "explanation"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "explanation": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

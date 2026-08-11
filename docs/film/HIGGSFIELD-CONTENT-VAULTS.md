@@ -4,6 +4,8 @@
 **Generation:** disabled
 **Credit spending:** prohibited
 
+Offline user-controlled manifest ingestion is defined in [`HIGGSFIELD-VAULT-MANIFESTS.md`](HIGGSFIELD-VAULT-MANIFESTS.md). It complements, and never impersonates, a future official read-only provider adapter.
+
 ## Course-correction lock
 
 Higgsfield projects are content vaults containing media that may already exist. The film system inventories, classifies, and matches that existing media to story requirements. It does not treat a vault as a prompt queue and must not call image-generation, video-generation, image-to-video, character-training, retry, variation, or enhancement endpoints.
@@ -26,11 +28,13 @@ never:
 
 ## Registered vault
 
-| Vault ID | Provider | Registration state | Inspection state | Asset claims |
-| --- | --- | --- | --- | --- |
-| `b619c13c-83ba-4ea3-b85c-de9be41bd01b` | Higgsfield | `REGISTERED` | `UNINSPECTED_AUTHENTICATION_UNAVAILABLE` | None. Asset count, titles, types, URLs, characters, and contents remain unknown. |
+| Vault ID | Provider | Registration | Readiness | Inspection state | Asset claims |
+| --- | --- | --- | --- | --- | --- |
+| `b619c13c-83ba-4ea3-b85c-de9be41bd01b` | Higgsfield | `REGISTERED` | `REGISTERED` | `UNINSPECTED_AUTHENTICATION_UNAVAILABLE` | None. Asset count, titles, types, URLs, characters, and contents remain unknown. |
 
-The machine-readable record lives in `data/higgsfield/vaults.json`. Registering the project identifier does not prove ownership, accessibility, contents, asset count, or rights.
+The real vault is `REGISTERED`, not `MATCH_READY`, and cannot participate in final production matching. The registry also contains reserved vault `00000000-0000-4000-8000-000000000001` with provider `fixture`, `readiness_status=MATCH_READY`, and `fixture_mode=true`. Its six metadata-only records are synthetic matcher inputs, retain `provider_metadata.fixture=true`, and are accepted only for `FIXTURE_TEST` requests.
+
+The machine-readable records live in `data/higgsfield/vaults.json`. Registering a project identifier does not prove ownership, accessibility, contents, asset count, or rights.
 
 ## Inspection availability receipt
 
@@ -79,6 +83,8 @@ Never allowed without a separate future authorization:
 - infer canon, identity, rights, or eligibility from filenames alone.
 
 ## Vault lifecycle
+
+`REGISTERED` means the vault configuration is known. `MATCH_READY` requires evidence that enumeration, normalization, and schema validation completed, indexed assets are available, and at least one readiness receipt is recorded. Production matching requires this evidence-backed state; registration alone permits only metadata/review workflows. Fixture readiness is isolated by `fixture_mode=true` and never upgrades a real vault or claims final-production eligibility.
 
 ```text
 REGISTERED

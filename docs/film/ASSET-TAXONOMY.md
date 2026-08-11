@@ -7,14 +7,15 @@ The canonical machine contract is `data/higgsfield/assets.schema.json`. One reco
 | Field | Rule |
 | --- | --- |
 | `asset_id` | Provider asset ID or collision-resistant local ID. Never derived solely from a mutable title. |
-| `vault_id` | Registered vault UUID; Episode 0 currently recognizes `b619c13c-83ba-4ea3-b85c-de9be41bd01b`. |
+| `vault_id` | Registry UUID. Production assets require an evidence-backed `MATCH_READY` vault; the reserved fixture UUID is test-only. |
 | `media_type` | Controlled technical type: image, video, audio, composite, or unknown. |
 | `source_url/reference` | Sanitized stable provider reference. Signed secrets and expiring query strings are prohibited. |
 | `duration` | Seconds for timed media; `null` for still images or when uninspected. |
+| `rights` | Normalized source/provider identity, production-use rights, edit eligibility, distribution eligibility, state, and provenance receipts. |
 
 ## Story annotations
 
-`characters`, `factions`, `world`, `location`, `era`, `action`, and `mood` describe observable or canon-reviewed relevance. Unknown is not empty evidence: arrays may be empty and scalar fields may be `null`, but reviewers must not guess from a title or visual stereotype.
+`characters`, `factions`, `artifacts`, `world`, `location`, `era`, `action`, and `mood` describe observable or canon-reviewed relevance. `continuity_identity_ids` records reviewed identities that continuity may lock. Unknown is not empty evidence: arrays may be empty and scalar fields may be `null`, but reviewers must not guess from a title or visual stereotype.
 
 `visual_style` records observable treatment. `camera_language` records framing, lens impression only when supportable, height, movement, focal target, cut behavior, and confidence. It must not claim a physical focal length from appearance alone.
 
@@ -70,6 +71,10 @@ Each eligibility field is one of `ELIGIBLE`, `INELIGIBLE`, `REVIEW_REQUIRED`, or
 - `gaming_district_eligibility`
 
 Visual similarity alone cannot establish eligibility. KOL/social requires rights, truth-state labeling, faction-lens review, likeness/voice review, and release approval. Gaming requires implementation and interaction rights. ATV requires editorial and broadcast approval.
+
+## Rights and final selection
+
+`rights.source_provider` and `rights.source_asset_reference_id` must agree with the registered vault and stable source reference. `rights_state` is `APPROVED`, `RESTRICTED`, `REVIEW_REQUIRED`, or `UNKNOWN`; the last three cannot pass final/master selection. Allowed production uses, derivative/edit eligibility, distribution eligibility, and provenance references are recorded separately. Unknown-rights assets may appear only in `REVIEW_SEARCH`, clearly marked `final_selection_eligible=false`.
 
 ## Segment records
 

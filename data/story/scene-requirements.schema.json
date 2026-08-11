@@ -1,69 +1,67 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://agentropolis.local/schemas/story/scene-requirements.schema.json",
-  "title": "Story Scene Existing-Asset Requirements",
+  "title": "Story Scene Existing-Asset Matcher Request",
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "scene_id", "canon_requirements", "studio_mode", "style_lock",
-    "required_content", "continuity", "direction", "duration",
-    "audio_requirement", "truth_states_allowed", "eligibility_required",
-    "matching_weights", "generation_fallback"
+    "scene_id", "required_characters", "required_factions", "world", "era",
+    "location", "studio_mode", "visual_style", "camera_language", "action",
+    "mood", "canon_status_requirement", "output_use", "selection_mode",
+    "identity_requirements", "rights_requirement", "continuity_tags"
   ],
   "properties": {
     "scene_id": { "type": "string", "minLength": 1 },
-    "canon_requirements": {
+    "required_characters": { "$ref": "#/$defs/stringArray" },
+    "required_factions": { "$ref": "#/$defs/stringArray" },
+    "world": { "type": "string", "minLength": 1 },
+    "era": { "type": "string", "minLength": 1 },
+    "location": { "type": "string", "minLength": 1 },
+    "studio_mode": {
+      "enum": ["789_STUDIOS", "NTRU_STUDIOS", "GRINDER_NEURO_TOKYO_2090", "ATVNETWORK_INTERFACE", "UNASSIGNED"]
+    },
+    "visual_style": { "type": "string" },
+    "camera_language": { "type": "string" },
+    "action": { "type": "string" },
+    "mood": { "type": "string" },
+    "canon_status_requirement": {
       "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["claim_id", "allowed_statuses", "required"],
-        "properties": {
-          "claim_id": { "type": "string", "minLength": 1 },
-          "allowed_statuses": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/canonStatus" }, "uniqueItems": true },
-          "required": { "type": "boolean" }
-        }
-      }
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/canonStatus" },
+      "uniqueItems": true
     },
-    "studio_mode": { "enum": ["789_STUDIOS", "NTRU_STUDIOS", "GRINDER_NEURO_TOKYO_2090", "ATVNETWORK_INTERFACE", "UNASSIGNED"] },
-    "style_lock": { "type": "string", "minLength": 1 },
-    "required_content": {
+    "output_use": {
+      "enum": ["INTERACTIVE_BRANCH", "ATV_EPISODE", "KOL_SOCIAL", "GAMING_DISTRICT"]
+    },
+    "selection_mode": { "enum": ["REVIEW_SEARCH", "FINAL_PRODUCTION", "FIXTURE_TEST"] },
+    "identity_requirements": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["characters", "factions", "world", "location", "era", "action", "mood"],
+      "required": [
+        "canonical_character_ids", "canonical_faction_ids",
+        "canonical_artifact_ids", "continuity_locked_identity_ids"
+      ],
       "properties": {
-        "characters": { "$ref": "#/$defs/stringCriteria" },
-        "factions": { "$ref": "#/$defs/stringCriteria" },
-        "world": { "$ref": "#/$defs/stringCriteria" },
-        "location": { "$ref": "#/$defs/stringCriteria" },
-        "era": { "$ref": "#/$defs/stringCriteria" },
-        "action": { "$ref": "#/$defs/stringCriteria" },
-        "mood": { "$ref": "#/$defs/stringCriteria" }
+        "canonical_character_ids": { "$ref": "#/$defs/stringArray" },
+        "canonical_faction_ids": { "$ref": "#/$defs/stringArray" },
+        "canonical_artifact_ids": { "$ref": "#/$defs/stringArray" },
+        "continuity_locked_identity_ids": { "$ref": "#/$defs/stringArray" }
       }
     },
-    "continuity": {
+    "rights_requirement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["required_tags", "forbidden_tags", "previous_scene_id", "next_scene_id"],
+      "required": ["production_use", "derivative_edit_required", "distribution_required"],
       "properties": {
-        "required_tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "forbidden_tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "previous_scene_id": { "type": ["string", "null"] },
-        "next_scene_id": { "type": ["string", "null"] }
+        "production_use": { "enum": ["EDITORIAL_REVIEW", "FILM_MASTER", "INTERACTIVE_BRANCH", "ATV_EPISODE", "KOL_SOCIAL", "GAMING_DISTRICT"] },
+        "derivative_edit_required": { "type": "boolean" },
+        "distribution_required": { "type": "boolean" }
       }
     },
-    "direction": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["camera_language", "blocking", "focal_target", "edit_function"],
-      "properties": {
-        "camera_language": { "type": "array", "items": { "type": "string" } },
-        "blocking": { "type": "array", "items": { "type": "string" } },
-        "focal_target": { "type": ["string", "null"] },
-        "edit_function": { "type": "string", "minLength": 1 }
-      }
-    },
-    "duration": {
+    "continuity_tags": { "$ref": "#/$defs/stringArray" },
+    "required_continuity_tags": { "$ref": "#/$defs/stringArray" },
+    "forbidden_continuity_tags": { "$ref": "#/$defs/stringArray" },
+    "duration_requirement": {
       "type": "object",
       "additionalProperties": false,
       "required": ["minimum_seconds", "target_seconds", "maximum_seconds", "segment_allowed"],
@@ -74,6 +72,14 @@
         "segment_allowed": { "type": "boolean" }
       }
     },
+    "truth_states_allowed": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": ["SOURCE_VERIFIED", "AUTHOR_DECLARED", "PROVISIONAL", "CONTESTED", "METAVERSE_SYNTHESIS", "CANON_GAP", "UNREVIEWED"]
+      },
+      "uniqueItems": true
+    },
     "audio_requirement": {
       "type": "object",
       "additionalProperties": false,
@@ -81,58 +87,19 @@
       "properties": {
         "mode": { "enum": ["REQUIRED", "OPTIONAL", "PROHIBITED", "REPLACEABLE_IN_EDIT"] },
         "exact_dialogue": { "type": ["string", "null"] },
-        "speaker_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "speaker_ids": { "$ref": "#/$defs/stringArray" },
         "rights_approval_required": { "type": "boolean" }
       }
-    },
-    "truth_states_allowed": {
-      "type": "array",
-      "minItems": 1,
-      "items": { "enum": ["SOURCE_VERIFIED", "AUTHOR_DECLARED", "PROVISIONAL", "CONTESTED", "METAVERSE_SYNTHESIS", "CANON_GAP", "UNREVIEWED"] },
-      "uniqueItems": true
-    },
-    "eligibility_required": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["interactive_branch", "atv_episode", "kol_social", "gaming_district"],
-      "properties": {
-        "interactive_branch": { "type": "boolean" },
-        "atv_episode": { "type": "boolean" },
-        "kol_social": { "type": "boolean" },
-        "gaming_district": { "type": "boolean" }
-      }
-    },
-    "matching_weights": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["character", "faction", "world_location_era", "action", "visual_style", "camera_language", "mood", "continuity", "audio", "duration"],
-      "properties": {
-        "character": { "$ref": "#/$defs/weight" },
-        "faction": { "$ref": "#/$defs/weight" },
-        "world_location_era": { "$ref": "#/$defs/weight" },
-        "action": { "$ref": "#/$defs/weight" },
-        "visual_style": { "$ref": "#/$defs/weight" },
-        "camera_language": { "$ref": "#/$defs/weight" },
-        "mood": { "$ref": "#/$defs/weight" },
-        "continuity": { "$ref": "#/$defs/weight" },
-        "audio": { "$ref": "#/$defs/weight" },
-        "duration": { "$ref": "#/$defs/weight" }
-      }
-    },
-    "generation_fallback": { "const": "PROHIBITED" }
+    }
   },
   "$defs": {
-    "canonStatus": { "enum": ["SOURCE_CANON", "AUTHOR_DECLARED_CANON", "PROVISIONAL_CANON", "CONTESTED_CANON", "METAVERSE_SYNTHESIS", "CANON_GAP"] },
-    "weight": { "type": "number", "minimum": 0, "maximum": 1 },
-    "stringCriteria": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["required", "preferred", "forbidden"],
-      "properties": {
-        "required": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "preferred": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "forbidden": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
-      }
+    "canonStatus": {
+      "enum": ["SOURCE_CANON", "AUTHOR_DECLARED_CANON", "PROVISIONAL_CANON", "CONTESTED_CANON", "METAVERSE_SYNTHESIS", "CANON_GAP"]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
     }
   }
 }

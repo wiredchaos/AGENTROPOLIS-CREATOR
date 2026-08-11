@@ -1,12 +1,8 @@
-/** Canon statuses accepted by the existing asset taxonomy. */
-export const CANON_STATUSES = Object.freeze([
-  'SOURCE_CANON',
-  'AUTHOR_DECLARED_CANON',
-  'PROVISIONAL_CANON',
-  'CONTESTED_CANON',
-  'METAVERSE_SYNTHESIS',
-  'CANON_GAP',
-]);
+import sceneSchema from '../../data/story/scene-requirements.schema.json' with { type: 'json' };
+import { validateAgainstSchema } from './schema-validator.js';
+
+export const MATCHER_VERSION = '0.2.0';
+export const SPEC_VERSION = '1.0.0';
 
 /** Output uses that map to explicit eligibility fields in the asset schema. */
 export const OUTPUT_USE_ELIGIBILITY_FIELDS = Object.freeze({
@@ -17,89 +13,32 @@ export const OUTPUT_USE_ELIGIBILITY_FIELDS = Object.freeze({
 });
 
 export const SCORE_WEIGHTS = Object.freeze({
-  characters: 0.25,
-  factions: 0.2,
-  continuity: 0.2,
-  studio_mode: 0.12,
-  visual_style: 0.08,
-  action: 0.06,
-  camera_language: 0.05,
-  mood: 0.04,
+  characters: 0.2,
+  factions: 0.12,
+  world_location_era: 0.13,
+  action: 0.12,
+  visual_style: 0.1,
+  camera_language: 0.1,
+  mood: 0.08,
+  continuity: 0.08,
+  audio: 0.04,
+  duration: 0.03,
 });
 
-export const REQUIRED_SCENE_FIELDS = Object.freeze([
-  'scene_id',
-  'required_characters',
-  'required_factions',
-  'world',
-  'era',
-  'location',
-  'studio_mode',
-  'visual_style',
-  'camera_language',
-  'action',
-  'mood',
-  'canon_status_requirement',
-  'output_use',
-  'continuity_tags',
-]);
-
-function assertStringArray(value, field) {
-  if (!Array.isArray(value) || value.some((item) => typeof item !== 'string')) {
-    throw new TypeError(`${field} must be an array of strings.`);
-  }
-}
-
-/**
- * Validate the intentionally small matcher request surface.
- * This complements, rather than replaces, scene-requirements.schema.json.
- */
+/** Validate the matcher request against its canonical checked-in schema. */
 export function assertSceneRequest(scene) {
-  if (!scene || typeof scene !== 'object' || Array.isArray(scene)) {
-    throw new TypeError('Scene request must be an object.');
-  }
+  const errors = validateAgainstSchema(scene, sceneSchema);
+  if (errors.length > 0) throw new TypeError(`Invalid scene request: ${errors.join(' ')}`);
 
-  const missing = REQUIRED_SCENE_FIELDS.filter(
-    (field) => !Object.prototype.hasOwnProperty.call(scene, field),
-  );
-  if (missing.length > 0) {
-    throw new TypeError(`Scene request is missing: ${missing.join(', ')}.`);
-  }
-
-  for (const field of ['required_characters', 'required_factions', 'continuity_tags']) {
-    assertStringArray(scene[field], field);
-  }
-
-  const canonStatuses = Array.isArray(scene.canon_status_requirement)
-    ? scene.canon_status_requirement
-    : [scene.canon_status_requirement];
+  const duration = scene.duration_requirement;
   if (
-    canonStatuses.length === 0 ||
-    canonStatuses.some((status) => !CANON_STATUSES.includes(status))
+    duration &&
+    !(duration.minimum_seconds <= duration.target_seconds &&
+      duration.target_seconds <= duration.maximum_seconds)
   ) {
-    throw new TypeError('canon_status_requirement contains an unsupported status.');
-  }
-
-  if (!OUTPUT_USE_ELIGIBILITY_FIELDS[scene.output_use]) {
     throw new TypeError(
-      `output_use must be one of: ${Object.keys(OUTPUT_USE_ELIGIBILITY_FIELDS).join(', ')}.`,
+      'Invalid scene request: duration must satisfy minimum_seconds <= target_seconds <= maximum_seconds.',
     );
-  }
-
-  for (const field of [
-    'scene_id',
-    'world',
-    'era',
-    'location',
-    'studio_mode',
-    'visual_style',
-    'camera_language',
-    'action',
-    'mood',
-  ]) {
-    if (typeof scene[field] !== 'string') {
-      throw new TypeError(`${field} must be a string.`);
-    }
   }
 }
 

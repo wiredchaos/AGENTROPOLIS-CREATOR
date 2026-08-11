@@ -6,11 +6,12 @@
   "additionalProperties": false,
   "required": [
     "asset_id", "vault_id", "media_type", "source_url/reference", "duration",
-    "characters", "factions", "world", "location", "era", "canon_source",
+    "characters", "factions", "artifacts", "continuity_identity_ids",
+    "world", "location", "era", "canon_source",
     "canon_status", "studio_mode", "visual_style", "camera_language", "action",
     "mood", "dialogue_or_audio", "continuity_tags", "truth_state",
     "interactive_branch_eligibility", "atv_episode_eligibility",
-    "kol_social_eligibility", "gaming_district_eligibility"
+    "kol_social_eligibility", "gaming_district_eligibility", "rights"
   ],
   "properties": {
     "asset_id": { "type": "string", "minLength": 1 },
@@ -39,6 +40,8 @@
     },
     "characters": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
     "factions": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
+    "artifacts": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
+    "continuity_identity_ids": { "$ref": "#/$defs/stringArray" },
     "world": { "$ref": "#/$defs/nullableAnnotation" },
     "location": { "$ref": "#/$defs/nullableAnnotation" },
     "era": { "$ref": "#/$defs/nullableAnnotation" },
@@ -72,10 +75,43 @@
     "atv_episode_eligibility": { "$ref": "#/$defs/eligibility" },
     "kol_social_eligibility": { "$ref": "#/$defs/eligibility" },
     "gaming_district_eligibility": { "$ref": "#/$defs/eligibility" },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_provider", "source_asset_reference_id", "rights_state",
+        "allowed_production_uses", "derivative_edit_eligibility",
+        "distribution_eligibility", "provenance_references"
+      ],
+      "properties": {
+        "source_provider": { "type": "string", "minLength": 1 },
+        "source_asset_reference_id": { "type": "string", "minLength": 1 },
+        "rights_state": { "enum": ["APPROVED", "RESTRICTED", "REVIEW_REQUIRED", "UNKNOWN"] },
+        "allowed_production_uses": {
+          "type": "array",
+          "items": { "enum": ["EDITORIAL_REVIEW", "FILM_MASTER", "INTERACTIVE_BRANCH", "ATV_EPISODE", "KOL_SOCIAL", "GAMING_DISTRICT"] },
+          "uniqueItems": true
+        },
+        "derivative_edit_eligibility": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN", "NOT_APPLICABLE"] },
+        "distribution_eligibility": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN", "NOT_APPLICABLE"] },
+        "provenance_references": { "$ref": "#/$defs/nonEmptyStringArray" }
+      }
+    },
     "provider_metadata": { "type": "object", "additionalProperties": true },
     "annotation_provenance": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
   },
   "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
     "canonStatus": {
       "enum": ["SOURCE_CANON", "AUTHOR_DECLARED_CANON", "PROVISIONAL_CANON", "CONTESTED_CANON", "METAVERSE_SYNTHESIS", "CANON_GAP"]
     },

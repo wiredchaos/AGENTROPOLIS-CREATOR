@@ -1,32 +1,78 @@
 {
+  "production_contract_version": "1.0.0",
+  "matcher_version": "0.2.0",
+  "spec_version": "1.0.0",
   "fixture_data": true,
   "generated_media": false,
   "credits_spent": 0,
-  "generation_fallback": "PROHIBITED",
-  "source_media_duplicated": false,
-  "reuse_map": {},
   "results": [
     {
       "scene_id": "TEST_NEURO_GRINDER_SURVEILLANCE",
+      "selection_mode": "FIXTURE_TEST",
       "output_use": "ATV_EPISODE",
       "result": "MATCH_FOUND",
+      "selected_asset_ids": [
+        "fixture-neuro-grinder-surveillance-001"
+      ],
       "matches": [
         {
           "asset_id": "fixture-neuro-grinder-surveillance-001",
           "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-surveillance-001",
           "source_reference": {
             "kind": "PROVIDER_ASSET_ID",
             "value": "fixture-neuro-grinder-surveillance-001",
             "contains_secrets": false
           },
+          "fixture": true,
+          "rights_eligibility": {
+            "source_consistent": true,
+            "rights_state": "APPROVED",
+            "production_use_allowed": true,
+            "derivative_edit_eligible": true,
+            "distribution_eligible": true,
+            "policy_eligible": true,
+            "final_selection_eligible": false,
+            "gate_pass": true
+          },
+          "truth_canon_state": {
+            "truth_state": "AUTHOR_DECLARED",
+            "canon_status": {
+              "FIXTURE:fixture-neuro-grinder-surveillance-001": "AUTHOR_DECLARED_CANON"
+            },
+            "canon_sources": [
+              "FIXTURE:fixture-neuro-grinder-surveillance-001"
+            ]
+          },
+          "continuity_state": {
+            "present_tags": [
+              "faction:grinder",
+              "location:port-district",
+              "era:2090",
+              "weather:rain",
+              "action:reliquary-transit"
+            ],
+            "required_tags": [
+              "faction:grinder",
+              "location:port-district"
+            ],
+            "forbidden_tags": [
+              "continuity:forbidden"
+            ],
+            "continuity_identity_ids": [
+              "GRINDER_RUNNER_01",
+              "GRINDER"
+            ]
+          },
           "reused_source_media": false,
-          "score": 1,
-          "reasons": [
+          "total_score": 1,
+          "score_dimensions": [
             {
               "dimension": "characters",
               "score": 1,
-              "weight": 0.25,
-              "contribution": 0.25,
+              "weight": 0.2,
+              "contribution": 0.2,
               "matched": [
                 "GRINDER_RUNNER_01"
               ],
@@ -35,53 +81,26 @@
             {
               "dimension": "factions",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
+              "weight": 0.12,
+              "contribution": 0.12,
               "matched": [
                 "GRINDER"
               ],
               "missing": []
             },
             {
-              "dimension": "continuity",
+              "dimension": "world_location_era",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
-              "matched": [
-                "faction:grinder",
-                "location:port-district",
-                "era:2090",
-                "weather:rain",
-                "action:reliquary-transit"
-              ],
-              "missing": []
-            },
-            {
-              "dimension": "studio_mode",
-              "score": 1,
-              "weight": 0.12,
-              "contribution": 0.12,
-              "expected": "GRINDER_NEURO_TOKYO_2090",
-              "actual": "GRINDER_NEURO_TOKYO_2090"
-            },
-            {
-              "dimension": "visual_style",
-              "score": 1,
-              "weight": 0.08,
-              "contribution": 0.08,
-              "common_tokens": [
-                "rain",
-                "cyberpunk",
-                "industrial",
-                "port",
-                "surveillance"
-              ]
+              "weight": 0.13,
+              "contribution": 0.13,
+              "expected": "NEURO TOKYO 2090 / PORT DISTRICT / 2090",
+              "actual": "NEURO TOKYO 2090 / PORT DISTRICT / 2090"
             },
             {
               "dimension": "action",
               "score": 1,
-              "weight": 0.06,
-              "contribution": 0.06,
+              "weight": 0.12,
+              "contribution": 0.12,
               "common_tokens": [
                 "runner",
                 "transports",
@@ -91,10 +110,23 @@
               ]
             },
             {
+              "dimension": "visual_style",
+              "score": 1,
+              "weight": 0.1,
+              "contribution": 0.1,
+              "common_tokens": [
+                "rain",
+                "cyberpunk",
+                "industrial",
+                "port",
+                "surveillance"
+              ]
+            },
+            {
               "dimension": "camera_language",
               "score": 1,
-              "weight": 0.05,
-              "contribution": 0.05,
+              "weight": 0.1,
+              "contribution": 0.1,
               "common_tokens": [
                 "high",
                 "angle",
@@ -106,64 +138,367 @@
             {
               "dimension": "mood",
               "score": 1,
-              "weight": 0.04,
-              "contribution": 0.04,
+              "weight": 0.08,
+              "contribution": 0.08,
               "common_tokens": [
                 "surveillance",
                 "tension",
                 "controlled",
                 "danger"
               ]
+            },
+            {
+              "dimension": "continuity",
+              "score": 1,
+              "weight": 0.08,
+              "contribution": 0.08,
+              "matched": [
+                "faction:grinder",
+                "location:port-district",
+                "era:2090",
+                "weather:rain",
+                "action:reliquary-transit"
+              ],
+              "missing": []
+            },
+            {
+              "dimension": "audio",
+              "score": 1,
+              "weight": 0.04,
+              "contribution": 0.04,
+              "expected": "PROHIBITED",
+              "actual": "ABSENT"
+            },
+            {
+              "dimension": "duration",
+              "score": 1,
+              "weight": 0.03,
+              "contribution": 0.03,
+              "expected": 12,
+              "actual": 12
             }
           ],
           "hard_gates": [
             {
+              "code": "VAULT_READINESS",
+              "pass": true,
+              "explanation": "selection_mode=FIXTURE_TEST; registration=REGISTERED; readiness=MATCH_READY; readiness_proven=true; fixture_mode=true."
+            },
+            {
+              "code": "OUTPUT_USE",
+              "pass": true,
+              "explanation": "ATV_EPISODE maps to atv_episode_eligibility=ELIGIBLE."
+            },
+            {
               "code": "CANON_STATUS",
+              "pass": true,
               "explanation": "Asset statuses [AUTHOR_DECLARED_CANON] must all be allowed."
             },
             {
               "code": "WORLD",
+              "pass": true,
               "explanation": "Required world “NEURO TOKYO 2090”; asset world “NEURO TOKYO 2090”."
             },
             {
               "code": "ERA",
+              "pass": true,
               "explanation": "Required era “2090”; asset era “2090”."
             },
             {
               "code": "LOCATION",
+              "pass": true,
               "explanation": "Required location “PORT DISTRICT”; asset location “PORT DISTRICT”."
             },
             {
-              "code": "OUTPUT_USE",
-              "explanation": "ATV_EPISODE maps to atv_episode_eligibility=ELIGIBLE."
+              "code": "STUDIO_MODE",
+              "pass": true,
+              "explanation": "Required studio mode GRINDER_NEURO_TOKYO_2090; asset studio mode GRINDER_NEURO_TOKYO_2090."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "pass": true,
+              "explanation": "Missing canonical identities []."
+            },
+            {
+              "code": "CONTINUITY",
+              "pass": true,
+              "explanation": "Missing required tags []; present forbidden tags []."
+            },
+            {
+              "code": "DURATION",
+              "pass": true,
+              "explanation": "Available duration 12s must be within 10-15s; segment_allowed=true."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "pass": true,
+              "explanation": "Truth state AUTHOR_DECLARED must be one of [AUTHOR_DECLARED]."
+            },
+            {
+              "code": "AUDIO",
+              "pass": true,
+              "explanation": "Required mode=PROHIBITED, exact dialogue=false, speakers=[], rights approval=true."
+            },
+            {
+              "code": "SOURCE_PROVENANCE",
+              "pass": true,
+              "explanation": "Source kind=PROVIDER_ASSET_ID, stable value=true, contains_secrets=false, fixture provenance consistent=true."
+            },
+            {
+              "code": "RIGHTS_ELIGIBILITY",
+              "pass": true,
+              "explanation": "rights_state=APPROVED; source_consistent=true; production_use_allowed=true; derivative_edit_eligible=true; distribution_eligible=true; policy_eligible=true; final_selection_eligible=false."
             }
           ],
           "rank": 1
         }
       ],
-      "rejected_count": 5
+      "rejected": [
+        {
+          "asset_id": "fixture-neuro-grinder-street-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-street-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "OUTPUT_USE",
+              "explanation": "ATV_EPISODE maps to atv_episode_eligibility=REVIEW_REQUIRED."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-chrysantheum-intel-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-intel-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [SOURCE_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NEURO TOKYO 2090”; asset world “CHRYSANTHEUM”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “2090”; asset era “YASUKE LEGACY ERA”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “PORT DISTRICT”; asset location “VEIL ARCHIVE”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode GRINDER_NEURO_TOKYO_2090; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:GRINDER_RUNNER_01, factions:GRINDER, continuity identities:GRINDER_RUNNER_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:grinder, location:port-district]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state SOURCE_VERIFIED must be one of [AUTHOR_DECLARED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-chrysantheum-contested-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-contested-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [CONTESTED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NEURO TOKYO 2090”; asset world “CHRYSANTHEUM”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “2090”; asset era “YASUKE LEGACY ERA”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “PORT DISTRICT”; asset location “VEIL ARCHIVE”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode GRINDER_NEURO_TOKYO_2090; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:GRINDER_RUNNER_01, factions:GRINDER, continuity identities:GRINDER_RUNNER_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:grinder, location:port-district]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state CONTESTED must be one of [AUTHOR_DECLARED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neteru-memory-signal-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-signal-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NEURO TOKYO 2090”; asset world “NETERU”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “2090”; asset era “DEEP TIME”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “PORT DISTRICT”; asset location “ALKebulan MEMORY CHAMBER”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode GRINDER_NEURO_TOKYO_2090; asset studio mode NTRU_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:GRINDER_RUNNER_01, factions:GRINDER, continuity identities:GRINDER_RUNNER_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:grinder, location:port-district]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state METAVERSE_SYNTHESIS must be one of [AUTHOR_DECLARED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neteru-memory-anime-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-anime-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NEURO TOKYO 2090”; asset world “NETERU”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “2090”; asset era “DEEP TIME”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “PORT DISTRICT”; asset location “ALKebulan MEMORY CHAMBER”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode GRINDER_NEURO_TOKYO_2090; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:GRINDER_RUNNER_01, factions:GRINDER, continuity identities:GRINDER_RUNNER_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:grinder, location:port-district]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state METAVERSE_SYNTHESIS must be one of [AUTHOR_DECLARED]."
+            }
+          ]
+        }
+      ],
+      "generation_fallback": "PROHIBITED"
     },
     {
       "scene_id": "TEST_CHRYSANTHEUM_COVERT_ELEGANCE",
+      "selection_mode": "FIXTURE_TEST",
       "output_use": "KOL_SOCIAL",
       "result": "MATCH_FOUND",
+      "selected_asset_ids": [
+        "fixture-chrysantheum-intel-001"
+      ],
       "matches": [
         {
           "asset_id": "fixture-chrysantheum-intel-001",
           "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-intel-001",
           "source_reference": {
             "kind": "PROVIDER_ASSET_ID",
             "value": "fixture-chrysantheum-intel-001",
             "contains_secrets": false
           },
+          "fixture": true,
+          "rights_eligibility": {
+            "source_consistent": true,
+            "rights_state": "APPROVED",
+            "production_use_allowed": true,
+            "derivative_edit_eligible": true,
+            "distribution_eligible": true,
+            "policy_eligible": true,
+            "final_selection_eligible": false,
+            "gate_pass": true
+          },
+          "truth_canon_state": {
+            "truth_state": "SOURCE_VERIFIED",
+            "canon_status": {
+              "FIXTURE:fixture-chrysantheum-intel-001": "SOURCE_CANON"
+            },
+            "canon_sources": [
+              "FIXTURE:fixture-chrysantheum-intel-001"
+            ]
+          },
+          "continuity_state": {
+            "present_tags": [
+              "faction:chrysantheum",
+              "location:veil-archive",
+              "action:intelligence-review"
+            ],
+            "required_tags": [
+              "faction:chrysantheum",
+              "location:veil-archive"
+            ],
+            "forbidden_tags": [
+              "continuity:forbidden"
+            ],
+            "continuity_identity_ids": [
+              "VEIL_OPERATIVE_01",
+              "CHRYSANTHEUM"
+            ]
+          },
           "reused_source_media": false,
-          "score": 1,
-          "reasons": [
+          "total_score": 1,
+          "score_dimensions": [
             {
               "dimension": "characters",
               "score": 1,
-              "weight": 0.25,
-              "contribution": 0.25,
+              "weight": 0.2,
+              "contribution": 0.2,
               "matched": [
                 "VEIL_OPERATIVE_01"
               ],
@@ -172,38 +507,39 @@
             {
               "dimension": "factions",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
+              "weight": 0.12,
+              "contribution": 0.12,
               "matched": [
                 "CHRYSANTHEUM"
               ],
               "missing": []
             },
             {
-              "dimension": "continuity",
+              "dimension": "world_location_era",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
-              "matched": [
-                "faction:chrysantheum",
-                "location:veil-archive",
-                "action:intelligence-review"
-              ],
-              "missing": []
+              "weight": 0.13,
+              "contribution": 0.13,
+              "expected": "CHRYSANTHEUM / VEIL ARCHIVE / YASUKE LEGACY ERA",
+              "actual": "CHRYSANTHEUM / VEIL ARCHIVE / YASUKE LEGACY ERA"
             },
             {
-              "dimension": "studio_mode",
+              "dimension": "action",
               "score": 1,
               "weight": 0.12,
               "contribution": 0.12,
-              "expected": "789_STUDIOS",
-              "actual": "789_STUDIOS"
+              "common_tokens": [
+                "operative",
+                "reviews",
+                "covert",
+                "intelligence",
+                "dossier"
+              ]
             },
             {
               "dimension": "visual_style",
               "score": 1,
-              "weight": 0.08,
-              "contribution": 0.08,
+              "weight": 0.1,
+              "contribution": 0.1,
               "common_tokens": [
                 "cel",
                 "shaded",
@@ -214,23 +550,10 @@
               ]
             },
             {
-              "dimension": "action",
-              "score": 1,
-              "weight": 0.06,
-              "contribution": 0.06,
-              "common_tokens": [
-                "operative",
-                "reviews",
-                "covert",
-                "intelligence",
-                "dossier"
-              ]
-            },
-            {
               "dimension": "camera_language",
               "score": 1,
-              "weight": 0.05,
-              "contribution": 0.05,
+              "weight": 0.1,
+              "contribution": 0.1,
               "common_tokens": [
                 "symmetrical",
                 "locked",
@@ -242,64 +565,370 @@
             {
               "dimension": "mood",
               "score": 1,
-              "weight": 0.04,
-              "contribution": 0.04,
+              "weight": 0.08,
+              "contribution": 0.08,
               "common_tokens": [
                 "controlled",
                 "elegance",
                 "covert",
                 "tension"
               ]
+            },
+            {
+              "dimension": "continuity",
+              "score": 1,
+              "weight": 0.08,
+              "contribution": 0.08,
+              "matched": [
+                "faction:chrysantheum",
+                "location:veil-archive",
+                "action:intelligence-review"
+              ],
+              "missing": []
+            },
+            {
+              "dimension": "audio",
+              "score": 1,
+              "weight": 0.04,
+              "contribution": 0.04,
+              "expected": "PROHIBITED",
+              "actual": "ABSENT"
+            },
+            {
+              "dimension": "duration",
+              "score": 1,
+              "weight": 0.03,
+              "contribution": 0.03,
+              "expected": 12,
+              "actual": 12
             }
           ],
           "hard_gates": [
             {
+              "code": "VAULT_READINESS",
+              "pass": true,
+              "explanation": "selection_mode=FIXTURE_TEST; registration=REGISTERED; readiness=MATCH_READY; readiness_proven=true; fixture_mode=true."
+            },
+            {
+              "code": "OUTPUT_USE",
+              "pass": true,
+              "explanation": "KOL_SOCIAL maps to kol_social_eligibility=ELIGIBLE."
+            },
+            {
               "code": "CANON_STATUS",
+              "pass": true,
               "explanation": "Asset statuses [SOURCE_CANON] must all be allowed."
             },
             {
               "code": "WORLD",
+              "pass": true,
               "explanation": "Required world “CHRYSANTHEUM”; asset world “CHRYSANTHEUM”."
             },
             {
               "code": "ERA",
+              "pass": true,
               "explanation": "Required era “YASUKE LEGACY ERA”; asset era “YASUKE LEGACY ERA”."
             },
             {
               "code": "LOCATION",
+              "pass": true,
               "explanation": "Required location “VEIL ARCHIVE”; asset location “VEIL ARCHIVE”."
             },
             {
-              "code": "OUTPUT_USE",
-              "explanation": "KOL_SOCIAL maps to kol_social_eligibility=ELIGIBLE."
+              "code": "STUDIO_MODE",
+              "pass": true,
+              "explanation": "Required studio mode 789_STUDIOS; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "pass": true,
+              "explanation": "Missing canonical identities []."
+            },
+            {
+              "code": "CONTINUITY",
+              "pass": true,
+              "explanation": "Missing required tags []; present forbidden tags []."
+            },
+            {
+              "code": "DURATION",
+              "pass": true,
+              "explanation": "Available duration 12s must be within 10-15s; segment_allowed=true."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "pass": true,
+              "explanation": "Truth state SOURCE_VERIFIED must be one of [SOURCE_VERIFIED]."
+            },
+            {
+              "code": "AUDIO",
+              "pass": true,
+              "explanation": "Required mode=PROHIBITED, exact dialogue=false, speakers=[], rights approval=true."
+            },
+            {
+              "code": "SOURCE_PROVENANCE",
+              "pass": true,
+              "explanation": "Source kind=PROVIDER_ASSET_ID, stable value=true, contains_secrets=false, fixture provenance consistent=true."
+            },
+            {
+              "code": "RIGHTS_ELIGIBILITY",
+              "pass": true,
+              "explanation": "rights_state=APPROVED; source_consistent=true; production_use_allowed=true; derivative_edit_eligible=true; distribution_eligible=true; policy_eligible=true; final_selection_eligible=false."
             }
           ],
           "rank": 1
         }
       ],
-      "rejected_count": 5
+      "rejected": [
+        {
+          "asset_id": "fixture-neuro-grinder-surveillance-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-surveillance-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [AUTHOR_DECLARED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “CHRYSANTHEUM”; asset world “NEURO TOKYO 2090”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “YASUKE LEGACY ERA”; asset era “2090”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “VEIL ARCHIVE”; asset location “PORT DISTRICT”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode 789_STUDIOS; asset studio mode GRINDER_NEURO_TOKYO_2090."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:VEIL_OPERATIVE_01, factions:CHRYSANTHEUM, continuity identities:VEIL_OPERATIVE_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:chrysantheum, location:veil-archive]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state AUTHOR_DECLARED must be one of [SOURCE_VERIFIED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neuro-grinder-street-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-street-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [AUTHOR_DECLARED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “CHRYSANTHEUM”; asset world “NEURO TOKYO 2090”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “YASUKE LEGACY ERA”; asset era “2090”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “VEIL ARCHIVE”; asset location “PORT DISTRICT”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode 789_STUDIOS; asset studio mode GRINDER_NEURO_TOKYO_2090."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:VEIL_OPERATIVE_01, factions:CHRYSANTHEUM, continuity identities:VEIL_OPERATIVE_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:chrysantheum, location:veil-archive]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state AUTHOR_DECLARED must be one of [SOURCE_VERIFIED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-chrysantheum-contested-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-contested-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "OUTPUT_USE",
+              "explanation": "KOL_SOCIAL maps to kol_social_eligibility=REVIEW_REQUIRED."
+            },
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [CONTESTED_CANON] must all be allowed."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state CONTESTED must be one of [SOURCE_VERIFIED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neteru-memory-signal-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-signal-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “CHRYSANTHEUM”; asset world “NETERU”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “YASUKE LEGACY ERA”; asset era “DEEP TIME”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “VEIL ARCHIVE”; asset location “ALKebulan MEMORY CHAMBER”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode 789_STUDIOS; asset studio mode NTRU_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:VEIL_OPERATIVE_01, factions:CHRYSANTHEUM, continuity identities:VEIL_OPERATIVE_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:chrysantheum, location:veil-archive]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state METAVERSE_SYNTHESIS must be one of [SOURCE_VERIFIED]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neteru-memory-anime-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-anime-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “CHRYSANTHEUM”; asset world “NETERU”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “YASUKE LEGACY ERA”; asset era “DEEP TIME”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “VEIL ARCHIVE”; asset location “ALKebulan MEMORY CHAMBER”."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:VEIL_OPERATIVE_01, factions:CHRYSANTHEUM, continuity identities:VEIL_OPERATIVE_01]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:chrysantheum, location:veil-archive]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state METAVERSE_SYNTHESIS must be one of [SOURCE_VERIFIED]."
+            }
+          ]
+        }
+      ],
+      "generation_fallback": "PROHIBITED"
     },
     {
       "scene_id": "TEST_NETERU_DEEP_TIME_SIGNAL",
+      "selection_mode": "FIXTURE_TEST",
       "output_use": "INTERACTIVE_BRANCH",
       "result": "MATCH_FOUND",
+      "selected_asset_ids": [
+        "fixture-neteru-memory-signal-001"
+      ],
       "matches": [
         {
           "asset_id": "fixture-neteru-memory-signal-001",
           "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-signal-001",
           "source_reference": {
             "kind": "PROVIDER_ASSET_ID",
             "value": "fixture-neteru-memory-signal-001",
             "contains_secrets": false
           },
+          "fixture": true,
+          "rights_eligibility": {
+            "source_consistent": true,
+            "rights_state": "APPROVED",
+            "production_use_allowed": true,
+            "derivative_edit_eligible": true,
+            "distribution_eligible": true,
+            "policy_eligible": true,
+            "final_selection_eligible": false,
+            "gate_pass": true
+          },
+          "truth_canon_state": {
+            "truth_state": "METAVERSE_SYNTHESIS",
+            "canon_status": {
+              "FIXTURE:fixture-neteru-memory-signal-001": "METAVERSE_SYNTHESIS"
+            },
+            "canon_sources": [
+              "FIXTURE:fixture-neteru-memory-signal-001"
+            ]
+          },
+          "continuity_state": {
+            "present_tags": [
+              "faction:neteru",
+              "location:alkebulan-memory-chamber",
+              "era:deep-time",
+              "action:signal-reception"
+            ],
+            "required_tags": [
+              "faction:neteru",
+              "location:alkebulan-memory-chamber"
+            ],
+            "forbidden_tags": [
+              "continuity:forbidden"
+            ],
+            "continuity_identity_ids": [
+              "NTRU_PROTAGONIST",
+              "NETERU"
+            ]
+          },
           "reused_source_media": false,
-          "score": 1,
-          "reasons": [
+          "total_score": 1,
+          "score_dimensions": [
             {
               "dimension": "characters",
               "score": 1,
-              "weight": 0.25,
-              "contribution": 0.25,
+              "weight": 0.2,
+              "contribution": 0.2,
               "matched": [
                 "NTRU_PROTAGONIST"
               ],
@@ -308,39 +937,40 @@
             {
               "dimension": "factions",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
+              "weight": 0.12,
+              "contribution": 0.12,
               "matched": [
                 "NETERU"
               ],
               "missing": []
             },
             {
-              "dimension": "continuity",
+              "dimension": "world_location_era",
               "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
-              "matched": [
-                "faction:neteru",
-                "location:alkebulan-memory-chamber",
-                "era:deep-time",
-                "action:signal-reception"
-              ],
-              "missing": []
+              "weight": 0.13,
+              "contribution": 0.13,
+              "expected": "NETERU / ALKebulan MEMORY CHAMBER / DEEP TIME",
+              "actual": "NETERU / ALKebulan MEMORY CHAMBER / DEEP TIME"
             },
             {
-              "dimension": "studio_mode",
+              "dimension": "action",
               "score": 1,
               "weight": 0.12,
               "contribution": 0.12,
-              "expected": "NTRU_STUDIOS",
-              "actual": "NTRU_STUDIOS"
+              "common_tokens": [
+                "protagonist",
+                "receives",
+                "deep",
+                "time",
+                "ancestral",
+                "transmission"
+              ]
             },
             {
               "dimension": "visual_style",
               "score": 1,
-              "weight": 0.08,
-              "contribution": 0.08,
+              "weight": 0.1,
+              "contribution": 0.1,
               "common_tokens": [
                 "hyper",
                 "real",
@@ -352,24 +982,10 @@
               ]
             },
             {
-              "dimension": "action",
-              "score": 1,
-              "weight": 0.06,
-              "contribution": 0.06,
-              "common_tokens": [
-                "protagonist",
-                "receives",
-                "deep",
-                "time",
-                "ancestral",
-                "transmission"
-              ]
-            },
-            {
               "dimension": "camera_language",
               "score": 1,
-              "weight": 0.05,
-              "contribution": 0.05,
+              "weight": 0.1,
+              "contribution": 0.1,
               "common_tokens": [
                 "slow",
                 "macro",
@@ -381,8 +997,8 @@
             {
               "dimension": "mood",
               "score": 1,
-              "weight": 0.04,
-              "contribution": 0.04,
+              "weight": 0.08,
+              "contribution": 0.08,
               "common_tokens": [
                 "ancestral",
                 "awe",
@@ -390,150 +1006,295 @@
                 "time",
                 "mystery"
               ]
+            },
+            {
+              "dimension": "continuity",
+              "score": 1,
+              "weight": 0.08,
+              "contribution": 0.08,
+              "matched": [
+                "faction:neteru",
+                "location:alkebulan-memory-chamber",
+                "era:deep-time",
+                "action:signal-reception"
+              ],
+              "missing": []
+            },
+            {
+              "dimension": "audio",
+              "score": 1,
+              "weight": 0.04,
+              "contribution": 0.04,
+              "expected": "PROHIBITED",
+              "actual": "ABSENT"
+            },
+            {
+              "dimension": "duration",
+              "score": 1,
+              "weight": 0.03,
+              "contribution": 0.03,
+              "expected": 12,
+              "actual": 12
             }
           ],
           "hard_gates": [
             {
+              "code": "VAULT_READINESS",
+              "pass": true,
+              "explanation": "selection_mode=FIXTURE_TEST; registration=REGISTERED; readiness=MATCH_READY; readiness_proven=true; fixture_mode=true."
+            },
+            {
+              "code": "OUTPUT_USE",
+              "pass": true,
+              "explanation": "INTERACTIVE_BRANCH maps to interactive_branch_eligibility=ELIGIBLE."
+            },
+            {
               "code": "CANON_STATUS",
+              "pass": true,
               "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
             },
             {
               "code": "WORLD",
+              "pass": true,
               "explanation": "Required world “NETERU”; asset world “NETERU”."
             },
             {
               "code": "ERA",
+              "pass": true,
               "explanation": "Required era “DEEP TIME”; asset era “DEEP TIME”."
             },
             {
               "code": "LOCATION",
+              "pass": true,
               "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “ALKebulan MEMORY CHAMBER”."
             },
             {
-              "code": "OUTPUT_USE",
-              "explanation": "INTERACTIVE_BRANCH maps to interactive_branch_eligibility=ELIGIBLE."
+              "code": "STUDIO_MODE",
+              "pass": true,
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode NTRU_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "pass": true,
+              "explanation": "Missing canonical identities []."
+            },
+            {
+              "code": "CONTINUITY",
+              "pass": true,
+              "explanation": "Missing required tags []; present forbidden tags []."
+            },
+            {
+              "code": "DURATION",
+              "pass": true,
+              "explanation": "Available duration 12s must be within 10-15s; segment_allowed=true."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "pass": true,
+              "explanation": "Truth state METAVERSE_SYNTHESIS must be one of [METAVERSE_SYNTHESIS]."
+            },
+            {
+              "code": "AUDIO",
+              "pass": true,
+              "explanation": "Required mode=PROHIBITED, exact dialogue=false, speakers=[], rights approval=true."
+            },
+            {
+              "code": "SOURCE_PROVENANCE",
+              "pass": true,
+              "explanation": "Source kind=PROVIDER_ASSET_ID, stable value=true, contains_secrets=false, fixture provenance consistent=true."
+            },
+            {
+              "code": "RIGHTS_ELIGIBILITY",
+              "pass": true,
+              "explanation": "rights_state=APPROVED; source_consistent=true; production_use_allowed=true; derivative_edit_eligible=true; distribution_eligible=true; policy_eligible=true; final_selection_eligible=false."
             }
           ],
           "rank": 1
+        }
+      ],
+      "rejected": [
+        {
+          "asset_id": "fixture-neuro-grinder-surveillance-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-surveillance-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [AUTHOR_DECLARED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NETERU”; asset world “NEURO TOKYO 2090”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “DEEP TIME”; asset era “2090”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “PORT DISTRICT”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode GRINDER_NEURO_TOKYO_2090."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:NTRU_PROTAGONIST, factions:NETERU, continuity identities:NTRU_PROTAGONIST]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:neteru, location:alkebulan-memory-chamber]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state AUTHOR_DECLARED must be one of [METAVERSE_SYNTHESIS]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-neuro-grinder-street-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neuro-grinder-street-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [AUTHOR_DECLARED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NETERU”; asset world “NEURO TOKYO 2090”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “DEEP TIME”; asset era “2090”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “PORT DISTRICT”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode GRINDER_NEURO_TOKYO_2090."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:NTRU_PROTAGONIST, factions:NETERU, continuity identities:NTRU_PROTAGONIST]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:neteru, location:alkebulan-memory-chamber]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state AUTHOR_DECLARED must be one of [METAVERSE_SYNTHESIS]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-chrysantheum-intel-001",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-intel-001",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [SOURCE_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NETERU”; asset world “CHRYSANTHEUM”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “DEEP TIME”; asset era “YASUKE LEGACY ERA”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “VEIL ARCHIVE”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:NTRU_PROTAGONIST, factions:NETERU, continuity identities:NTRU_PROTAGONIST]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:neteru, location:alkebulan-memory-chamber]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state SOURCE_VERIFIED must be one of [METAVERSE_SYNTHESIS]."
+            }
+          ]
+        },
+        {
+          "asset_id": "fixture-chrysantheum-contested-002",
+          "vault_id": "00000000-0000-4000-8000-000000000001",
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-chrysantheum-contested-002",
+          "fixture": true,
+          "failures": [
+            {
+              "code": "CANON_STATUS",
+              "explanation": "Asset statuses [CONTESTED_CANON] must all be allowed."
+            },
+            {
+              "code": "WORLD",
+              "explanation": "Required world “NETERU”; asset world “CHRYSANTHEUM”."
+            },
+            {
+              "code": "ERA",
+              "explanation": "Required era “DEEP TIME”; asset era “YASUKE LEGACY ERA”."
+            },
+            {
+              "code": "LOCATION",
+              "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “VEIL ARCHIVE”."
+            },
+            {
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode 789_STUDIOS."
+            },
+            {
+              "code": "IDENTITY_COMPATIBILITY",
+              "explanation": "Missing canonical identities [characters:NTRU_PROTAGONIST, factions:NETERU, continuity identities:NTRU_PROTAGONIST]."
+            },
+            {
+              "code": "CONTINUITY",
+              "explanation": "Missing required tags [faction:neteru, location:alkebulan-memory-chamber]; present forbidden tags []."
+            },
+            {
+              "code": "TRUTH_STATE",
+              "explanation": "Truth state CONTESTED must be one of [METAVERSE_SYNTHESIS]."
+            }
+          ]
         },
         {
           "asset_id": "fixture-neteru-memory-anime-002",
           "vault_id": "00000000-0000-4000-8000-000000000001",
-          "source_reference": {
-            "kind": "PROVIDER_ASSET_ID",
-            "value": "fixture-neteru-memory-anime-002",
-            "contains_secrets": false
-          },
-          "reused_source_media": false,
-          "score": 0.657667,
-          "reasons": [
+          "source_provider": "fixture",
+          "source_reference_id": "fixture-neteru-memory-anime-002",
+          "fixture": true,
+          "failures": [
             {
-              "dimension": "characters",
-              "score": 1,
-              "weight": 0.25,
-              "contribution": 0.25,
-              "matched": [
-                "NTRU_PROTAGONIST"
-              ],
-              "missing": []
-            },
-            {
-              "dimension": "factions",
-              "score": 1,
-              "weight": 0.2,
-              "contribution": 0.2,
-              "matched": [
-                "NETERU"
-              ],
-              "missing": []
-            },
-            {
-              "dimension": "continuity",
-              "score": 0.75,
-              "weight": 0.2,
-              "contribution": 0.15,
-              "matched": [
-                "faction:neteru",
-                "location:alkebulan-memory-chamber",
-                "era:deep-time"
-              ],
-              "missing": [
-                "action:signal-reception"
-              ]
-            },
-            {
-              "dimension": "studio_mode",
-              "score": 0,
-              "weight": 0.12,
-              "contribution": 0,
-              "expected": "NTRU_STUDIOS",
-              "actual": "789_STUDIOS"
-            },
-            {
-              "dimension": "visual_style",
-              "score": 0.333333,
-              "weight": 0.08,
-              "contribution": 0.026667,
-              "common_tokens": [
-                "ancestral",
-                "memory",
-                "signal"
-              ]
-            },
-            {
-              "dimension": "action",
-              "score": 0.25,
-              "weight": 0.06,
-              "contribution": 0.015,
-              "common_tokens": [
-                "protagonist",
-                "ancestral"
-              ]
-            },
-            {
-              "dimension": "camera_language",
-              "score": 0,
-              "weight": 0.05,
-              "contribution": 0,
-              "common_tokens": []
-            },
-            {
-              "dimension": "mood",
-              "score": 0.4,
-              "weight": 0.04,
-              "contribution": 0.016,
-              "common_tokens": [
-                "ancestral",
-                "mystery"
-              ]
+              "code": "STUDIO_MODE",
+              "explanation": "Required studio mode NTRU_STUDIOS; asset studio mode 789_STUDIOS."
             }
-          ],
-          "hard_gates": [
-            {
-              "code": "CANON_STATUS",
-              "explanation": "Asset statuses [METAVERSE_SYNTHESIS] must all be allowed."
-            },
-            {
-              "code": "WORLD",
-              "explanation": "Required world “NETERU”; asset world “NETERU”."
-            },
-            {
-              "code": "ERA",
-              "explanation": "Required era “DEEP TIME”; asset era “DEEP TIME”."
-            },
-            {
-              "code": "LOCATION",
-              "explanation": "Required location “ALKebulan MEMORY CHAMBER”; asset location “ALKebulan MEMORY CHAMBER”."
-            },
-            {
-              "code": "OUTPUT_USE",
-              "explanation": "INTERACTIVE_BRANCH maps to interactive_branch_eligibility=ELIGIBLE."
-            }
-          ],
-          "rank": 2
+          ]
         }
       ],
-      "rejected_count": 4
+      "generation_fallback": "PROHIBITED"
     }
-  ]
+  ],
+  "reuse_map": {},
+  "source_media_duplicated": false,
+  "generation_fallback": "PROHIBITED"
 }
