@@ -19,9 +19,11 @@ The exact input is preserved as `raw_tag`. Parsing produces:
 | `version` | `v2` or `null` when absent. |
 | `raw_tag` | Original exact tag string. |
 
-Recognized prefixes are `char` → `CHARACTER`, `loc` → `LOCATION`, `prop` → `PROP`, `veh` → `VEHICLE`, `creature` → `CREATURE`, `audio` → `AUDIO`, and `other` → `OTHER`.
+Recognized prefixes are `char` → `CHARACTER`, `loc` → `LOCATION`, `prop` → `PROP`, `veh` → `VEHICLE`, `mech` → `MECH`, `creature` → `CREATURE`, `audio` → `AUDIO`, and `other` → `OTHER`.
 
 The prefix is authoritative for production function. `@prop_CB_sedan_interior_back` is a prop reference even though the image may depict an interior space. Visual subject matter never silently changes the declared role.
+
+`@mech_ZEPHYR_Mira` is a local production-role reference. It does not assert a provider asset ID, Soul ID, canon identity, scene scope, or version.
 
 Scene scope and version are optional and are never defaulted. A syntactically valid terminal `_sN` or `_sN-M` token is scope; a syntactically valid terminal `_vN` token is version.
 

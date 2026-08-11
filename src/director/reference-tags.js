@@ -3,10 +3,10 @@ import { requireValue } from './types.js';
 
 export const REFERENCE_TYPES = Object.freeze({
   char: 'CHARACTER', loc: 'LOCATION', prop: 'PROP', veh: 'VEHICLE',
-  creature: 'CREATURE', audio: 'AUDIO', other: 'OTHER',
+  mech: 'MECH', creature: 'CREATURE', audio: 'AUDIO', other: 'OTHER',
 });
 
-const TAG_PATTERN = /^@(char|loc|prop|veh|creature|audio|other)_([A-Za-z0-9]+)_([A-Za-z0-9][A-Za-z0-9_%\-]*?)$/u;
+const TAG_PATTERN = /^@(char|loc|prop|veh|mech|creature|audio|other)_([A-Za-z0-9]+)_([A-Za-z0-9][A-Za-z0-9_%\-]*?)$/u;
 const VERSION_PATTERN = /_v([1-9][0-9]*)$/u;
 const SCENE_SCOPE_PATTERN = /_s([1-9][0-9]*)(?:-([1-9][0-9]*))?$/u;
 const VALID_ESCAPE_PATTERN = /%(?:25|5F)/gu;

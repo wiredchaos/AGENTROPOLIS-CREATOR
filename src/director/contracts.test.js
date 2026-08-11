@@ -72,6 +72,14 @@ test('uses tag semantics rather than depicted space for prop classification', ()
   assert.equal(parseReferenceTag('@prop_CB_sedan_interior_back').reference_type, 'PROP');
 });
 
+test('parses an explicit mech production reference without treating it as a provider ID', () => {
+  const mech = parseReferenceTag('@mech_ZEPHYR_Mira');
+  assert.equal(mech.reference_type, 'MECH');
+  assert.equal(mech.project_code, 'ZEPHYR');
+  assert.equal(mech.scene_scope, null);
+  assert.equal(mech.version, null);
+});
+
 test('permanent voice identity is immutable and scene acting cannot override it', () => {
   const master = validInput().voice_profiles[0];
   assert.throws(() => assertVoiceIdentityImmutable(master, { ...master, voice_profile: 'Rewritten voice.' }), /VOICE_IDENTITY_MUTATION/);
