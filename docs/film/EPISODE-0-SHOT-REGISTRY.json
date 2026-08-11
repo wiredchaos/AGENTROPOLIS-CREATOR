@@ -1,0 +1,193 @@
+{
+  "episodeId": "COINTELPRO_EPISODE_0",
+  "title": "THE FIRST ANOMALOUS TRANSMISSION",
+  "runtimeSeconds": 72,
+  "productionState": "PLAN_ONLY_NO_GENERATION",
+  "approvedCreditCeiling": 0,
+  "shots": [
+    {
+      "id": "EP0_001",
+      "timecode": "00:00-00:06",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-SETTING"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-SETTING": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "First frame; rain and port geography begin the episode.",
+      "DIRECTION": "Locked wide establishing frame; port cranes as spatial anchors; movement and lens pending source-derived style approval.",
+      "SHOT": "NEURO TOKYO 2090. Rain crosses an active port beneath cranes.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_002",
+      "timecode": "00:06-00:13",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-SETTING"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-SETTING": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Same port and rainfall; geography must connect to EP0_001.",
+      "DIRECTION": "Track with black-market neural freight while preserving readable weight and port scale; optics pending.",
+      "SHOT": "Neural freight moves through the port handling system.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_003",
+      "timecode": "00:13-00:20",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-RUNNERS"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-RUNNERS": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Grinder runners enter the established port carrying one sealed reliquary.",
+      "DIRECTION": "Weighted lateral follow; faces, count, wardrobe, and exact camera specification remain approval fields.",
+      "SHOT": "Grinder runners move the sealed data reliquary through the freight flow.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_004",
+      "timecode": "00:20-00:27",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-RUNNERS"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-RUNNERS": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Same reliquary, custody, weather, and runner formation as EP0_003.",
+      "DIRECTION": "Close insert tied to runner motion; emphasize enclosure and physical custody without inventing mechanism or materials.",
+      "SHOT": "The sealed reliquary shifts under the runners' momentum.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_005",
+      "timecode": "00:27-00:34",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-FILE"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-FILE": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Reliquary remains the EP0_003 hero object; no unapproved opening mechanism is shown.",
+      "DIRECTION": "Macro information reveal: make COINTELPRO readable; keep symbol geometry masked until approval.",
+      "SHOT": "Inside the reliquary, a file marked COINTELPRO appears beside an unrecognized symbol.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_006",
+      "timecode": "00:34-00:41",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-ATV"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-ATV": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "All nearby screens interrupt simultaneously while runner and freight motion continues.",
+      "DIRECTION": "Cut outward from file to multiple screens; interruption behavior and ATVNETWORK brand treatment remain abstract in previs.",
+      "SHOT": "ATVNETWORK hijacks every nearby screen.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_007",
+      "timecode": "00:41-00:50",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-VOICE"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-VOICE": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Screens remain hijacked; speaker stays unidentified; runner reactions cannot imply unapproved knowledge.",
+      "DIRECTION": "Hold on interrupted screens and physical reactions. The woman delivers the exact line once; cut ambient machinery after the final word.",
+      "SHOT": "Woman's voice: THIS TRANSMISSION WAS RECORDED 508 YEARS AGO.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_008",
+      "timecode": "00:50-00:58",
+      "CANON_SOURCE": [
+        "chrysantheum-yasuke-dojo-chronology-discrepancy",
+        "META-2026-08-10-CONVERGENCE-SPINE"
+      ],
+      "CANON_STATUS": {
+        "chrysantheum-yasuke-dojo-chronology-discrepancy": "CONTESTED_CANON",
+        "META-2026-08-10-CONVERGENCE-SPINE": "METAVERSE_SYNTHESIS"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Transmission remains corrupted; no ordering or causal relationship is resolved.",
+      "DIRECTION": "Show mutually incomplete lineage fragments. Any visible labels require copy approval; never visualize the provisional covert-cohort interpretation as fact.",
+      "SHOT": "The feed exposes incompatible Yasuke-lineage, Chrysantheum, and Grinder fragments, then fails.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_009",
+      "timecode": "00:58-01:05",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-TEASE",
+        "META-2026-08-10-CONVERGENCE-SPINE"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-TEASE": "AUTHOR_DECLARED_CANON",
+        "META-2026-08-10-CONVERGENCE-SPINE": "METAVERSE_SYNTHESIS"
+      },
+      "STUDIO_MODE": "GRINDER_NEURO_TOKYO_2090",
+      "STYLE_LOCK": "SOURCE_DERIVATION_REQUIRED",
+      "CONTINUITY": "Same failing transmission; NETERU and 589 receive no explained source, meaning, or causal relationship.",
+      "DIRECTION": "Two brief signal fragments only. No numerology exposition and no unapproved NETERU iconography.",
+      "SHOT": "NETERU and 589 register as unexplained signal fragments, then disappear.",
+      "INTERACTIVE_BRANCH": "NONE",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    },
+    {
+      "id": "EP0_010",
+      "timecode": "01:05-01:12",
+      "CANON_SOURCE": [
+        "AUTHOR-2026-08-10-EP0-DIRECTIVE"
+      ],
+      "CANON_STATUS": {
+        "AUTHOR-2026-08-10-EP0-DIRECTIVE": "AUTHOR_DECLARED_CANON"
+      },
+      "STUDIO_MODE": "ATVNETWORK_INTERFACE_PENDING",
+      "STYLE_LOCK": "CANON_GAP_NO_RENDER",
+      "CONTINUITY": "Hard cut from the failed signal to black; no unapproved choice is displayed.",
+      "DIRECTION": "Black frame, silence, then exact centered copy. Interface typography and interaction sound remain unassigned.",
+      "SHOT": "DIRECTIVE AVAILABLE.",
+      "INTERACTIVE_BRANCH": "EP0_DIRECTIVE_001",
+      "HIGGSFIELD_SKILL": "NONE_NOT_INSTALLED",
+      "EXPECTED_CREDIT_COST": "UNVERIFIED; APPROVED_CEILING=0"
+    }
+  ]
+}

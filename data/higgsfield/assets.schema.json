@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/higgsfield/assets.schema.json",
+  "title": "Existing Higgsfield Vault Asset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "asset_id", "vault_id", "media_type", "source_url/reference", "duration",
+    "characters", "factions", "world", "location", "era", "canon_source",
+    "canon_status", "studio_mode", "visual_style", "camera_language", "action",
+    "mood", "dialogue_or_audio", "continuity_tags", "truth_state",
+    "interactive_branch_eligibility", "atv_episode_eligibility",
+    "kol_social_eligibility", "gaming_district_eligibility"
+  ],
+  "properties": {
+    "asset_id": { "type": "string", "minLength": 1 },
+    "parent_asset_id": { "type": ["string", "null"] },
+    "vault_id": { "type": "string", "format": "uuid" },
+    "media_type": { "enum": ["IMAGE", "VIDEO", "AUDIO", "COMPOSITE", "UNKNOWN"] },
+    "source_url/reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value", "contains_secrets"],
+      "properties": {
+        "kind": { "enum": ["PROVIDER_ASSET_ID", "PROVIDER_PROJECT_REFERENCE", "SANITIZED_URL", "LOCAL_AUTHORIZED_PATH", "UNKNOWN"] },
+        "value": { "type": ["string", "null"] },
+        "contains_secrets": { "const": false }
+      }
+    },
+    "duration": { "type": ["number", "null"], "minimum": 0 },
+    "segment": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["start_seconds", "end_seconds"],
+      "properties": {
+        "start_seconds": { "type": "number", "minimum": 0 },
+        "end_seconds": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "characters": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
+    "factions": { "type": "array", "items": { "$ref": "#/$defs/annotation" }, "uniqueItems": true },
+    "world": { "$ref": "#/$defs/nullableAnnotation" },
+    "location": { "$ref": "#/$defs/nullableAnnotation" },
+    "era": { "$ref": "#/$defs/nullableAnnotation" },
+    "canon_source": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "canon_status": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/canonStatus" }
+    },
+    "studio_mode": { "enum": ["789_STUDIOS", "NTRU_STUDIOS", "GRINDER_NEURO_TOKYO_2090", "ATVNETWORK_INTERFACE", "UNASSIGNED"] },
+    "visual_style": { "$ref": "#/$defs/nullableObservation" },
+    "camera_language": { "$ref": "#/$defs/nullableObservation" },
+    "action": { "$ref": "#/$defs/nullableObservation" },
+    "mood": { "$ref": "#/$defs/nullableObservation" },
+    "dialogue_or_audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "transcript", "language", "speaker_ids", "music", "effects", "rights_review"],
+      "properties": {
+        "present": { "type": ["boolean", "null"] },
+        "transcript": { "type": ["string", "null"] },
+        "language": { "type": ["string", "null"] },
+        "speaker_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "music": { "type": ["boolean", "null"] },
+        "effects": { "type": ["boolean", "null"] },
+        "rights_review": { "enum": ["APPROVED", "REJECTED", "REVIEW_REQUIRED", "UNKNOWN"] }
+      }
+    },
+    "continuity_tags": { "type": "array", "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]*:.+$" }, "uniqueItems": true },
+    "truth_state": { "enum": ["SOURCE_VERIFIED", "AUTHOR_DECLARED", "PROVISIONAL", "CONTESTED", "METAVERSE_SYNTHESIS", "CANON_GAP", "UNREVIEWED"] },
+    "interactive_branch_eligibility": { "$ref": "#/$defs/eligibility" },
+    "atv_episode_eligibility": { "$ref": "#/$defs/eligibility" },
+    "kol_social_eligibility": { "$ref": "#/$defs/eligibility" },
+    "gaming_district_eligibility": { "$ref": "#/$defs/eligibility" },
+    "provider_metadata": { "type": "object", "additionalProperties": true },
+    "annotation_provenance": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  },
+  "$defs": {
+    "canonStatus": {
+      "enum": ["SOURCE_CANON", "AUTHOR_DECLARED_CANON", "PROVISIONAL_CANON", "CONTESTED_CANON", "METAVERSE_SYNTHESIS", "CANON_GAP"]
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "confidence", "provenance"],
+      "properties": {
+        "id": { "type": ["string", "null"] },
+        "label": { "type": "string", "minLength": 1 },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "provenance": { "enum": ["PROVIDER_METADATA", "LOCAL_OBSERVATION", "HUMAN_REVIEW", "CANON_RECORD"] }
+      }
+    },
+    "nullableAnnotation": { "anyOf": [{ "$ref": "#/$defs/annotation" }, { "type": "null" }] },
+    "nullableObservation": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["description", "confidence", "provenance"],
+          "properties": {
+            "description": { "type": "string", "minLength": 1 },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+            "provenance": { "enum": ["PROVIDER_METADATA", "LOCAL_OBSERVATION", "HUMAN_REVIEW", "CANON_RECORD"] }
+          }
+        },
+        { "type": "null" }
+      ]
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reasons", "approval_references"],
+      "properties": {
+        "status": { "enum": ["ELIGIBLE", "INELIGIBLE", "REVIEW_REQUIRED", "UNKNOWN"] },
+        "reasons": { "type": "array", "items": { "type": "string" } },
+        "approval_references": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    }
+  }
+}

@@ -1,0 +1,787 @@
+[
+  {
+    "asset_id": "fixture-neuro-grinder-surveillance-001",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-neuro-grinder-surveillance-001",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "GRINDER_RUNNER_01",
+        "label": "GRINDER_RUNNER_01",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "GRINDER",
+        "label": "GRINDER",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "NEURO_TOKYO_2090",
+      "label": "NEURO TOKYO 2090",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "PORT_DISTRICT",
+      "label": "PORT DISTRICT",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "2090",
+      "label": "2090",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-neuro-grinder-surveillance-001"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-neuro-grinder-surveillance-001": "AUTHOR_DECLARED_CANON"
+    },
+    "studio_mode": "GRINDER_NEURO_TOKYO_2090",
+    "visual_style": {
+      "description": "rain cyberpunk industrial port surveillance",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "high angle locked surveillance camera",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "runner transports sealed neural freight",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "surveillance tension controlled danger",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:grinder",
+      "location:port-district",
+      "era:2090",
+      "weather:rain",
+      "action:reliquary-transit"
+    ],
+    "truth_state": "AUTHOR_DECLARED",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "kol_social_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  },
+  {
+    "asset_id": "fixture-neuro-grinder-street-002",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-neuro-grinder-street-002",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "GRINDER_RUNNER_01",
+        "label": "GRINDER_RUNNER_01",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "GRINDER",
+        "label": "GRINDER",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "NEURO_TOKYO_2090",
+      "label": "NEURO TOKYO 2090",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "PORT_DISTRICT",
+      "label": "PORT DISTRICT",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "2090",
+      "label": "2090",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-neuro-grinder-street-002"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-neuro-grinder-street-002": "AUTHOR_DECLARED_CANON"
+    },
+    "studio_mode": "GRINDER_NEURO_TOKYO_2090",
+    "visual_style": {
+      "description": "rain cyberpunk neon street freight",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "low angle handheld tracking camera",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "runner moves sealed freight through street",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "urgent street tension",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:grinder",
+      "location:port-district",
+      "era:2090",
+      "weather:rain"
+    ],
+    "truth_state": "AUTHOR_DECLARED",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "REVIEW_REQUIRED",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": []
+    },
+    "kol_social_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  },
+  {
+    "asset_id": "fixture-chrysantheum-intel-001",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-chrysantheum-intel-001",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "VEIL_OPERATIVE_01",
+        "label": "VEIL_OPERATIVE_01",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "CHRYSANTHEUM",
+        "label": "CHRYSANTHEUM",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "CHRYSANTHEUM",
+      "label": "CHRYSANTHEUM",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "VEIL_ARCHIVE",
+      "label": "VEIL ARCHIVE",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "YASUKE_LEGACY_ERA",
+      "label": "YASUKE LEGACY ERA",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-chrysantheum-intel-001"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-chrysantheum-intel-001": "SOURCE_CANON"
+    },
+    "studio_mode": "789_STUDIOS",
+    "visual_style": {
+      "description": "cel shaded controlled elegance intelligence interior",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "symmetrical locked medium close camera",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "operative reviews covert intelligence dossier",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "controlled elegance covert tension",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:chrysantheum",
+      "location:veil-archive",
+      "action:intelligence-review"
+    ],
+    "truth_state": "SOURCE_VERIFIED",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "kol_social_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  },
+  {
+    "asset_id": "fixture-chrysantheum-contested-002",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-chrysantheum-contested-002",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "VEIL_OPERATIVE_01",
+        "label": "VEIL_OPERATIVE_01",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "CHRYSANTHEUM",
+        "label": "CHRYSANTHEUM",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "CHRYSANTHEUM",
+      "label": "CHRYSANTHEUM",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "VEIL_ARCHIVE",
+      "label": "VEIL ARCHIVE",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "YASUKE_LEGACY_ERA",
+      "label": "YASUKE LEGACY ERA",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-chrysantheum-contested-002"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-chrysantheum-contested-002": "CONTESTED_CANON"
+    },
+    "studio_mode": "789_STUDIOS",
+    "visual_style": {
+      "description": "cel shaded archival intelligence",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "slow lateral camera",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "operative studies disputed dojo chronology",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "quiet contested intelligence",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:chrysantheum",
+      "location:veil-archive"
+    ],
+    "truth_state": "CONTESTED",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "kol_social_eligibility": {
+      "status": "REVIEW_REQUIRED",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": []
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  },
+  {
+    "asset_id": "fixture-neteru-memory-signal-001",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-neteru-memory-signal-001",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "NTRU_PROTAGONIST",
+        "label": "NTRU_PROTAGONIST",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "NETERU",
+        "label": "NETERU",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "NETERU",
+      "label": "NETERU",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "ALKEBULAN_MEMORY_CHAMBER",
+      "label": "ALKebulan MEMORY CHAMBER",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "DEEP_TIME",
+      "label": "DEEP TIME",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-neteru-memory-signal-001"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-neteru-memory-signal-001": "METAVERSE_SYNTHESIS"
+    },
+    "studio_mode": "NTRU_STUDIOS",
+    "visual_style": {
+      "description": "hyper real cinematic photoreal ancestral memory signal",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "slow macro dolly focal signal",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "protagonist receives deep time ancestral transmission",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "ancestral awe deep time mystery",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:neteru",
+      "location:alkebulan-memory-chamber",
+      "era:deep-time",
+      "action:signal-reception"
+    ],
+    "truth_state": "METAVERSE_SYNTHESIS",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "kol_social_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  },
+  {
+    "asset_id": "fixture-neteru-memory-anime-002",
+    "parent_asset_id": null,
+    "vault_id": "00000000-0000-4000-8000-000000000001",
+    "media_type": "VIDEO",
+    "source_url/reference": {
+      "kind": "PROVIDER_ASSET_ID",
+      "value": "fixture-neteru-memory-anime-002",
+      "contains_secrets": false
+    },
+    "duration": 12,
+    "segment": null,
+    "characters": [
+      {
+        "id": "NTRU_PROTAGONIST",
+        "label": "NTRU_PROTAGONIST",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "factions": [
+      {
+        "id": "NETERU",
+        "label": "NETERU",
+        "confidence": 1,
+        "provenance": "HUMAN_REVIEW"
+      }
+    ],
+    "world": {
+      "id": "NETERU",
+      "label": "NETERU",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "location": {
+      "id": "ALKEBULAN_MEMORY_CHAMBER",
+      "label": "ALKebulan MEMORY CHAMBER",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "era": {
+      "id": "DEEP_TIME",
+      "label": "DEEP TIME",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "canon_source": [
+      "FIXTURE:fixture-neteru-memory-anime-002"
+    ],
+    "canon_status": {
+      "FIXTURE:fixture-neteru-memory-anime-002": "METAVERSE_SYNTHESIS"
+    },
+    "studio_mode": "789_STUDIOS",
+    "visual_style": {
+      "description": "cel shaded ancestral memory signal",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "camera_language": {
+      "description": "extreme close anime camera",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "action": {
+      "description": "protagonist observes ancestral signal",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "mood": {
+      "description": "ancestral mystery",
+      "confidence": 1,
+      "provenance": "HUMAN_REVIEW"
+    },
+    "dialogue_or_audio": {
+      "present": false,
+      "transcript": null,
+      "language": null,
+      "speaker_ids": [],
+      "music": false,
+      "effects": true,
+      "rights_review": "APPROVED"
+    },
+    "continuity_tags": [
+      "faction:neteru",
+      "location:alkebulan-memory-chamber",
+      "era:deep-time"
+    ],
+    "truth_state": "METAVERSE_SYNTHESIS",
+    "interactive_branch_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "atv_episode_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "kol_social_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "gaming_district_eligibility": {
+      "status": "ELIGIBLE",
+      "reasons": [
+        "FIXTURE_ONLY"
+      ],
+      "approval_references": [
+        "FIXTURE-APPROVAL"
+      ]
+    },
+    "provider_metadata": {
+      "fixture": true
+    },
+    "annotation_provenance": [
+      "FIXTURE-HUMAN-ANNOTATION"
+    ]
+  }
+]

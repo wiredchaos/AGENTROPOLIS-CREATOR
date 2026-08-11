@@ -1,0 +1,83 @@
+[
+  {
+    "scene_id": "TEST_NEURO_GRINDER_SURVEILLANCE",
+    "required_characters": [
+      "GRINDER_RUNNER_01"
+    ],
+    "required_factions": [
+      "GRINDER"
+    ],
+    "world": "NEURO TOKYO 2090",
+    "era": "2090",
+    "location": "PORT DISTRICT",
+    "studio_mode": "GRINDER_NEURO_TOKYO_2090",
+    "visual_style": "rain cyberpunk industrial port surveillance",
+    "camera_language": "high angle locked surveillance camera",
+    "action": "runner transports sealed neural freight",
+    "mood": "surveillance tension controlled danger",
+    "canon_status_requirement": [
+      "AUTHOR_DECLARED_CANON"
+    ],
+    "output_use": "ATV_EPISODE",
+    "continuity_tags": [
+      "faction:grinder",
+      "location:port-district",
+      "era:2090",
+      "weather:rain",
+      "action:reliquary-transit"
+    ]
+  },
+  {
+    "scene_id": "TEST_CHRYSANTHEUM_COVERT_ELEGANCE",
+    "required_characters": [
+      "VEIL_OPERATIVE_01"
+    ],
+    "required_factions": [
+      "CHRYSANTHEUM"
+    ],
+    "world": "CHRYSANTHEUM",
+    "era": "YASUKE LEGACY ERA",
+    "location": "VEIL ARCHIVE",
+    "studio_mode": "789_STUDIOS",
+    "visual_style": "cel shaded controlled elegance intelligence interior",
+    "camera_language": "symmetrical locked medium close camera",
+    "action": "operative reviews covert intelligence dossier",
+    "mood": "controlled elegance covert tension",
+    "canon_status_requirement": [
+      "SOURCE_CANON"
+    ],
+    "output_use": "KOL_SOCIAL",
+    "continuity_tags": [
+      "faction:chrysantheum",
+      "location:veil-archive",
+      "action:intelligence-review"
+    ]
+  },
+  {
+    "scene_id": "TEST_NETERU_DEEP_TIME_SIGNAL",
+    "required_characters": [
+      "NTRU_PROTAGONIST"
+    ],
+    "required_factions": [
+      "NETERU"
+    ],
+    "world": "NETERU",
+    "era": "DEEP TIME",
+    "location": "ALKebulan MEMORY CHAMBER",
+    "studio_mode": "NTRU_STUDIOS",
+    "visual_style": "hyper real cinematic photoreal ancestral memory signal",
+    "camera_language": "slow macro dolly focal signal",
+    "action": "protagonist receives deep time ancestral transmission",
+    "mood": "ancestral awe deep time mystery",
+    "canon_status_requirement": [
+      "METAVERSE_SYNTHESIS"
+    ],
+    "output_use": "INTERACTIVE_BRANCH",
+    "continuity_tags": [
+      "faction:neteru",
+      "location:alkebulan-memory-chamber",
+      "era:deep-time",
+      "action:signal-reception"
+    ]
+  }
+]

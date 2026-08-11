@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "generationAllowed": false,
+  "creditSpendingAllowed": false,
+  "vaults": [
+    {
+      "vault_id": "b619c13c-83ba-4ea3-b85c-de9be41bd01b",
+      "provider": "higgsfield",
+      "registration_status": "REGISTERED",
+      "inspection_status": "UNINSPECTED_AUTHENTICATION_UNAVAILABLE",
+      "asset_count": null,
+      "contents_assumed": false,
+      "enumeration_surface": null,
+      "last_enumerated_at": null,
+      "generation_allowed": false,
+      "credit_spending_allowed": false,
+      "notes": [
+        "Project identifier supplied by the creator on 2026-08-11.",
+        "No CLI, MCP resource, installed Higgsfield skill, or authenticated enumeration surface was available during registration.",
+        "No claims are made about project contents."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+namespace: TARATIA-589-METAVERSE
+relationshipSetId: META-2026-08-10-CONVERGENCE-SPINE
+status: METAVERSE_SYNTHESIS
+sourceCanonMutated: false
+sourceRepositoryOriginClaimed: false
+approvedUse: COINTELPRO_FEATURE_FILM_ARCHITECTURE
+nodes:
+  - YASUKE
+  - CHRYSANTHEUM
+  - GRINDER
+  - BLAQ_TIARAS
+  - NEURO_TOKYO_2090
+  - COINTELPRO
+  - NETERU
+  - TARATIA_589
+  - NEIBERAU
+edges:
+  - from: YASUKE
+    to: CHRYSANTHEUM
+  - from: CHRYSANTHEUM
+    to: GRINDER
+  - from: GRINDER
+    to: BLAQ_TIARAS
+  - from: BLAQ_TIARAS
+    to: NEURO_TOKYO_2090
+  - from: NEURO_TOKYO_2090
+    to: COINTELPRO
+  - from: COINTELPRO
+    to: NETERU
+  - from: NETERU
+    to: TARATIA_589
+  - from: TARATIA_589
+    to: NEIBERAU
+sourceEvidence: []
+provenance:
+  kind: CREATOR_APPROVED_FILM_SPINE
+  date: "2026-08-10"
+notes:
+  - Each edge is approved as film ordering, not source-repository provenance.
+  - NETERU-to-589 and 589-to-NEIBERAU must not be attributed to source repositories without evidence.
