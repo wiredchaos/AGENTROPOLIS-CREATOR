@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>NEUROBLOCK SERIES LAB</title>
+<style>
+:root{--bg:#020509;--panel:#07111d;--line:#18344b;--cyan:#00ffd5;--red:#ff335f;--white:#eef7ff;--muted:#8197aa;--amber:#ffc857;--gold:#d4af37;--violet:#a78bfa}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:radial-gradient(circle at 15% 0,#0a2a3a,#020509 44%);color:var(--white);font-family:Inter,system-ui,Arial,sans-serif}
+button,input,textarea,select{font:inherit}button{background:#0b1b2a;color:var(--white);border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer}
+button:hover{border-color:var(--cyan)}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:1px}
+button.danger{border-color:#ff335f66}button.danger:hover{border-color:var(--red)}
+button.primary{border-color:var(--cyan);background:#06231f}
+button.ghost{background:transparent}
+input,textarea,select{width:100%;background:#020910;color:var(--white);border:1px solid var(--line);border-radius:9px;padding:8px}
+textarea{min-height:60px;resize:vertical}select{width:100%}
+.app{min-height:100vh;display:grid;grid-template-rows:64px auto 1fr}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 18px;border-bottom:1px solid var(--line);background:#02070ce8;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:.08em}.brand span{color:var(--cyan)}.tag{font-size:12px;color:var(--muted);margin-top:3px}
+.topright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{padding:6px 9px;border:1px solid #00ffd555;border-radius:999px;color:var(--cyan);font-size:12px}
+.badge.red{border-color:#ff335f77;color:var(--red)}
+.badge.amber{border-color:#ffc85777;color:var(--amber)}
+.saveflash{font-size:12px;color:var(--muted);min-width:70px;text-align:right}
+.main{display:grid;grid-template-columns:280px 1fr 360px;min-height:0;gap:0}
+.panel{background:#06111ddb;padding:14px;overflow:auto}
+.left{border-right:1px solid var(--line)}
+.right{border-left:1px solid var(--line)}
+.section{margin-bottom:19px}
+.section h3{font-size:11px;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin:0 0 9px}
+.section h4{font-size:12px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin:12px 0 6px}
+.tool{width:100%;margin:5px 0;text-align:left}
+.workspace{display:grid;grid-template-rows:auto 1fr;min-width:0;min-height:0}
+.statusbar{display:flex;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);overflow:auto;background:#04101a}
+.pill{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:12px;color:var(--muted)}
+.pill strong{color:var(--white)}
+.pill.warn{border-color:#ffc85755;color:var(--amber)}
+.pill.block{border-color:#ff335f77;color:var(--red)}
+.scroll{overflow:auto;min-height:0}
+.episodes{padding:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:11px;align-content:start}
+.episode{background:linear-gradient(145deg,#091a29,#06101a);border:1px solid var(--line);border-radius:15px;padding:12px;cursor:pointer;position:relative}
+.episode:hover{border-color:#00ffd544}
+.episode.active{border-color:var(--cyan);box-shadow:0 0 20px #00ffd51e}
+.episode .num{font-size:11px;color:var(--cyan);letter-spacing:.12em}
+.episode h4{margin:7px 0 6px;font-size:14px}
+.episode p{margin:0 0 10px;color:#bfd0dc;font-size:12.5px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.episode .state{position:absolute;top:10px;right:10px;font-size:10px;letter-spacing:.08em;border:1px solid var(--line);border-radius:999px;padding:2px 7px;color:var(--muted)}
+.episode .state.approved{color:var(--cyan);border-color:#00ffd566}
+.episode .state.review{color:var(--amber);border-color:#ffc85766}
+.bar{height:7px;background:#142638;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--cyan))}
+.meta{font-size:11px;color:var(--muted);margin-top:7px;display:flex;justify-content:space-between;gap:6px}
+.inspector{padding:14px;overflow:auto;min-height:0;border-top:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 12px}
+@media(max-width:1100px){.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+.continuity{border-top:1px solid var(--line);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#04101bcc;overflow:auto}
+@media(max-width:980px){.continuity{grid-template-columns:1fr}}
+.matrix,.timeline{background:#071522;border:1px solid var(--line);border-radius:12px;padding:10px}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:6px 0;border-bottom:1px solid #17324766;font-size:12px}
+.row:last-child{border-bottom:0}
+.row small{display:block;color:var(--muted);margin-top:2px}
+.heat{font-weight:800}.good{color:var(--cyan)}.warn{color:var(--amber)}.bad{color:var(--red)}
+label{display:block;font-size:11px;color:var(--muted);margin-top:9px}
+label .opt{color:#5c7183}
+.notice{border:1px solid #ff335f77;background:#240912;border-radius:10px;padding:9px;margin:7px 0;font-size:12px;color:#ffd7df}
+.notice.info{border-color:#00ffd544;background:#06231f;color:#d3fff8}
+.notice.warn{border-color:#ffc85766;background:#241b06;color:#ffe6b8}
+.notice.block{border-color:#ff335f88;background:#240912;color:#ffd7df}
+.ok{border-color:#00ffd566;background:#06231f;color:#d3fff8}
+.card{border:1px solid var(--line);background:#081726;border-radius:12px;padding:10px;margin-bottom:8px}
+.card b{font-size:13px}.card small{display:block;color:var(--muted);margin-top:3px}
+.card .actions{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.mini{font-size:11px;padding:4px 8px;border-radius:7px}
+.export{white-space:pre-wrap;background:#020910;border:1px solid var(--line);border-radius:12px;padding:10px;color:#d8fff7;font-size:11px;max-height:300px;overflow:auto;font-family:ui-monospace,Consolas,monospace}
+.empty{border:1px dashed #18344b;border-radius:12px;padding:22px;color:var(--muted);text-align:center;font-size:13px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.tabbtn{font-size:11px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#081726;color:var(--muted);cursor:pointer}
+.tabbtn.active{color:var(--cyan);border-color:#00ffd566;background:#06231f}
+.tapline{font-size:11px;color:var(--muted);margin:4px 0 2px}
+.advice{border-left:3px solid var(--cyan);background:#081726;border-radius:0 10px 10px 0;padding:8px 10px;margin:7px 0;font-size:12px}
+.advice.warn{border-left-color:var(--amber)}.advice.block{border-left-color:var(--red)}.advice.info{border-left-color:#00ffd544}
+.advice .tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.entropy{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:8px 0}
+.metric{background:#081726;border:1px solid var(--line);border-radius:10px;padding:9px;text-align:center}
+.metric .v{font-size:20px;font-weight:900}
+.metric .k{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.mobiletabs{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+@media(max-width:980px){
+  .main{grid-template-columns:1fr}
+  .mobiletabs{display:flex;gap:4px;overflow-x:auto;padding:8px;border-bottom:1px solid var(--line);background:#04101a}
+  .mobiletabs button{flex:0 0 auto;font-size:11px;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:#081726;color:var(--muted)}
+  .mobiletabs button.active{color:var(--cyan);border-color:#00ffd566}
+  .panel.left,.panel.right{display:none}
+  .panel.visible{display:block;max-height:60vh}
+  .workspace{min-height:70vh}
+  .inspector{max-height:55vh}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+[aria-live]{min-height:1px}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to main content</a>
+<div class="app">
+  <header class="top">
+    <div>
+      <div class="brand">NEUROBLOCK <span>SERIES LAB</span></div>
+      <div class="tag">Episodic continuity control for AI-native cinematic series</div>
+    </div>
+    <div class="topright">
+      <span id="saveflash" class="saveflash" role="status" aria-live="polite">READY</span>
+      <span class="badge" id="modeBadge">LOCAL · GATED</span>
+      <span class="badge amber" id="schemaBadge">SCHEMA v2</span>
+    </div>
+  </header>
+  <nav class="mobiletabs" id="mobiletabs" aria-label="Section navigation"></nav>
+  <main class="main" id="main">
+    <aside class="panel left" id="panel-left">
+      <div class="section" aria-labelledby="h-series">
+        <h3 id="h-series">Series Control</h3>
+        <button class="tool" data-action="new-series">New Series</button>
+        <button class="tool" data-action="seed">Load Demo Series</button>
+        <button class="tool" data-action="save">Save Local</button>
+        <button class="tool" data-action="load">Load Local</button>
+        <button class="tool" data-action="export-packet">Export Series Context Packet</button>
+        <div id="series-fields"></div>
+      </div>
+      <div class="section" aria-labelledby="h-bible">
+        <h3 id="h-bible">Character Bible</h3>
+        <button class="tool" data-action="add-character">+ Character</button>
+        <div id="characters"></div>
+      </div>
+    </aside>
+    <section class="workspace" aria-label="Episode workspace">
+      <div id="statusbar" class="statusbar" role="status"></div>
+      <div class="scroll">
+        <div id="episodes" class="episodes" aria-label="Episode grid"></div>
+        <div id="inspector" class="inspector"></div>
+      </div>
+      <div class="continuity">
+        <div class="matrix"><div class="section"><h3>Relationship Matrix</h3><div id="relationships"></div></div></div>
+        <div class="timeline"><div class="section"><h3>Threat Escalation</h3><div id="threats"></div></div></div>
+      </div>
+    </section>
+    <aside class="panel right" id="panel-right">
+      <div class="tabs" id="right-tabs" role="tablist" aria-label="Series Lab surfaces"></div>
+      <div id="right-surfaces"></div>
+    </aside>
+  </main>
+</div>
+<script>
+'use strict';
+/* =====================================================================
+   NEUROBLOCK SERIES LAB — governed episodic continuity workspace
+   Layer: application · District: AGENTROPOLIS-CREATOR
+   Runtime authority: AGENTROPOLIS-AGENT-MCP (execution remains external)
+   Canon: provider-neutral structured state; no proprietary objects in canon.
+   ===================================================================== */
+
+const STORAGE_KEY='neuroblock.serieslab.v2';
+const LEGACY_KEY='neuroblock-series-lab';
+const CORRUPT_PREFIX='neuroblock.serieslab.corrupt';
+const SCHEMA_VERSION=2;
+
+/* ---------------- pure helpers ---------------- */
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function attr(v){return esc(v)}
+function uid(p){return (p||'x')+Math.random().toString(36).slice(2,9)}
+function nowIso(){return new Date().toISOString()}
+function trimLines(s){return String(s==null?'':s).split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
+function parsePipeLine(line){return String(line).split('|').map(x=>x.trim())}
+function num(v,d){const n=parseFloat(v);return isFinite(n)?n:d}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+function splitPairs(s){return String(s==null?'':s).split(/[,;]/).map(x=>x.trim()).filter(Boolean)}
+function splitRelPair(s){return String(s==null?'':s).split(/[&,;]/).map(x=>x.trim()).filter(Boolean)}
+function sharedWords(a,b){const A=new Set(String(a).toLowerCase().split(/\W+/).filter(x=>x.length>3));return String(b).toLowerCase().split(/\W+/).some(x=>A.has(x))}
+function sortedJson(obj){const out={};Object.keys(obj).sort().forEach(k=>{out[k]=obj[k]});return JSON.stringify(out,null,2)}
+function deepClone(o){return JSON.parse(JSON.stringify(o))}
+
+/* =====================================================================
+   NSL ENGINE — pure, DOM-free, testable
+   ===================================================================== */
+const NSL={};
+
+/* ---------------- provider capability registry (adapter-level) ------- */
+NSL.providerRegistry=[
+ {id:'higgsfield',name:'Higgsfield MCP',capabilities:['image','video','character_consistency'],status:'adapter_gated',note:'official external provider stack; governed adapter only'},
+ {id:'minimax_h3',name:'MiniMax H3',capabilities:['video','reasoning'],status:'candidate',note:'production protocol adopted in CREATOR; adapter verification required'},
+ {id:'seedance',name:'Seedance 2.0',capabilities:['video','reference_to_video'],status:'candidate',note:'external skill reference; runtime adoption after approval'},
+ {id:'local',name:'Local models',capabilities:['image','video'],status:'local_only',note:'operator-provided local runtime'},
+ {id:'byok',name:'BYOK provider',capabilities:['image','video'],status:'provisioned_by_operator',note:'future bring-your-own-key providers'}
+];
+NSL.routeProvider=function(capability,episode){
+  // capability-based routing: never auto-selects a live provider.
+  const candidates=NSL.providerRegistry.filter(p=>p.capabilities.includes(capability));
+  return {
+    capability,
+    provider:'unresolved_until_router_selection',
+    candidates:candidates.map(p=>({id:p.id,name:p.name,status:p.status,note:p.note})),
+    required_gates:['AGENT-MCP_authority','ASBE_policy','human_approval','provenance_check','media_diff','receipt'],
+    selected:null
+  };
+};
+
+/* ---------------- schema / defaults ---------------- */
+NSL.blankSeries=function(title){
+  return {
+    id:uid('s'),title:title||'UNTITLED SERIES',logline:'',genre:'',status:'draft',
+    visualGrammar:{lensLanguage:'',cameraLanguage:'',lightingLanguage:'',framingLanguage:'',motif:''},
+    generationConstraints:{negatives:'',positives:''},
+    canonFacts:[]
+  };
+};
+NSL.blankCharacter=function(){
+  return {
+    character_id:uid('c'),canonical_name:'',role:'',
+    appearance_anchors:'',wardrobe_anchors:'',body_silhouette_anchors:'',voice_anchors:'',
+    behavior_anchors:'',relationship_anchors:'',allowed_variations:'',forbidden_drift:'',
+    reference_asset_ids:'',rights:{provenance:'original',rights_status:'unverified',notes:''}
+  };
+};
+NSL.blankRelationship=function(a,b){
+  return {id:uid('r'),character_a:a||'',character_b:b||'',trust:50,conflict:50,alliance:50,betrayal:10,authority:'equal',notes:''};
+};
+NSL.blankThreat=function(){return {species:'',capability:'',escalation:1,known_behavior:'',countermeasures:''}};
+NSL.blankContinuity=function(){
+  return {
+    character:{face_identity:'',wardrobe:'',injuries:'',equipment:'',emotional_state:''},
+    prop:[],environment:{location:'',destruction:'',weather:'',time:'',lighting:''},
+    threat:NSL.blankThreat(),
+    cinematic:{lens_language:'',camera_movement:'',framing:'',lighting_grammar:'',visual_motif:''},
+    narrative:{unresolved_hooks:'',revealed_information:'',inventory:'',objectives:'',consequences:''}
+  };
+};
+NSL.blankEpisode=function(number){
+  return {
+    episode_id:uid('e'),episode_number:number||1,title:'Untitled Episode',intent:'',summary:'',
+    story_objective:'',scene_list:'',cast:[],location:'',threat_level:1,
+    camera_contract:'',lighting_contract:'',performance_direction:'',dialogue_anchors:'',
+    continuity:NSL.blankContinuity(),continuity_notes:'',
+    readiness:0,approval_state:'draft',human_overrides:[],created_at:nowIso(),updated_at:nowIso()
+  };
+};
+NSL.blankState=function(){
+  const s={schemaVersion:SCHEMA_VERSION,savedAt:nowIso(),series:NSL.blankSeries(),characters:[],relationships:[],episodes:[],active_episode_id:null,receipts:{},entropy_history:[],overrides_ledger:[]};
+  const e=NSL.blankEpisode(1);s.episodes.push(e);s.active_episode_id=e.episode_id;
+  return s;
+};
+
+/* ---------------- episode helpers ---------------- */
+NSL.episodeById=function(state,id){return state.episodes.find(e=>e.episode_id===id)||null};
+NSL.activeEpisode=function(state){return NSL.episodeById(state,state.active_episode_id)};
+NSL.nextEpisodeNumber=function(state){
+  const max=state.episodes.reduce((m,e)=>Math.max(m,Number(e.episode_number)||0),0);
+  return max+1;
+};
+NSL.parseProps=function(text){
+  return trimLines(text).map(line=>{
+    const p=parsePipeLine(line);
+    return {name:p[0]||'',owner:p[1]||'',location:p[2]||'',damage:p[3]||'',activation_state:p[4]||''};
+  });
+};
+NSL.serializeProps=function(props){
+  return (props||[]).map(p=>[p.name,p.owner,p.location,p.damage,p.activation_state].map(x=>x==null?'':String(x)).join(' | ')).join('\n');
+};
+NSL.parseRelationships=function(text){
+  return trimLines(text).map(line=>{
+    const p=parsePipeLine(line);
+    const pair=splitRelPair(p[0]);
+    return {pair:pair.length===2?pair:[p[0]||'',''],trust:num(p[1],50),conflict:num(p[2],50),alliance:num(p[3],50),betrayal:num(p[4],10),authority:p[5]||'equal',note:p[6]||''};
+  });
+};
+NSL.serializeRelationships=function(rels){
+  return (rels||[]).map(r=>[r.pair.join(' & '),r.trust,r.conflict,r.alliance,r.betrayal,r.authority,r.note].join(' | ')).join('\n');
+};
+
+/* ---------------- readiness ---------------- */
+NSL.REQUIRED_FIELDS=['title','summary','location','intent','camera_contract','lighting_contract','dialogue_anchors'];
+NSL.scoreEpisode=function(e){
+  if(!e)return 0;
+  const cont=e.continuity||NSL.blankContinuity();
+  const filled=NSL.REQUIRED_FIELDS.filter(k=>String(e[k]||'').trim()).length;
+  const contChecks=[
+    cont.character.wardrobe,cont.character.injuries,cont.character.face_identity,
+    cont.environment.location,cont.environment.lighting,cont.threat.species,
+    cont.cinematic.lens_language,cont.narrative.inventory,cont.narrative.unresolved_hooks
+  ].filter(x=>String(x||'').trim()).length;
+  const total=NSL.REQUIRED_FIELDS.length+contChecks;
+  const base=Math.round((filled+contChecks)/total*100);
+  return clamp(base,0,100);
+};
+
+/* ---------------- state validation & migration ---------------- */
+NSL.validateState=function(raw){
+  const errors=[];
+  if(!raw||typeof raw!=='object'){errors.push('state is not an object');return {ok:false,errors}}
+  if(raw.schemaVersion!==SCHEMA_VERSION)errors.push('schemaVersion mismatch: expected '+SCHEMA_VERSION+', got '+(raw&&raw.schemaVersion));
+  if(!raw.series||typeof raw.series!=='object')errors.push('series missing');
+  if(!Array.isArray(raw.characters))errors.push('characters must be an array');
+  if(!Array.isArray(raw.relationships))errors.push('relationships must be an array');
+  if(!Array.isArray(raw.episodes))errors.push('episodes must be an array');
+  else{
+    raw.episodes.forEach((e,i)=>{
+      if(!e||!e.episode_id)errors.push('episode['+i+'] missing episode_id');
+      if(!e.continuity||typeof e.continuity!=='object')errors.push('episode['+i+'] missing continuity state');
+      if(!['draft','ready_for_review','approved'].includes(e.approval_state))errors.push('episode['+i+'] invalid approval_state');
+    });
+  }
+  return {ok:errors.length===0,errors};
+};
+NSL.normalizeEpisode=function(rawEp,index){
+  const n=Number(rawEp.episode_number)||index+1;
+  const e=NSL.blankEpisode(n);
+  ['title','summary','location','camera','lighting','dialogue','wardrobe','prop','relationship'].forEach(k=>{if(rawEp[k]!=null)e[k]=rawEp[k]});
+  e.episode_id=rawEp.episode_id||e.episode_id;
+  e.title=rawEp.title||e.title;
+  e.summary=rawEp.summary||'';
+  e.intent=rawEp.intent||'';
+  e.location=rawEp.location||'';
+  e.threat_level=clamp(num(rawEp.level,rawEp.threat_level,1),1,10);
+  e.camera_contract=rawEp.camera_contract||rawEp.camera||'';
+  e.lighting_contract=rawEp.lighting_contract||rawEp.lighting||'';
+  e.dialogue_anchors=rawEp.dialogue_anchors||rawEp.dialogue||'';
+  e.continuity_notes=rawEp.continuity_notes||rawEp.continuity||'';
+  const c=e.continuity;
+  if(rawEp.continuity&&typeof rawEp.continuity==='object'){
+    ['character','prop','environment','threat','cinematic','narrative'].forEach(k=>{if(rawEp.continuity[k]!=null&&rawEp.continuity[k]!==undefined)c[k]=rawEp.continuity[k]});
+  } else {
+    c.character.wardrobe=rawEp.wardrobe||'';
+    c.character.injuries=/bandag|injur|cut|damage/i.test(String(rawEp.continuity||''))?'unacknowledged prior injury (migrated)':'';
+    c.environment.location=rawEp.location||'';
+    c.environment.lighting=rawEp.lighting||'';
+    c.threat.species=rawEp.threat||'';
+    c.threat.escalation=e.threat_level;
+    c.narrative.inventory=/prism|prop|recovered|mounted/i.test(String(rawEp.prop||''))?rawEp.prop:'';
+  }
+  e.approval_state=['draft','ready_for_review','approved'].includes(rawEp.approval_state)?rawEp.approval_state:'draft';
+  e.human_overrides=Array.isArray(rawEp.human_overrides)?rawEp.human_overrides:[];
+  e.readiness=NSL.scoreEpisode(e);
+  e.updated_at=rawEp.updated_at||nowIso();
+  return e;
+};
+NSL.migrateState=function(raw){
+  // v1 legacy (unversioned) -> v2
+  const s=NSL.blankState();
+  s.migrated_from='v1';
+  s.series=NSL.blankSeries(raw.series||'');
+  if(raw.series&&typeof raw.series==='object'){
+    Object.keys(raw.series).forEach(k=>{if(raw.series[k]!=null&&s.series[k]!==undefined&&typeof raw.series[k]!=='object')s.series[k]=raw.series[k]});
+  }
+  s.characters=(Array.isArray(raw.characters)?raw.characters:[]).map(c=>({
+    character_id:c.character_id||uid('c'),canonical_name:c.canonical_name||c.name||'',
+    role:c.role||'',appearance_anchors:c.appearance_anchors||c.look||'',
+    wardrobe_anchors:c.wardrobe_anchors||'',body_silhouette_anchors:c.body_silhouette_anchors||'',
+    voice_anchors:c.voice_anchors||'',behavior_anchors:c.behavior_anchors||c.anchor||'',
+    relationship_anchors:c.relationship_anchors||'',allowed_variations:c.allowed_variations||'',
+    forbidden_drift:c.forbidden_drift||'',reference_asset_ids:c.reference_asset_ids||'',
+    rights:c.rights||{provenance:'original',rights_status:'unverified',notes:''}
+  }));
+  s.relationships=(Array.isArray(raw.relationships)?raw.relationships:[]).map(r=>({
+    id:r.id||uid('r'),character_a:r.a||r.character_a||'',character_b:r.b||r.character_b||'',
+    trust:num(r.heat,r.trust,50),conflict:r.conflict!=null?num(r.conflict,50):Math.round(100-num(r.heat,50)),
+    alliance:r.alliance!=null?num(r.alliance,50):Math.round(num(r.heat,50)*0.8),
+    betrayal:r.betrayal!=null?num(r.betrayal,10):10,
+    authority:r.authority||'equal',notes:r.state||r.notes||''
+  }));
+  s.episodes=(Array.isArray(raw.episodes)?raw.episodes:[]).map(NSL.normalizeEpisode);
+  if(!s.episodes.length){const e=NSL.blankEpisode(1);s.episodes.push(e)}
+  if(!s.active_episode_id||!NSL.episodeById(s,s.active_episode_id))s.active_episode_id=s.episodes[0].episode_id;
+  return s;
+};
+NSL.ensureSchema=function(raw){
+  if(!raw||typeof raw!=='object')return {state:NSL.blankState(),migrated:true,notes:['empty or invalid payload; blank workspace created']};
+  if(raw.schemaVersion===SCHEMA_VERSION){
+    const v=NSL.validateState(raw);
+    if(!v.ok)return {state:NSL.blankState(),migrated:true,notes:['schema validation failed: '+v.errors.join('; ')]};
+    // normalize stale active pointer so a valid payload can never strand the UI
+    if(!NSL.episodeById(raw,raw.active_episode_id))raw.active_episode_id=raw.episodes.length?raw.episodes[0].episode_id:null;
+    return {state:raw,migrated:false,notes:[]};
+  }
+  const migrated=NSL.migrateState(raw);
+  const v=NSL.validateState(migrated);
+  return {state:migrated,migrated:true,notes:v.ok?['migrated from legacy v1 payload']:['migration incomplete: '+v.errors.join('; ')]};
+};
+
+/* ---------------- persistence (safe) ---------------- */
+NSL.store={
+  read(){
+    try{return localStorage.getItem(STORAGE_KEY)}catch(e){return null}
+  },
+  readLegacy(){
+    try{return localStorage.getItem(LEGACY_KEY)}catch(e){return null}
+  },
+  write(json){
+    try{localStorage.setItem(STORAGE_KEY,json);return {ok:true}}
+    catch(e){return {ok:false,error:String(e&&e.message||e)}}
+  },
+  quarantine(raw,reason){
+    try{
+      const key=CORRUPT_PREFIX+'.'+Date.now()+'.json';
+      localStorage.setItem(key,raw);
+      return key;
+    }catch(e){return null}
+  },
+  clearCorrupt(){
+    try{
+      const keys=[];
+      for(let i=0;i<localStorage.length;i++){
+        const k=localStorage.key(i);
+        if(k&&k.indexOf(CORRUPT_PREFIX)===0)keys.push(k);
+      }
+      keys.forEach(k=>localStorage.removeItem(k));
+      return keys.length;
+    }catch(e){return 0}
+  }
+};
+NSL.loadState=function(){
+  const raw=NSL.store.read();
+  let corrupt=false,notes=[];
+  if(raw==null){
+    // fall back to legacy key if present
+    const legacy=NSL.store.readLegacy();
+    if(legacy==null)return {state:NSL.blankState(),corrupt:false,notes:['blank workspace']};
+    try{
+      const r=JSON.parse(legacy);
+      const res=NSL.ensureSchema(r);
+      return {state:res.state,corrupt:false,notes:res.notes};
+    }catch(e){
+      NSL.store.quarantine(legacy,'legacy unparseable');
+      return {state:NSL.blankState(),corrupt:true,notes:['legacy payload corrupt; quarantined']};
+    }
+  }
+  try{
+    const r=JSON.parse(raw);
+    const res=NSL.ensureSchema(r);
+    return {state:res.state,corrupt:false,notes:res.notes};
+  }catch(e){
+    const q=NSL.store.quarantine(raw,'unparseable JSON');
+    corrupt=true;
+    notes=['saved state was corrupt; payload quarantined'+(q?' under '+q:'')];
+    return {state:NSL.blankState(),corrupt,notes};
+  }
+};
+NSL.saveState=function(state){
+  const snapshot=deepClone(state);
+  snapshot.savedAt=nowIso();
+  const json=JSON.stringify(snapshot);
+  const res=NSL.store.write(json);
+  return res.ok?{ok:true,bytes:json.length}:{ok:false,error:res.error};
+};
+
+/* ---------------- continuity engine ---------------- */
+NSL.SEVERITIES={INFO:'INFO',WARNING:'WARNING',BLOCKING:'BLOCKING'};
+NSL.continuityWarnings=function(prev,next){
+  const out=[];let n=0;
+  const push=(severity,category,code,message,suggestion,field)=>{out.push({id:'w'+ (++n),severity,category,code,message,suggestion: suggestion||'',field:field||''})};
+  if(!prev||!next)return out;
+  const pc=prev.continuity||NSL.blankContinuity(),nc=next.continuity||NSL.blankContinuity();
+  /* ---- CHARACTER ---- */
+  if(String(nc.character.face_identity||'').trim()&&String(pc.character.face_identity||'').trim()&&!sharedWords(pc.character.face_identity,nc.character.face_identity)){
+    push('WARNING','CHARACTER','FACE_IDENTITY_CHANGE','Face/identity description changed without an explicit transition.','Confirm the change is intentional or document the transition.','character.face_identity');
+  }
+  if(String(pc.character.wardrobe||'').trim()&&String(nc.character.wardrobe||'').trim()&&!sharedWords(pc.character.wardrobe,nc.character.wardrobe)){
+    push('WARNING','CHARACTER','WARDROBE_CHANGE','Wardrobe state changed without a matching transition note.','Add a transition in continuity notes or accept as intentional.','character.wardrobe');
+  }
+  if(/bandag|injur|cut|damage|wound|burn/i.test(String(pc.character.injuries||''))){
+    const nextText=String(nc.character.injuries||'')+' '+String(next.continuity_notes||'');
+    if(/heal|recover|treated|resolved|scar/i.test(nextText)){
+      push('INFO','CHARACTER','INJURY_RESOLVED','Prior injury shows healing or resolution.','Keep the resolution consistent in later episodes.','character.injuries');
+    } else if(/bandag|injur|cut|damage|wound|burn/i.test(nextText)){
+      push('WARNING','CHARACTER','INJURY_PERSISTS','Prior injury persists and is acknowledged.','Maintain the state or document treatment.','character.injuries');
+    } else {
+      push('BLOCKING','CHARACTER','INJURY_UNACKNOWLEDGED','Prior injury or damage state is not acknowledged or resolved.','Acknowledge persistence or document healing before generation.','character.injuries');
+    }
+  }
+  if(String(pc.character.equipment||'').trim()&&String(nc.character.equipment||'').trim()&&!sharedWords(pc.character.equipment,nc.character.equipment)){
+    push('WARNING','CHARACTER','EQUIPMENT_CHANGE','Character equipment changed without documentation.','Document equipment gain/loss in continuity state.','character.equipment');
+  }
+  if(String(pc.character.emotional_state||'').trim()&&String(nc.character.emotional_state||'').trim()&&!sharedWords(pc.character.emotional_state,nc.character.emotional_state)){
+    push('INFO','CHARACTER','EMOTIONAL_SHIFT','Emotional state shifted.','Note the trigger if the shift is intentional.','character.emotional_state');
+  }
+  /* ---- PROP ---- */
+  const prevProps=Array.isArray(pc.prop)?pc.prop:NSL.parseProps(String(pc.prop||''));
+  const nextProps=Array.isArray(nc.prop)?nc.prop:NSL.parseProps(String(nc.prop||''));
+  prevProps.forEach(pp=>{
+    if(!pp.name)return;
+    const np=nextProps.find(x=>x.name===pp.name);
+    if(!np){push('INFO','PROP','PROP_REMOVED','Prop "'+pp.name+'" is not present in this episode.','Confirm it was removed, destroyed, or off-screen.','prop:'+pp.name);return}
+    if(pp.owner&&np.owner&&pp.owner!==np.owner)push('WARNING','PROP','PROP_OWNERSHIP','Ownership of "'+pp.name+'" changed without a transition.','Document the ownership transfer.','prop:'+pp.name);
+    if(pp.location&&np.location&&pp.location!==np.location)push('INFO','PROP','PROP_MOVED','Prop "'+pp.name+'" changed location.','Confirm deliberate placement.','prop:'+pp.name);
+    if(pp.damage&&np.damage&&pp.damage!==np.damage)push('WARNING','PROP','PROP_DAMAGE','Damage state of "'+pp.name+'" changed without documentation.','Document the damage event.','prop:'+pp.name);
+    if(pp.activation_state&&np.activation_state&&pp.activation_state!==np.activation_state)push('INFO','PROP','PROP_ACTIVATION','Activation state of "'+pp.name+'" changed.','Confirm deliberate activation/deactivation.','prop:'+pp.name);
+  });
+  /* ---- RELATIONSHIP ---- */
+  const prevRels=Array.isArray(pc.relationship)?pc.relationship:NSL.parseRelationships(String(pc.relationship||''));
+  const nextRels=Array.isArray(nc.relationship)?nc.relationship:NSL.parseRelationships(String(nc.relationship||''));
+  prevRels.forEach(pr=>{
+    if(!pr.pair||!pr.pair.length)return;
+    const key=pr.pair.slice().sort().join('|');
+    const nr=nextRels.find(x=>x.pair&&x.pair.slice().sort().join('|')===key);
+    if(!nr){push('INFO','RELATIONSHIP','RELATIONSHIP_DROPPED','Relationship state for '+pr.pair.join(' & ')+' is missing this episode.','Preserve the pair or document the change.','relationship:'+pr.pair.join('&'));return}
+    const dTrust=Math.abs(pr.trust-nr.trust),dConflict=Math.abs(pr.conflict-nr.conflict),dAlliance=Math.abs(pr.alliance-nr.alliance),dBetrayal=Math.abs(pr.betrayal-nr.betrayal);
+    if(dTrust>60)push('BLOCKING','RELATIONSHIP','TRUST_FLIP','Trust for '+pr.pair.join(' & ')+' swung '+dTrust+' points without narrative support.','Add an intermediate beat or document the trigger.','relationship.trust');
+    else if(dTrust>30)push('WARNING','RELATIONSHIP','TRUST_SHIFT','Trust for '+pr.pair.join(' & ')+' shifted '+dTrust+' points.','Confirm the shift is earned.','relationship.trust');
+    if(dConflict>30)push('WARNING','RELATIONSHIP','CONFLICT_SHIFT','Conflict for '+pr.pair.join(' & ')+' shifted '+dConflict+' points.','Confirm the escalation is intentional.','relationship.conflict');
+    if(dAlliance>30)push('WARNING','RELATIONSHIP','ALLIANCE_SHIFT','Alliance for '+pr.pair.join(' & ')+' shifted '+dAlliance+' points.','Confirm the alliance change.','relationship.alliance');
+    if(dBetrayal>30)push('WARNING','RELATIONSHIP','BETRAYAL_JUMP','Betrayal for '+pr.pair.join(' & ')+' jumped '+dBetrayal+' points.','Betrayal needs explicit narrative setup.','relationship.betrayal');
+    if(pr.authority&&nr.authority&&pr.authority!==nr.authority)push('INFO','RELATIONSHIP','AUTHORITY_FLIP','Authority structure changed for '+pr.pair.join(' & ')+'.','Document the power shift.','relationship.authority');
+  });
+  /* ---- ENVIRONMENT ---- */
+  if(String(pc.environment.location||'').trim()&&String(nc.environment.location||'').trim()&&pc.environment.location!==nc.environment.location){
+    const travel=/travel|jump|arrive|depart|move|transit|warp|exit|enter/i.test(String(next.continuity_notes||'')+' '+String(next.summary||''));
+    if(travel)push('INFO','ENVIRONMENT','LOCATION_CHANGE','Location changed ('+pc.environment.location+' -> '+nc.environment.location+').','Transition acknowledged.','environment.location');
+    else push('WARNING','ENVIRONMENT','LOCATION_JUMP','Location changed ('+pc.environment.location+' -> '+nc.environment.location+') with no travel or transition noted.','Add a travel/transition beat or accept as intentional.','environment.location');
+  }
+  if(String(nc.environment.destruction||'').trim()&&!String(pc.environment.destruction||'').trim()){
+    push('WARNING','ENVIRONMENT','NEW_DESTRUCTION','New destruction introduced without prior setup.','Document the destructive event.','environment.destruction');
+  }
+  if(String(pc.environment.destruction||'').trim()&&String(nc.environment.destruction||'').trim()&&!sharedWords(pc.environment.destruction,nc.environment.destruction)){
+    push('WARNING','ENVIRONMENT','DESTRUCTION_CHANGE','Destruction state changed without continuity link.','Acknowledge or document the change.','environment.destruction');
+  }
+  if(String(pc.environment.weather||'').trim()&&String(nc.environment.weather||'').trim()&&!sharedWords(pc.environment.weather,nc.environment.weather))push('INFO','ENVIRONMENT','WEATHER_CHANGE','Weather changed.','Confirm the transition is intentional.','environment.weather');
+  if(String(pc.environment.time||'').trim()&&String(nc.environment.time||'').trim()&&!sharedWords(pc.environment.time,nc.environment.time))push('INFO','ENVIRONMENT','TIME_CHANGE','Time-of-day / temporal state changed.','Confirm the time jump is intentional.','environment.time');
+  if(String(pc.environment.lighting||'').trim()&&String(nc.environment.lighting||'').trim()&&!sharedWords(pc.environment.lighting,nc.environment.lighting))push('INFO','ENVIRONMENT','ENV_LIGHTING_CHANGE','Environmental lighting changed.','Confirm the lighting shift is intentional.','environment.lighting');
+  /* ---- THREAT ---- */
+  if(String(pc.threat.species||'').trim()&&String(nc.threat.species||'').trim()&&pc.threat.species!==nc.threat.species){
+    push('BLOCKING','THREAT','THREAT_SPECIES_CHANGE','Threat species changed ('+pc.threat.species+' -> '+nc.threat.species+') without narrative transition.','Introduce the new threat through an explicit story beat.','threat.species');
+  }
+  const escPrev=num(pc.threat.escalation,0),escNext=num(nc.threat.escalation,0);
+  if(escPrev&&escNext){
+    if(escNext-escPrev>2)push('WARNING','THREAT','ESCALATION_JUMP','Threat escalation jumped from '+escPrev+' to '+escNext+'.','Add intermediate escalation beats.','threat.escalation');
+    if(escPrev-escNext>2)push('INFO','THREAT','ESCALATION_DROP','Threat escalation dropped from '+escPrev+' to '+escNext+'.','Confirm intentional decompression.','threat.escalation');
+  }
+  if(String(pc.threat.capability||'').trim()&&String(nc.threat.capability||'').trim()&&!sharedWords(pc.threat.capability,nc.threat.capability))push('INFO','THREAT','CAPABILITY_DRIFT','Threat capability description drifted.','Keep capability language consistent or document growth.','threat.capability');
+  /* ---- CINEMATIC ---- */
+  const cinKeys=['lens_language','camera_movement','framing','lighting_grammar','visual_motif'];
+  cinKeys.forEach(k=>{
+    if(String(pc.cinematic[k]||'').trim()&&String(nc.cinematic[k]||'').trim()&&!sharedWords(pc.cinematic[k],nc.cinematic[k])){
+      push('INFO','CINEMATIC','CINEMATIC_'+k.toUpperCase(),'Cinematic '+k.replace('_',' ')+' changed without explicit contract.','Document the intentional grammar change.','cinematic.'+k);
+    }
+  });
+  /* ---- NARRATIVE ---- */
+  const prevHooks=trimLines(String(pc.narrative.unresolved_hooks||''));
+  const nextHooks=trimLines(String(nc.narrative.unresolved_hooks||''));
+  const nextRevealed=trimLines(String(nc.narrative.revealed_information||'')).join(' ').toLowerCase();
+  prevHooks.forEach(h=>{
+    const seenInNext=nextHooks.some(x=>sharedWords(h,x))||nextRevealed.indexOf(h.toLowerCase().slice(0,12))>=0;
+    if(!seenInNext)push('WARNING','NARRATIVE','HOOK_UNRESOLVED','Story hook not advanced: "'+h+'"','Resolve, advance, or explicitly defer this thread.','narrative.unresolved_hooks');
+  });
+  const prevInv=trimLines(String(pc.narrative.inventory||''));
+  const nextInv=trimLines(String(nc.narrative.inventory||''));
+  prevInv.forEach(item=>{
+    if(!nextInv.some(x=>sharedWords(item,x)))push('INFO','NARRATIVE','INVENTORY_LOST','Inventory item not carried forward: "'+item+'"','Confirm loss or removal; keep inventory deterministic.','narrative.inventory');
+  });
+  if(String(nc.narrative.consequences||'').trim()&&!String(pc.narrative.consequences||'').trim())push('INFO','NARRATIVE','NEW_CONSEQUENCE','New consequence introduced.','Link it to a prior action.','narrative.consequences');
+  return out;
+};
+NSL.applyOverrides=function(warnings,episode){
+  const ov=Array.isArray(episode&&episode.human_overrides)?episode.human_overrides:[];
+  if(!ov.length)return warnings.map(w=>({...w,overridden:false}));
+  return warnings.map(w=>{
+    const match=ov.find(o=>o.field===w.field&&o.category===w.category);
+    if(match)return {...w,overridden:true,override_reason:match.reason,severity:'INFO'};
+    return {...w,overridden:false};
+  });
+};
+NSL.countSeverity=function(warnings,sev){return warnings.filter(w=>w.severity===sev&&!w.overridden).length};
+NSL.generationGate=function(state,episodeId){
+  const e=NSL.episodeById(state,episodeId);
+  if(!e)return {allowed:false,reason:'episode not found'};
+  const idx=state.episodes.findIndex(x=>x.episode_id===episodeId);
+  const prev=idx>0?state.episodes[idx-1]:null;
+  const warnings=NSL.applyOverrides(NSL.continuityWarnings(prev,e),e);
+  const blocking=NSL.countSeverity(warnings,'BLOCKING');
+  const gate={allowed:blocking===0&&e.approval_state!=='draft',blocking,approval_state:e.approval_state,reason:null};
+  if(blocking>0)gate.reason=blocking+' blocking continuity violation(s) unresolved';
+  else if(e.approval_state==='draft')gate.reason='episode is still in draft; mark ready for review first';
+  return gate;
+};
+
+/* ---------------- continuity receipt ---------------- */
+NSL.buildReceipt=function(state,episodeId){
+  const e=NSL.episodeById(state,episodeId);
+  if(!e)return null;
+  const idx=state.episodes.findIndex(x=>x.episode_id===episodeId);
+  const prev=idx>0?state.episodes[idx-1]:null;
+  const warnings=NSL.applyOverrides(NSL.continuityWarnings(prev,e),e);
+  const c=e.continuity||NSL.blankContinuity();
+  const threads=trimLines(String(c.narrative.unresolved_hooks||''));
+  const gate=NSL.generationGate(state,episodeId);
+  const nextConstraints=[];
+  if(!gate.allowed&&gate.blocking>0)nextConstraints.push('Resolve '+gate.blocking+' blocking continuity violation(s) before generation.');
+  threads.forEach(t=>nextConstraints.push('Carry forward hook: '+t));
+  const inv=trimLines(String(c.narrative.inventory||''));
+  if(inv.length)nextConstraints.push('Preserve inventory: '+inv.join(', '));
+  return {
+    schema:'agentropolis/neuroblock/series-lab/continuity-receipt',
+    schemaVersion:1,
+    series_id:state.series.id,
+    series_title:state.series.title,
+    episode_id:e.episode_id,
+    episode_number:Number(e.episode_number)||idx+1,
+    timestamp:nowIso(),
+    character_state:{face_identity:c.character.face_identity,wardrobe:c.character.wardrobe,injuries:c.character.injuries,equipment:c.character.equipment,emotional_state:c.character.emotional_state},
+    relationship_state:(Array.isArray(c.relationship)?c.relationship:NSL.parseRelationships(String(c.relationship||''))),
+    prop_state:(Array.isArray(c.prop)?c.prop:NSL.parseProps(String(c.prop||''))),
+    environment_state:c.environment,
+    threat_state:c.threat,
+    cinematic_contract:c.cinematic,
+    open_story_threads:threads,
+    continuity_warnings:warnings,
+    readiness_score:e.readiness,
+    human_overrides:e.human_overrides||[],
+    source_episode:prev?{episode_id:prev.episode_id,episode_number:Number(prev.episode_number)||idx,title:prev.title}:null,
+    next_episode_constraints:nextConstraints,
+    generation_gate:gate
+  };
+};
+
+/* ---------------- series context packet (RAG-ready, provider-neutral) ---------------- */
+NSL.buildContextPacket=function(state){
+  const episodes=state.episodes.slice().sort((a,b)=>(Number(a.episode_number)||0)-(Number(b.episode_number)||0));
+  const openThreads=[];
+  episodes.forEach(e=>{
+    const c=e.continuity||NSL.blankContinuity();
+    trimLines(String(c.narrative.unresolved_hooks||'')).forEach(h=>{
+      const resolved=trimLines(String(c.narrative.revealed_information||'')).some(x=>sharedWords(h,x));
+      if(!resolved)openThreads.push({episode:e.episode_number,thread:h});
+    });
+  });
+  const constraints=[];
+  const neg=String(state.series.generationConstraints.negatives||'').trim();
+  if(neg)constraints.push('NEGATIVES: '+neg);
+  if(openThreads.length)constraints.push('OPEN THREADS: '+openThreads.length+' unresolved; carry forward or close before release.');
+  return {
+    schema:'agentropolis/neuroblock/series-lab/context-packet',
+    schemaVersion:1,
+    generated_at:nowIso(),
+    series_id:state.series.id,
+    series_title:state.series.title,
+    logline:state.series.logline,
+    genre:state.series.genre,
+    sections:{
+      CANON_FACTS:{
+        series_status:state.series.status,
+        canon_facts:state.series.canonFacts,
+        visual_grammar:state.series.visualGrammar
+      },
+      CURRENT_STATE:{
+        episode_count:episodes.length,
+        active_episode_id:state.active_episode_id,
+        active_episode:NSL.activeEpisode(state)?{episode_number:NSL.activeEpisode(state).episode_number,title:NSL.activeEpisode(state).title,approval_state:NSL.activeEpisode(state).approval_state,readiness:NSL.activeEpisode(state).readiness}:null
+      },
+      CHARACTER_MEMORY:state.characters.map(c=>({character_id:c.character_id,canonical_name:c.canonical_name,role:c.role,appearance_anchors:c.appearance_anchors,wardrobe_anchors:c.wardrobe_anchors,body_silhouette_anchors:c.body_silhouette_anchors,voice_anchors:c.voice_anchors,behavior_anchors:c.behavior_anchors,allowed_variations:c.allowed_variations,forbidden_drift:c.forbidden_drift,rights:c.rights})),
+      RELATIONSHIP_MEMORY:state.relationships.map(r=>({pair:[r.character_a,r.character_b],trust:r.trust,conflict:r.conflict,alliance:r.alliance,betrayal:r.betrayal,authority:r.authority,notes:r.notes})),
+      VISUAL_GRAMMAR:state.series.visualGrammar,
+      EPISODE_HISTORY:episodes.map(e=>({episode_number:Number(e.episode_number)||0,title:e.title,summary:e.summary,location:e.location,threat_level:e.threat_level,approval_state:e.approval_state,readiness:e.readiness,continuity_notes:e.continuity_notes})),
+      UNRESOLVED_THREADS:openThreads,
+      GENERATION_CONSTRAINTS:constraints
+    }
+  };
+};
+
+/* ---------------- episode production contract ---------------- */
+NSL.buildProductionContract=function(state,episodeId){
+  const e=NSL.episodeById(state,episodeId);
+  if(!e)return null;
+  const c=e.continuity||NSL.blankContinuity();
+  const cast=e.cast&&e.cast.length?e.cast.map(cid=>{
+    const ch=state.characters.find(x=>x.character_id===cid);
+    return ch?ch.canonical_name:cid;
+  }):[];
+  const routing=NSL.routeProvider('video',e);
+  const gate=NSL.generationGate(state,episodeId);
+  return {
+    schema:'agentropolis/neuroblock/series-lab/production-contract',
+    schemaVersion:1,
+    compatibility:'creator-prompt-contract-v1 (route/spec/beats/copy/technique/negatives)',
+    episode_id:e.episode_id,
+    episode_number:Number(e.episode_number)||0,
+    title:e.title,
+    route:{capability:'creator.series_episode',status:gate.allowed?'ready':'blocked'},
+    episode_intent:e.intent,
+    story_objective:e.story_objective,
+    scene_list:trimLines(String(e.scene_list||'')),
+    cast,
+    location:e.location,
+    threat:{species:c.threat.species,capability:c.threat.capability,escalation:Number(c.threat.escalation)||e.threat_level,known_behavior:c.threat.known_behavior,countermeasures:c.threat.countermeasures},
+    camera_contract:{brief:e.camera_contract,lens_language:c.cinematic.lens_language,camera_movement:c.cinematic.camera_movement,framing:c.cinematic.framing},
+    lighting_contract:{brief:e.lighting_contract,lighting_grammar:c.cinematic.lighting_grammar,environment_lighting:c.environment.lighting},
+    performance_direction:e.performance_direction,
+    dialogue_anchors:trimLines(String(e.dialogue_anchors||'')),
+    continuity_requirements:{
+      character:{face_identity:c.character.face_identity,wardrobe:c.character.wardrobe,injuries:c.character.injuries,equipment:c.character.equipment,emotional_state:c.character.emotional_state},
+      props:(Array.isArray(c.prop)?c.prop:NSL.parseProps(String(c.prop||''))),
+      environment:c.environment,
+      notes:e.continuity_notes
+    },
+    prop_requirements:(Array.isArray(c.prop)?c.prop:NSL.parseProps(String(c.prop||''))).map(p=>p.name).filter(Boolean),
+    wardrobe_requirements:trimLines(String(c.character.wardrobe||'')),
+    reference_assets:state.characters.map(ch=>({character_id:ch.character_id,canonical_name:ch.canonical_name,reference_asset_ids:trimLines(String(ch.reference_asset_ids||'')),rights:ch.rights})),
+    negative_constraints:trimLines(String(state.series.generationConstraints.negatives||'')).concat(trimLines(String(c.character.forbidden_drift||''))),
+    delivery_requirements:{duration_seconds:null,aspect_ratio:'unresolved',platform:'unresolved',output_type:'episode_clip'},
+    provider_routing:routing,
+    approval_state:e.approval_state,
+    generation_gate:gate
+  };
+};
+
+/* ---------------- showrunner (bounded advisory engine) ---------------- */
+NSL.runShowrunner=function(state,episodeId){
+  const advice=[];
+  const e=NSL.episodeById(state,episodeId);
+  if(!e)return advice;
+  const idx=state.episodes.findIndex(x=>x.episode_id===episodeId);
+  const prev=idx>0?state.episodes[idx-1]:null;
+  const c=e.continuity||NSL.blankContinuity();
+  const warnings=NSL.applyOverrides(NSL.continuityWarnings(prev,e),e);
+  const blocking=NSL.countSeverity(warnings,'BLOCKING');
+  if(blocking)advice.push({severity:'BLOCKING',tag:'continuity',message:blocking+' blocking continuity violation(s) must be resolved or overridden before this episode can be approved for generation.'});
+  /* missing continuity information */
+  if(!String(c.character.face_identity||'').trim())advice.push({severity:'WARNING',tag:'character',message:'Face/identity continuity is missing for this episode.'});
+  if(!String(c.character.wardrobe||'').trim())advice.push({severity:'WARNING',tag:'character',message:'Wardrobe state is missing; generation cannot lock character appearance.'});
+  if(!String(c.threat.species||'').trim())advice.push({severity:'WARNING',tag:'threat',message:'Threat species is unset; escalation tracking will be incomplete.'});
+  if(!String(c.environment.location||'').trim())advice.push({severity:'INFO',tag:'environment',message:'Environment location is unset.'});
+  if(!String(c.cinematic.lens_language||'').trim())advice.push({severity:'INFO',tag:'cinematic',message:'Lens language is unset; visual grammar cannot be validated.'});
+  /* contradictions */
+  warnings.filter(w=>w.overridden).forEach(w=>advice.push({severity:'INFO',tag:'override',message:'Continuity warning overridden by human: '+w.message}));
+  /* transitions */
+  if(prev){
+    const pc=prev.continuity||NSL.blankContinuity();
+    if(String(pc.environment.location||'').trim()&&String(c.environment.location||'').trim()&&pc.environment.location!==c.environment.location&&!warnings.some(w=>w.code==='LOCATION_CHANGE'&&w.overridden)){
+      advice.push({severity:'INFO',tag:'transition',message:'Location changes from "'+pc.environment.location+'" to "'+c.environment.location+'"; add a travel beat or document the transition.'});
+    }
+  }
+  /* unresolved narrative threads */
+  trimLines(String(c.narrative.unresolved_hooks||'')).forEach(h=>{
+    if(!trimLines(String(c.narrative.revealed_information||'')).some(x=>sharedWords(h,x))){
+      advice.push({severity:'INFO',tag:'narrative',message:'Open hook requires advancement or closure: "'+h+'"'});
+    }
+  });
+  /* shot planning */
+  if(!String(e.scene_list||'').trim())advice.push({severity:'WARNING',tag:'planning',message:'Scene list is empty; compile shot-level beats before production.'});
+  if(!String(e.camera_contract||'').trim()||!String(e.lighting_contract||'').trim())advice.push({severity:'WARNING',tag:'planning',message:'Camera and/or lighting contract missing; production contract is incomplete.'});
+  /* reference assets */
+  const castIds=(e.cast||[]).filter(Boolean);
+  castIds.forEach(cid=>{
+    const ch=state.characters.find(x=>x.character_id===cid);
+    if(ch&&!trimLines(String(ch.reference_asset_ids||'')).length)advice.push({severity:'INFO',tag:'assets',message:'Character "'+ch.canonical_name+'" has no reference asset ids; character consistency will rely on prompt anchors only.'});
+  });
+  /* generation risk */
+  const gate=NSL.generationGate(state,episodeId);
+  if(!gate.allowed&&gate.approval_state==='draft'&&!blocking)advice.push({severity:'INFO',tag:'approval',message:'Episode is in draft. Mark ready for review when the contract is complete.'});
+  if(e.readiness<80)advice.push({severity:'WARNING',tag:'readiness',message:'Readiness is '+e.readiness+'%. Target 80%+ before production.'});
+  /* production packet readiness */
+  const contract=NSL.buildProductionContract(state,episodeId);
+  const missing=[];
+  if(!contract.location)missing.push('location');
+  if(!contract.threat.species)missing.push('threat');
+  if(!contract.cast.length)missing.push('cast');
+  if(!contract.scene_list.length)missing.push('scenes');
+  if(missing.length)advice.push({severity:'WARNING',tag:'packet',message:'Production contract missing: '+missing.join(', ')+'.'});
+  else advice.push({severity:'INFO',tag:'packet',message:'Production contract is structurally complete.'});
+  return advice;
+};
+
+/* ---------------- entropy / drift observability ---------------- */
+NSL.computeEntropy=function(state,episodeId){
+  const episodes=state.episodes.slice().sort((a,b)=>(Number(a.episode_number)||0)-(Number(b.episode_number)||0));
+  const focus=NSL.episodeById(state,episodeId)||episodes[episodes.length-1];
+  if(!focus)return {entropy_score:0,severity:'STABLE',drift_sources:[],recommended_correction:'No episode to measure.',indicators:{continuity_drift:0,character_drift:0,visual_drift:0,narrative_drift:0,relationship_drift:0,prompt_inflation:0,contradiction_density:0,unresolved_thread_accumulation:0},method:'heuristic observability metric; not information-theoretic entropy'};
+  const idx=state.episodes.findIndex(x=>x.episode_id===focus.episode_id);
+  const prev=idx>0?state.episodes[idx-1]:null;
+  const warnings=NSL.applyOverrides(NSL.continuityWarnings(prev,focus),focus);
+  const blocking=NSL.countSeverity(warnings,'BLOCKING');
+  const warns=NSL.countSeverity(warnings,'WARNING');
+  const infos=NSL.countSeverity(warnings,'INFO');
+  const total=blocking+warns+infos;
+  /* indicators 0..1 */
+  const continuityDrift=total?clamp((blocking*1+warns*0.6+infos*0.25)/(total?1:1)/2.2,0,1):0;
+  const charDrift=warnings.filter(w=>w.category==='CHARACTER'&&!w.overridden).length?clamp(warnings.filter(w=>w.category==='CHARACTER'&&!w.overridden).length/4,0,1):0;
+  const visualDrift=warnings.filter(w=>w.category==='CINEMATIC'&&!w.overridden).length?clamp(warnings.filter(w=>w.category==='CINEMATIC'&&!w.overridden).length/3,0,1):0;
+  const narrativeDrift=warnings.filter(w=>w.category==='NARRATIVE'&&!w.overridden).length?clamp(warnings.filter(w=>w.category==='NARRATIVE'&&!w.overridden).length/3,0,1):0;
+  const relDrift=warnings.filter(w=>w.category==='RELATIONSHIP'&&!w.overridden).length?clamp(warnings.filter(w=>w.category==='RELATIONSHIP'&&!w.overridden).length/3,0,1):0;
+  const promptInflation=episodes.length>1?clamp((String(focus.continuity_notes||'').length-String(episodes[0].continuity_notes||'').length)/600,0,1):0;
+  const unresolved=trimLines(String((focus.continuity||NSL.blankContinuity()).narrative.unresolved_hooks||'')).length;
+  const contradictionDensity=total?clamp(total/6,0,1):0;
+  const threadAccum=clamp(unresolved/5,0,1);
+  /* weighted score 0..100 (heuristic, not information-theoretic) */
+  const score=Math.round(clamp(
+    continuityDrift*0.28+charDrift*0.14+visualDrift*0.10+narrativeDrift*0.12+relDrift*0.12+
+    promptInflation*0.06+contradictionDensity*0.10+threadAccum*0.08,0,1)*100);
+  const sources=[];
+  if(continuityDrift>0.1)sources.push({name:'continuity_drift',value:+continuityDrift.toFixed(2),evidence:total+' active warning(s)'});
+  if(charDrift>0.1)sources.push({name:'character_drift',value:+charDrift.toFixed(2),evidence:warnings.filter(w=>w.category==='CHARACTER').length+' character warning(s)'});
+  if(visualDrift>0.1)sources.push({name:'visual_drift',value:+visualDrift.toFixed(2),evidence:warnings.filter(w=>w.category==='CINEMATIC').length+' cinematic warning(s)'});
+  if(narrativeDrift>0.1)sources.push({name:'narrative_drift',value:+narrativeDrift.toFixed(2),evidence:warnings.filter(w=>w.category==='NARRATIVE').length+' narrative warning(s)'});
+  if(relDrift>0.1)sources.push({name:'relationship_drift',value:+relDrift.toFixed(2),evidence:warnings.filter(w=>w.category==='RELATIONSHIP').length+' relationship warning(s)'});
+  if(promptInflation>0.1)sources.push({name:'prompt_inflation',value:+promptInflation.toFixed(2),evidence:'continuity notes grew vs episode 1'});
+  if(contradictionDensity>0.1)sources.push({name:'contradiction_density',value:+contradictionDensity.toFixed(2),evidence:total+' warnings across categories'});
+  if(threadAccum>0.1)sources.push({name:'unresolved_thread_accumulation',value:+threadAccum.toFixed(2),evidence:unresolved+' open thread(s)'});
+  const severity=score>=70?'HIGH':score>=40?'MEDIUM':score>=20?'LOW':'STABLE';
+  let recommended_correction='No correction required.';
+  if(blocking)recommended_correction='Resolve '+blocking+' blocking continuity violation(s) before next generation.';
+  else if(score>=70)recommended_correction='Pause generation. Review drift sources and re-establish canon anchors before next episode.';
+  else if(score>=40)recommended_correction='Review warning-level drift; add explicit transitions and human overrides for intentional changes.';
+  else if(unresolved>3)recommended_correction='Close or consolidate open story threads to reduce narrative drift.';
+  return {entropy_score:score,severity,drift_sources:sources,recommended_correction,indicators:{continuity_drift:continuityDrift,character_drift:charDrift,visual_drift:visualDrift,narrative_drift:narrativeDrift,relationship_drift:relDrift,prompt_inflation:promptInflation,contradiction_density:contradictionDensity,unresolved_thread_accumulation:threadAccum},method:'heuristic observability metric; not information-theoretic entropy'};
+};
+
+/* =====================================================================
+   DEMO — original sci-fi series (no third-party IP)
+   ===================================================================== */
+NSL.demoState=function(){
+  const s=NSL.blankState();
+  s.series=NSL.blankSeries('ORBITAL WIDOWS');
+  s.series.logline='A salvage crew inherits a signal that refuses to stop answering.';
+  s.series.genre='sci-fi / cosmic horror';
+  s.series.status='active';
+  s.series.visualGrammar={lensLanguage:'35mm / 50mm prime, long lens surveillance',cameraLanguage:'slow handheld push; locked corridors; whip turns',lightingLanguage:'cold cyan practicals, emergency red, amber spores',framingLanguage:'medium two-shot; macro inserts',motif:'signals answered, glass wings, borrowed voices'};
+  s.series.generationConstraints={negatives:'no extra characters\nno new logos\nno text beyond locked copy\nno character redesign\nno unlicensed media',positives:'persistent cast\nestablished locations\ncanon visual grammar'};
+  s.series.canonFacts=[{id:uid('f'),fact:'The signal prism answers in the voice of whoever holds it.',verified:true}];
+  s.characters=[
+    {character_id:'c-mara',canonical_name:'Mara Voss',role:'Field lead',appearance_anchors:'obsidian pressure suit / cyan visor',wardrobe_anchors:'baseline suit, cold-weather shell when off-station',body_silhouette_anchors:'medium build, short cropped hair',voice_anchors:'low, clipped; commands with restraint',behavior_anchors:'protects the squad before herself',relationship_anchors:'earned trust with Inez; strategic friction with Sato',allowed_variations:'wear states of the suit',forbidden_drift:'no redesign of the visor silhouette',reference_asset_ids:'',rights:{provenance:'original',rights_status:'unverified',notes:'original CREATOR concept'}},
+    {character_id:'c-inez',canonical_name:'Inez Vale',role:'Pilot / engineer',appearance_anchors:'silver utility rig / red scarf',wardrobe_anchors:'utility rig, scarf persists',body_silhouette_anchors:'tall, quick movements',voice_anchors:'dry humor; jokes when frightened',behavior_anchors:'challenges orders under pressure',relationship_anchors:'trusts Mara; protective banter with Sato',allowed_variations:'scarf placement',forbidden_drift:'no loss of the red scarf motif',reference_asset_ids:'',rights:{provenance:'original',rights_status:'unverified',notes:'original CREATOR concept'}},
+    {character_id:'c-sato',canonical_name:'Dr. Sato',role:'Xenobiologist',appearance_anchors:'white field coat over armor',wardrobe_anchors:'field coat, forearm bandage after E1',body_silhouette_anchors:'compact, deliberate',voice_anchors:'clinical fascination',behavior_anchors:'cannot resist studying the threat',relationship_anchors:'temporary trust bottleneck during mimic arc',allowed_variations:'coat damage states',forbidden_drift:'no removal of the bandage without healing beat',reference_asset_ids:'',rights:{provenance:'original',rights_status:'unverified',notes:'original CREATOR concept'}}
+  ];
+  s.relationships=[
+    {id:'r1',character_a:'Mara Voss',character_b:'Inez Vale',trust:78,conflict:30,alliance:80,betrayal:5,authority:'equal',notes:'earned trust'},
+    {id:'r2',character_a:'Mara Voss',character_b:'Dr. Sato',trust:54,conflict:55,alliance:60,betrayal:10,authority:'equal',notes:'strategic friction'},
+    {id:'r3',character_a:'Inez Vale',character_b:'Dr. Sato',trust:67,conflict:35,alliance:70,betrayal:8,authority:'equal',notes:'protective banter'}
+  ];
+  const ep1=NSL.blankEpisode(1);
+  ep1.episode_id='e1';ep1.title='Wake Signal';ep1.summary='A salvage ping leads the squad into a silent research ring.';ep1.intent='Establish the crew and the mystery of the signal.';
+  ep1.story_objective='Crew enters the ring; signal prism is recovered.';ep1.scene_list='Approach burn\nSilent ring corridor\nPrism recovery';
+  ep1.cast=['c-mara','c-inez','c-sato'];ep1.location='abandoned orbital ring';ep1.threat_level=2;
+  ep1.camera_contract='slow handheld push / 35mm';ep1.lighting_contract='cold cyan practicals';ep1.dialogue_anchors='Keep the channel open.';
+  ep1.performance_direction='Restrained tension; Mara leads, Inez watches instruments.';
+  ep1.continuity.character={face_identity:'established cast faces',wardrobe:'baseline suits intact',injuries:'Sato receives forearm cut',equipment:'scanner, tether',emotional_state:'professional focus'};
+  ep1.continuity.prop=NSL.parseProps('signal prism | Mara Voss | ring vault | intact | recovered\nscanner | Inez Vale | crew transport | intact | active');
+  ep1.continuity.environment={location:'abandoned orbital ring',destruction:'',weather:'vacuum',time:'shift change',lighting:'cold cyan practicals'};
+  ep1.continuity.threat={species:'glass-wing crawler',capability:'swarm mobility, glass shard attacks',escalation:2,known_behavior:'attracted to open signals',countermeasures:'signal dampener (partial)'};
+  ep1.continuity.cinematic={lens_language:'35mm handheld',camera_movement:'slow push',framing:'medium two-shot',lighting_grammar:'cold cyan practicals',visual_motif:'signal answered'};
+  ep1.continuity.narrative={unresolved_hooks:'Where did the ping originate?',revealed_information:'Prism recovered; it answers in a crew voice.',inventory:'signal prism\nscanner',objectives:'identify the signal source',consequences:''};
+  ep1.continuity.relationship=NSL.parseRelationships('Mara Voss & Inez Vale | 78 | 30 | 80 | 5 | equal | earned trust\nMara Voss & Dr. Sato | 54 | 55 | 60 | 10 | equal | strategic friction\nInez Vale & Dr. Sato | 67 | 35 | 70 | 8 | equal | protective banter');
+  ep1.continuity_notes='Prism enters inventory. Sato receives forearm cut. Crew transits back to the transport after ring extraction.';
+  ep1.human_overrides=[];
+  ep1.readiness=NSL.scoreEpisode(ep1);ep1.approval_state='ready_for_review';
+  const ep2=NSL.blankEpisode(2);
+  ep2.episode_id='e2';ep2.title='Quiet Teeth';ep2.summary='The recovered prism begins broadcasting from inside the ship.';ep2.intent='Raise the stakes; establish the prism as active.';
+  ep2.story_objective='Crew quarantines the prism; first casualty avoided.';ep2.scene_list='Crew transport\nMed bay\nSignal lock';
+  ep2.cast=['c-mara','c-inez','c-sato'];ep2.location='crew transport';ep2.threat_level=3;
+  ep2.camera_contract='locked corridors / 50mm closeups';ep2.lighting_contract='emergency red with cyan spill';ep2.dialogue_anchors='That signal is answering us.';
+  ep2.performance_direction='Inez challenges Mara over quarantine protocol.';
+  ep2.continuity.character={face_identity:'established cast faces',wardrobe:'Sato forearm bandaged',injuries:'Sato forearm bandaged',equipment:'scanner, tether',emotional_state:'mounting unease'};
+  ep2.continuity.prop=NSL.parseProps('signal prism | Mara Voss | crew transport | intact | active\nscanner | Inez Vale | crew transport | intact | active');
+  ep2.continuity.environment={location:'crew transport',destruction:'',weather:'vacuum',time:'night cycle',lighting:'emergency red with cyan spill'};
+  ep2.continuity.threat={species:'needle swarm',capability:'dense penetration, mimics voices',escalation:3,known_behavior:'answers open channels',countermeasures:'channel lock (partial)'};
+  ep2.continuity.cinematic={lens_language:'50mm locked',camera_movement:'locked corridors',framing:'closeups',lighting_grammar:'emergency red with cyan spill',visual_motif:'signal answered'};
+  ep2.continuity.narrative={unresolved_hooks:'Who is broadcasting the prism?',revealed_information:'The swarm learns voices from open comms.',inventory:'signal prism\nscanner',objectives:'contain the prism',consequences:'quarantine order issued'};
+  ep2.continuity.relationship=NSL.parseRelationships('Mara Voss & Inez Vale | 72 | 40 | 75 | 5 | equal | quarantine tension\nMara Voss & Dr. Sato | 50 | 60 | 55 | 10 | equal | friction over the prism\nInez Vale & Dr. Sato | 64 | 40 | 66 | 8 | equal | banter under pressure');
+  ep2.continuity_notes='Sato bandage remains. Prism glow increases. Crew transits back aboard the transport after extracting from the ring. Swarm emergence is an intentional escalation of the glass-wing threat class.';
+  ep2.human_overrides=[{field:'threat.species',category:'THREAT',reason:"Needle swarm is the glass-wing crawler's dispersed form — intentional threat escalation",authorized_by:'human',timestamp:nowIso()}];
+  ep2.readiness=NSL.scoreEpisode(ep2);ep2.approval_state='draft';
+  const ep3=NSL.blankEpisode(3);
+  ep3.episode_id='e3';ep3.title='The Nest Below';ep3.summary='The source signal points to a buried biosphere beneath an ice moon.';ep3.intent='Reveal the origin environment; escalate threat class.';
+  ep3.story_objective='Descent to the vault; prism mounted on scanner.';ep3.scene_list='Ice descent\nSubglacial vault\nSpore field';
+  ep3.cast=['c-mara','c-inez','c-sato'];ep3.location='subglacial vault';ep3.threat_level=5;
+  ep3.camera_contract='wide descent / macro inserts';ep3.lighting_contract='blue ice bounce / amber spores';ep3.dialogue_anchors='We did not find a nest. We found a city.';
+  ep3.performance_direction='Mara and Inez reconcile under pressure.';
+  ep3.continuity.character={face_identity:'established cast faces',wardrobe:'cold-weather shell over baseline suits',injuries:'Sato cut healing',equipment:'scanner, tether',emotional_state:'awe mixed with dread'};
+  ep3.continuity.prop=NSL.parseProps('signal prism | Mara Voss | scanner mount | intact | active\nscanner | Mara Voss | subglacial vault | intact | active');
+  ep3.continuity.environment={location:'subglacial vault',destruction:'',weather:'ice',time:'subsurface day',lighting:'blue ice bounce / amber spores'};
+  ep3.continuity.threat={species:'burrow queen',capability:'ambient spores, host control',escalation:5,known_behavior:'cultivates nests under ice',countermeasures:'spore filters (insufficient)'};
+  ep3.continuity.cinematic={lens_language:'wide + macro',camera_movement:'descent, inserts',framing:'establishing + macro',lighting_grammar:'blue ice bounce / amber spores',visual_motif:'a city beneath'};
+  ep3.continuity.narrative={unresolved_hooks:'What does the queen want with the prism?',revealed_information:'The vault is a buried biosphere, not a nest.',inventory:'signal prism (mounted)\nscanner',objectives:'extract the prism',consequences:'spore exposure risk'};
+  ep3.continuity.relationship=NSL.parseRelationships('Mara Voss & Inez Vale | 82 | 25 | 85 | 5 | equal | reconciled under pressure\nMara Voss & Dr. Sato | 56 | 52 | 62 | 10 | equal | shared scientific urgency\nInez Vale & Dr. Sato | 70 | 32 | 72 | 8 | equal | protective banter');
+  ep3.continuity_notes='Crew transits to the subglacial vault. Prism mounted, not handheld. Sato cut healing. The burrow queen is revealed as the source of the swarm — intentional escalation.';
+  ep3.human_overrides=[{field:'threat.species',category:'THREAT',reason:"Burrow queen revealed as the origin of the swarm — intentional escalation to the source threat",authorized_by:'human',timestamp:nowIso()}];
+  ep3.readiness=NSL.scoreEpisode(ep3);ep3.approval_state='draft';
+  const ep4=NSL.blankEpisode(4);
+  ep4.episode_id='e4';ep4.title='Borrowed Faces';ep4.summary='The enemy begins copying the squad voices to separate them.';ep4.intent='Isolate the crew; test trust under mimicry.';
+  ep4.story_objective='Survive the labyrinth; identify the mimic.';ep4.scene_list='Maintenance labyrinth\nComms blackout\nVoice test';
+  ep4.cast=['c-mara','c-inez','c-sato'];ep4.location='maintenance labyrinth';ep4.threat_level=7;
+  ep4.camera_contract='long lens surveillance / whip turns';ep4.lighting_contract='failing strip lights';ep4.dialogue_anchors='Do not answer me unless you can see me.';
+  ep4.performance_direction='Sato becomes temporary trust bottleneck.';
+  ep4.continuity.character={face_identity:'established cast faces',wardrobe:'same cold-weather shell, damaged',injuries:'shell damage from E3 persists',equipment:'scanner, tether',emotional_state:'paranoia'};
+  ep4.continuity.prop=NSL.parseProps('signal prism | Mara Voss | scanner mount | intact | active\nscanner | Inez Vale | labyrinth | intact | active');
+  ep4.continuity.environment={location:'maintenance labyrinth',destruction:'strip lights failing',weather:'station air',time:'undetermined',lighting:'failing strip lights'};
+  ep4.continuity.threat={species:'mimic drone',capability:'voice copying, ambient misdirection',escalation:7,known_behavior:'separates the crew by impersonation',countermeasures:'visual confirmation protocol'};
+  ep4.continuity.cinematic={lens_language:'long lens surveillance',camera_movement:'whip turns',framing:'tension closeups',lighting_grammar:'failing strip lights',visual_motif:'borrowed voices'};
+  ep4.continuity.narrative={unresolved_hooks:'Can the mimic be distinguished by the prism?',revealed_information:'The enemy copies squad voices to separate them.',inventory:'signal prism\nscanner',objectives:'regroup and confirm identity',consequences:'trust bottleneck around Sato'};
+  ep4.continuity.relationship=NSL.parseRelationships('Mara Voss & Inez Vale | 60 | 45 | 62 | 12 | equal | mimicry strain\nMara Voss & Dr. Sato | 40 | 62 | 45 | 18 | equal | trust bottleneck\nInez Vale & Dr. Sato | 55 | 50 | 55 | 15 | equal | cautious distance');
+  ep4.continuity_notes='Crew enters the maintenance labyrinth. Damage from E3 persists. No clean wardrobe reset. The mimic drone is a new deployment of the burrow queen threat — remains BLOCKING until overridden.';
+  ep4.human_overrides=[];
+  ep4.readiness=NSL.scoreEpisode(ep4);ep4.approval_state='draft';
+  s.episodes=[ep1,ep2,ep3,ep4];
+  s.active_episode_id='e1';
+  s.overrides_ledger=[];
+  return s;
+};
+
+/* =====================================================================
+   DOM LAYER
+   ===================================================================== */
+const $=id=>document.getElementById(id);
+let state=NSL.blankState();
+let mobileTab='workspace';
+const RIGHT_SURFACES=[
+  {id:'warnings',label:'Continuity Ledger'},
+  {id:'showrunner',label:'Agent Showrunner'},
+  {id:'drift',label:'Drift / Entropy'},
+  {id:'packet',label:'Execution Packet'},
+  {id:'bible-full',label:'Character Bible'},
+  {id:'matrix-full',label:'Relationship Matrix'}
+];
+let rightSurface='warnings';
+
+function flash(msg){const el=$('saveflash');if(el){el.textContent=msg||'OK';clearTimeout(flash._t);flash._t=setTimeout(()=>{el.textContent='READY'},2200)}}
+function note(msg,sev){flash(sev==='error'?'ERROR':msg)}
+
+/* ---------------- save / load ---------------- */
+function persist(){const r=NSL.saveState(state);if(!r.ok)note('Save failed: '+r.error,'error');return r.ok}
+function saveNow(){const ok=persist();flash(ok?'SAVED':'SAVE FAILED');return ok}
+function loadNow(){
+  const res=NSL.loadState();
+  state=res.state;
+  if(res.corrupt)flash('CORRUPT PAYLOAD QUARANTINED');
+  else if(res.notes&&res.notes.length)flash(res.notes.join(' / '));
+  render();
+}
+function newSeriesNow(){
+  if(!confirm('Start a new blank series? Unsaved state will be lost.'))return;
+  state=NSL.blankState();
+  const e=NSL.blankEpisode(1);state.episodes=[e];state.active_episode_id=e.episode_id;
+  render();flash('NEW SERIES');
+}
+function seedNow(){
+  if(state.episodes.length>1||state.series.title!=='UNTITLED SERIES'){
+    if(!confirm('Replace current workspace with the demo series?'))return;
+  }
+  state=NSL.demoState();render();flash('DEMO LOADED');
+}
+
+/* ---------------- edit helpers ---------------- */
+function editEpisode(k,v){
+  const e=NSL.activeEpisode(state);
+  if(!e)return;
+  if(k==='cast'){e.cast=splitPairs(v);}
+  else if(k==='episode_number'){e.episode_number=clamp(Math.round(num(v,1)),1,9999);}
+  else if(k==='threat_level'){e.threat_level=clamp(Math.round(num(v,1)),1,10);e.continuity.threat.escalation=e.threat_level;}
+  else if(k.indexOf('character.')===0){e.continuity.character[k.split('.')[1]]=v}
+  else if(k.indexOf('environment.')===0){e.continuity.environment[k.split('.')[1]]=v}
+  else if(k.indexOf('cinematic.')===0){e.continuity.cinematic[k.split('.')[1]]=v}
+  else if(k.indexOf('narrative.')===0){e.continuity.narrative[k.split('.')[1]]=v}
+  else if(k==='prop_raw'){e.continuity.prop=NSL.parseProps(v);}
+  else if(k==='relationship_raw'){e.continuity.relationship=NSL.parseRelationships(v);}
+  else if(k==='threat.escalation'){e.continuity.threat.escalation=clamp(Math.round(num(v,1)),1,10);e.threat_level=e.continuity.threat.escalation;}
+  else if(k.indexOf('threat.')===0){e.continuity.threat[k.split('.')[1]]=v}
+  else if(k==='approval_state'){e.approval_state=v}
+  else if(k==='add_override'){/* handled separately */}
+  else{e[k]=v}
+  e.updated_at=nowIso();
+  e.readiness=NSL.scoreEpisode(e);
+  renderDerived();
+  scheduleSave();
+}
+function editSeries(k,v){
+  if(k.indexOf('vg.')===0){state.series.visualGrammar[k.split('.')[1]]=v}
+  else if(k.indexOf('gc.')===0){state.series.generationConstraints[k.split('.')[1]]=v}
+  else{state.series[k]=v}
+  renderDerived();scheduleSave();
+}
+function editCharacter(id,k,v){
+  const c=state.characters.find(x=>x.character_id===id);
+  if(!c)return;
+  if(k.indexOf('rights.')===0){c.rights[k.split('.')[1]]=v}
+  else{c[k]=v}
+  renderCharacters();scheduleSave();
+}
+function editRelationship(id,k,v){
+  const r=state.relationships.find(x=>x.id===id);
+  if(!r)return;
+  r[k]=k==='trust'||k==='conflict'||k==='alliance'||k==='betrayal'?clamp(Math.round(num(v,50)),0,100):v;
+  renderRelationships();scheduleSave();
+}
+let saveTimer=null;
+function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{persist()},600)}
+
+/* ---------------- actions ---------------- */
+function addEpisodeNow(){
+  const e=NSL.blankEpisode(NSL.nextEpisodeNumber(state));
+  state.episodes.push(e);state.active_episode_id=e.episode_id;
+  render();flash('EPISODE ADDED');
+}
+function deleteEpisodeNow(id){
+  const e=NSL.episodeById(state,id);if(!e)return;
+  const msg='Delete EP '+e.episode_number+' "'+e.title+'" and its continuity state?';
+  if(!confirm(msg))return;
+  state.episodes=state.episodes.filter(x=>x.episode_id!==id);
+  delete state.receipts[id];
+  if(state.active_episode_id===id)state.active_episode_id=state.episodes.length?state.episodes[0].episode_id:null;
+  if(!state.episodes.length){const ne=NSL.blankEpisode(1);state.episodes=[ne];state.active_episode_id=ne.episode_id}
+  render();flash('EPISODE DELETED');
+}
+function addOverrideNow(field,category){
+  const e=NSL.activeEpisode(state);if(!e)return;
+  const reason=prompt('Override reason (documented in receipt):','Intentional creative choice');
+  if(reason===null)return;
+  e.human_overrides=e.human_overrides||[];
+  e.human_overrides.push({field,category,reason:reason||'Intentional creative choice',authorized_by:'human',timestamp:nowIso()});
+  state.overrides_ledger.push({episode_id:e.episode_id,field,category,reason:reason||'Intentional',timestamp:nowIso()});
+  renderDerived();scheduleSave();flash('OVERRIDE RECORDED');
+}
+function addCharacterNow(){
+  const c=NSL.blankCharacter();
+  state.characters.push(c);
+  renderCharacters();renderInspector();scheduleSave();
+}
+function deleteCharacterNow(id){
+  const c=state.characters.find(x=>x.character_id===id);
+  if(!c)return;
+  if(!confirm('Remove "'+(c.canonical_name||'unnamed')+'" from the bible?'))return;
+  state.characters=state.characters.filter(x=>x.character_id!==id);
+  state.relationships=state.relationships.filter(r=>r.character_a!==c.canonical_name&&r.character_b!==c.canonical_name);
+  state.episodes.forEach(e=>{e.cast=e.cast.filter(x=>x!==id)});
+  render();scheduleSave();
+}
+function addRelationshipNow(){
+  const a=state.characters[0]?state.characters[0].canonical_name:'';
+  const b=state.characters[1]?state.characters[1].canonical_name:'';
+  state.relationships.push(NSL.blankRelationship(a,b));
+  renderRelationships();scheduleSave();
+}
+function deleteRelationshipNow(id){
+  state.relationships=state.relationships.filter(x=>x.id!==id);
+  renderRelationships();scheduleSave();
+}
+function exportPacketNow(){
+  const e=NSL.activeEpisode(state);
+  if(!e){flash('NO EPISODE');return}
+  const receipt=NSL.buildReceipt(state,e.episode_id);
+  if(!receipt)return;
+  const text=sortedJson(receipt);
+  download('series-lab-receipt-EP'+e.episode_number+'.json',text);
+  flash('RECEIPT EXPORTED');
+}
+function exportContextNow(){
+  const packet=NSL.buildContextPacket(state);
+  download('series-lab-context-packet.json',sortedJson(packet));
+  flash('CONTEXT PACKET EXPORTED');
+}
+function exportContractNow(){
+  const e=NSL.activeEpisode(state);
+  if(!e)return;
+  const c=NSL.buildProductionContract(state,e.episode_id);
+  download('series-lab-contract-EP'+e.episode_number+'.json',sortedJson(c));
+  flash('CONTRACT EXPORTED');
+}
+function download(name,text){
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(text);
+  a.download=name;
+  document.body.appendChild(a);a.click();a.remove();
+}
+
+/* ---------------- renderers ---------------- */
+function render(){renderSeriesFields();renderCharacters();renderEpisodes();renderInspector();renderStatus();renderRelationships();renderThreats();renderContinuity();renderShowrunner();renderDrift();renderPacket();renderRightTabs();renderMobileTabs()}
+function renderDerived(){renderStatus();renderEpisodes();renderContinuity();renderShowrunner();renderDrift();renderPacket();renderThreats();renderRelationships()}
+
+function renderSeriesFields(){
+  const s=state.series;
+  const f=$('series-fields');if(!f)return;
+  f.innerHTML=
+    '<label>Series Title</label><input id="sf-title" value="'+attr(s.title)+'" data-series="title" aria-label="Series title">'+
+    '<label>Logline</label><textarea id="sf-logline" data-series="logline" aria-label="Logline">'+esc(s.logline)+'</textarea>'+
+    '<label>Genre</label><input id="sf-genre" value="'+attr(s.genre)+'" data-series="genre" aria-label="Genre">'+
+    '<label>Status</label><select data-series="status" aria-label="Series status">'+
+      ['draft','active','locked'].map(x=>'<option value="'+x+'"'+(s.status===x?' selected':'')+'>'+x+'</option>').join('')+
+    '</select>'+
+    '<h4>Visual Grammar</h4>'+
+    '<label>Lens Language</label><input value="'+attr(s.visualGrammar.lensLanguage)+'" data-series="vg.lensLanguage" aria-label="Lens language">'+
+    '<label>Camera Language</label><input value="'+attr(s.visualGrammar.cameraLanguage)+'" data-series="vg.cameraLanguage" aria-label="Camera language">'+
+    '<label>Lighting Language</label><input value="'+attr(s.visualGrammar.lightingLanguage)+'" data-series="vg.lightingLanguage" aria-label="Lighting language">'+
+    '<label>Framing</label><input value="'+attr(s.visualGrammar.framingLanguage)+'" data-series="vg.framingLanguage" aria-label="Framing language">'+
+    '<label>Visual Motif</label><input value="'+attr(s.visualGrammar.motif)+'" data-series="vg.motif" aria-label="Visual motif">'+
+    '<h4>Generation Constraints</h4>'+
+    '<label>Negatives</label><textarea data-series="gc.negatives" aria-label="Negative constraints">'+esc(s.generationConstraints.negatives)+'</textarea>'+
+    '<label>Positives</label><textarea data-series="gc.positives" aria-label="Positive constraints">'+esc(s.generationConstraints.positives)+'</textarea>'+
+    '<h4>Canon Facts</h4><div id="canon-facts">'+s.canonFacts.map(cf=>'<div class="card"><small>'+esc(cf.fact)+(cf.verified?' <span class="good">✓ verified</span>':' <span class="warn">unverified</span>')+'</small></div>').join('')+'</div>';
+}
+
+function renderCharacters(){
+  const box=$('characters');if(!box)return;
+  if(!state.characters.length){box.innerHTML='<div class="notice info">No character bible entries. Add characters to lock identity anchors.</div>';return}
+  box.innerHTML=state.characters.map(c=>{
+    const refs=trimLines(String(c.reference_asset_ids||'')).join(', ')||'none';
+    return '<div class="card"><b>'+esc(c.canonical_name||'UNNAMED')+'</b>'+
+    '<small>'+esc(c.role)+'</small>'+
+    '<small>Look: '+esc(c.appearance_anchors)+'</small>'+
+    '<small>Wardrobe: '+esc(c.wardrobe_anchors)+'</small>'+
+    '<small>Reference assets: '+esc(refs)+'</small>'+
+    '<small>Rights: '+esc(c.rights.provenance)+' / '+esc(c.rights.rights_status)+'</small>'+
+    '<div class="actions"><button class="mini" data-action="edit-character" data-id="'+esc(c.character_id)+'">Edit</button>'+
+    '<button class="mini danger" data-action="delete-character" data-id="'+esc(c.character_id)+'">Remove</button></div></div>';
+  }).join('');
+}
+
+function renderEpisodes(){
+  const box=$('episodes');if(!box)return;
+  if(!state.episodes.length){box.innerHTML='<div class="empty">No episodes. Add one with the + Episode button.</div>';return}
+  box.innerHTML='';
+  state.episodes.slice().sort((a,b)=>(Number(a.episode_number)||0)-(Number(b.episode_number)||0)).forEach(e=>{
+    const active=e.episode_id===state.active_episode_id;
+    const s=NSL.scoreEpisode(e);
+    const stateLabel=e.approval_state==='approved'?'APPROVED':e.approval_state==='ready_for_review'?'REVIEW':'DRAFT';
+    const d=document.createElement('div');
+    d.className='episode'+(active?' active':'');
+    d.setAttribute('role','button');d.setAttribute('tabindex','0');
+    d.setAttribute('aria-label','Episode '+e.episode_number+' '+e.title+' readiness '+s+' percent');
+    d.innerHTML='<div class="num">EP '+String(e.episode_number).padStart(2,'0')+' · THREAT '+e.threat_level+'/10</div>'+
+      '<div class="state '+e.approval_state+'">'+stateLabel+'</div>'+
+      '<h4>'+esc(e.title)+'</h4><p>'+esc(e.summary||'No synopsis yet.')+'</p>'+
+      '<div class="bar"><i style="width:'+s+'%"></i></div>'+
+      '<div class="meta"><span>'+s+'% ready</span><span>'+esc(e.location||'location unset')+'</span></div>';
+    d.onclick=()=>{state.active_episode_id=e.episode_id;render()};
+    d.onkeydown=(ev)=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();state.active_episode_id=e.episode_id;render()}};
+    box.appendChild(d);
+  });
+}
+
+function renderInspector(){
+  const box=$('inspector');if(!box)return;
+  const e=NSL.activeEpisode(state);
+  if(!e){box.innerHTML='<div class="empty">No active episode.</div>';return}
+  const c=e.continuity||NSL.blankContinuity();
+  const castSelect=state.characters.map(ch=>'<option value="'+esc(ch.character_id)+'"'+(e.cast.includes(ch.character_id)?' selected':'')+'>'+esc(ch.canonical_name||ch.character_id)+'</option>').join('');
+  box.innerHTML=
+    '<div class="section"><h3>Episode Inspector — EP '+esc(String(e.episode_number))+'</h3>'+
+    '<div class="grid2">'+
+      '<div><label>Episode Number</label><input type="number" min="1" max="9999" value="'+esc(e.episode_number)+'" data-ep="episode_number" aria-label="Episode number"></div>'+
+      '<div><label>Approval State</label><select data-ep="approval_state" aria-label="Approval state">'+
+        ['draft','ready_for_review','approved'].map(x=>'<option value="'+x+'"'+(e.approval_state===x?' selected':'')+'>'+x+'</option>').join('')+
+      '</select></div>'+
+    '</div>'+
+    '<label>Title</label><input value="'+attr(e.title)+'" data-ep="title" aria-label="Title">'+
+    '<label>Episode Intent</label><textarea data-ep="intent" aria-label="Episode intent">'+esc(e.intent)+'</textarea>'+
+    '<label>Synopsis</label><textarea data-ep="summary" aria-label="Synopsis">'+esc(e.summary)+'</textarea>'+
+    '<label>Story Objective</label><textarea data-ep="story_objective" aria-label="Story objective">'+esc(e.story_objective)+'</textarea>'+
+    '<label>Scene List (one per line)</label><textarea data-ep="scene_list" aria-label="Scene list">'+esc(e.scene_list)+'</textarea>'+
+    '<label>Cast (multi-select)</label><select multiple size="4" data-ep="cast" aria-label="Cast">'+castSelect+'</select>'+
+    '<div class="grid2">'+
+      '<div><label>Location</label><input value="'+attr(e.location)+'" data-ep="location" aria-label="Location"></div>'+
+      '<div><label>Threat Level 1-10</label><input type="number" min="1" max="10" value="'+esc(e.threat_level)+'" data-ep="threat_level" aria-label="Threat level"></div>'+
+    '</div>'+
+    '<h4>Production Contracts</h4>'+
+    '<label>Camera Contract</label><input value="'+attr(e.camera_contract)+'" data-ep="camera_contract" aria-label="Camera contract">'+
+    '<label>Lighting Contract</label><input value="'+attr(e.lighting_contract)+'" data-ep="lighting_contract" aria-label="Lighting contract">'+
+    '<label>Performance Direction</label><textarea data-ep="performance_direction" aria-label="Performance direction">'+esc(e.performance_direction)+'</textarea>'+
+    '<label>Dialogue Anchors (one per line)</label><textarea data-ep="dialogue_anchors" aria-label="Dialogue anchors">'+esc(e.dialogue_anchors)+'</textarea>'+
+    '<h4>Continuity State</h4>'+
+    '<div class="grid2">'+
+      '<div><label>Character · Face / Identity</label><input value="'+attr(c.character.face_identity)+'" data-ep="character.face_identity" aria-label="Face identity"></div>'+
+      '<div><label>Character · Wardrobe</label><input value="'+attr(c.character.wardrobe)+'" data-ep="character.wardrobe" aria-label="Wardrobe"></div>'+
+      '<div><label>Character · Injuries</label><input value="'+attr(c.character.injuries)+'" data-ep="character.injuries" aria-label="Injuries"></div>'+
+      '<div><label>Character · Equipment</label><input value="'+attr(c.character.equipment)+'" data-ep="character.equipment" aria-label="Equipment"></div>'+
+      '<div><label>Character · Emotional State</label><input value="'+attr(c.character.emotional_state)+'" data-ep="character.emotional_state" aria-label="Emotional state"></div>'+
+      '<div><label>Environment · Location</label><input value="'+attr(c.environment.location)+'" data-ep="environment.location" aria-label="Environment location"></div>'+
+      '<div><label>Environment · Destruction</label><input value="'+attr(c.environment.destruction)+'" data-ep="environment.destruction" aria-label="Destruction"></div>'+
+      '<div><label>Environment · Weather</label><input value="'+attr(c.environment.weather)+'" data-ep="environment.weather" aria-label="Weather"></div>'+
+      '<div><label>Environment · Time</label><input value="'+attr(c.environment.time)+'" data-ep="environment.time" aria-label="Time"></div>'+
+      '<div><label>Environment · Lighting</label><input value="'+attr(c.environment.lighting)+'" data-ep="environment.lighting" aria-label="Environment lighting"></div>'+
+    '</div>'+
+    '<div class="grid3">'+
+      '<div><label>Threat · Species</label><input value="'+attr(c.threat.species)+'" data-ep="threat.species" aria-label="Threat species"></div>'+
+      '<div><label>Threat · Capability</label><input value="'+attr(c.threat.capability)+'" data-ep="threat.capability" aria-label="Threat capability"></div>'+
+      '<div><label>Threat · Escalation 1-10</label><input type="number" min="1" max="10" value="'+esc(c.threat.escalation)+'" data-ep="threat.escalation" aria-label="Threat escalation"></div>'+
+      '<div><label>Threat · Known Behavior</label><input value="'+attr(c.threat.known_behavior)+'" data-ep="threat.known_behavior" aria-label="Known behavior"></div>'+
+      '<div><label>Threat · Countermeasures</label><input value="'+attr(c.threat.countermeasures)+'" data-ep="threat.countermeasures" aria-label="Countermeasures"></div>'+
+    '</div>'+
+    '<div class="grid2">'+
+      '<div><label>Cinematic · Lens Language</label><input value="'+attr(c.cinematic.lens_language)+'" data-ep="cinematic.lens_language" aria-label="Lens language"></div>'+
+      '<div><label>Cinematic · Camera Movement</label><input value="'+attr(c.cinematic.camera_movement)+'" data-ep="cinematic.camera_movement" aria-label="Camera movement"></div>'+
+      '<div><label>Cinematic · Framing</label><input value="'+attr(c.cinematic.framing)+'" data-ep="cinematic.framing" aria-label="Framing"></div>'+
+      '<div><label>Cinematic · Lighting Grammar</label><input value="'+attr(c.cinematic.lighting_grammar)+'" data-ep="cinematic.lighting_grammar" aria-label="Lighting grammar"></div>'+
+      '<div><label>Cinematic · Visual Motif</label><input value="'+attr(c.cinematic.motif)+'" data-ep="cinematic.visual_motif" aria-label="Visual motif"></div>'+
+    '</div>'+
+    '<h4>Props (name | owner | location | damage | activation)</h4><textarea data-ep="prop_raw" aria-label="Props">'+esc(NSL.serializeProps(c.prop))+'</textarea>'+
+    '<h4>Episode Relationship State (pair | trust | conflict | alliance | betrayal | authority | note)</h4><textarea data-ep="relationship_raw" aria-label="Episode relationship state">'+esc(NSL.serializeRelationships(c.relationship))+'</textarea>'+
+    '<h4>Narrative</h4>'+
+    '<div class="grid2">'+
+      '<div><label>Unresolved Hooks (one per line)</label><textarea data-ep="narrative.unresolved_hooks" aria-label="Unresolved hooks">'+esc(c.narrative.unresolved_hooks)+'</textarea></div>'+
+      '<div><label>Revealed Information (one per line)</label><textarea data-ep="narrative.revealed_information" aria-label="Revealed information">'+esc(c.narrative.revealed_information)+'</textarea></div>'+
+      '<div><label>Inventory (one per line)</label><textarea data-ep="narrative.inventory" aria-label="Inventory">'+esc(c.narrative.inventory)+'</textarea></div>'+
+      '<div><label>Objectives (one per line)</label><textarea data-ep="narrative.objectives" aria-label="Objectives">'+esc(c.narrative.objectives)+'</textarea></div>'+
+      '<div><label>Consequences (one per line)</label><textarea data-ep="narrative.consequences" aria-label="Consequences">'+esc(c.narrative.consequences)+'</textarea></div>'+
+    '</div>'+
+    '<label>Continuity Notes (transitions / acknowledgments)</label><textarea data-ep="continuity_notes" aria-label="Continuity notes">'+esc(e.continuity_notes)+'</textarea>'+
+    '<h4>Human Overrides</h4><div id="override-list">'+
+      ((e.human_overrides||[]).map(o=>'<div class="notice info"><b>'+esc(o.field)+'</b> — '+esc(o.reason)+' <small>('+esc(o.timestamp)+')</small></div>').join('')||'<div class="notice info">No overrides recorded.</div>')+
+    '</div>'+
+    '<div class="actions" style="margin-top:12px">'+
+      '<button data-action="add-episode">+ Episode</button>'+
+      '<button class="danger" data-action="delete-episode" data-id="'+esc(e.episode_id)+'">Delete Episode</button>'+
+      '<button data-action="export-receipt">Continuity Receipt</button>'+
+      '<button data-action="export-contract">Production Contract</button>'+
+    '</div>';
+}
+
+function renderStatus(){
+  const bar=$('statusbar');if(!bar)return;
+  const avg=state.episodes.length?Math.round(state.episodes.reduce((a,e)=>a+NSL.scoreEpisode(e),0)/state.episodes.length):0;
+  const e=NSL.activeEpisode(state);
+  const ent=NSL.computeEntropy(state,e?e.episode_id:null);
+  let html='<span class="pill"><strong>'+esc(state.series.title||'UNTITLED SERIES')+'</strong></span>'+
+    '<span class="pill">Episodes <strong>'+state.episodes.length+'</strong></span>'+
+    '<span class="pill">Cast <strong>'+state.characters.length+'</strong></span>'+
+    '<span class="pill">Readiness <strong>'+avg+'%</strong></span>'+
+    '<span class="pill">Entropy <strong>'+ent.entropy_score+'</strong></span>'+
+    '<span class="pill">Execution <strong>GATED</strong></span>';
+  if(e){
+    const gate=NSL.generationGate(state,e.episode_id);
+    if(!gate.allowed)html+='<span class="pill '+(gate.blocking>0?'block':'warn')+'">'+esc(gate.reason||'NOT APPROVED')+'</span>';
+  }
+  bar.innerHTML=html;
+}
+
+function renderRelationships(){
+  const box=$('relationships');if(!box)return;
+  if(!state.relationships.length){box.innerHTML='<div class="notice info">No relationship pairs defined.</div>';return}
+  box.innerHTML=state.relationships.map(r=>'<div class="row"><span>'+esc(r.character_a)+' ↔ '+esc(r.character_b)+'<br><small>'+esc(r.notes)+'</small></span><span class="heat '+(r.trust>70?'good':r.trust>45?'warn':'bad')+'">T'+r.trust+'</span></div>').join('');
+}
+
+function renderThreats(){
+  const box=$('threats');if(!box)return;
+  const sorted=state.episodes.slice().sort((a,b)=>(Number(a.episode_number)||0)-(Number(b.episode_number)||0));
+  if(!sorted.length){box.innerHTML='<div class="notice info">No episodes.</div>';return}
+  box.innerHTML=sorted.map(e=>{
+    const t=e.continuity&&e.continuity.threat?e.continuity.threat:NSL.blankThreat();
+    return '<div class="row"><span>EP '+String(e.episode_number).padStart(2,'0')+' · '+esc(t.species||e.location||'unset')+'<br><small>'+esc(t.capability||'')+'</small></span><span class="heat '+(Number(e.threat_level)>=7?'bad':Number(e.threat_level)>=4?'warn':'good')+'">'+e.threat_level+'/10</span></div>';
+  }).join('');
+}
+
+function renderContinuity(){
+  const box=$('right-surfaces');if(!box)return;
+  const e=NSL.activeEpisode(state);
+  if(!e){box.innerHTML='';return}
+  const idx=state.episodes.findIndex(x=>x.episode_id===e.episode_id);
+  const prev=idx>0?state.episodes[idx-1]:null;
+  const warnings=NSL.applyOverrides(NSL.continuityWarnings(prev,e),e);
+  const blocking=NSL.countSeverity(warnings,'BLOCKING');
+  const warns=NSL.countSeverity(warnings,'WARNING');
+  const infos=NSL.countSeverity(warnings,'INFO');
+  let html='<div class="section"><h3>Continuity Ledger</h3>';
+  html+='<div class="statusbar" style="margin-bottom:8px">'+
+    '<span class="pill block">BLOCKING '+blocking+'</span><span class="pill warn">WARNING '+warns+'</span><span class="pill">INFO '+infos+'</span>'+
+    '</div>';
+  if(!warnings.length)html+='<div class="notice ok">Continuity checks look stable for this episode.</div>';
+  else html+=warnings.map(w=>{
+    const cls=w.overridden?'info':w.severity==='BLOCKING'?'block':w.severity==='WARNING'?'warn':'info';
+    const ov=w.overridden?' <small>— human override: '+esc(w.override_reason||'')+'</small>':'';
+    const btn=w.overridden?'':' <button class="mini" data-action="override" data-field="'+esc(w.field)+'" data-category="'+esc(w.category)+'">Override</button>';
+    return '<div class="notice '+cls+'"><b>['+w.severity+'] '+w.category+'</b> — '+esc(w.message)+ov+'<br><small>'+esc(w.suggestion||'')+'</small>'+btn+'</div>';
+  }).join('');
+  html+='</div>';
+  /* set only if this surface active */
+  if(rightSurface==='warnings')box.innerHTML=html;
+}
+function renderShowrunner(){
+  const e=NSL.activeEpisode(state);
+  const box=$('right-surfaces');if(!box)return;
+  if(!e){if(rightSurface==='showrunner')box.innerHTML='';return}
+  const advice=NSL.runShowrunner(state,e.episode_id);
+  let html='<div class="section"><h3>Agent Showrunner — Advisory</h3><p class="tapline">Bounded advisory engine. It cannot publish, generate, alter canon, approve, or execute providers.</p>';
+  html+=advice.map(a=>'<div class="advice '+a.severity.toLowerCase()+'"><span class="tag">'+esc(a.severity)+' · '+esc(a.tag)+'</span><br>'+esc(a.message)+'</div>').join('')||'<div class="notice ok">No advisories.</div>';
+  html+='</div>';
+  if(rightSurface==='showrunner')box.innerHTML=html;
+}
+function renderDrift(){
+  const e=NSL.activeEpisode(state);
+  const box=$('right-surfaces');if(!box)return;
+  if(!e){if(rightSurface==='drift')box.innerHTML='';return}
+  const ent=NSL.computeEntropy(state,e.episode_id);
+  const cls=ent.severity==='HIGH'?'bad':ent.severity==='MEDIUM'?'warn':'good';
+  let html='<div class="section"><h3>Drift / Entropy</h3>';
+  html+='<div class="entropy"><div class="metric"><div class="v '+cls+'">'+ent.entropy_score+'</div><div class="k">Entropy Score</div></div>'+
+    '<div class="metric"><div class="v">'+ent.severity+'</div><div class="k">Severity</div></div>'+
+    '<div class="metric"><div class="v">'+ent.drift_sources.length+'</div><div class="k">Drift Sources</div></div></div>';
+  if(ent.drift_sources.length)html+=ent.drift_sources.map(s=>'<div class="row"><span>'+esc(s.name)+' <small>'+esc(s.evidence)+'</small></span><span class="heat '+(s.value>0.5?'warn':'good')+'">'+(s.value*100).toFixed(0)+'</span></div>').join('');
+  html+='<div class="notice '+(ent.entropy_score>=40?'warn':'info')+'"><b>Recommended correction:</b> '+esc(ent.recommended_correction)+'</div>';
+  html+='<p class="tapline">'+esc(ent.method)+'. Operational observability only; not a quality score.</p></div>';
+  if(rightSurface==='drift')box.innerHTML=html;
+}
+function renderPacket(){
+  const e=NSL.activeEpisode(state);
+  const box=$('right-surfaces');if(!box)return;
+  if(!e){if(rightSurface==='packet')box.innerHTML='';return}
+  const receipt=NSL.buildReceipt(state,e.episode_id);
+  const contract=NSL.buildProductionContract(state,e.episode_id);
+  const routing=NSL.routeProvider('video',e);
+  const gate=NSL.generationGate(state,e.episode_id);
+  let html='<div class="section"><h3>Execution Packet — EP '+esc(String(e.episode_number))+'</h3>';
+  html+='<div class="notice '+(gate.allowed?'ok':'warn')+'"><b>Generation gate: '+(gate.allowed?'APPROVED':'BLOCKED')+'</b><br>'+(gate.reason||'')+'</div>';
+  html+='<div class="card"><b>Routing</b><small>Capability: creator.series_episode</small><small>Provider: unresolved_until_router_selection</small><small>Candidates: '+(routing.candidates.map(c=>c.name+' ['+c.status+']').join(', '))+ '</small><small>Gates: '+routing.required_gates.join(' → ')+'</small></div>';
+  html+='<div class="actions"><button data-action="export-receipt">Continuity Receipt</button><button data-action="export-contract">Production Contract</button></div>';
+  html+='<h4>Receipt preview</h4><div class="export">'+esc(sortedJson(receipt).slice(0,1600))+'…</div>';
+  html+='<h4>Contract preview</h4><div class="export">'+esc(sortedJson(contract).slice(0,1200))+'…</div>';
+  html+='</div>';
+  if(rightSurface==='packet')box.innerHTML=html;
+}
+function renderBibleFull(){
+  const box=$('right-surfaces');if(!box)return;
+  let html='<div class="section"><h3>Character Bible — Identity Packages</h3><p class="tapline">Reference images and provider character ids stay adapter-level; canonical state holds anchors and rights metadata only.</p>';
+  if(!state.characters.length){html+='<div class="notice info">No characters.</div>';return}
+  html+=state.characters.map(c=>{
+    return '<div class="card"><b>'+esc(c.canonical_name||'UNNAMED')+'</b> <small>'+esc(c.character_id)+'</small>'+
+    '<label>Canonical Name</label><input value="'+attr(c.canonical_name)+'" data-ch="'+esc(c.character_id)+'" data-k="canonical_name" aria-label="Canonical name">'+
+    '<label>Role</label><input value="'+attr(c.role)+'" data-ch="'+esc(c.character_id)+'" data-k="role" aria-label="Role">'+
+    '<label>Appearance Anchors</label><input value="'+attr(c.appearance_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="appearance_anchors" aria-label="Appearance anchors">'+
+    '<label>Wardrobe Anchors</label><input value="'+attr(c.wardrobe_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="wardrobe_anchors" aria-label="Wardrobe anchors">'+
+    '<label>Body / Silhouette Anchors</label><input value="'+attr(c.body_silhouette_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="body_silhouette_anchors" aria-label="Body silhouette anchors">'+
+    '<label>Voice Anchors</label><input value="'+attr(c.voice_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="voice_anchors" aria-label="Voice anchors">'+
+    '<label>Behavior Anchors</label><input value="'+attr(c.behavior_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="behavior_anchors" aria-label="Behavior anchors">'+
+    '<label>Relationship Anchors</label><input value="'+attr(c.relationship_anchors)+'" data-ch="'+esc(c.character_id)+'" data-k="relationship_anchors" aria-label="Relationship anchors">'+
+    '<label>Allowed Variations</label><input value="'+attr(c.allowed_variations)+'" data-ch="'+esc(c.character_id)+'" data-k="allowed_variations" aria-label="Allowed variations">'+
+    '<label>Forbidden Drift</label><input value="'+attr(c.forbidden_drift)+'" data-ch="'+esc(c.character_id)+'" data-k="forbidden_drift" aria-label="Forbidden drift">'+
+    '<label>Reference Asset IDs (adapter-level, one per line)</label><textarea data-ch="'+esc(c.character_id)+'" data-k="reference_asset_ids" aria-label="Reference asset ids">'+esc(c.reference_asset_ids)+'</textarea>'+
+    '<div class="grid2"><div><label>Rights · Provenance</label><input value="'+attr(c.rights.provenance)+'" data-ch="'+esc(c.character_id)+'" data-k="rights.provenance" aria-label="Provenance"></div>'+
+    '<div><label>Rights · Status</label><select data-ch="'+esc(c.character_id)+'" data-k="rights.rights_status" aria-label="Rights status">'+['unverified','original','licensed','public_domain'].map(x=>'<option value="'+x+'"'+(c.rights.rights_status===x?' selected':'')+'>'+x+'</option>').join('')+'</select></div></div>'+
+    '<label>Rights Notes</label><input value="'+attr(c.rights.notes)+'" data-ch="'+esc(c.character_id)+'" data-k="rights.notes" aria-label="Rights notes">'+
+    '<div class="actions"><button class="mini danger" data-action="delete-character" data-id="'+esc(c.character_id)+'">Remove Character</button></div>'+
+    '</div>';
+  }).join('');
+  html+='<button data-action="add-character">+ Character</button></div>';
+  box.innerHTML=html;
+}
+function renderMatrixFull(){
+  const box=$('right-surfaces');if(!box)return;
+  let html='<div class="section"><h3>Relationship Matrix</h3><p class="tapline">Track trust, conflict, alliance, betrayal, authority.</p>';
+  if(!state.relationships.length){html+='<div class="notice info">No relationship pairs defined.</div>'}
+  html+=state.relationships.map(r=>{
+    return '<div class="card"><b>'+esc(r.character_a)+' ↔ '+esc(r.character_b)+'</b>'+
+    '<div class="grid3">'+
+      '<div><label>Trust</label><input type="number" min="0" max="100" value="'+esc(r.trust)+'" data-rel="'+esc(r.id)+'" data-k="trust" aria-label="Trust"></div>'+
+      '<div><label>Conflict</label><input type="number" min="0" max="100" value="'+esc(r.conflict)+'" data-rel="'+esc(r.id)+'" data-k="conflict" aria-label="Conflict"></div>'+
+      '<div><label>Alliance</label><input type="number" min="0" max="100" value="'+esc(r.alliance)+'" data-rel="'+esc(r.id)+'" data-k="alliance" aria-label="Alliance"></div>'+
+      '<div><label>Betrayal</label><input type="number" min="0" max="100" value="'+esc(r.betrayal)+'" data-rel="'+esc(r.id)+'" data-k="betrayal" aria-label="Betrayal"></div>'+
+      '<div><label>Authority</label><select data-rel="'+esc(r.id)+'" data-k="authority" aria-label="Authority">'+['equal','a_over_b','b_over_a'].map(x=>'<option value="'+x+'"'+(r.authority===x?' selected':'')+'>'+x+'</option>').join('')+'</select></div>'+
+    '</div>'+
+    '<label>Notes</label><input value="'+attr(r.notes)+'" data-rel="'+esc(r.id)+'" data-k="notes" aria-label="Notes">'+
+    '<div class="actions"><button class="mini danger" data-action="delete-relationship" data-id="'+esc(r.id)+'">Remove Pair</button></div>'+
+    '</div>';
+  }).join('');
+  html+='<button data-action="add-relationship">+ Relationship Pair</button></div>';
+  box.innerHTML=html;
+}
+
+/* ---------------- right surface tabs ---------------- */
+function renderRightTabs(){
+  const tabs=$('right-tabs');if(!tabs)return;
+  tabs.innerHTML=RIGHT_SURFACES.map(s=>'<button role="tab" aria-selected="'+(rightSurface===s.id?'true':'false')+'" class="tabbtn'+(rightSurface===s.id?' active':'')+'" data-tab="'+s.id+'">'+s.label+'</button>').join('');
+}
+function renderMobileTabs(){
+  const tabs=$('mobiletabs');if(!tabs)return;
+  const items=[
+    {id:'workspace',label:'Episodes'},
+    {id:'series',label:'Series'},
+    {id:'right',label:'Intelligence'}
+  ];
+  tabs.innerHTML=items.map(i=>'<button class="'+(mobileTab===i.id?'active':'')+'" data-mtab="'+i.id+'">'+i.label+'</button>').join('');
+  const left=$('panel-left'),right=$('panel-right'),workspace=document.querySelector('.workspace');
+  if(!left||!right||!workspace)return;
+  left.classList.toggle('visible',mobileTab==='series');
+  right.classList.toggle('visible',mobileTab==='right');
+  workspace.style.display=mobileTab==='workspace'?'grid':'none';
+}
+function switchRightSurface(id){
+  rightSurface=id;
+  renderRightTabs();
+  if(id==='bible-full')renderBibleFull();
+  else if(id==='matrix-full')renderMatrixFull();
+  else if(id==='warnings')renderContinuity();
+  else if(id==='showrunner')renderShowrunner();
+  else if(id==='drift')renderDrift();
+  else if(id==='packet')renderPacket();
+}
+
+/* ---------------- event delegation ---------------- */
+function bind(){
+  const doc=document;
+  doc.addEventListener('input',e=>{
+    const t=e.target;
+    const val=t.multiple?Array.from(t.selectedOptions||[]).map(o=>o.value).join(','):t.value;
+    if(t.dataset&&t.dataset.ep){editEpisode(t.dataset.ep,val);return}
+    if(t.dataset&&t.dataset.series){editSeries(t.dataset.series,val);return}
+    if(t.dataset&&t.dataset.ch){editCharacter(t.dataset.ch,t.dataset.k,val);return}
+    if(t.dataset&&t.dataset.rel){editRelationship(t.dataset.rel,t.dataset.k,val);return}
+  });
+  doc.addEventListener('click',e=>{
+    const t=e.target.closest('[data-action]');
+    if(!t)return;
+    const action=t.dataset.action;
+    if(action==='seed'){seedNow()}
+    else if(action==='save'){saveNow()}
+    else if(action==='load'){loadNow()}
+    else if(action==='new-series'){newSeriesNow()}
+    else if(action==='add-episode'){addEpisodeNow()}
+    else if(action==='delete-episode'){deleteEpisodeNow(t.dataset.id)}
+    else if(action==='add-character'){addCharacterNow()}
+    else if(action==='delete-character'){deleteCharacterNow(t.dataset.id)}
+    else if(action==='add-relationship'){addRelationshipNow()}
+    else if(action==='delete-relationship'){deleteRelationshipNow(t.dataset.id)}
+    else if(action==='export-receipt'){exportPacketNow()}
+    else if(action==='export-contract'){exportContractNow()}
+    else if(action==='export-packet'){exportContextNow()}
+    else if(action==='override'){addOverrideNow(t.dataset.field,t.dataset.category)}
+    else if(action==='edit-character'){switchRightSurface('bible-full');}
+  });
+  doc.addEventListener('click',e=>{
+    const t=e.target.closest('[data-tab]');
+    if(t){switchRightSurface(t.dataset.tab);return}
+  });
+  doc.addEventListener('click',e=>{
+    const t=e.target.closest('[data-mtab]');
+    if(t){mobileTab=t.dataset.mtab;renderMobileTabs();if(t.dataset.mtab==='right')renderRightTabs();return}
+  });
+}
+
+/* ---------------- init ---------------- */
+function init(){
+  try{
+    const res=NSL.loadState();
+    state=res.state;
+    if(res.corrupt)note('Saved state was corrupt; quarantined. Starting blank.','error');
+    else if(res.notes&&res.notes.length)note(res.notes.join(' / '));
+    bind();
+    render();
+    const badge=$('schemaBadge');
+    if(badge)badge.textContent='SCHEMA v'+state.schemaVersion+(state.migrated_from?' (migrated)':'');
+  }catch(err){
+    const main=document.querySelector('.main');
+    if(main)main.innerHTML='<div class="empty"><b>Initialization failed.</b><br>'+esc(String(err&&err.message||err))+'<br><button data-action="load">Retry Load</button></div>';
+    try{bind()}catch(e2){}
+  }
+}
+init();
+</script>
+</body>
+</html>
