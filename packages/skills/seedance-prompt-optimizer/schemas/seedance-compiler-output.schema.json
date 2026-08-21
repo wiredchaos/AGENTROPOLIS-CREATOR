@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.local/schemas/seedance-compiler-output.schema.json",
+  "title": "Seedance Compiler Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "task_type",
+    "optimized_prompt",
+    "external_parameters",
+    "reference_bindings",
+    "assumptions",
+    "provider_claims_used",
+    "risk_flags",
+    "validation_receipt",
+    "handoff"
+  ],
+  "properties": {
+    "status": {
+      "enum": ["complete", "inferred_with_receipt", "planning_only", "blocked"]
+    },
+    "task_type": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "text_to_video",
+          "image_to_video",
+          "multi_reference",
+          "reference_to_video",
+          "video_edit",
+          "forward_extension",
+          "backward_extension",
+          "first_last_frame",
+          "multi_keyframe",
+          "storyboard_grid",
+          "coarse_blockout",
+          "fine_blockout",
+          "image_montage",
+          "seamless_transition",
+          "long_form_staged",
+          "take_repair"
+        ]
+      }
+    },
+    "optimized_prompt": {"type": "string"},
+    "external_parameters": {"type": "object"},
+    "reference_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_id", "provider_label", "role", "use", "exclude", "rights_receipt_id"],
+        "properties": {
+          "asset_id": {"type": "string"},
+          "provider_label": {"type": "string"},
+          "role": {"type": "string"},
+          "use": {"type": "array", "items": {"type": "string"}},
+          "exclude": {"type": "array", "items": {"type": "string"}},
+          "rights_receipt_id": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "assumptions": {"type": "array", "items": {"type": "object"}},
+    "provider_claims_used": {"type": "array", "items": {"type": "object"}},
+    "risk_flags": {"type": "array", "items": {"type": "string"}},
+    "validation_receipt": {"type": "object"},
+    "handoff": {
+      "type": "object",
+      "required": ["target", "execution_allowed", "required_approvals"],
+      "properties": {
+        "target": {"type": "string"},
+        "execution_allowed": {"const": false},
+        "required_approvals": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  }
+}
