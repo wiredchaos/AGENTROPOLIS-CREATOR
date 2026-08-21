@@ -1,0 +1,56 @@
+{
+  "package_id": "agp-what-is-it-creative-package",
+  "package_version": "1.0.0",
+  "brief_id": "BRIEF-AGP-WHAT-IS-IT-001",
+  "route": "promo-video",
+  "campaign_ref": { "id": "agp-what-is-it", "version": "1.0.0" },
+  "prompt_package_ref": {
+    "id": "agp-what-is-it",
+    "version": "1.0.0",
+    "canonical_content_hash": "5d20ecea0aadc22413c4b7361f27352535cd71e55132e563e6aee871340831cd"
+  },
+  "visual_canon_ref": { "id": "agp-neuro", "version": "1.0.0" },
+  "spec": {
+    "duration_seconds": 60,
+    "aspect_ratio": "16:9",
+    "resolution": "1080p master / 720p web",
+    "fps": 24,
+    "platform": "youtube, x, website-hero, ott-bumper",
+    "delivery_format": "mp4"
+  },
+  "beats": [
+    { "time": "0:00-0:08", "description": "Slow dolly push into obsidian skyline boot sequence; NEURO steps forward; title lock 'AGENTROPOLIS — WHAT IS IT?'", "visual": "terminal towers light up; cyan rim light", "audio": "deep sub pulse; narrator line 1" },
+    { "time": "0:08-0:20", "description": "Triad glyphs HERMES / NEMOCLAW / NEMOTRON activate in sequence along the mission-control spine", "visual": "sequential node activation; cyan settles", "audio": "rising signal; narrator line 2" },
+    { "time": "0:20-0:32", "description": "Genesis RAG Growth loop ring; RETRIEVE to REINVEST segments illuminate in order", "visual": "cyan path on obsidian ring", "audio": "rhythmic ticks; narrator line 3" },
+    { "time": "0:32-0:44", "description": "District corridors branch from the spine; NEURO at the intersection", "visual": "camera pull-back to wide", "audio": "ambient grid hum; narrator line 4 begins" },
+    { "time": "0:44-0:54", "description": "Human hand enters with mandate card; card stamps APPROVED with red glyph; NEURO inclines head", "visual": "rack focus to card; red accent", "audio": "authoritative thud; narrator line 4 completes" },
+    { "time": "0:54-1:00", "description": "Execution receipt glyph locks into audit ledger frame; 'This is Agentropolis.'; fade to obsidian", "visual": "hard settle; red pulse then calm", "audio": "final sub note; narrator line 5" }
+  ],
+  "copy": "AGENTROPOLIS — WHAT IS IT?\nA governed city of agents.\nStrategy. Execution. Proof.\nHuman authority. Every step.\nThis is Agentropolis.",
+  "technique": "Controlled signal travel; sequential node activation; slow dolly push; hard settles on locked copy; rack focus on the mandate card; no camera shake; no decorative particles; no lens flares. NEURO performance: measured, authoritative, micro-movements only.",
+  "negatives": "No text beyond locked copy; no unapproved characters; no 789 Studios crossover (default-deny); no watermark; no identity drift; no palette drift from 60/25/15 obsidian/cyan/red; no camera shake; no silent model substitution; no execution without cost preview + human approval reference.",
+  "negative_constraints_ref": "packages/prompts/agp-what-is-it/negative-constraints.md",
+  "continuity_bible": {
+    "characters": {
+      "NEURO": "warm honey-brown skin; dark hair in braided crown; red irises; obsidian tactical wardrobe with cyan edge trim; calm authoritative presence"
+    },
+    "locations": { "obsidian-grid": "terminal-tower skyline at night; mission-control spine; district corridors" },
+    "props": {
+      "mandate-card": "physical mandate card with red approval stamp; authority object",
+      "execution-receipt-glyph": "audit ledger frame lock; settlement object"
+    },
+    "style_rules": ["low-key cyber-noir", "60/25/15 obsidian/cyan/red palette", "red only for authority/approval"],
+    "never_change": ["NEURO identity", "palette ratio", "locked copy text"]
+  },
+  "shot_plan_ref": { "id": "agp-what-is-it-shot-plan", "version": "1.0.0" },
+  "storyboard_refs": [{ "id": "agp-what-is-it-storyboard", "version": "1.0.0" }],
+  "asset_hashes": {},
+  "campaign_variants": [
+    { "variant_id": "agp-what-is-it-youtube", "target": "youtube", "notes": "60s master" },
+    { "variant_id": "agp-what-is-it-x", "target": "x", "notes": "60s master; captions locked" },
+    { "variant_id": "agp-what-is-it-web-hero", "target": "website-hero", "notes": "30s cutdown candidate (requires approval)" }
+  ],
+  "distribution_targets": ["youtube", "x", "website-hero", "ott-bumper"],
+  "asbe_scene_ref": "https://agenticstudio.ai/schemas/asbe-scene.schema.json",
+  "asbe_shot_ref": "https://agenticstudio.ai/schemas/asbe-shot.schema.json"
+}

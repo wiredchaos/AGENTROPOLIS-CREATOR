@@ -1,0 +1,19 @@
+# AGENTROPOLIS — WHAT IS IT? — CANONICAL PROMPT PACKAGE
+
+prompt_id: agp-what-is-it
+prompt_version: "1.0.0"
+owner_system: AGENTROPOLIS-CREATOR
+workflow_ref: { id: promo-video, version: "1.0" }
+provider_target: higgsfield-mcp
+model_target: cinematic_studio_3_0
+approval_state: approved
+approved_versions: ["1.0.0"]
+canonical_content_hash: 5d20ecea0aadc22413c4b7361f27352535cd71e55132e563e6aee871340831cd
+visual_canon_ref: { id: agp-neuro, version: "1.0.0" }
+negative_constraints_ref: negative-constraints.md
+continuity_rules:
+  - "NEURO identity is immutable: warm honey-brown skin, braided crown of dark hair, red irises, cyber-noir wardrobe."
+  - "Palette ratio 60/25/15 obsidian/cyan/red — no palette drift."
+  - "Locked copy must appear exactly; no paraphrase, no extra text."
+  - "No crossover with 789 Studios characters or cartoon canon (default-deny)."
+  - "Human Mission Control is the only actor who approves; represent authority with the red accent only."
