@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentropolis.dev/schemas/rcp/world-package.schema.json",
+  "title": "Agentropolis Reality Construction Protocol World Package",
+  "type": "object",
+  "required": [
+    "rcp_version",
+    "package_id",
+    "version",
+    "authority",
+    "provenance",
+    "world_dna",
+    "spatial_graph",
+    "procedural_laws",
+    "geometry_contract",
+    "runtime_bindings",
+    "governance",
+    "audit_contract",
+    "status"
+  ],
+  "properties": {
+    "rcp_version": { "type": "string", "pattern": "^0\\.1(\\.[0-9]+)?$" },
+    "package_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,127}$" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": {
+      "enum": ["DRAFT", "NORMALIZED", "COMPILED", "GEOMETRY_VALIDATED", "RUNTIME_BOUND", "PLAYTESTED", "REVIEW_REQUIRED", "APPROVED", "RELEASED", "EVOLVING", "ARCHIVED"]
+    },
+    "authority": {
+      "type": "object",
+      "required": ["owner_repo", "district", "mandate_ref"],
+      "properties": {
+        "owner_repo": { "type": "string" },
+        "district": { "type": "string" },
+        "mandate_ref": { "type": "string" },
+        "approval_policy": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["input_digest", "sources", "rights_status"],
+      "properties": {
+        "input_digest": { "type": "string" },
+        "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+        "rights_status": { "enum": ["owned", "licensed", "public_safe", "mixed", "unknown", "not_required"] },
+        "canon_refs": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "world_dna": {
+      "type": "object",
+      "required": ["entities", "places", "laws"],
+      "properties": {
+        "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+        "places": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+        "institutions": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+        "relationships": { "type": "array", "items": { "$ref": "#/$defs/relationship" } },
+        "chronology": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+        "laws": { "type": "array", "items": { "$ref": "#/$defs/worldLaw" } }
+      },
+      "additionalProperties": false
+    },
+    "spatial_graph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": { "type": "array", "items": { "$ref": "#/$defs/spatialNode" } },
+        "edges": { "type": "array", "items": { "$ref": "#/$defs/spatialEdge" } },
+        "coordinate_system": { "type": "string", "default": "right-handed-y-up" },
+        "units": { "type": "string", "default": "meters" }
+      },
+      "additionalProperties": false
+    },
+    "procedural_laws": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/proceduralLaw" }
+    },
+    "geometry_contract": {
+      "type": "object",
+      "required": ["layers"],
+      "properties": {
+        "layers": {
+          "type": "array",
+          "items": { "enum": ["render", "collision", "navigation", "occlusion", "interaction", "semantic", "physics", "audio"] },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "objects": { "type": "array", "items": { "$ref": "#/$defs/geometryObject" } },
+        "budgets": { "type": "object", "additionalProperties": { "type": ["number", "integer", "string"] } }
+      },
+      "additionalProperties": false
+    },
+    "runtime_bindings": {
+      "type": "object",
+      "required": ["targets", "events"],
+      "properties": {
+        "targets": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "events": { "type": "array", "items": { "$ref": "#/$defs/eventBinding" } },
+        "capabilities": { "type": "array", "items": { "type": "string" } },
+        "adapters": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "governance": {
+      "type": "object",
+      "required": ["human_review_required", "permissions", "prohibited_actions"],
+      "properties": {
+        "human_review_required": { "type": "boolean" },
+        "permissions": { "type": "array", "items": { "$ref": "#/$defs/permission" } },
+        "prohibited_actions": { "type": "array", "items": { "type": "string" } },
+        "privacy_class": { "enum": ["public", "internal", "confidential", "restricted"] },
+        "physical_actuation": { "enum": ["none", "simulation_only", "approval_gated"] },
+        "cost_budget": { "type": "object", "additionalProperties": { "type": ["number", "string"] } }
+      },
+      "additionalProperties": false
+    },
+    "audit_contract": {
+      "type": "object",
+      "required": ["profile", "tests"],
+      "properties": {
+        "profile": { "type": "string" },
+        "tests": { "type": "array", "items": { "$ref": "#/$defs/auditTest" } },
+        "release_thresholds": { "type": "object", "additionalProperties": { "type": ["number", "integer", "boolean", "string"] } }
+      },
+      "additionalProperties": false
+    },
+    "receipts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/receiptRef" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["id", "type", "rights_status"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "uri": { "type": "string" },
+        "digest": { "type": "string" },
+        "rights_status": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "type", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "name": { "type": "string" },
+        "properties": { "type": "object" },
+        "ontology_ref": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "relationship": {
+      "type": "object",
+      "required": ["subject", "predicate", "object"],
+      "properties": {
+        "subject": { "type": "string" },
+        "predicate": { "type": "string" },
+        "object": { "type": "string" },
+        "properties": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "after": { "type": "array", "items": { "type": "string" } },
+        "before": { "type": "array", "items": { "type": "string" } },
+        "participants": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "worldLaw": {
+      "type": "object",
+      "required": ["id", "statement"],
+      "properties": {
+        "id": { "type": "string" },
+        "statement": { "type": "string" },
+        "invariant": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "spatialNode": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["region", "place", "anchor", "zone", "route", "volume", "object"] },
+        "entity_ref": { "type": "string" },
+        "transform": { "$ref": "#/$defs/transform" },
+        "constraints": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "spatialEdge": {
+      "type": "object",
+      "required": ["from", "relation", "to"],
+      "properties": {
+        "from": { "type": "string" },
+        "relation": { "enum": ["inside", "contains", "adjacent", "connected", "visible", "hidden", "reachable", "above", "below", "near", "far", "faces"] },
+        "to": { "type": "string" },
+        "constraints": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "transform": {
+      "type": "object",
+      "properties": {
+        "position": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+        "rotation": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 4 },
+        "scale": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 }
+      },
+      "additionalProperties": false
+    },
+    "proceduralLaw": {
+      "type": "object",
+      "required": ["id", "generator", "generator_version", "seed_policy", "reproducibility", "inputs", "invariants"],
+      "properties": {
+        "id": { "type": "string" },
+        "generator": { "type": "string" },
+        "generator_version": { "type": "string" },
+        "seed_policy": { "type": "string" },
+        "reproducibility": { "enum": ["exact", "equivalent", "non_deterministic"] },
+        "inputs": { "type": "object" },
+        "invariants": { "type": "array", "items": { "type": "string" } },
+        "mutation_permissions": { "type": "array", "items": { "type": "string" } },
+        "output_domain": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "geometryObject": {
+      "type": "object",
+      "required": ["id", "entity_ref", "layers"],
+      "properties": {
+        "id": { "type": "string" },
+        "entity_ref": { "type": "string" },
+        "layers": { "type": "array", "items": { "type": "string" } },
+        "affordances": { "type": "array", "items": { "type": "string" } },
+        "authority_requirements": { "type": "array", "items": { "type": "string" } },
+        "memory_policy": { "type": "string" },
+        "provenance_ref": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "eventBinding": {
+      "type": "object",
+      "required": ["event", "trigger", "effect"],
+      "properties": {
+        "event": { "type": "string" },
+        "trigger": { "type": "object" },
+        "effect": { "type": "object" },
+        "authority_scope": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "permission": {
+      "type": "object",
+      "required": ["subject", "action", "resource", "decision"],
+      "properties": {
+        "subject": { "type": "string" },
+        "action": { "type": "string" },
+        "resource": { "type": "string" },
+        "decision": { "enum": ["allow", "deny", "approval_required"] }
+      },
+      "additionalProperties": false
+    },
+    "auditTest": {
+      "type": "object",
+      "required": ["id", "category", "required"],
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "enum": ["schema", "geometry", "navigation", "physics", "runtime", "narrative", "lore", "accessibility", "performance", "security", "governance", "rights", "economy", "physical"] },
+        "required": { "type": "boolean" },
+        "procedure": { "type": "string" },
+        "threshold": { "type": ["number", "integer", "boolean", "string"] }
+      },
+      "additionalProperties": false
+    },
+    "receiptRef": {
+      "type": "object",
+      "required": ["type", "id", "digest", "status"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" },
+        "digest": { "type": "string" },
+        "status": { "type": "string" },
+        "uri": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

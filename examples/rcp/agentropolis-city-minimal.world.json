@@ -1,0 +1,235 @@
+{
+  "rcp_version": "0.1.0",
+  "package_id": "agentropolis.city.minimal",
+  "version": "0.1.0",
+  "status": "COMPILED",
+  "authority": {
+    "owner_repo": "wiredchaos/AGENTROPOLIS-CREATOR",
+    "district": "construction",
+    "mandate_ref": "atg:mandate:example-only",
+    "approval_policy": "mission-control-human-review"
+  },
+  "provenance": {
+    "input_digest": "example-not-for-release",
+    "sources": [
+      {
+        "id": "agentropolis-core-canon",
+        "type": "project_canon",
+        "uri": "repo:wiredchaos/agentropolis",
+        "digest": "unresolved-example",
+        "rights_status": "owned"
+      }
+    ],
+    "rights_status": "owned",
+    "canon_refs": ["agentropolis:intelligence-grid"]
+  },
+  "world_dna": {
+    "entities": [
+      {
+        "id": "agent.neuro",
+        "type": "agent",
+        "name": "NEURO",
+        "properties": {
+          "role": "founder-architect"
+        },
+        "ontology_ref": "agentropolis:Agent"
+      }
+    ],
+    "places": [
+      {
+        "id": "place.identity-plaza",
+        "type": "civic_place",
+        "name": "Identity Plaza",
+        "properties": {},
+        "ontology_ref": "agentropolis:Place"
+      },
+      {
+        "id": "place.mission-control",
+        "type": "governance_place",
+        "name": "Mission Control",
+        "properties": {},
+        "ontology_ref": "agentropolis:Place"
+      }
+    ],
+    "institutions": [
+      {
+        "id": "institution.mission-control",
+        "type": "governance_institution",
+        "name": "Mission Control",
+        "properties": {
+          "authority": "human-control-plane"
+        },
+        "ontology_ref": "agentropolis:Institution"
+      }
+    ],
+    "relationships": [
+      {
+        "subject": "institution.mission-control",
+        "predicate": "occupies",
+        "object": "place.mission-control",
+        "properties": {}
+      }
+    ],
+    "chronology": [],
+    "laws": [
+      {
+        "id": "law.authority-runtime-bound",
+        "statement": "Authority is a runtime constraint, not a prompt.",
+        "invariant": true
+      }
+    ]
+  },
+  "spatial_graph": {
+    "coordinate_system": "right-handed-y-up",
+    "units": "meters",
+    "nodes": [
+      {
+        "id": "node.identity-plaza",
+        "kind": "place",
+        "entity_ref": "place.identity-plaza",
+        "transform": {
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "constraints": {
+          "public": true
+        }
+      },
+      {
+        "id": "node.mission-control",
+        "kind": "place",
+        "entity_ref": "place.mission-control",
+        "transform": {
+          "position": [40, 0, 0],
+          "rotation": [0, 0, 0],
+          "scale": [1, 1, 1]
+        },
+        "constraints": {
+          "public": false
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "node.identity-plaza",
+        "relation": "connected",
+        "to": "node.mission-control",
+        "constraints": {
+          "traversable": true,
+          "maximum_slope": 0.08
+        }
+      }
+    ]
+  },
+  "procedural_laws": [
+    {
+      "id": "law.civic-corridor",
+      "generator": "agentropolis.civic-corridor",
+      "generator_version": "0.1.0",
+      "seed_policy": "package-id-hash",
+      "reproducibility": "equivalent",
+      "inputs": {
+        "width_meters": 8,
+        "pedestrian_priority": true
+      },
+      "invariants": [
+        "identity-plaza-remains-reachable",
+        "mission-control-boundary-remains-visible"
+      ],
+      "mutation_permissions": ["street-furniture", "lighting", "landscaping"],
+      "output_domain": "public-corridor"
+    }
+  ],
+  "geometry_contract": {
+    "layers": ["render", "collision", "navigation", "occlusion", "interaction", "semantic"],
+    "objects": [
+      {
+        "id": "geometry.identity-plaza",
+        "entity_ref": "place.identity-plaza",
+        "layers": ["render", "collision", "navigation", "interaction", "semantic"],
+        "affordances": ["enter", "inspect-identity", "request-mandate"],
+        "authority_requirements": ["public-entry", "mandate-required-for-mutation"],
+        "memory_policy": "receipt-references-only",
+        "provenance_ref": "agentropolis-core-canon"
+      }
+    ],
+    "budgets": {
+      "target_fps": 60,
+      "maximum_initial_download_mb": 25
+    }
+  },
+  "runtime_bindings": {
+    "targets": ["threejs-webgpu", "static-preview"],
+    "events": [
+      {
+        "event": "request-mandate",
+        "trigger": {
+          "zone": "geometry.identity-plaza"
+        },
+        "effect": {
+          "route": "mission-control-mandate-intake"
+        },
+        "authority_scope": "proposal-only"
+      }
+    ],
+    "capabilities": ["walk", "inspect", "request-mandate"],
+    "adapters": ["rcp-threejs-preview"]
+  },
+  "governance": {
+    "human_review_required": true,
+    "permissions": [
+      {
+        "subject": "public",
+        "action": "enter",
+        "resource": "place.identity-plaza",
+        "decision": "allow"
+      },
+      {
+        "subject": "agent",
+        "action": "modify",
+        "resource": "world",
+        "decision": "approval_required"
+      }
+    ],
+    "prohibited_actions": ["self-approve-release", "live-settlement", "physical-actuation"],
+    "privacy_class": "public",
+    "physical_actuation": "none",
+    "cost_budget": {
+      "compile_usd": 10,
+      "runtime_hourly_usd": 1
+    }
+  },
+  "audit_contract": {
+    "profile": "rcp-baseline-0.1",
+    "tests": [
+      {
+        "id": "schema-valid",
+        "category": "schema",
+        "required": true,
+        "procedure": "Validate against schemas/rcp/world-package.schema.json",
+        "threshold": true
+      },
+      {
+        "id": "required-places-reachable",
+        "category": "navigation",
+        "required": true,
+        "procedure": "Traverse all required place nodes from the public spawn.",
+        "threshold": 1
+      },
+      {
+        "id": "authority-boundary",
+        "category": "governance",
+        "required": true,
+        "procedure": "Attempt world mutation without approval and verify denial.",
+        "threshold": true
+      }
+    ],
+    "release_thresholds": {
+      "required_tests_pass": true,
+      "critical_failures": 0,
+      "human_approval": true
+    }
+  },
+  "receipts": []
+}
