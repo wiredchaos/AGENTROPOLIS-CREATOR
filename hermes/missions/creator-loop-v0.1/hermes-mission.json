@@ -1,0 +1,48 @@
+{
+  "schema_version": "agentropolis.hermes.mission.v1",
+  "mandate_id": "mandate:creator-loop:2026-08-05:v0.1",
+  "task_id": "task:hermes:creator-loop:execute:v0.1",
+  "actor": "agent:hermes:creator-steward",
+  "runtime": "hermes",
+  "runtime_baseline": "v2026.7.30-canary",
+  "district": "AGENTROPOLIS-CREATOR",
+  "objective": "Execute and validate AGENTROPOLIS CREATOR LOOP v0.1.0 through the governed Hermes operator lane.",
+  "artifact": {
+    "encoding": "base64",
+    "path": "hermes/missions/creator-loop-v0.1/artifacts/agentropolis-creator-loop-v0.1.0.zip.b64",
+    "sha256": "c8dc0756cb5f7dfb94587481e8fb61c1b1abdba75de739f9f7b9a5985b232ade"
+  },
+  "policy": {
+    "model_vendor_lock": false,
+    "claude_dependency": "prohibited",
+    "spawn": "prohibited",
+    "external_publish": "prohibited",
+    "payments": "prohibited",
+    "deploy": "prohibited",
+    "network_access": "read-only only when explicitly approved",
+    "human_review_required": true
+  },
+  "allowed_actions": [
+    "decode_artifact",
+    "verify_checksum",
+    "install_declared_dependencies",
+    "compile",
+    "run_tests",
+    "run_offline_demo",
+    "inspect_receipts",
+    "write_completion_receipt"
+  ],
+  "completion_contract": {
+    "required": [
+      "artifact checksum matches",
+      "all declared skill contracts validate",
+      "strict TypeScript compilation passes",
+      "runtime policy tests pass",
+      "offline campaign reaches COMPLETED",
+      "Hermes completion receipt is written"
+    ],
+    "receipt_path": "hermes/missions/creator-loop-v0.1/receipts/hermes-completion-receipt.json",
+    "status_values": ["COMPLETED", "BLOCKED", "FAILED"]
+  },
+  "execution_command": "bash hermes/missions/creator-loop-v0.1/run-hermes-mission.sh"
+}
