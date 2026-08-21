@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "agentropolis.cityflight/v1",
+  "worldId": "neuro-heist-intro",
+  "status": "planning_only",
+  "owner": {
+    "district": "AGENTROPOLIS-GAMING-DISTRICT",
+    "application": "NEURO HEIST"
+  },
+  "experience": {
+    "title": "NEURO HEIST: City Entry",
+    "purpose": "Introduce the player to the city, crew, mission plan, vault approach, breach, and extraction route.",
+    "audience": "players",
+    "cameraGrammar": "continuous forward traversal with controlled reveals",
+    "nativeMobile": true
+  },
+  "budget": {
+    "currency": "USD",
+    "ceiling": 0,
+    "estimated": 0,
+    "approvalRef": null
+  },
+  "approvals": {
+    "rights": "pending",
+    "generation": "pending",
+    "release": "pending",
+    "humanApprover": "NEURO"
+  },
+  "providers": {
+    "mode": "byok",
+    "stillAdapter": "unassigned",
+    "flightAdapter": "unassigned",
+    "connectorAdapter": "unassigned",
+    "seamValidator": "local-frame-diff"
+  },
+  "scenes": [
+    {"id":"city-perimeter","order":1,"title":"City Perimeter","rights":"pending","desktopAsset":null,"mobileAsset":null},
+    {"id":"crew-selection","order":2,"title":"Crew Selection","rights":"pending","desktopAsset":null,"mobileAsset":null},
+    {"id":"planning-room","order":3,"title":"Planning Room","rights":"pending","desktopAsset":null,"mobileAsset":null},
+    {"id":"vault-approach","order":4,"title":"Vault Approach","rights":"pending","desktopAsset":null,"mobileAsset":null},
+    {"id":"breach","order":5,"title":"Breach","rights":"pending","desktopAsset":null,"mobileAsset":null},
+    {"id":"extraction","order":6,"title":"Extraction","rights":"pending","desktopAsset":null,"mobileAsset":null}
+  ],
+  "connectors": [
+    {"id":"city-perimeter__crew-selection","from":"city-perimeter","to":"crew-selection","desktopAsset":null,"mobileAsset":null,"seamStatus":"pending"},
+    {"id":"crew-selection__planning-room","from":"crew-selection","to":"planning-room","desktopAsset":null,"mobileAsset":null,"seamStatus":"pending"},
+    {"id":"planning-room__vault-approach","from":"planning-room","to":"vault-approach","desktopAsset":null,"mobileAsset":null,"seamStatus":"pending"},
+    {"id":"vault-approach__breach","from":"vault-approach","to":"breach","desktopAsset":null,"mobileAsset":null,"seamStatus":"pending"},
+    {"id":"breach__extraction","from":"breach","to":"extraction","desktopAsset":null,"mobileAsset":null,"seamStatus":"pending"}
+  ],
+  "receipts": [],
+  "deployment": {
+    "target": "cloudflare-pages-r2",
+    "status": "not_ready",
+    "manifestHash": null,
+    "rollbackRef": null
+  }
+}
